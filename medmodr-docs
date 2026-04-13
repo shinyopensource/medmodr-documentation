@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedModr: Mediation & Moderation Analysis Tool. Free Online Software (Version 1.0)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Source+Code+Pro:wght@400;500&family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* EXACT SAME VARIABLES & STYLES AS CALCUSTATS DOCS */
+    :root {
+      --white: #ffffff;
+      --bg: #f8f8f8;
+      --border: #e0e0e0;
+      --border-light: #eeeeee;
+      --text: #212121;
+      --muted: #555555;
+      --light: #888888;
+      --accent: #2980b9;      /* CalcuStats blue */
+      --accent-dark: #1a5f8a;
+      --accent-bg: #eaf4fb;
+      --warn-bg: #fef9e7;
+      --warn-border: #f39c12;
+      --success-bg: #eafaf1;
+      --success-border: #27ae60;
+      --code-bg: #f5f5f5;
+      --sidebar-w: 240px;
+      --header-h: 52px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Serif 4', Georgia, serif;
+      background: var(--white);
+      color: var(--text);
+      font-size: 15.5px;
+      line-height: 1.85;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--header-h);
+      background: var(--accent);
+      display: flex; align-items: center;
+      padding: 0 20px; gap: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .logo {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700; font-size: 1.1rem;
+      color: #fff; text-decoration: none; white-space: nowrap;
+    }
+    .header-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+    .header-nav a {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      padding: 5px 12px; border-radius: 4px;
+      transition: background .15s, color .15s;
+    }
+    .header-nav a:hover { background: rgba(255,255,255,0.18); color: #fff; }
+    .header-nav .btn-app {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.35); color: #fff;
+    }
+    .header-nav .btn-app:hover { background: rgba(255,255,255,0.32); }
+    .shell { display: flex; padding-top: var(--header-h); min-height: 100vh; }
+    aside {
+      width: var(--sidebar-w); flex-shrink: 0;
+      position: sticky; top: var(--header-h);
+      height: calc(100vh - var(--header-h));
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--bg); padding: 20px 0 40px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    aside::-webkit-scrollbar { width: 3px; }
+    aside::-webkit-scrollbar-thumb { background: var(--border); }
+    .toc-title {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--light); text-transform: uppercase; letter-spacing: 1.2px;
+      border-bottom: 1px solid var(--border-light); padding: 0 18px 10px; margin-bottom: 10px;
+    }
+    .toc-group { margin-bottom: 6px; }
+    .toc-group-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--light); text-transform: uppercase; letter-spacing: 1px;
+      padding: 10px 18px 4px;
+    }
+    aside a {
+      display: block; font-family: 'Lato', sans-serif;
+      font-size: 0.84rem; color: var(--muted); text-decoration: none;
+      padding: 4px 18px 4px 22px;
+      border-left: 3px solid transparent;
+      transition: all .12s; line-height: 1.5;
+    }
+    aside a:hover { color: var(--accent); background: rgba(41,128,185,0.06); }
+    aside a.active { color: var(--accent); border-left-color: var(--accent); background: rgba(41,128,185,0.07); font-weight: 700; }
+    main { flex: 1; min-width: 0; padding: 40px 60px 80px 52px; max-width: 1020px; }
+    section { margin-bottom: 52px; scroll-margin-top: 70px; }
+    .page-title { border-bottom: 2px solid var(--border); padding-bottom: 18px; margin-bottom: 32px; }
+    .page-title h1 {
+      font-family: 'Lato', sans-serif; font-size: 2.2rem; font-weight: 700;
+      color: var(--text); letter-spacing: -0.3px; margin-bottom: 8px;
+    }
+    .page-title p { color: var(--muted); font-size: 1rem; font-style: italic; margin: 0; }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .badge {
+      font-family: 'Lato', sans-serif; font-size: 0.72rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .badge-blue { background: var(--accent); color: #fff; }
+    .badge-gray { background: #666; color: #fff; }
+    .badge-green { background: #27ae60; color: #fff; }
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+    .btn {
+      font-family: 'Lato', sans-serif; font-size: 0.85rem; font-weight: 700;
+      padding: 8px 18px; border-radius: 4px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: all .15s; border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { background: var(--accent-dark); }
+    .btn-outline { background: #fff; color: var(--accent); border-color: var(--accent); }
+    .btn-outline:hover { background: var(--accent-bg); }
+    h2 {
+      font-family: 'Lato', sans-serif; font-size: 1.5rem; font-weight: 700;
+      color: var(--text); border-bottom: 1px solid var(--border);
+      padding-bottom: 10px; margin-bottom: 16px;
+    }
+    h3 { font-family: 'Lato', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+    p { color: var(--muted); margin-bottom: 14px; }
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted transparent; transition: border 0.1s; }
+    a:hover { border-bottom-color: var(--accent); }
+    .callout {
+      border: 1px solid #bee3f8; border-left: 4px solid var(--accent);
+      background: var(--accent-bg); border-radius: 4px;
+      padding: 12px 16px; font-size: 0.9rem; color: var(--text); margin: 16px 0;
+    }
+    .callout.warn { background: var(--warn-bg); border-color: #f9d78e; border-left-color: var(--warn-border); }
+    .callout.success { background: var(--success-bg); border-color: #a9dfbf; border-left-color: var(--success-border); }
+    .callout p { margin: 0; color: inherit; }
+    .callout-title {
+      font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.82rem;
+      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; color: var(--accent);
+    }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+    .feature-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
+      padding: 14px 16px; font-size: 0.88rem; color: var(--muted); display: flex; gap: 10px;
+      transition: all 0.1s;
+    }
+    .feature-card .icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; color: var(--accent); }
+    .feature-card strong { font-family: 'Lato', sans-serif; display: block; color: var(--text); margin-bottom: 2px; }
+    .steps { counter-reset: step; margin: 20px 0 24px; }
+    .step { display: flex; gap: 14px; margin-bottom: 22px; }
+    .step-num {
+      font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.78rem;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 3px;
+    }
+    .step-body strong { font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--text); display: block; margin-bottom: 6px; }
+    .step-body p { margin: 0 0 4px; font-size: 0.9rem; }
+    .step-body .code-snip { font-family: 'Source Code Pro', monospace; background: var(--code-bg); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; display: inline-block; margin-top: 6px; }
+    .video-embed { margin: 24px 0 16px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background: #000; }
+    .video-embed iframe { width: 100%; aspect-ratio: 16 / 9; border: none; display: block; }
+    .format-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .format-box { background: var(--bg); border: 1px solid var(--border); border-radius: 4px; padding: 16px; }
+    .format-box h4 {
+      font-family: 'Lato', sans-serif; font-size: 0.8rem; font-weight: 700;
+      color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px;
+    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: 'Source Code Pro', monospace; font-size: 0.78rem;
+      background: #fff; border: 1px solid var(--border); color: var(--text);
+      padding: 2px 8px; border-radius: 3px;
+    }
+    .code-container { position: relative; margin: 14px 0; }
+    pre {
+      background: var(--code-bg); border: 1px solid var(--border); border-radius: 4px;
+      padding: 16px 18px; overflow-x: auto; font-size: 0.84rem;
+    }
+    code { font-family: 'Source Code Pro', monospace; font-size: 0.85em; color: #c0392b; }
+    pre code { color: var(--text); font-size: 0.84rem; line-height: 1.7; }
+    .ck { color: #2980b9; }
+    .cs { color: #27ae60; }
+    .cc { color: #999; font-style: italic; }
+    .cf { color: #8e44ad; }
+    p code, li code {
+      font-family: 'Source Code Pro', monospace; font-size: 0.82em;
+      background: var(--code-bg); border: 1px solid var(--border);
+      padding: 1px 5px; border-radius: 3px; color: #c0392b;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; border: 1px solid var(--border); }
+    thead { background: var(--bg); }
+    th {
+      font-family: 'Lato', sans-serif; font-size: 0.82rem; font-weight: 700;
+      color: var(--text); text-align: left; padding: 10px 14px;
+      border-bottom: 2px solid var(--border); border-right: 1px solid var(--border-light);
+    }
+    td {
+      padding: 9px 14px; border-bottom: 1px solid var(--border-light);
+      border-right: 1px solid var(--border-light); color: var(--muted); vertical-align: top;
+    }
+    td:first-child { font-family: 'Source Code Pro', monospace; font-size: 0.83rem; color: var(--text); }
+    tbody tr:nth-child(even) td { background: #fafafa; }
+    tbody tr:hover td { background: var(--accent-bg); }
+    .limit-list { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .limit-item {
+      display: flex; gap: 12px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 4px; padding: 12px 16px; font-size: 0.88rem;
+    }
+    .limit-item .licon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .limit-item strong { font-family: 'Lato', sans-serif; color: var(--text); display: block; margin-bottom: 2px; font-size: 0.86rem; }
+    .limit-item p { margin: 0; }
+    .formula-block {
+      background: var(--code-bg); border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: 4px; padding: 14px 18px; margin: 14px 0;
+      font-family: 'Source Code Pro', monospace; font-size: 0.9rem;
+      color: var(--text); line-height: 1.85;
+    }
+    .citation-block {
+      background: var(--code-bg); border: 1px solid var(--border); border-radius: 4px;
+      padding: 16px 18px; font-family: 'Source Code Pro', monospace;
+      font-size: 0.82rem; color: var(--muted); line-height: 1.85;
+      white-space: pre-wrap; position: relative;
+    }
+    .copy-btn {
+      position: absolute; top: 10px; right: 10px;
+      font-family: 'Lato', sans-serif; font-size: 0.72rem; font-weight: 700;
+      background: #fff; border: 1px solid var(--border); color: var(--muted);
+      padding: 4px 10px; border-radius: 3px; cursor: pointer; transition: all .15s;
+      z-index: 5;
+    }
+    .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .author-card {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
+      padding: 22px; display: flex; gap: 20px; align-items: flex-start; margin-top: 16px;
+    }
+    .author-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Lato', sans-serif; font-weight: 700; font-size: 1.1rem; color: #fff; flex-shrink: 0;
+    }
+    .author-info h4 { font-family: 'Lato', sans-serif; font-weight: 700; color: var(--text); margin-bottom: 2px; font-size: 1rem; }
+    .author-info p { margin: 0 0 8px; font-size: 0.88rem; }
+    .author-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .author-links a {
+      font-family: 'Lato', sans-serif; font-size: 0.8rem; font-weight: 700;
+      color: var(--accent); text-decoration: none;
+      border: 1px solid var(--accent); padding: 4px 12px; border-radius: 3px; transition: all .15s;
+    }
+    .author-links a:hover { background: var(--accent); color: #fff; }
+    .pkg-grid { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+    .pkg {
+      font-family: 'Source Code Pro', monospace; font-size: 0.8rem;
+      background: var(--code-bg); border: 1px solid var(--border);
+      color: #8e44ad; padding: 3px 10px; border-radius: 3px;
+    }
+    .section-hr { border: none; border-top: 1px solid var(--border); margin: 0 0 52px; }
+    .theme-toggle-btn {
+      background: var(--accent);
+      border: none;
+      color: white;
+      font-size: 0.75rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 30px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .theme-toggle-btn:hover { opacity: 0.9; transform: scale(0.97); background: var(--accent-dark); }
+    body.dark {
+      --white: #121826;
+      --bg: #1a1f2c;
+      --border: #2d3748;
+      --border-light: #2a2f3c;
+      --text: #eef2ff;
+      --muted: #b9c7d9;
+      --light: #8d9bb0;
+      --accent: #5a9fd4;
+      --accent-dark: #3f7fb0;
+      --accent-bg: #20273a;
+      --warn-bg: #2e2a1f;
+      --warn-border: #e6b450;
+      --success-bg: #1e3a2a;
+      --code-bg: #252b36;
+    }
+    body.dark .feature-card, body.dark .format-box, body.dark .limit-item, body.dark .author-card { background: var(--bg); border-color: var(--border); }
+    body.dark .tag, body.dark .formula-block { background: #2d3748; border-color: #3a4558; color: #eef2ff; }
+    body.dark tbody tr:nth-child(even) td { background: #1e2432; }
+    body.dark tbody tr:hover td { background: var(--accent-bg); }
+    body.dark .btn-outline { background: transparent; color: var(--accent); }
+    body.dark .copy-btn { background: var(--bg); color: var(--muted); border-color: var(--border); }
+    body.dark .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+    body.dark ::-webkit-scrollbar-thumb { background: #4a5568; }
+    @media (max-width: 768px) {
+      aside { display: none; }
+      main { padding: 24px 20px 60px; }
+      .feature-grid, .format-grid { grid-template-columns: 1fr; }
+    }
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 22px 52px; display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px;
+      font-family: 'Lato', sans-serif; font-size: 0.8rem; color: var(--light);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    ul, .doc-list { color: var(--muted); padding-left: 1.4em; margin-bottom: 14px; }
+    li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">MedModr (HTML version)</a>
+  <nav class="header-nav">
+    <a href="#overview">Docs</a>
+    <a href="https://github.com/shinyhealthtools/medmodr" target="_blank">GitHub</a>
+    <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn-app">▶ Launch App</a>
+  </nav>
+</header>
+
+<div class="shell">
+  <aside id="sidebar">
+    <div class="toc-title">Table of Contents</div>
+    <div class="toc-group">
+      <div class="toc-group-label">Getting Started</div>
+      <a href="#overview" class="active">Overview</a>
+      <a href="#features">Modules & Features</a>
+      <a href="#live-app">Live Application</a>
+    </div>
+    <div class="toc-group">
+      <div class="toc-group-label">Step‑by‑Step Guides</div>
+      <a href="#simple-mediation">Simple Mediation (X→M→Y)</a>
+      <a href="#serial-mediation">Serial Mediation (M1, M2)</a>
+      <a href="#moderation">Moderation (Interaction)</a>
+      <a href="#moderated-mediation">Moderated Mediation</a>
+    </div>
+    <div class="toc-group">
+      <div class="toc-group-label">Advanced Topics</div>
+      <a href="#bootstrapping">Bootstrapping & CIs</a>
+      <a href="#standardized">Standardized Coefficients</a>
+      <a href="#visualization">Path Diagrams & Slopes</a>
+    </div>
+    <div class="toc-group">
+      <div class="toc-group-label">Reference</div>
+      <a href="#input-format">Input Formats</a>
+      <a href="#limitations">Limitations</a>
+      <a href="#citation">Citation</a>
+      <a href="#developer">Developer</a>
+    </div>
+  </aside>
+
+  <main>
+    <div class="page-title" id="overview">
+      <h1>MedModr</h1>
+      <p>A mediation & moderation analysis tool — browser‑based, free, and privacy‑first</p>
+      <div class="badges">
+        <span class="badge badge-blue">Web App</span>
+        <span class="badge badge-green">MIT License</span>
+        <span class="badge badge-gray">Free to Use</span>
+      </div>
+      <div class="hero-actions">
+        <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn btn-primary">▶ Launch Live App</a>
+        <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" class="btn btn-outline">View on GitHub</a>
+                <a href="https://archive.org/download/catrend-analyzer-example-data/mediation_moderationdataset.xlsx" class="btn btn-outline">⬇ Example Dataset</a>
+      </div>
+    </div>
+
+    <section>
+      <h2>Overview</h2>
+      <p>MedModr is a free, web‑based statistical tool for <strong>mediation, moderation, serial mediation, and moderated mediation</strong> analysis. The tool provides unstandardized (b) and standardized (β) coefficients, bootstrapped confidence intervals for indirect effects, interactive path diagrams, and annotated simple slopes plots.</p>
+
+      <h3>What MedModr Solves</h3>
+      <div class="feature-grid">
+        <div class="feature-card"><div class="icon">🔗</div><div><strong>Mediation Analysis</strong>Test whether an intervening variable (M) transmits the effect of X on Y — simple and serial mediation.</div></div>
+        <div class="feature-card"><div class="icon">⚡</div><div><strong>Moderation Analysis</strong>Examine whether the effect of X on Y depends on the level of a moderator W, with simple slopes plots.</div></div>
+        <div class="feature-card"><div class="icon">🔄</div><div><strong>Moderated Mediation</strong>Test conditional indirect effects — whether mediation depends on a moderator (a‑path moderation).</div></div>
+        <div class="feature-card"><div class="icon">📊</div><div><strong>Bootstrap Inference</strong>Percentile bootstrap confidence intervals for all indirect effects (1,000–10,000 samples).</div></div>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>Modules & Features</h2>
+      <div class="format-grid">
+        <div class="format-box">
+          <h4>📊 Analysis Modules</h4>
+          <div class="tag-list">
+            <span class="tag">Simple Mediation</span>
+            <span class="tag">Serial Mediation (2 mediators)</span>
+            <span class="tag">Moderation (X×W)</span>
+            <span class="tag">Moderated Mediation</span>
+          </div>
+        </div>
+        <div class="format-box">
+          <h4>⚙️ Core Capabilities</h4>
+          <div class="tag-list">
+            <span class="tag">Bootstrap CIs</span>
+            <span class="tag">Standardized β</span>
+            <span class="tag">Path Diagrams</span>
+            <span class="tag">Annotated Slopes Plot</span>
+            <span class="tag">APA Export</span>
+            <span class="tag">Word Report</span>
+            <span class="tag">Mean‑Centering Options</span>
+            <span class="tag">Covariates Support</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="live-app">
+      <h2>Live Application</h2>
+      <div class="callout success">
+        <div class="callout-title">🌐 MedModr Web App</div>
+        <p><a href="https://shinyhealthtools.github.io/medmodr/" target="_blank">https://shinyhealthtools.github.io/medmodr/</a> — open in any modern browser. No registration, no installation, full client‑side privacy.</p>
+      </div>
+    </section>
+
+    <hr class="section-hr" />
+
+    <!-- SIMPLE MEDIATION -->
+    <section id="simple-mediation">
+      <h2>Simple Mediation (X → M → Y)</h2>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/5PZxU_zA6Yg" title="Simple mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>In MedModr, click the <strong>Simple Mediation</strong> tab (X → M → Y).</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter independent X, mediator M, outcome Y</strong><p>Provide names and data for independent X, mediator M, and outcome Y. All three variables must have the same number of rows.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Add covariates (optional)</strong><p>Enter control variables in the Covariates box: first line = names (space separated), subsequent lines = numeric values. Covariates are mean‑centered automatically.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Set options & run</strong><p>Choose confidence level (90%, 95%, 99%), bootstrap samples (0 = Sobel only, 1000, 5000 or 10000).  <p> Hayes (2009) recommend at least 5000 bootstrap samples for stable CIs of serial indirect effects. <strong>Article:</strong> Hayes, A. F. (2009). Beyond Baron and Kenny: Statistical Mediation Analysis in the New Millennium. Communication Monographs, 76, 408-420. </p> Click <strong>Run Analysis</strong></p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Interpret results</strong><p>The output includes: a‑path (X→M), b‑path (M→Y), total effect, direct effect, indirect effect (a×b), Sobel test, bootstrap CI, and interactive path diagram.</p></div></div>
+      </div>
+    </section>
+
+    <!-- SERIAL MEDIATION -->
+    <section id="serial-mediation">
+      <h2>Serial Mediation (X → M1 → M2 → Y)</h2>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/JWjL5M7duwY" title="Serial mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Click the <strong>Serial Mediation</strong> button (X→M1→M2→Y).</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter independent X, first mediator M1, second mediator M2, outcome Y</strong><p>Provide names and data for independent X, first mediator M1, second mediator M2, and outcome Y. All four variables must have the same number of rows.</p></div></div>
+                <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Add covariates (optional)</strong><p>Enter control variables in the Covariates box: first line = names (space separated), subsequent lines = numeric values. Covariates are mean‑centered automatically.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Set options & run</strong><p>Choose confidence level (90%, 95%, 99%), bootstrap samples (0 = Sobel only, 1000, 5000 or 10000).  <p> Hayes (2009) recommend at least 5000 bootstrap samples for stable CIs of serial indirect effects. <strong>Article:</strong> Hayes, A. F. (2009). Beyond Baron and Kenny: Statistical Mediation Analysis in the New Millennium. Communication Monographs, 76, 408-420. </p> Click <strong>Run Analysis</strong></p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Interpret results</strong><p>Results include three specific indirect effects: X→M1→M2→Y (serial), X→M1→Y, X→M2→Y, plus total indirect, direct effect, and bootstrap CIs. The path diagram shows all coefficients (a₁, d₂₁, a₂, b₁, b₂, c′).</p></div></div>
+      </div>
+    </section>
+
+    <!-- MODERATION -->
+    <section id="moderation">
+      <h2>Moderation (X × W → Y)</h2>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/BYc6oNPtdtA" title="Moderation analysis tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Click <strong>Moderation</strong> (X × W → Y).</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter independent X, moderator W, outcome Y</strong><p>Provide variable names and numeric data for independent X, moderator W, and outcome Y. All three variables must have the same number of rows.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Select mean‑centering strategy</strong><p>Options: <strong>Mean Centering (All variables)</strong> (centers both numerical and binary variables [i.e., 0/1 or 1/0] before interaction), <strong>Mean Centering (Only continuous variables)</strong> (centers only numerical variables excluding binary variables - 0/1 or 1/0 before interaction), or <strong>No Mean Centering</strong> (raw multiplication).</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run & interpret interaction term</strong><p>The table shows b₃ (X×W) coefficient with p‑value. If significant, moderation is present. Simple slopes at low (−1 SD), mean, and high (+1 SD) levels of W are displayed together with an annotated slopes plot. Each legend line includes the slope coefficient (b) and p‑value.</p></div></div>
+    </section>
+
+    <!-- MODERATED MEDIATION -->
+    <section id="moderated-mediation">
+      <h2>Moderated Mediation (Conditional Indirect Effect)</h2>
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/vAGn7hRrD88" title="Moderated mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Click <strong>Moderated Mediation</strong> tab (X → M → Y, with W moderating the a‑path).</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter independent X, mediator M, moderator W, outcome Y</strong><p>Provide variable names and numeric data for independent X, mediator M, moderator W, and outcome Y. All four variables must have the same number of rows.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Select mean‑centering strategy</strong><p>Options: <strong>Mean Centering (All variables)</strong> (centers both numerical and binary variables [i.e., 0/1 or 1/0] before interaction), <strong>Mean Centering (Only continuous variables)</strong> (centers only numerical variables excluding binary variables - 0/1 or 1/0 before interaction), or <strong>No Mean Centering</strong> (raw multiplication).</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run & interpret interaction term</strong><p>Output includes: simple slopes of X→M at three levels of W, conditional indirect effects (a·b) at each level, analytic and bootstrap CIs, and the index of moderated mediation (a₃·b)</p></div></div>
+      </div>
+    </section>
+
+    <hr class="section-hr" />
+
+    <section id="bootstrapping">
+      <h2>Bootstrapping & Confidence Intervals</h2>
+      <p>For all indirect effects (simple, serial, conditional, index), MedModr implements the <strong>percentile bootstrap</strong>. User‑selectable resamples: 1000, 5000, or 10000.</p>
+      <div class="callout">
+        <div class="callout-title">📊 Interpretation</div>
+        <p>If the bootstrap confidence interval (e.g., 95% BootLLCI to BootULCI) does not contain zero, the indirect effect is statistically significant at α = 0.05 (two‑tailed).</p>
+      </div>
+    </section>
+
+    <section id="standardized">
+      <h2>Standardized Coefficients (β)</h2>
+      <p>Every regression table includes both unstandardized b and standardized β. Standardized coefficients are obtained by re‑running the same regression on <strong>z‑scored variables</strong> (mean = 0, SD = 1). This allows direct comparison of effect sizes across predictors measured in different units.</p>
+    </section>
+
+    <section id="visualization">
+      <h2>Path Diagrams & Simple Slopes Plots</h2>
+      <div class="feature-grid">
+        <div class="feature-card"><div class="icon">📐</div><div><strong>Interactive path diagrams</strong><br>Click "View full‑screen diagram" to open a modal. Toggle between unstandardized/standardized coefficients, hide/show p‑values, download as PNG.</div></div>
+        <div class="feature-card"><div class="icon">📈</div><div><strong>Annotated slopes plot</strong><br>For moderation / moderated mediation. Each slope line legend shows the slope (b) and p‑value. "Hide Labels" toggles annotations. Full‑screen mode + high‑resolution download.</div></div>
+      </div>
+    </section>
+
+    <hr class="section-hr" />
+
+    <section id="input-format">
+      <h2>Data Input Format</h2>
+      <p>All data entry is text‑based: one numeric value per line, <strong>no header row</strong>. Example:</p>
+      <div class="code-container">
+        <pre><code>3.4
+5.1
+2.8
+4.2</code></pre>
+      </div>
+      <p>All variables must have the exact same number of rows (N). Covariates are optional: first line = variable names (space or comma separated), subsequent lines = numeric data.</p>
+      <div class="callout">
+        <div class="callout-title">📎 Covariates example</div>
+        <pre style="margin-top:5px;background:var(--code-bg)"><code>age education
+25 16
+30 18
+28 17</code></pre>
+      </div>
+    </section>
+
+    <section id="limitations">
+      <h2>Limitations</h2>
+      <div class="limit-list">
+        <div class="limit-item"><div class="licon">📐</div><div><strong>OLS only</strong> — models are based on ordinary least squares regression; no multilevel or SEM.</div></div>
+        <div class="limit-item"><div class="licon">🔢</div><div><strong>Listwise deletion</strong> — rows with missing values must be removed before pasting data.</div></div>
+        <div class="limit-item"><div class="licon">📦</div><div><strong>Large N</strong> — performance may degrade with N > 5000 due to client‑side matrix inversion.</div></div>
+      </div>
+    </section>
+
+    <section id="citation">
+      <h2>Citation</h2>
+      <div class="citation-block" id="cite-block">Ibrahim, M. M. (2026). <em>MedModr: Mediation & Moderation Analysis Tool. Free Online Software</em> (Version 1.0) [Software]. Available from https://medmodr.vercel.app<button class="copy-btn" onclick="copyCite()">Copy</button></div>
+    </section>
+
+      <section id="contact">
+      <h2>Developer Information</h2>
+      <div class="author-card">
+        <div class="author-avatar">MI</div>
+        <div class="author-info">
+          <h4>Mudasir Mohammed Ibrahim</h4>
+          <p>
+            Department of Internal Medicine (M3), Tamale Teaching Hospital, Tamale, Ghana<br />
+            <a href="mailto:mudassiribrahim30@gmail.com">mudassiribrahim30@gmail.com</a>
+          </p>
+          <div class="author-links" style="margin-top: 15px;">
+            <a href="https://www.researchgate.net/profile/Mudasir-Ibrahim" target="_blank">ResearchGate</a>
+            <a href="https://scholar.google.com/citations?user=xEFzAvgAAAAJ&hl=en" target="_blank">Google Scholar</a>
+            <a href="https://orcid.org/0000-0002-9049-8222" target="_blank">ORCID</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div>© 2025–Present Mudasir Mohammed Ibrahim · MIT License</div>
+  <div style="display: flex; align-items: center; gap: 16px;">
+    <a href="https://github.com/mudassiribrahim30" target="_blank">GitHub</a> ·
+    <a href="mailto:mudassiribrahim30@gmail.com">Contact</a>
+    <button id="darkModeToggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+      <i class="fas fa-moon"></i>
+      <span>Dark</span>
+    </button>
+  </div>
+</footer>
+
+<script>
+  function copyCite() {
+    const block = document.getElementById('cite-block');
+    let text = block.innerText || block.textContent;
+    text = text.replace('Copy', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = block.querySelector('.copy-btn');
+      if (btn) {
+        btn.textContent = '✓ Copied';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+      }
+    });
+  }
+  const themeToggle = document.getElementById('darkModeToggle');
+  function setTheme(theme) {
+    if (theme === 'dark') {
+      document.body.classList.add('dark');
+      localStorage.setItem('medmodr-docs-theme', 'dark');
+      if (themeToggle) themeToggle.innerHTML = '<i class="fas fa-sun"></i> <span>Light</span>';
+    } else {
+      document.body.classList.remove('dark');
+      localStorage.setItem('medmodr-docs-theme', 'light');
+      if (themeToggle) themeToggle.innerHTML = '<i class="fas fa-moon"></i> <span>Dark</span>';
+    }
+  }
+  const savedTheme = localStorage.getItem('medmodr-docs-theme');
+  setTheme(savedTheme === 'dark' ? 'dark' : 'light');
+  if (themeToggle) themeToggle.addEventListener('click', () => {
+    setTheme(document.body.classList.contains('dark') ? 'light' : 'dark');
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('aside a').forEach(a => a.classList.remove('active'));
+        const link = document.querySelector(`aside a[href="#${entry.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px' });
+  document.querySelectorAll('section[id], .page-title[id]').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
