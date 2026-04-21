@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MedModr: Mediation & Moderation Analysis Tool. Free Online Software (Version 1.0)</title>
+  <title>About MedModr: Complete Documentation | Mediation & Moderation Analysis Tool</title>
+  <meta name="description" content="Complete documentation for MedModr - free online mediation, moderation, serial mediation, and moderated mediation analysis tool. Includes all formulas, step-by-step guides, and mathematical explanations.">
+  <meta name="keywords" content="mediation analysis documentation, moderation analysis formulas, serial mediation, moderated mediation, bootstrap CI, PROCESS macro alternative, statistical software documentation">
+  <meta name="author" content="Mudasir Mohammed Ibrahim">
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=Source+Code+Pro:wght@400;500&family=Lato:wght@400;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* EXACT SAME VARIABLES & STYLES AS CALCUSTATS DOCS */
     :root {
       --white: #ffffff;
       --bg: #f8f8f8;
@@ -16,7 +18,7 @@
       --text: #212121;
       --muted: #555555;
       --light: #888888;
-      --accent: #2980b9;      /* CalcuStats blue */
+      --accent: #2980b9;
       --accent-dark: #1a5f8a;
       --accent-bg: #eaf4fb;
       --warn-bg: #fef9e7;
@@ -24,7 +26,7 @@
       --success-bg: #eafaf1;
       --success-border: #27ae60;
       --code-bg: #f5f5f5;
-      --sidebar-w: 240px;
+      --sidebar-w: 260px;
       --header-h: 52px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,6 +52,7 @@
       font-weight: 700; font-size: 1.1rem;
       color: #fff; text-decoration: none; white-space: nowrap;
     }
+    .logo span { font-weight: 400; font-size: 0.8rem; opacity: 0.8; }
     .header-nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
     .header-nav a {
       font-family: 'Lato', sans-serif;
@@ -98,7 +101,7 @@
     }
     aside a:hover { color: var(--accent); background: rgba(41,128,185,0.06); }
     aside a.active { color: var(--accent); border-left-color: var(--accent); background: rgba(41,128,185,0.07); font-weight: 700; }
-    main { flex: 1; min-width: 0; padding: 40px 60px 80px 52px; max-width: 1020px; }
+    main { flex: 1; min-width: 0; padding: 40px 60px 80px 52px; max-width: 1100px; }
     section { margin-bottom: 52px; scroll-margin-top: 70px; }
     .page-title { border-bottom: 2px solid var(--border); padding-bottom: 18px; margin-bottom: 32px; }
     .page-title h1 {
@@ -125,12 +128,19 @@
     .btn-primary:hover { background: var(--accent-dark); }
     .btn-outline { background: #fff; color: var(--accent); border-color: var(--accent); }
     .btn-outline:hover { background: var(--accent-bg); }
+    .btn-donate {
+      background: #ff6b6b;
+      color: #fff;
+      border-color: #ff6b6b;
+    }
+    .btn-donate:hover { background: #ff4757; border-color: #ff4757; }
     h2 {
       font-family: 'Lato', sans-serif; font-size: 1.5rem; font-weight: 700;
       color: var(--text); border-bottom: 1px solid var(--border);
       padding-bottom: 10px; margin-bottom: 16px;
     }
     h3 { font-family: 'Lato', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+    h4 { font-family: 'Lato', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--text); margin: 16px 0 8px; }
     p { color: var(--muted); margin-bottom: 14px; }
     a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted transparent; transition: border 0.1s; }
     a:hover { border-bottom-color: var(--accent); }
@@ -187,43 +197,13 @@
     }
     code { font-family: 'Source Code Pro', monospace; font-size: 0.85em; color: #c0392b; }
     pre code { color: var(--text); font-size: 0.84rem; line-height: 1.7; }
-    .ck { color: #2980b9; }
-    .cs { color: #27ae60; }
-    .cc { color: #999; font-style: italic; }
-    .cf { color: #8e44ad; }
-    p code, li code {
-      font-family: 'Source Code Pro', monospace; font-size: 0.82em;
-      background: var(--code-bg); border: 1px solid var(--border);
-      padding: 1px 5px; border-radius: 3px; color: #c0392b;
-    }
-    table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; border: 1px solid var(--border); }
-    thead { background: var(--bg); }
-    th {
-      font-family: 'Lato', sans-serif; font-size: 0.82rem; font-weight: 700;
-      color: var(--text); text-align: left; padding: 10px 14px;
-      border-bottom: 2px solid var(--border); border-right: 1px solid var(--border-light);
-    }
-    td {
-      padding: 9px 14px; border-bottom: 1px solid var(--border-light);
-      border-right: 1px solid var(--border-light); color: var(--muted); vertical-align: top;
-    }
-    td:first-child { font-family: 'Source Code Pro', monospace; font-size: 0.83rem; color: var(--text); }
-    tbody tr:nth-child(even) td { background: #fafafa; }
-    tbody tr:hover td { background: var(--accent-bg); }
-    .limit-list { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
-    .limit-item {
-      display: flex; gap: 12px; background: var(--bg); border: 1px solid var(--border);
-      border-radius: 4px; padding: 12px 16px; font-size: 0.88rem;
-    }
-    .limit-item .licon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
-    .limit-item strong { font-family: 'Lato', sans-serif; color: var(--text); display: block; margin-bottom: 2px; font-size: 0.86rem; }
-    .limit-item p { margin: 0; }
     .formula-block {
       background: var(--code-bg); border: 1px solid var(--border);
       border-left: 4px solid var(--accent);
       border-radius: 4px; padding: 14px 18px; margin: 14px 0;
       font-family: 'Source Code Pro', monospace; font-size: 0.9rem;
       color: var(--text); line-height: 1.85;
+      overflow-x: auto;
     }
     .citation-block {
       background: var(--code-bg); border: 1px solid var(--border); border-radius: 4px;
@@ -258,12 +238,28 @@
       border: 1px solid var(--accent); padding: 4px 12px; border-radius: 3px; transition: all .15s;
     }
     .author-links a:hover { background: var(--accent); color: #fff; }
-    .pkg-grid { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
-    .pkg {
-      font-family: 'Source Code Pro', monospace; font-size: 0.8rem;
-      background: var(--code-bg); border: 1px solid var(--border);
-      color: #8e44ad; padding: 3px 10px; border-radius: 3px;
+    .limit-list { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .limit-item {
+      display: flex; gap: 12px; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 4px; padding: 12px 16px; font-size: 0.88rem;
     }
+    .limit-item .licon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .limit-item strong { font-family: 'Lato', sans-serif; color: var(--text); display: block; margin-bottom: 2px; font-size: 0.86rem; }
+    .limit-item p { margin: 0; }
+    .table-wrapper { overflow-x: auto; margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; border: 1px solid var(--border); }
+    thead { background: var(--bg); }
+    th {
+      font-family: 'Lato', sans-serif; font-size: 0.82rem; font-weight: 700;
+      color: var(--text); text-align: left; padding: 10px 14px;
+      border-bottom: 2px solid var(--border); border-right: 1px solid var(--border-light);
+    }
+    td {
+      padding: 9px 14px; border-bottom: 1px solid var(--border-light);
+      border-right: 1px solid var(--border-light); color: var(--muted); vertical-align: top;
+    }
+    td:first-child { font-family: 'Source Code Pro', monospace; font-size: 0.83rem; color: var(--text); }
+    tbody tr:nth-child(even) td { background: #fafafa; }
     .section-hr { border: none; border-top: 1px solid var(--border); margin: 0 0 52px; }
     .theme-toggle-btn {
       background: var(--accent);
@@ -305,6 +301,8 @@
     body.dark .btn-outline { background: transparent; color: var(--accent); }
     body.dark .copy-btn { background: var(--bg); color: var(--muted); border-color: var(--border); }
     body.dark .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
+    body.dark .btn-donate { background: #e05a5a; border-color: #e05a5a; }
+    body.dark .btn-donate:hover { background: #c0392b; }
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
     body.dark ::-webkit-scrollbar-thumb { background: #4a5568; }
@@ -323,15 +321,142 @@
     footer a:hover { text-decoration: underline; }
     ul, .doc-list { color: var(--muted); padding-left: 1.4em; margin-bottom: 14px; }
     li { margin-bottom: 4px; }
+    
+        /* Diagram thumbnail styles */
+    .diagram-clickable {
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .diagram-clickable:hover {
+      transform: scale(1.02);
+      opacity: 0.9;
+    }
+    .diagram-thumb {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: block;
+      margin: 0 auto;
+    }
+    
+    /* Modal styles */
+    #diagramModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #diagramModal.show {
+      display: flex;
+    }
+    
+    .diagram-preview {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .diagram-preview p {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+    .diagram-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .diagram-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      flex: 1;
+      min-width: 200px;
+    }
+    .diagram-card h4 {
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+    .diagram-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    .contribution-steps {
+      background: var(--accent-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+    .contribution-steps ol {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+    .contribution-steps li {
+      margin-bottom: 8px;
+    }
+    .license-box {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.8rem;
+      margin: 16px 0;
+    }
+    .github-icon-only {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--accent);
+      font-size: 1.1rem;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .github-icon-only:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: scale(1.05);
+    }
+    body.dark .github-icon-only {
+      background: var(--bg);
+      border-color: var(--border);
+      color: var(--accent);
+    }
+    body.dark .github-icon-only:hover {
+      background: var(--accent);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <a class="logo" href="#">MedModr</a>
+  <a class="logo" href="#">MedModr <span>Documentation</span></a>
   <nav class="header-nav">
-    <a href="#overview">Docs</a>
-    <a href="https://github.com/shinyhealthtools/medmodr" target="_blank">GitHub</a>
+    <a href="#overview">Overview</a>
+    <a href="#simple-mediation">Simple Mediation</a>
+    <a href="#serial-mediation">Serial Mediation</a>
+    <a href="#moderation">Moderation</a>
+    <a href="#moderated-mediation">Moderated Mediation</a>
     <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn-app">▶ Launch App</a>
   </nav>
 </header>
@@ -342,92 +467,97 @@
     <div class="toc-group">
       <div class="toc-group-label">Getting Started</div>
       <a href="#overview" class="active">Overview</a>
-      <a href="#features">Modules & Features</a>
-      <a href="#live-app">Live Application</a>
+      <a href="#features">Features & Capabilities</a>
+      <a href="#quick-start">Quick Start Guide</a>
     </div>
     <div class="toc-group">
-      <div class="toc-group-label">Step‑by‑Step Guides</div>
+      <div class="toc-group-label">Analysis Types</div>
       <a href="#simple-mediation">Simple Mediation (X→M→Y)</a>
       <a href="#serial-mediation">Serial Mediation (M1, M2)</a>
       <a href="#moderation">Moderation (Interaction)</a>
       <a href="#moderated-mediation">Moderated Mediation</a>
     </div>
     <div class="toc-group">
-      <div class="toc-group-label">Advanced Topics</div>
-      <a href="#bootstrapping">Bootstrapping & CIs</a>
-      <a href="#standardized">Standardized Coefficients</a>
-      <a href="#visualization">Path Diagrams & Slopes</a>
+      <div class="toc-group-label">Statistical Foundations</div>
+      <a href="#ols-regression">OLS Regression</a>
+      <a href="#standardized-coefficients">Standardized Coefficients (β)</a>
+      <a href="#bootstrap">Bootstrap Confidence Intervals</a>
+      <a href="#p-values">p-value Calculation</a>
+      <a href="#covariates">Covariate Handling</a>
+    </div>
+    <div class="toc-group">
+      <div class="toc-group-label">Visualization</div>
+      <a href="#path-diagrams">Path Diagrams</a>
+      <a href="#simple-slopes">Simple Slopes Plots</a>
+    </div>
+    <div class="toc-group">
+      <div class="toc-group-label">Open Source</div>
+      <a href="#license">License & Permissions</a>
+      <a href="#contribute">How to Contribute</a>
     </div>
     <div class="toc-group">
       <div class="toc-group-label">Reference</div>
-      <a href="#input-format">Input Formats</a>
+      <a href="#input-format">Data Input Format</a>
       <a href="#limitations">Limitations</a>
       <a href="#citation">Citation</a>
       <a href="#developer">Developer</a>
+      <a href="#contact">Contact & Support</a>
     </div>
   </aside>
 
   <main>
     <div class="page-title" id="overview">
-      <h1>MedModr</h1>
-      <p>A mediation & moderation analysis tool — browser‑based, free, and privacy‑first</p>
+      <h1>About MedModr</h1>
       <div class="badges">
-        <span class="badge badge-blue">Web App</span>
-        <span class="badge badge-green">MIT License</span>
-        <span class="badge badge-gray">Free to Use</span>
+        <span class="badge badge-blue">Version 1.0</span>
+        <span class="badge badge-green">Free & Open Source</span>
+        <span class="badge badge-gray">MIT License</span>
       </div>
       <div class="hero-actions">
-        <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn btn-primary">▶ Launch Live App</a>
-        <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" class="btn btn-outline">View Source Code</a>
-                <a href="https://archive.org/download/catrend-analyzer-example-data/mediation_moderationdataset.xlsx" class="btn btn-outline">⬇ Example Dataset</a>
+        <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> App Source</a>
+        <a href="https://archive.org/download/catrend-analyzer-example-data/mediation_moderationdataset.xlsx" class="btn btn-outline">📥 Example Dataset</a>
       </div>
     </div>
 
-    <section>
+    <!-- OVERVIEW SECTION -->
+    <section id="overview-cont">
       <h2>Overview</h2>
-      <p>MedModr is a free, web‑based statistical tool for <strong>mediation, moderation, serial mediation, and moderated mediation</strong> analysis. The tool provides unstandardized (b) and standardized (β) coefficients, bootstrapped confidence intervals for indirect effects, interactive path diagrams, and annotated simple slopes plots.</p>
-
-      <h3>What MedModr Solves</h3>
-      <div class="feature-grid">
-        <div class="feature-card"><div class="icon">🔗</div><div><strong>Mediation Analysis</strong>Test whether an intervening variable (M) transmits the effect of X on Y — simple and serial mediation.</div></div>
-        <div class="feature-card"><div class="icon">⚡</div><div><strong>Moderation Analysis</strong>Examine whether the effect of X on Y depends on the level of a moderator W, with simple slopes plots.</div></div>
-        <div class="feature-card"><div class="icon">🔄</div><div><strong>Moderated Mediation</strong>Test conditional indirect effects — whether mediation depends on a moderator (a‑path moderation).</div></div>
-        <div class="feature-card"><div class="icon">📊</div><div><strong>Bootstrap Inference</strong>Percentile bootstrap confidence intervals for all indirect effects (1,000–10,000 samples).</div></div>
-      </div>
-    </section>
-
-    <section id="features">
-      <h2>Modules & Features</h2>
-      <div class="format-grid">
-        <div class="format-box">
-          <h4>📊 Analysis Modules</h4>
-          <div class="tag-list">
-            <span class="tag">Simple Mediation</span>
-            <span class="tag">Serial Mediation (2 mediators)</span>
-            <span class="tag">Moderation</span>
-            <span class="tag">Moderated Mediation</span>
-          </div>
-        </div>
-        <div class="format-box">
-          <h4>⚙️ Core Capabilities</h4>
-          <div class="tag-list">
-            <span class="tag">Bootstrap CIs</span>
-            <span class="tag">Standardized β</span>
-            <span class="tag">Path Diagrams</span>
-            <span class="tag">Annotated Slopes Plot</span>
-            <span class="tag">Word Report</span>
-            <span class="tag">Mean‑Centering Options</span>
-            <span class="tag">Covariates Support</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="live-app">
-      <h2>Live Application</h2>
+      <p><strong>MedModr</strong> (Mediation & Moderation) is a free, browser-based statistical tool for conducting simple mediation,serial mediation, moderation, and moderated mediation (conditional process) analyses.</p>
+      
       <div class="callout success">
-        <div class="callout-title">🌐 MedModr Web App</div>
-        <p><a href="https://shinyhealthtools.github.io/medmodr/" target="_blank">https://shinyhealthtools.github.io/medmodr/</a> — open in any modern browser. No registration, no installation, full client‑side privacy.</p>
+        <div class="callout-title">🔒 Privacy Guarantee</div>
+        <p>All data processing occurs client-side. No data is sent to any server. You can disconnect from the internet after the page loads and still run complete analyses.</p>
+      </div>
+
+      <h3>Methodological Framework</h3>
+      <p>MedModr follows the regression-based approach detailed in Hayes (2022) <em>Introduction to Mediation, Moderation, and Conditional Process Analysis</em>. The tool implements Ordinary Least Squares (OLS) regression via matrix algebra, providing both unstandardized (b) and standardized (β) coefficients, bootstrap confidence intervals for indirect effects, and interactive visualizations.</p>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features">
+      <h2>Features & Capabilities</h2>
+      <div class="feature-grid">
+        <div class="feature-card"><div class="icon">📊</div><div><strong>Simple Mediation</strong><br>X → M → Y with full path coefficients, Sobel test, bootstrap CIs, and interactive path diagram.</div></div>
+        <div class="feature-card"><div class="icon">🔗</div><div><strong>Serial Mediation</strong><br>X → M1 → M2 → Y with specific indirect paths, total indirect effects, and bootstrapped CIs.</div></div>
+        <div class="feature-card"><div class="icon">⚡</div><div><strong>Moderation</strong><br>X × W → Y with simple slopes at ±1 SD and mean, annotated slopes plot.</div></div>
+        <div class="feature-card"><div class="icon">🔄</div><div><strong>Moderated Mediation</strong><br>Conditional indirect effects, index of moderated mediation (IMM), bootstrap CIs.</div></div>
+        <div class="feature-card"><div class="icon">📈</div><div><strong>Bootstrap Inference</strong><br>Percentile bootstrap confidence intervals for all indirect effects (1,000–10,000 samples).</div></div>
+        <div class="feature-card"><div class="icon">🎨</div><div><strong>Interactive Diagrams</strong><br>Path diagrams with toggle for unstandardized/standardized coefficients, p-values, black/white mode.</div></div>
+        <div class="feature-card"><div class="icon">📋</div><div><strong>APA Reporting</strong><br>APA-formatted summaries, Word document export, copy-to-clipboard functionality.</div></div>
+        <div class="feature-card"><div class="icon">🔧</div><div><strong>Covariates Support</strong><br>Unlimited covariates automatically mean-centered in all regression models.</div></div>
+      </div>
+    </section>
+
+    <!-- QUICK START GUIDE -->
+    <section id="quick-start">
+      <h2>Quick Start Guide</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Prepare your data</strong><p>Each variable as one numeric value per line (no header row). All variables must have the same number of rows (N). For multiple variables, enter each variable's data in separate columns (space or comma separated).</p><div class="code-snip">2.5 3.2 4.1<br>4.8 2.1 3.5<br>3.2 4.5 2.8<br>5.1 1.9 4.3<br>3.9 3.8 5.2</div></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Select analysis type</strong><p>Choose from Simple Mediation, Serial Mediation, Moderation, or Moderated Mediation.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Enter variable names and data</strong><p>Provide meaningful names (e.g., "Stress", "Coping", "Wellbeing") and paste your numeric data.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Add covariates (optional)</strong><p>First line = variable names (space separated), subsequent lines = numeric values.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Set options & run</strong><p>Choose confidence level (90%, 95%, 99%), bootstrap samples (None [Sobel only], 1000, 5000, 10000), centering options for moderation models.</p></div></div>
+        <div class="step"><div class="step-num">6</div><div class="step-body"><strong>Interpret results</strong><p>Review regression tables, path diagrams, simple slopes plots, and APA-formatted summaries. Export to Word or copy results.</p></div></div>
       </div>
     </section>
 
@@ -439,13 +569,37 @@
       <div class="video-embed">
         <iframe src="https://www.youtube.com/embed/4-sYLhcfYlw?si=78304B_Cs9kubAXR" title="Simple mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
+      
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>In MedModr, click the <strong>Simple Mediation</strong> tab (X → M → Y).</p></div></div>
         <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter independent X, mediator M, outcome Y</strong><p>Provide names and data for independent X, mediator M, and outcome Y. All three variables must have the same number of rows.</p></div></div>
         <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Add covariates (optional)</strong><p>Enter control variables in the Covariates box: first line = names (space separated), subsequent lines = numeric values.</p></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Set options & run</strong><p>Choose confidence level (90%, 95%, 99%), bootstrap samples (0 = Sobel only, 1000, 5000 or 10000).  <p> Hayes (2009) recommend at least 5000 bootstrap samples for stable CIs of serial indirect effects. <strong>Article:</strong> Hayes, A. F. (2009). Beyond Baron and Kenny: Statistical Mediation Analysis in the New Millennium. Communication Monographs, 76, 408-420. </p> Click <strong>Run Analysis</strong></p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Set options & run</strong><p>Choose confidence level (90%, 95%, 99%), bootstrap samples (0, 1000, 5000 or 10000). Click <strong>Run Analysis</strong></p></div></div>
         <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Interpret results</strong><p>The output includes: a‑path (X→M), b‑path (M→Y), total effect, direct effect, indirect effect (a×b), Sobel test, bootstrap CI, and interactive path diagram.</p></div></div>
       </div>
+
+      <h3>Mathematical Formulas</h3>
+      <div class="formula-block">
+        <strong>a-path (X → M):</strong> M = i₁ + a·X + e₁<br><br>
+        <strong>b-path (M → Y):</strong> Y = i₂ + c'·X + b·M + e₂<br><br>
+        <strong>Total effect (c):</strong> Y = i₃ + c·X + e₃
+      </div>
+      
+      <div class="formula-block">
+        <strong>Indirect Effect:</strong> IE = a × b<br><br>
+        <strong>Sobel Standard Error:</strong> SE = √(b²·SEₐ² + a²·SE_b²)<br><br>
+        <strong>Sobel z-test:</strong> z = IE / SE<br><br>
+        <strong>p-value:</strong> p = 2 × [1 - Φ(|z|)]
+      </div>
+      
+      <div class="formula-block">
+        <strong>Bootstrap Percentile CI (B = 1,000-10,000):</strong><br>
+        1. Draw B samples with replacement (size n)<br>
+        2. For each sample b, compute θ̂ᵦ = aᵦ × bᵦ<br>
+        3. Sort θ̂(1), θ̂(2), ..., θ̂(B)<br>
+        4. 95% CI = [θ̂(₀.₀₂₅×B), θ̂(₀.₉₇₅×B)]
+      </div>
+ 
     </section>
 
     <!-- SERIAL MEDIATION -->
@@ -454,12 +608,40 @@
       <div class="video-embed">
         <iframe src="https://www.youtube.com/embed/gIbNupICLz0?si=xLLX9VLQRLgKD-nk" title="Serial mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
+      
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Click the <strong>Serial Mediation</strong> button (X→M1→M2→Y).</p></div></div>
         <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter independent X, first mediator M1, second mediator M2, outcome Y</strong><p>Provide names and data for independent X, first mediator M1, second mediator M2, and outcome Y. All four variables must have the same number of rows.</p></div></div>
-                <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Add covariates (optional)</strong><p>Enter control variables in the Covariates box: first line = names (space separated), subsequent lines = numeric values.</p></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Set options & run</strong><p>Choose confidence level (90%, 95%, 99%), bootstrap samples (0 = Sobel only, 1000, 5000 or 10000).  <p> Hayes (2009) recommend at least 5000 bootstrap samples for stable CIs of serial indirect effects. <strong>Article:</strong> Hayes, A. F. (2009). Beyond Baron and Kenny: Statistical Mediation Analysis in the New Millennium. Communication Monographs, 76, 408-420. </p> Click <strong>Run Analysis</strong></p></div></div>
-        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Interpret results</strong><p>Results include three specific indirect effects: X→M1→M2→Y (serial), X→M1→Y, X→M2→Y, plus total indirect, direct effect, and bootstrap CIs. The path diagram shows all coefficients (a₁, d₂₁, a₂, b₁, b₂, c′).</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Add covariates (optional)</strong><p>Enter control variables in the Covariates box: first line = names (space separated), subsequent lines = numeric values.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Set options & run</strong><p>Choose confidence level (90%, 95%, 99%), bootstrap samples (0, 1000, 5000 or 10000). Click <strong>Run Analysis</strong></p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Interpret results</strong><p>Results include three specific indirect effects: X→M1→M2→Y (serial), X→M1→Y, X→M2→Y, plus total indirect, direct effect, and bootstrap CIs.</p></div></div>
+      </div>
+
+      <h3>Mathematical Formulas</h3>
+      <div class="formula-block">
+        <strong>M1 model:</strong> M1 = i₁ + a₁·X + e₁<br><br>
+        <strong>M2 model:</strong> M2 = i₂ + a₂·X + d₂₁·M1 + e₂<br><br>
+        <strong>Y model:</strong> Y = i₃ + c'·X + b₁·M1 + b₂·M2 + e₃
+      </div>
+      
+      <div class="formula-block">
+        <strong>Specific Indirect Effects:</strong><br>
+        IE₁ (via M1 only) = a₁ × b₁<br>
+        IE₂ (via M2 only) = a₂ × b₂<br>
+        IE₃ (serial M1→M2) = a₁ × d₂₁ × b₂<br><br>
+        <strong>Total Indirect Effect:</strong> IEₜₒₜₐₗ = IE₁ + IE₂ + IE₃
+      </div>
+      
+           
+      <div class="callout">
+        <div class="callout-title">📖 Interpretation</div>
+        <p>If the bootstrap confidence interval does not contain zero, the indirect effect is statistically significant at α = 0.05 (two-tailed). Mediation is supported when the indirect effect is significant, regardless of whether the total effect (c) or direct effect (c') is significant (Hayes, 2022).</p>
+      </div>
+      
+      <div class="callout">
+        <div class="callout-title">📊 Bootstrap Recommendation</div>
+        <p>Hayes (2009) recommends at least 5,000 bootstrap samples for stable confidence intervals of indirect effects. MedModr offers up to 10,000 bootstrap samples.</p>
+        <p><strong>Reference:</strong> Hayes, A. F. (2009). Beyond Baron and Kenny: Statistical Mediation Analysis in the New Millennium. <em>Communication Monographs, 76</em>, 408-420.</p>
       </div>
     </section>
 
@@ -469,11 +651,33 @@
       <div class="video-embed">
         <iframe src="https://www.youtube.com/embed/qLNwAhbOpEo?si=I1L9bReAlBOHKDby" title="Moderation analysis tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
+      
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Click <strong>Moderation</strong> (X × W → Y).</p></div></div>
         <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter independent X, moderator W, outcome Y</strong><p>Provide variable names and numeric data for independent X, moderator W, and outcome Y. All three variables must have the same number of rows.</p></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Select mean‑centering strategy</strong><p>Options: <strong>Mean Centering (All variables)</strong> (centers both numerical and binary variables [i.e., 0/1 or 1/0] before interaction), <strong>Mean Centering (Only continuous variables)</strong> (centers only numerical variables excluding binary variables - 0/1 or 1/0 before interaction), or <strong>No Mean Centering</strong> (raw multiplication).</p></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run & interpret interaction term</strong><p>The table shows b₃ (X×W) coefficient with p‑value. If significant, moderation is present. Simple slopes at low (−1 SD), mean, and high (+1 SD) levels of W are displayed together with an annotated slopes plot. Each legend line includes the slope coefficient (b) and p‑value.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Select mean‑centering strategy</strong><p>Options: <strong>Mean Centering (All variables)</strong>, <strong>Mean Centering (Only continuous variables)</strong>, or <strong>No Mean Centering</strong>.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run & interpret interaction term</strong><p>The table shows b₃ (X×W) coefficient with p‑value. If significant, moderation is present. Simple slopes at low (−1 SD), mean, and high (+1 SD) levels of W are displayed together with an annotated slopes plot.</p></div></div>
+      </div>
+
+      <h3>Mathematical Formulas</h3>
+      <div class="formula-block">
+        <strong>Moderation Model:</strong> Y = i + b₁·X + b₂·W + b₃·(X×W) + e
+      </div>
+      
+      <div class="formula-block">
+        <strong>Simple Slopes at Three Levels of W:</strong><br>
+        Low (-1 SD): θ = b₁ + b₃ × (W̄ - SD_w)<br>
+        Mean (0 centered): θ = b₁ + b₃ × W̄<br>
+        High (+1 SD): θ = b₁ + b₃ × (W̄ + SD_w)<br><br>
+        <strong>Simple Slope SE:</strong> SE(θ) = √[Var(b₁) + W²·Var(b₃) + 2W·Cov(b₁,b₃)]
+      </div>
+      
+      <h3>Mean-Centering Options</h3>
+      <ul>
+        <li><strong>All variables centered:</strong> (X - X̄) × (W - W̄)</li>
+        <li><strong>Continuous-only centered:</strong> Center continuous X and W, leave binary (0/1) variables raw</li>
+        <li><strong>No centering:</strong> Raw X × Raw W</li>
+      </ul>
     </section>
 
     <!-- MODERATED MEDIATION -->
@@ -482,40 +686,294 @@
       <div class="video-embed">
         <iframe src="https://www.youtube.com/embed/vRsdG-Z-Xhc?si=TDT7qkieYKBgeefM" title="Moderated mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
+      
       <div class="steps">
         <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Click <strong>Moderated Mediation</strong> tab (X → M → Y, with W moderating the a‑path).</p></div></div>
         <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter independent X, mediator M, moderator W, outcome Y</strong><p>Provide variable names and numeric data for independent X, mediator M, moderator W, and outcome Y. All four variables must have the same number of rows.</p></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Select mean‑centering strategy</strong><p>Options: <strong>Mean Centering (All variables)</strong> (centers both numerical and binary variables [i.e., 0/1 or 1/0] before interaction), <strong>Mean Centering (Only continuous variables)</strong> (centers only numerical variables excluding binary variables - 0/1 or 1/0 before interaction), or <strong>No Mean Centering</strong> (raw multiplication).</p></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run & interpret interaction term</strong><p>Output includes: simple slopes of X→M at three levels of W, conditional indirect effects (a·b) at each level, analytic and bootstrap CIs, and the index of moderated mediation (a₃·b)</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Select mean‑centering strategy</strong><p>Options: <strong>Mean Centering (All variables)</strong>, <strong>Mean Centering (Only continuous variables)</strong>, or <strong>No Mean Centering</strong>.</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run & interpret results</strong><p>Output includes: simple slopes of X→M at three levels of W, conditional indirect effects (a·b) at each level, analytic and bootstrap CIs, and the index of moderated mediation (a₃·b)</p></div></div>
+      </div>
+
+      <h3>Mathematical Formulas</h3>
+      <div class="formula-block">
+        <strong>Stage 1 (Moderated a-path):</strong> M = i₁ + a₁·X + a₂·W + a₃·(X×W) + e₁<br><br>
+        <strong>Stage 2 (b-path):</strong> Y = i₂ + c'·X + b·M + e₂<br><br>
+        <strong>Conditional Indirect Effect at level w of W:</strong> IE(w) = (a₁ + a₃·w) × b<br><br>
+        <strong>Index of Moderated Mediation (IMM):</strong> IMM = a₃ × b
+      </div>
+      
+      <div class="formula-block">
+        <strong>Conditional Indirect Effects at ±1 SD and Mean:</strong><br>
+        IE(Mean) = a₁ × b<br>
+        IE(Low) = (a₁ - a₃·SD_w) × b<br>
+        IE(High) = (a₁ + a₃·SD_w) × b
+      </div>
+      
+      <div class="callout">
+        <div class="callout-title">📊 Index of Moderated Mediation</div>
+        <p>The Index of Moderated Mediation (IMM = a₃ × b) quantifies the linear change in the indirect effect as a function of the moderator W. A bootstrap confidence interval that excludes zero indicates statistically significant moderated mediation (Hayes, 2015).</p>
+        <p><strong>Reference:</strong> Hayes, A. F. (2015). An Index and Test of Linear Moderated Mediation. <em>Multivariate Behavioral Research, 50(1)</em>, 1-22.</p>
       </div>
     </section>
 
     <hr class="section-hr" />
 
-    <section id="bootstrapping">
-      <h2>Bootstrapping & Confidence Intervals</h2>
-      <p>For all indirect effects (simple, serial, conditional, index), MedModr implements the <strong>percentile bootstrap</strong>. User‑selectable resamples: 1000, 5000, or 10000.</p>
+    <!-- OLS REGRESSION -->
+    <section id="ols-regression">
+      <h2>OLS Regression (Matrix Algebra)</h2>
+      <p>All regressions in MedModr are computed using Ordinary Least Squares (OLS) via matrix algebra, the same method used in major statistical software packages.</p>
+      
+      <div class="formula-block">
+        <strong>Coefficients:</strong> β = (X'X)⁻¹X'y
+      </div>
+      <div class="formula-block">
+        <strong>Standard Errors:</strong> SE(βⱼ) = √[MSE × (X'X)⁻¹ⱼⱼ] where MSE = Σ(yᵢ - ŷᵢ)² / (n - k - 1)
+      </div>
+      <div class="formula-block">
+        <strong>t-Statistic:</strong> tⱼ = βⱼ / SE(βⱼ) with df = n - k - 1
+      </div>
+      <div class="formula-block">
+        <strong>Confidence Interval:</strong> CI = βⱼ ± t(α/2, df) × SE(βⱼ)
+      </div>
+      <div class="formula-block">
+        <strong>R-squared:</strong> R² = 1 - [Σ(yᵢ - ŷᵢ)² / Σ(yᵢ - ȳ)²]
+      </div>
+      <div class="formula-block">
+        <strong>Adjusted R-squared:</strong> R²ₐdj = 1 - (1 - R²)(n - 1)/(n - k - 1)
+      </div>
+      <div class="formula-block">
+        <strong>F-Statistic:</strong> F = (R²/k) / ((1 - R²)/(n - k - 1)) with df₁ = k, df₂ = n - k - 1
+      </div>
+    </section>
+
+    <!-- STANDARDIZED COEFFICIENTS -->
+    <section id="standardized-coefficients">
+      <h2>Standardized Coefficients (β)</h2>
+      <p>Every regression table includes both unstandardized b and standardized β. Standardized coefficients are obtained by re‑running the same regression on <strong>z‑scored variables</strong> (mean = 0, SD = 1).</p>
+      
+      <div class="formula-block">
+        zₓ = (x - μₓ) / σₓ &nbsp;|&nbsp; z_y = (y - μ_y) / σ_y<br><br>
+        Then: β = (Zₓ'Zₓ)⁻¹Zₓ'z_y
+      </div>
+      
+      <div class="callout">
+        <div class="callout-title">📖 Interpretation</div>
+        <p>A one standard deviation change in X produces a β standard deviation change in Y. Standardized coefficients allow direct comparison of effect sizes across predictors measured in different units.</p>
+      </div>
+    </section>
+
+    <!-- BOOTSTRAP -->
+    <section id="bootstrap">
+      <h2>Bootstrap Confidence Intervals</h2>
+      <p>For all indirect effects (simple, serial, conditional, index), MedModr implements the <strong>percentile bootstrap method</strong>. User‑selectable resamples: 1000, 5000, or 10000.</p>
+      
+      <div class="formula-block">
+        <strong>Step 1:</strong> Draw B bootstrap samples by sampling n observations with replacement from original data.<br><br>
+        <strong>Step 2:</strong> For each bootstrap sample b, compute the statistic of interest θ̂ᵦ (e.g., a×b, a₃×b).<br><br>
+        <strong>Step 3:</strong> Sort all B estimates: θ̂(1), θ̂(2), ..., θ̂(B).<br><br>
+        <strong>Step 4:</strong> For 95% CI: lower bound = θ̂(₀.₀₂₅×B), upper bound = θ̂(₀.₉₇₅×B).
+      </div>
+      
       <div class="callout">
         <div class="callout-title">📊 Interpretation</div>
-        <p>If the bootstrap confidence interval (e.g., 95% BootLLCI to BootULCI) does not contain zero, the indirect effect is statistically significant at α = 0.05 (two‑tailed).</p>
+        <p>If the bootstrap confidence interval (e.g., 95% BootLLCI to BootULCI) does not contain zero, the indirect effect is statistically significant at α = 0.05 (two‑tailed). This method does not assume normality of the sampling distribution — a critical advantage for indirect effects which are often non-normal.</p>
       </div>
     </section>
 
-    <section id="standardized">
-      <h2>Standardized Coefficients (β)</h2>
-      <p>Every regression table includes both unstandardized b and standardized β. Standardized coefficients are obtained by re‑running the same regression on <strong>z‑scored variables</strong> (mean = 0, SD = 1). This allows direct comparison of effect sizes across predictors measured in different units.</p>
+    <!-- p-VALUE CALCULATION -->
+    <section id="p-values">
+      <h2>p-value Calculation</h2>
+      <p>MedModr computes exact two-tailed p-values using the cumulative distribution function (CDF) of the t-distribution:</p>
+      
+      <div class="formula-block">
+        p = 2 × P(T > |t|) where T ~ t(df = n - k - 1)<br><br>
+        P(T > t) = 1 - Iₓ(df/2, 1/2) with x = df/(df + t²) and I = regularized incomplete beta function
+      </div>
+      
+      <p>For indirect effects (when bootstrap is not used), p-values come from the Sobel z-test assuming normality:</p>
+      <div class="formula-block">
+        p = 2 × [1 - Φ(|z|)] where Φ is the standard normal CDF
+      </div>
     </section>
 
-    <section id="visualization">
+    <!-- COVARIATES -->
+    <section id="covariates">
+      <h2>Covariate (Control Variable) Handling</h2>
+      <p>All specified covariates C₁, C₂, ..., Cₖ are automatically mean-centered and included in every regression model:</p>
+      
+      <div class="formula-block">
+        <strong>a-path model:</strong> M = i₁ + a·X + Σγⱼ·Cⱼ + e₁<br><br>
+        <strong>b-path model:</strong> Y = i₂ + c'·X + b·M + Σδⱼ·Cⱼ + e₂<br><br>
+        <strong>Total effect model:</strong> Y = i₃ + c·X + Σθⱼ·Cⱼ + e₃
+      </div>
+      
+      <p>Covariates are mean-centered (Cⱼ - C̄ⱼ) to improve interpretability of the intercept and reduce multicollinearity with interaction terms.</p>
+      
+      <div class="callout">
+        <div class="callout-title">📎 Covariates Example</div>
+        <pre style="margin-top:5px;background:var(--code-bg); padding:10px"><code>age education_level
+25 2
+30 3
+28 2
+45 4
+32 3</code></pre>
+      </div>
+    </section>
+
+    <!-- PATH DIAGRAMS & SIMPLE SLOPES PLOTS SECTION -->
+    <section id="path-diagrams">
       <h2>Path Diagrams & Simple Slopes Plots</h2>
+      
+        <!-- Modal for full-size diagram viewing -->
+      <div id="diagramModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column;">
+        <!-- Fixed header with controls -->
+        <div style="position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); padding: 15px 30px; display: flex; justify-content: flex-end; gap: 15px; z-index: 1001; border-bottom: 1px solid rgba(255,255,255,0.2);">
+          <button id="toggleModeBtn" style="background: var(--accent); color: white; border: none; padding: 10px 24px; border-radius: 40px; cursor: pointer; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.9rem; transition: all 0.2s;">
+            <i class="fas fa-adjust"></i> Switch to B&W
+          </button>
+          <button id="closeModalBtn" style="background: #e74c3c; color: white; border: none; padding: 10px 24px; border-radius: 40px; cursor: pointer; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.9rem; transition: all 0.2s;">
+            <i class="fas fa-times"></i> Close
+          </button>
+        </div>
+        
+        <!-- Image container -->
+        <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+          <img id="modalImg" src="" alt="Diagram" style="max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+        </div>
+        
+        <!-- Hint text at bottom -->
+        <div style="position: fixed; bottom: 20px; left: 0; right: 0; text-align: center;">
+          <p id="modalHint" style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.85rem; font-family: 'Lato', sans-serif; background: rgba(0,0,0,0.6); display: inline-block; padding: 6px 16px; border-radius: 20px;">
+            💡 Click "Switch to B&W" to toggle between Color and Black & White versions
+          </p>
+        </div>
+      </div>
+      
+      <!-- Simple Mediation Diagram -->
+      <div class="diagram-card" style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: center;">
+        <h4 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent);">Simple Mediation (X → M → Y)</h4>
+        <div class="diagram-clickable" data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simplemediationcolorful.png" data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simplemediationblack.png" style="cursor: pointer;">
+          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simplemediationcolorful.png" alt="Simple Mediation Diagram" style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+        </div>
+        <p style="margin-top: 20px; font-size: 1rem; color: var(--accent);">🔍 Click image to view full size and toggle between Color / Black & White</p>
+      </div>
+      
+      <!-- Serial Mediation Diagram -->
+      <div class="diagram-card" style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: center;">
+        <h4 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent);">Serial Mediation (X → M1 → M2 → Y)</h4>
+        <div class="diagram-clickable" data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/serialmediationcolorful.png" data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/serialmediationblack.png" style="cursor: pointer;">
+          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/serialmediationcolorful.png" alt="Serial Mediation Diagram" style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+        </div>
+        <p style="margin-top: 20px; font-size: 1rem; color: var(--accent);">🔍 Click image to view full size and toggle between Color / Black & White</p>
+      </div>
+      
+      <!-- Moderation Diagram -->
+      <div class="diagram-card" style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: center;">
+        <h4 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent);">Moderation (X × W → Y)</h4>
+        <div class="diagram-clickable" data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderationcolorful.png" data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderationblack.png" style="cursor: pointer;">
+          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderationcolorful.png" alt="Moderation Diagram" style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+        </div>
+        <p style="margin-top: 20px; font-size: 1rem; color: var(--accent);">🔍 Click image to view full size and toggle between Color / Black & White</p>
+      </div>
+      
+      <!-- Moderated Mediation Diagram -->
+      <div class="diagram-card" style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: center;">
+        <h4 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent);">Moderated Mediation (Conditional Process)</h4>
+        <div class="diagram-clickable" data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationcolorful.png" data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationblack.png" style="cursor: pointer;">
+          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationcolorful.png" alt="Moderated Mediation Diagram" style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+        </div>
+        <p style="margin-top: 20px; font-size: 1rem; color: var(--accent);">🔍 Click image to view full size and toggle between Color / Black & White</p>
+      </div>
+      
+      <!-- Simple Slopes Plot -->
+      <div class="diagram-card" style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: center;">
+        <h4 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent);">Simple Slopes Plot</h4>
+        <p style="margin-bottom: 20px; font-size: 1rem; color: var(--accent); font-style: italic;">For Moderation & Moderated Mediation Analysis</p>
+        <div class="diagram-clickable" data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simpleslopesnopvalues.png" data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simpleslopespvalues.png" style="cursor: pointer;">
+          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simpleslopesnopvalues.png" alt="Simple Slopes Plot" style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+        </div>
+        <p style="margin-top: 20px; font-size: 1rem; color: var(--accent);">🔍 Click image to view full size and toggle between Standard / Annotated version</p>
+      </div>
+      
       <div class="feature-grid">
-        <div class="feature-card"><div class="icon">📐</div><div><strong>Interactive path diagrams</strong><br>Click "View full‑screen diagram" to open a modal. Toggle between unstandardized/standardized coefficients, hide/show p‑values, download as PNG.</div></div>
-        <div class="feature-card"><div class="icon">📈</div><div><strong>Annotated slopes plot</strong><br>For moderation / moderated mediation. Each slope line legend shows the slope (b) and p‑value. "Hide Labels" toggles annotations. Full‑screen mode + high‑resolution download.</div></div>
+        <div class="feature-card"><div class="icon">📐</div><div><strong>Interactive path diagrams</strong><br>Click "View full‑screen diagram" to open a modal. Toggle between unstandardized/standardized coefficients, hide/show p‑values, toggle black/white mode, download as PNG.</div></div>
+        <div class="feature-card"><div class="icon">🎨</div><div><strong>Customization Options</strong><br>• Unstandardized (b) or Standardized (β) coefficients<br>• Show/Hide p-values<br>• Black & White mode for publication<br>• Dotted or solid direct effect line<br>• Download high-resolution PNG</div></div>
+      </div>
+      
+      <div class="callout">
+        <div class="callout-title">📖 Diagram Features</div>
+        <p>All path diagrams automatically wrap long variable names to prevent text overflow. The black & white mode creates publication-ready diagrams suitable for manuscripts. The Simple Slopes Plot is available for Moderation and Moderated Mediation analyses, showing the effect of X on Y (or X on M) at three levels of the moderator W: Low (-1 SD), Mean, and High (+1 SD).</p>
+      </div>
+    </section>
+
+      
+      <div class="feature-grid">
+        <div class="feature-card"><div class="icon">📐</div><div><strong>Interactive path diagrams</strong><br>Click "View full‑screen diagram" to open a modal. Toggle between unstandardized/standardized coefficients, hide/show p‑values, toggle black/white mode, download as PNG.</div></div>
+        <div class="feature-card"><div class="icon">🎨</div><div><strong>Customization Options</strong><br>• Unstandardized (b) or Standardized (β) coefficients<br>• Show/Hide p-values<br>• Black & White mode for publication<br>• Dotted or solid direct effect line<br>• Download high-resolution PNG</div></div>
+      </div>
+      
+      <div class="callout">
+        <div class="callout-title">📖 Diagram Features</div>
+        <p>All path diagrams automatically wrap long variable names to prevent text overflow. The black & white mode creates publication-ready diagrams suitable for manuscripts. The Simple Slopes Plot is available for Moderation and Moderated Mediation analyses, showing the effect of X on Y (or X on M) at three levels of the moderator W: Low (-1 SD), Mean, and High (+1 SD).</p>
       </div>
     </section>
 
     <hr class="section-hr" />
 
+    <!-- LICENSE SECTION (NEW) -->
+    <section id="license">
+      <h2>License & Permissions</h2>
+      <div class="license-box">
+        <strong>MIT License</strong><br><br>
+        Copyright (c) 2025-2026 Mudasir Mohammed Ibrahim<br><br>
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:<br><br>
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.<br><br>
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+      </div>
+      
+      <div class="callout success">
+        <div class="callout-title">📋 What This Means For You</div>
+        <p>1. You can download and use MedModr for free, including for commercial purposes.<br>
+        2. You can modify the source code and create your own versions.<br>
+        3. You can host MedModr on your own institutional domains or servers.<br>
+        4. You can include MedModr in your research or teaching materials.<br>
+        5. You must retain the copyright notice and license in any distributed copies.<br>
+        ️6. The software is provided "as is", without warranty of any kind.</p>
+      </div>
+    </section>
+
+    <!-- CONTRIBUTE SECTION (NEW) -->
+    <section id="contribute">
+      <h2>How to Contribute</h2>
+      <p>MedModr is open source and welcomes contributions from the community! Whether you want to fix a bug, add a feature, improve documentation, or translate the interface, your help is appreciated.</p>
+      
+      <div class="contribution-steps">
+        <h4><i class="fab fa-github"></i> Contribution Workflow</h4>
+        <ol>
+          <li><strong>Fork the repository</strong> on GitHub: <a href="https://github.com/shinyhealthtools/medmodr" target="_blank">https://github.com/shinyhealthtools/medmodr</a></li>
+          <li><strong>Clone your fork</strong> locally: <code>git clone https://github.com/YOUR_USERNAME/medmodr.git</code></li>
+          <li><strong>Create a new branch</strong> for your feature: <code>git checkout -b feature/your-feature-name</code></li>
+          <li><strong>Make your changes</strong> and test them thoroughly</li>
+          <li><strong>Commit your changes</strong> with a clear message: <code>git commit -m "Add: description of your change"</code></li>
+          <li><strong>Push to your fork</strong>: <code>git push origin feature/your-feature-name</code></li>
+          <li><strong>Submit a Pull Request</strong> on GitHub describing your changes</li>
+        </ol>
+      </div>
+      
+      <div class="callout">
+        <div class="callout-title">🔧 Ways to Contribute</div>
+        <p>• Report bugs or suggest features by opening an issue on GitHub<br>
+        • Improve documentation or add examples<br>
+        • Add new analysis types or visualization options<br>
+        • Optimize performance for large datasets<br>
+        • Translate the interface to other languages<br>
+        • Fix existing bugs or issues</p>
+      </div>
+    </section>
+
+    <hr class="section-hr" />
+
+    <!-- INPUT FORMAT -->
     <section id="input-format">
       <h2>Data Input Format</h2>
       <p>All data entry is text‑based: one numeric value per line, <strong>no header row</strong>. Example:</p>
@@ -530,34 +988,41 @@
 </code></pre>
       </div>
       <p>All variables must have the exact same number of rows (N). <strong>Covariates are optional:</strong> first line = variable names (space or comma separated), subsequent lines = numeric data.</p>
-      <div class="callout">
-        <div class="callout-title">📎 Covariates example</div>
-        <pre style="margin-top:5px;background:var(--code-bg)"><code>age educational level
-25 no formal education
-30 primary
-28 tertiary
-45 secondary
-32 primary
-</code></pre>
+      
+      <h3>Binary Variables (Dummy Coding)</h3>
+      <div class="callout warn">
+        <div class="callout-title">⚠️ Important</div>
+        <p><strong>Manual dummy coding required.</strong> MedModr does not automatically convert categorical variables (e.g., gender, treatment group, education level) into dummy codes. All categorical predictors including moderators and covariates must be converted by the user into numeric 0/1 dummy variables <em>before</em> pasting data into the tool. For a categorical variable with k levels, create k−1 dummy variables. The reference group should be coded as 0 on all dummies. Continuous variables can be used as-is and will be automatically mean-centered when appropriate.</p>
       </div>
     </section>
 
- <section id="limitations">
-  <h2>Limitations</h2>
-  <div class="limit-list">
-    <div class="limit-item"><div class="licon">📐</div><div><strong>OLS only</strong> — models are based on ordinary least squares regression; no multilevel or SEM.</div></div>
-    <div class="limit-item"><div class="licon">🔢</div><div><strong>Listwise deletion</strong> — rows with missing values must be removed before pasting data.</div></div>
-    <div class="limit-item"><div class="licon">📦</div><div><strong>Large N</strong> — performance may degrade with N > 5000 due to client-side matrix inversion.</div></div>
-    <div class="limit-item"><div class="licon">🧩</div><div><strong>Manual dummy coding</strong> — categorical variables (e.g., moderators, covariates) must be converted into 0/1 dummy variables before use.</div></div>
-  </div>
-</section>
-
-    <section id="citation">
-      <h2>Citation</h2>
-      <div class="citation-block" id="cite-block">Ibrahim, M. M. (2026). <em>MedModr: A browser-based mediation and moderation analysis suite </em> (Version 1.0) [Software]. https://shinyhealthtools.github.io/medmodr/<button class="copy-btn" onclick="copyCite()">Copy</button></div>
+    <!-- LIMITATIONS -->
+    <section id="limitations">
+      <h2>Limitations</h2>
+      <div class="limit-list">
+        <div class="limit-item"><div class="licon">📐</div><div><strong>OLS only</strong> — models are based on ordinary least squares regression; no multilevel or SEM.</div></div>
+        <div class="limit-item"><div class="licon">🔢</div><div><strong>Listwise deletion</strong> — rows with missing values must be removed before pasting data.</div></div>
+        <div class="limit-item"><div class="licon">📦</div><div><strong>Large N</strong> — performance may degrade with N > 5000 due to client-side matrix inversion.</div></div>
+        <div class="limit-item"><div class="licon">🧩</div><div><strong>Manual dummy coding</strong> — categorical variables must be converted into 0/1 dummy variables before use.</div></div>
+        <div class="limit-item"><div class="licon">📊</div><div><strong>Sample size recommendations</strong> — Simple mediation: n ≥ 50; Serial mediation: n ≥ 100; Moderation: n ≥ 80; Moderated mediation: n ≥ 200.</div></div>
+      </div>
     </section>
 
-      <section id="contact">
+    <!-- CITATION -->
+    <section id="citation">
+      <h2>Citation</h2>
+      <div class="citation-block" id="cite-block">Ibrahim, M. M. (2026). <em>MedModr: Mediation and moderation analysis tool1</em> (Version 1.0) [Software]. https://shinyhealthtools.github.io/medmodr/<button class="copy-btn" onclick="copyCite()">Copy</button></div>
+      
+      <h3>References</h3>
+      <ul>
+        <li>Hayes, A. F. (2022). <em>Introduction to Mediation, Moderation, and Conditional Process Analysis: A Regression-Based Approach</em> (Vol. 3). The Guilford Press.</li>
+        <li>Hayes, A. F. (2015). An Index and Test of Linear Moderated Mediation. <em>Multivariate Behavioral Research, 50(1)</em>, 1-22.</li>
+        <li>Hayes, A. F. (2009). Beyond Baron and Kenny: Statistical Mediation Analysis in the New Millennium. <em>Communication Monographs, 76</em>, 408-420.</li>
+      </ul>
+    </section>
+
+    <!-- DEVELOPER -->
+    <section id="developer">
       <h2>Developer Information</h2>
       <div class="author-card">
         <div class="author-avatar">MI</div>
@@ -565,7 +1030,6 @@
           <h4>Mudasir Mohammed Ibrahim</h4>
           <p>
             Department of Internal Medicine (M3), Tamale Teaching Hospital, Tamale, Ghana<br />
-            <a href="mailto:mudassiribrahim30@gmail.com">mudassiribrahim30@gmail.com</a>
           </p>
           <div class="author-links" style="margin-top: 15px;">
             <a href="https://www.researchgate.net/profile/Mudasir-Ibrahim" target="_blank">ResearchGate</a>
@@ -575,14 +1039,28 @@
         </div>
       </div>
     </section>
+
+    <!-- CONTACT & SUPPORT SECTION (NEW) -->
+    <section id="contact">
+      <h2>Contact & Support</h2>
+      <div class="callout">
+        <div class="callout-title">📧 Get Help</div>
+        <p>For bug reports, feature requests, or general inquiries, please email:<br>
+        <strong><a href="mailto:mudassiribrahim30@gmail.com">mudassiribrahim30@gmail.com</a></strong></p>
+        <p style="margin-top: 10px;">You can also open an issue on GitHub: <a href="https://github.com/shinyhealthtools/medmodr/issues" target="_blank">github.com/shinyhealthtools/medmodr/issues</a></p>
+      </div>
+    </section>
   </main>
 </div>
 
 <footer>
   <div>© 2025–Present Mudasir Mohammed Ibrahim · MIT License</div>
   <div style="display: flex; align-items: center; gap: 16px;">
-    <a href="https://github.com/mudassiribrahim30" target="_blank">GitHub</a> ·
-    <a href="mailto:mudassiribrahim30@gmail.com">Contact</a>
+    <a href="https://github.com/shinyopensource/medmodr-documentation" id="footerDocSourceBtn" class="github-icon-only" title="Documentation Source Code"><i class="fab fa-github"></i></a>
+    <a href="mailto:mudassiribrahim30@gmail.com" class="github-icon-only" title="Email Support"><i class="fas fa-envelope"></i></a>
+    <a href="https://buymeacoffee.com/mudasiribrahim30?status=1" target="_blank" class="btn btn-donate" style="padding: 6px 14px; font-size: 0.75rem;">
+      <i class="fas fa-heart"></i> Donate
+    </a>
     <button id="darkModeToggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
       <i class="fas fa-moon"></i>
       <span>Dark</span>
@@ -603,6 +1081,17 @@
       }
     });
   }
+  
+  // Documentation source code link
+  const docSourceUrl = 'https://github.com/shinyhealthtools/medmodr-documentation';
+  const docSourceBtns = document.querySelectorAll('#docSourceBtn, #footerDocSourceBtn');
+  docSourceBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.open(docSourceUrl, '_blank');
+    });
+  });
+  
   const themeToggle = document.getElementById('darkModeToggle');
   function setTheme(theme) {
     if (theme === 'dark') {
@@ -615,11 +1104,13 @@
       if (themeToggle) themeToggle.innerHTML = '<i class="fas fa-moon"></i> <span>Dark</span>';
     }
   }
+  
   const savedTheme = localStorage.getItem('medmodr-docs-theme');
   setTheme(savedTheme === 'dark' ? 'dark' : 'light');
   if (themeToggle) themeToggle.addEventListener('click', () => {
     setTheme(document.body.classList.contains('dark') ? 'light' : 'dark');
   });
+  
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -629,7 +1120,84 @@
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });
+  
   document.querySelectorAll('section[id], .page-title[id]').forEach(s => observer.observe(s));
+  
+    // Modal functionality for diagrams - NO HOVER, just click to view and toggle
+  let currentColorImg = '';
+  let currentBWImg = '';
+  let isColorMode = true;
+  let currentModalImg = null;
+  
+  // Get modal elements
+  const modal = document.getElementById('diagramModal');
+  const modalImg = document.getElementById('modalImg');
+  const toggleModeBtn = document.getElementById('toggleModeBtn');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const modalHint = document.getElementById('modalHint');
+  
+  // Add click handlers to all clickable diagrams
+  const diagramTriggers = document.querySelectorAll('.diagram-clickable');
+  
+  diagramTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      
+      // Get image URLs from data attributes
+      currentColorImg = this.getAttribute('data-color-img');
+      currentBWImg = this.getAttribute('data-bw-img');
+      isColorMode = true;
+      
+      // Set the modal image to color version initially
+      modalImg.src = currentColorImg;
+      
+      // Update toggle button text
+      toggleModeBtn.innerHTML = '<i class="fas fa-adjust"></i> Switch to B&W';
+      modalHint.innerHTML = '💡 Click "Switch to B&W" to toggle between Color and Black & White versions';
+      
+      // Show modal
+      modal.classList.add('show');
+      modal.style.display = 'flex';
+    });
+  });
+  
+  // Toggle between color and B&W
+  toggleModeBtn.addEventListener('click', function() {
+    if (isColorMode) {
+      modalImg.src = currentBWImg;
+      toggleModeBtn.innerHTML = '<i class="fas fa-palette"></i> Switch to Color';
+      modalHint.innerHTML = '💡 Currently showing Black & White version. Click "Switch to Color" to see the original.';
+      isColorMode = false;
+    } else {
+      modalImg.src = currentColorImg;
+      toggleModeBtn.innerHTML = '<i class="fas fa-adjust"></i> Switch to B&W';
+      modalHint.innerHTML = '💡 Click "Switch to B&W" to toggle between Color and Black & White versions';
+      isColorMode = true;
+    }
+  });
+  
+  // Close modal when clicking close button
+  closeModalBtn.addEventListener('click', function() {
+    modal.classList.remove('show');
+    modal.style.display = 'none';
+  });
+  
+  // Close modal when clicking outside the image
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+      modal.style.display = 'none';
+    }
+  });
+  
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('show')) {
+      modal.classList.remove('show');
+      modal.style.display = 'none';
+    }
+  });
+  
 </script>
 </body>
 </html>
