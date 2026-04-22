@@ -55,20 +55,18 @@
     }
     .logo span { font-weight: 400; font-size: 0.75rem; opacity: 0.8; }
     .header-nav { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-/* ===== HEADER NAV STYLES: NO CIRCLES, ONLY CLEAN HOVER HIGHLIGHT ===== */
 .header-nav a {
   font-family: 'Lato', sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
   color: #ffffff !important;
-  background: transparent;           /* NO background circle/pill */
+  background: transparent;
   text-decoration: none;
   padding: 6px 10px;
-  border-radius: 0;                  /* flat corners */
+  border-radius: 0;
   transition: all 0.2s ease;
   border-bottom: 2px solid transparent;
 }
-/* Hover highlight — clean underline effect, no circle background */
 .header-nav a:hover {
   background: transparent;
   color: #fff !important;
@@ -78,7 +76,6 @@
 .header-nav a:active {
   background: transparent;
 }
-/* Launch App button: minimal border, no circle */
 .header-nav .btn-app {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.5);
@@ -346,33 +343,84 @@
     ul, .doc-list { color: var(--muted); padding-left: 1.6em; margin-bottom: 18px; font-size: 0.92rem; }
     li { margin-bottom: 6px; }
     
-    /* Diagram thumbnail styles */
+    /* ===== DIAGRAM CARD STYLES (FIXED) ===== */
+    /* Card auto-adjusts height to fully show image */
+    .diagram-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      /* removed fixed height — card stretches to content */
+      padding: 30px;
+      margin-bottom: 40px;
+      text-align: center;
+      overflow: visible; /* ensure nothing clips */
+    }
+
+    /* Image fills card width, height is natural/auto — no cropping */
+    .diagram-thumb {
+      width: 100%;
+      max-width: 860px;
+      height: auto;          /* CRITICAL: auto height so full image always shows */
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;   /* never crop */
+    }
+
     .diagram-clickable {
       cursor: pointer;
       transition: transform 0.2s ease, opacity 0.2s ease;
+      display: block;
     }
     .diagram-clickable:hover {
-      transform: scale(1.02);
-      opacity: 0.9;
+      transform: scale(1.01);
+      opacity: 0.93;
     }
-    .diagram-thumb {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-      display: block;
-      margin: 0 auto;
+
+    /* Inline toggle buttons row on each card */
+    .card-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
     }
-    
-    /* Modal styles */
+    .card-toggle-btn {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 40px;
+      cursor: pointer;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      transition: all 0.18s;
+    }
+    .card-toggle-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    .card-toggle-btn:hover:not(.active) {
+      background: var(--accent-bg);
+    }
+    body.dark .card-toggle-btn {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    body.dark .card-toggle-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* ===== MODAL STYLES ===== */
     #diagramModal {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.96);
       z-index: 1000;
       align-items: center;
@@ -399,24 +447,6 @@
       gap: 20px;
       justify-content: center;
       margin: 20px 0;
-    }
-    .diagram-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      flex: 1;
-      min-width: 200px;
-    }
-    .diagram-card h4 {
-      margin-bottom: 10px;
-      font-size: 0.85rem;
-    }
-    .diagram-card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
     }
     .contribution-steps {
       background: var(--accent-bg);
@@ -845,13 +875,12 @@
       </div>
     </section>
 
-    <!-- PATH DIAGRAMS & SIMPLE SLOPES PLOTS SECTION -->
+    <!-- ===== PATH DIAGRAMS SECTION ===== -->
     <section id="path-diagrams">
-      <h2>Path Diagrams & Simple Slopes Plots</h2>
-      
-        <!-- Modal for full-size diagram viewing -->
-      <div id="diagramModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column;">
-        <!-- Fixed header with controls -->
+      <h2>Path Diagrams</h2>
+
+      <!-- ===== MODAL ===== -->
+      <div id="diagramModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.96); z-index: 1000; align-items: center; justify-content: center; flex-direction: column;">
         <div style="position: fixed; top: 0; left: 0; right: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); padding: 15px 30px; display: flex; justify-content: flex-end; gap: 15px; z-index: 1001; border-bottom: 1px solid rgba(255,255,255,0.2);">
           <button id="toggleModeBtn" style="background: var(--accent); color: white; border: none; padding: 10px 24px; border-radius: 40px; cursor: pointer; font-family: 'Lato', sans-serif; font-weight: 700; font-size: 0.9rem; transition: all 0.2s;">
             <i class="fas fa-adjust"></i> Switch to B&W
@@ -860,80 +889,132 @@
             <i class="fas fa-times"></i> Close
           </button>
         </div>
-        
-        <!-- Image container -->
         <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
           <img id="modalImg" src="" alt="Diagram" style="max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
         </div>
-        
-        <!-- Hint text at bottom -->
         <div style="position: fixed; bottom: 20px; left: 0; right: 0; text-align: center;">
           <p id="modalHint" style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.85rem; font-family: 'Lato', sans-serif; background: rgba(0,0,0,0.6); display: inline-block; padding: 6px 16px; border-radius: 20px;">
             💡 Click "Switch to B&W" to toggle between Color and Black & White versions
           </p>
         </div>
       </div>
-      
+
       <!-- Simple Mediation Diagram -->
-      <div class="diagram-card" style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: center;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent);">Simple Mediation (X → M → Y)</h4>
-        <div class="diagram-clickable" data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simplemediationcolorful.png" data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simplemediationblack.png" style="cursor: pointer;">
-          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simplemediationcolorful.png" alt="Simple Mediation Diagram" style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+      <div class="diagram-card">
+        <h4 style="font-size: 1.5rem; margin-bottom: 16px; color: var(--accent);">Simple Mediation (X → M → Y)</h4>
+        <div class="card-toggle-row">
+          <button class="card-toggle-btn active" data-card="simple" data-mode="color">Color</button>
+          <button class="card-toggle-btn" data-card="simple" data-mode="bw">Black & White</button>
         </div>
-        <p style="margin-top: 20px; font-size: 1rem; color: var(--accent);">🔍 Click image to view full size and toggle between Color / Black & White</p>
+        <div class="diagram-clickable"
+             data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simplemediationcolorful.png"
+             data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simplemediationblack.png">
+          <img class="diagram-thumb"
+               src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simplemediationcolorful.png"
+               alt="Simple Mediation Diagram">
+        </div>
+        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--accent);">🔍 Click image to view full size</p>
       </div>
-      
+
       <!-- Serial Mediation Diagram -->
-      <div class="diagram-card" style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: center;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent);">Serial Mediation (X → M1 → M2 → Y)</h4>
-        <div class="diagram-clickable" data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/serialmediationcolorful.png" data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/serialmediationblack.png" style="cursor: pointer;">
-          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/serialmediationcolorful.png" alt="Serial Mediation Diagram" style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+      <div class="diagram-card">
+        <h4 style="font-size: 1.5rem; margin-bottom: 16px; color: var(--accent);">Serial Mediation (X → M1 → M2 → Y)</h4>
+        <div class="card-toggle-row">
+          <button class="card-toggle-btn active" data-card="serial" data-mode="color">Color</button>
+          <button class="card-toggle-btn" data-card="serial" data-mode="bw">Black & White</button>
         </div>
-        <p style="margin-top: 20px; font-size: 1rem; color: var(--accent);">🔍 Click image to view full size and toggle between Color / Black & White</p>
+        <div class="diagram-clickable"
+             data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/serialmediationcolorful.png"
+             data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/serialmediationblack.png">
+          <img class="diagram-thumb"
+               src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/serialmediationcolorful.png"
+               alt="Serial Mediation Diagram">
+        </div>
+        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--accent);">🔍 Click image to view full size</p>
       </div>
-      
+
       <!-- Moderation Diagram -->
-      <div class="diagram-card" style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: center;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent);">Moderation (X × W → Y)</h4>
-        <div class="diagram-clickable" data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderationcolorful.png" data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderationblack.png" style="cursor: pointer;">
-          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderationcolorful.png" alt="Moderation Diagram" style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+      <div class="diagram-card">
+        <h4 style="font-size: 1.5rem; margin-bottom: 16px; color: var(--accent);">Moderation (X × W → Y)</h4>
+        <div class="card-toggle-row">
+          <button class="card-toggle-btn active" data-card="moderation" data-mode="color">Color</button>
+          <button class="card-toggle-btn" data-card="moderation" data-mode="bw">Black & White</button>
         </div>
-        <p style="margin-top: 20px; font-size: 1rem; color: var(--accent);">🔍 Click image to view full size and toggle between Color / Black & White</p>
+        <div class="diagram-clickable"
+             data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderationcolorful.png"
+             data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderationblack.png">
+          <img class="diagram-thumb"
+               src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderationcolorful.png"
+               alt="Moderation Diagram">
+        </div>
+        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--accent);">🔍 Click image to view full size</p>
       </div>
-      
+
       <!-- Moderated Mediation Diagram -->
-      <div class="diagram-card" style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: center;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent);">Moderated Mediation (Conditional Process)</h4>
-        <div class="diagram-clickable" data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationcolorful.png" data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationblack.png" style="cursor: pointer;">
-          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationcolorful.png" alt="Moderated Mediation Diagram" style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+      <div class="diagram-card">
+        <h4 style="font-size: 1.5rem; margin-bottom: 16px; color: var(--accent);">Moderated Mediation (Conditional Process)</h4>
+        <div class="card-toggle-row">
+          <button class="card-toggle-btn active" data-card="modmediation" data-mode="color">Color</button>
+          <button class="card-toggle-btn" data-card="modmediation" data-mode="bw">Black & White</button>
         </div>
-        <p style="margin-top: 20px; font-size: 1rem; color: var(--accent);">🔍 Click image to view full size and toggle between Color / Black & White</p>
-      </div>
-      
-      <!-- Simple Slopes Plot -->
-      <div class="diagram-card" style="background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; margin-bottom: 40px; text-align: center;">
-        <h4 style="font-size: 1.5rem; margin-bottom: 25px; color: var(--accent);">Simple Slopes Plot</h4>
-        <p style="margin-bottom: 20px; font-size: 1rem; color: var(--accent); font-style: italic;">For Moderation & Moderated Mediation Analysis</p>
-        <div class="diagram-clickable" data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simpleslopesnopvalues.png" data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simpleslopespvalues.png" style="cursor: pointer;">
-          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simpleslopesnopvalues.png" alt="Simple Slopes Plot" style="width: 100%; max-width: 800px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); display: block; margin: 0 auto;">
+        <div class="diagram-clickable"
+             data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationcolorful.png"
+             data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationblack.png">
+          <img class="diagram-thumb"
+               src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationcolorful.png"
+               alt="Moderated Mediation Diagram">
         </div>
-        <p style="margin-top: 20px; font-size: 1rem; color: var(--accent);">🔍 Click image to view full size and toggle between Standard / Annotated version</p>
+        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--accent);">🔍 Click image to view full size</p>
       </div>
-      
+
       <div class="feature-grid">
         <div class="feature-card"><div class="icon">📐</div><div><strong>Interactive path diagrams</strong><br>Click "View full‑screen diagram" to open a modal. Toggle between unstandardized/standardized coefficients, hide/show p‑values, toggle black/white mode, download as PNG.</div></div>
         <div class="feature-card"><div class="icon">🎨</div><div><strong>Customization Options</strong><br>• Unstandardized (b) or Standardized (β) coefficients<br>• Show/Hide p-values<br>• Black & White mode for publication<br>• Dotted or solid direct effect line<br>• Download high-resolution PNG</div></div>
       </div>
-      
+
       <div class="callout">
         <div class="callout-title">📖 Diagram Features</div>
-        <p>All path diagrams automatically wrap long variable names to prevent text overflow. The black & white mode creates publication-ready diagrams suitable for manuscripts. The Simple Slopes Plot is available for Moderation and Moderated Mediation analyses, showing the effect of X on Y (or X on M) at three levels of the moderator W: Low (-1 SD), Mean, and High (+1 SD).</p>
+        <p>All path diagrams automatically wrap long variable names to prevent text overflow. The black & white mode creates publication-ready diagrams suitable for manuscripts.</p>
+      </div>
+    </section>
+
+    <!-- ===== SIMPLE SLOPES SECTION (own section, own id for sidebar link) ===== -->
+    <section id="simple-slopes">
+      <h2>Simple Slopes Plots</h2>
+      <p>The Simple Slopes Plot is available for Moderation and Moderated Mediation analyses, showing the effect of X on Y (or X on M) at three levels of the moderator W: Low (−1 SD), Mean, and High (+1 SD).</p>
+
+      <!-- Simple Slopes Plot Card -->
+      <div class="diagram-card">
+        <h4 style="font-size: 1.5rem; margin-bottom: 8px; color: var(--accent);">Simple Slopes Plot</h4>
+        <p style="margin-bottom: 16px; font-size: 0.95rem; color: var(--muted); font-style: italic;">For Moderation &amp; Moderated Mediation Analysis</p>
+        <!-- Toggle: with/without p-values (NOT black/white) -->
+        <div class="card-toggle-row">
+          <button class="card-toggle-btn active" data-card="slopes" data-mode="color">Without p-values</button>
+          <button class="card-toggle-btn" data-card="slopes" data-mode="bw">With p-values</button>
+        </div>
+        <div class="diagram-clickable"
+             data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simpleslopesnopvalues.png"
+             data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simpleslopespvalues.png"
+             data-modal-toggle-label-color="Switch to With p-values"
+             data-modal-toggle-label-bw="Switch to Without p-values"
+             data-modal-hint-color="💡 Click to toggle between version with and without p-values annotated on the plot"
+             data-modal-hint-bw="💡 Currently showing version with p-values. Click to switch to without p-values.">
+          <img class="diagram-thumb"
+               src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/simpleslopesnopvalues.png"
+               alt="Simple Slopes Plot">
+        </div>
+        <p style="margin-top: 16px; font-size: 0.9rem; color: var(--accent);">🔍 Click image to view full size and toggle between versions</p>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">📖 Simple Slopes Features</div>
+        <p>The simple slopes plot displays separate regression lines for X predicting Y at three conditional values of the moderator W. Toggle between the standard version (no p-values) and the annotated version (with p-values shown on each slope line) using the buttons above the plot or inside the full-screen viewer.</p>
       </div>
     </section>
 
     <hr class="section-hr" />
 
-    <!-- LICENSE SECTION (NEW) -->
+    <!-- LICENSE SECTION -->
     <section id="license">
       <h2>License & Permissions</h2>
       <div class="license-box">
@@ -955,7 +1036,7 @@
       </div>
     </section>
 
-    <!-- CONTRIBUTE SECTION (NEW) -->
+    <!-- CONTRIBUTE SECTION -->
     <section id="contribute">
       <h2>How to Contribute</h2>
       <p>MedModr is open source and welcomes contributions from the community! Whether you want to fix a bug, add a feature, improve documentation, or translate the interface, your help is appreciated.</p>
@@ -1053,7 +1134,7 @@
       </div>
     </section>
 
-    <!-- CONTACT & SUPPORT SECTION (NEW) -->
+    <!-- CONTACT & SUPPORT SECTION -->
     <section id="contact">
       <h2>Contact & Support</h2>
       <div class="callout">
@@ -1082,6 +1163,7 @@
 </footer>
 
 <script>
+  // ===== COPY CITATION =====
   function copyCite() {
     const block = document.getElementById('cite-block');
     let text = block.innerText || block.textContent;
@@ -1094,8 +1176,8 @@
       }
     });
   }
-  
-  // Documentation source code link
+
+  // ===== DOCUMENTATION SOURCE LINK =====
   const docSourceUrl = 'https://github.com/shinyopensource/medmodr-documentation';
   const docSourceBtns = document.querySelectorAll('#docSourceBtn, #footerDocSourceBtn');
   docSourceBtns.forEach(btn => {
@@ -1104,7 +1186,8 @@
       window.open(docSourceUrl, '_blank');
     });
   });
-  
+
+  // ===== DARK MODE =====
   const themeToggle = document.getElementById('darkModeToggle');
   function setTheme(theme) {
     if (theme === 'dark') {
@@ -1117,13 +1200,13 @@
       if (themeToggle) themeToggle.innerHTML = '<i class="fas fa-moon"></i> <span>Dark</span>';
     }
   }
-  
   const savedTheme = localStorage.getItem('medmodr-docs-theme');
   setTheme(savedTheme === 'dark' ? 'dark' : 'light');
   if (themeToggle) themeToggle.addEventListener('click', () => {
     setTheme(document.body.classList.contains('dark') ? 'light' : 'dark');
   });
-  
+
+  // ===== ACTIVE SIDEBAR LINK (IntersectionObserver) =====
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1133,84 +1216,117 @@
       }
     });
   }, { rootMargin: '-15% 0px -75% 0px' });
-  
   document.querySelectorAll('section[id], .page-title[id]').forEach(s => observer.observe(s));
-  
-    // Modal functionality for diagrams - NO HOVER, just click to view and toggle
+
+  // ===== INLINE CARD TOGGLES =====
+  // Each card has buttons with data-card and data-mode attributes.
+  // The image to swap is the .diagram-thumb inside the same .diagram-card.
+  document.querySelectorAll('.card-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const cardId = this.getAttribute('data-card');
+      const mode   = this.getAttribute('data-mode'); // 'color' or 'bw'
+
+      // Find the sibling buttons for this card and update active state
+      const siblings = document.querySelectorAll(`.card-toggle-btn[data-card="${cardId}"]`);
+      siblings.forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+
+      // Find the diagram-clickable in the same .diagram-card
+      const card = this.closest('.diagram-card');
+      const trigger = card.querySelector('.diagram-clickable');
+      const img     = card.querySelector('.diagram-thumb');
+      if (!trigger || !img) return;
+
+      if (mode === 'color') {
+        img.src = trigger.getAttribute('data-color-img');
+      } else {
+        img.src = trigger.getAttribute('data-bw-img');
+      }
+    });
+  });
+
+  // ===== MODAL (fullscreen view) =====
   let currentColorImg = '';
-  let currentBWImg = '';
-  let isColorMode = true;
-  let currentModalImg = null;
-  
-  // Get modal elements
-  const modal = document.getElementById('diagramModal');
-  const modalImg = document.getElementById('modalImg');
+  let currentBWImg    = '';
+  let isColorMode     = true;
+  let currentModalToggleLabelColor = 'Switch to B&W';
+  let currentModalToggleLabelBW    = 'Switch to Color';
+  let currentModalHintColor = '💡 Click "Switch to B&W" to toggle between Color and Black & White versions';
+  let currentModalHintBW    = '💡 Currently showing Black & White version. Click "Switch to Color" to see the original.';
+
+  const modal         = document.getElementById('diagramModal');
+  const modalImg      = document.getElementById('modalImg');
   const toggleModeBtn = document.getElementById('toggleModeBtn');
   const closeModalBtn = document.getElementById('closeModalBtn');
-  const modalHint = document.getElementById('modalHint');
-  
-  // Add click handlers to all clickable diagrams
-  const diagramTriggers = document.querySelectorAll('.diagram-clickable');
-  
-  diagramTriggers.forEach(trigger => {
+  const modalHint     = document.getElementById('modalHint');
+
+  // Open modal on image click — respects current inline toggle state
+  document.querySelectorAll('.diagram-clickable').forEach(trigger => {
     trigger.addEventListener('click', function(e) {
       e.stopPropagation();
-      
-      // Get image URLs from data attributes
+
       currentColorImg = this.getAttribute('data-color-img');
-      currentBWImg = this.getAttribute('data-bw-img');
-      isColorMode = true;
-      
-      // Set the modal image to color version initially
-      modalImg.src = currentColorImg;
-      
-      // Update toggle button text
-      toggleModeBtn.innerHTML = '<i class="fas fa-adjust"></i> Switch to B&W';
-      modalHint.innerHTML = '💡 Click "Switch to B&W" to toggle between Color and Black & White versions';
-      
-      // Show modal
+      currentBWImg    = this.getAttribute('data-bw-img');
+
+      // Custom toggle labels for simple slopes plot
+      currentModalToggleLabelColor = this.getAttribute('data-modal-toggle-label-color') || 'Switch to B&W';
+      currentModalToggleLabelBW    = this.getAttribute('data-modal-toggle-label-bw')    || 'Switch to Color';
+      currentModalHintColor = this.getAttribute('data-modal-hint-color') || '💡 Click the button above to toggle between versions';
+      currentModalHintBW    = this.getAttribute('data-modal-hint-bw')    || '💡 Click the button above to switch back';
+
+      // Open with whichever version is currently shown in the card
+      const currentShownSrc = this.querySelector('.diagram-thumb').src;
+      const openingWithColor = (currentShownSrc === currentColorImg ||
+                                currentShownSrc.includes(currentColorImg.split('/').pop()));
+      isColorMode = openingWithColor;
+
+      modalImg.src = isColorMode ? currentColorImg : currentBWImg;
+
+      if (isColorMode) {
+        toggleModeBtn.innerHTML = `<i class="fas fa-adjust"></i> ${currentModalToggleLabelColor}`;
+        modalHint.innerHTML = currentModalHintColor;
+      } else {
+        toggleModeBtn.innerHTML = `<i class="fas fa-palette"></i> ${currentModalToggleLabelBW}`;
+        modalHint.innerHTML = currentModalHintBW;
+      }
+
       modal.classList.add('show');
       modal.style.display = 'flex';
     });
   });
-  
-  // Toggle between color and B&W
+
+  // Toggle inside modal
   toggleModeBtn.addEventListener('click', function() {
     if (isColorMode) {
       modalImg.src = currentBWImg;
-      toggleModeBtn.innerHTML = '<i class="fas fa-palette"></i> Switch to Color';
-      modalHint.innerHTML = '💡 Currently showing Black & White version. Click "Switch to Color" to see the original.';
+      toggleModeBtn.innerHTML = `<i class="fas fa-palette"></i> ${currentModalToggleLabelBW}`;
+      modalHint.innerHTML = currentModalHintBW;
       isColorMode = false;
     } else {
       modalImg.src = currentColorImg;
-      toggleModeBtn.innerHTML = '<i class="fas fa-adjust"></i> Switch to B&W';
-      modalHint.innerHTML = '💡 Click "Switch to B&W" to toggle between Color and Black & White versions';
+      toggleModeBtn.innerHTML = `<i class="fas fa-adjust"></i> ${currentModalToggleLabelColor}`;
+      modalHint.innerHTML = currentModalHintColor;
       isColorMode = true;
     }
   });
-  
-  // Close modal when clicking close button
+
+  // Close modal
   closeModalBtn.addEventListener('click', function() {
     modal.classList.remove('show');
     modal.style.display = 'none';
   });
-  
-  // Close modal when clicking outside the image
   modal.addEventListener('click', function(e) {
     if (e.target === modal) {
       modal.classList.remove('show');
       modal.style.display = 'none';
     }
   });
-  
-  // Close modal with Escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && modal.classList.contains('show')) {
       modal.classList.remove('show');
       modal.style.display = 'none';
     }
   });
-  
 </script>
 </body>
 </html>
