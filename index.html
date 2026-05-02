@@ -344,28 +344,25 @@
     li { margin-bottom: 6px; }
     
     /* ===== DIAGRAM CARD STYLES (FIXED) ===== */
-    /* Card auto-adjusts height to fully show image */
     .diagram-card {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      /* removed fixed height — card stretches to content */
       padding: 30px;
       margin-bottom: 40px;
       text-align: center;
-      overflow: visible; /* ensure nothing clips */
+      overflow: visible;
     }
 
-    /* Image fills card width, height is natural/auto — no cropping */
     .diagram-thumb {
       width: 100%;
       max-width: 860px;
-      height: auto;          /* CRITICAL: auto height so full image always shows */
+      height: auto;
       border-radius: 12px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       display: block;
       margin: 0 auto;
-      object-fit: contain;   /* never crop */
+      object-fit: contain;
     }
 
     .diagram-clickable {
@@ -378,7 +375,6 @@
       opacity: 0.93;
     }
 
-    /* Inline toggle buttons row on each card */
     .card-toggle-row {
       display: flex;
       align-items: center;
@@ -500,6 +496,29 @@
       background: var(--accent);
       color: #fff;
     }
+
+    /* Stage selector tabs */
+    .stage-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 16px 0 8px;
+    }
+    .stage-tab {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 7px 18px;
+      border-radius: 40px;
+      border: 1.5px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      cursor: default;
+    }
+    .stage-tab.active {
+      background: var(--accent);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -531,6 +550,9 @@
       <a href="#serial-mediation">Serial Mediation (M1, M2)</a>
       <a href="#moderation">Moderation (Interaction)</a>
       <a href="#moderated-mediation">Moderated Mediation</a>
+      <a href="#modmed-first-stage">— First Stage</a>
+      <a href="#modmed-second-stage">— Second Stage</a>
+      <a href="#modmed-both-stages">— Both Stages</a>
     </div>
     <div class="toc-group">
       <div class="toc-group-label">Statistical Foundations</div>
@@ -564,7 +586,7 @@
     <div class="page-title" id="overview">
       <h1>About MedModr</h1>
       <div class="badges">
-        <span class="badge badge-blue">Version 1.0</span>
+        <span class="badge badge-blue">Version 2.0</span>
         <span class="badge badge-green">Free & Open Source</span>
         <span class="badge badge-gray">MIT License</span>
       </div>
@@ -595,7 +617,7 @@
         <div class="feature-card"><div class="icon">📊</div><div><strong>Simple Mediation</strong><br>X → M → Y with full path coefficients, Sobel test, bootstrap CIs, and interactive path diagram.</div></div>
         <div class="feature-card"><div class="icon">🔗</div><div><strong>Serial Mediation</strong><br>X → M1 → M2 → Y with specific indirect paths, total indirect effects, and bootstrapped CIs.</div></div>
         <div class="feature-card"><div class="icon">⚡</div><div><strong>Moderation</strong><br>X × W → Y with simple slopes at ±1 SD and mean, annotated slopes plot.</div></div>
-        <div class="feature-card"><div class="icon">🔄</div><div><strong>Moderated Mediation</strong><br>Conditional indirect effects, index of moderated mediation (IMM), bootstrap CIs.</div></div>
+        <div class="feature-card"><div class="icon">🔄</div><div><strong>Moderated Mediation</strong><br>Three stage options: First Stage, Second Stage, or Both Stages. Conditional indirect effects, Index of Moderated Mediation (IMM), bootstrap CIs.</div></div>
         <div class="feature-card"><div class="icon">📈</div><div><strong>Bootstrap Inference</strong><br>Percentile bootstrap confidence intervals for all indirect effects (1,000–10,000 samples).</div></div>
         <div class="feature-card"><div class="icon">🎨</div><div><strong>Interactive Diagrams</strong><br>Path diagrams with toggle for unstandardized/standardized coefficients, p-values, black/white mode.</div></div>
         <div class="feature-card"><div class="icon">📋</div><div><strong>APA Reporting</strong><br>APA-formatted summaries, Word document export, copy-to-clipboard functionality.</div></div>
@@ -611,7 +633,7 @@
         <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Select analysis type</strong><p>Choose from Simple Mediation, Serial Mediation, Moderation, or Moderated Mediation.</p></div></div>
         <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Enter variable names and data</strong><p>Provide meaningful names (e.g., "Stress", "Coping", "Wellbeing") and paste your numeric data.</p></div></div>
         <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Add covariates (optional)</strong><p>First line = variable names (space separated), subsequent lines = numeric values.</p></div></div>
-        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Set options & run</strong><p>Choose confidence level (90%, 95%, 99%), bootstrap samples (None [Sobel only], 1000, 5000, 10000), centering options for moderation models.</p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Set options & run</strong><p>Choose confidence level (90%, 95%, 99%), bootstrap samples (None [Sobel only], 1000, 5000, 10000), centering options for moderation models, and moderation stage for moderated mediation (First Stage / Second Stage / Both Stages).</p></div></div>
         <div class="step"><div class="step-num">6</div><div class="step-body"><strong>Interpret results</strong><p>Review regression tables, path diagrams, simple slopes plots, and APA-formatted summaries. Export to Word or copy results.</p></div></div>
       </div>
     </section>
@@ -687,7 +709,6 @@
         <strong>Total Indirect Effect:</strong> IEₜₒₜₐₗ = IE₁ + IE₂ + IE₃
       </div>
       
-           
       <div class="callout">
         <div class="callout-title">📖 Interpretation</div>
         <p>If the bootstrap confidence interval does not contain zero, the indirect effect is statistically significant at α = 0.05 (two-tailed). Mediation is supported when the indirect effect is significant, regardless of whether the total effect (c) or direct effect (c') is significant (Hayes, 2022).</p>
@@ -741,34 +762,124 @@
       <div class="video-embed">
         <iframe src="https://www.youtube.com/embed/vRsdG-Z-Xhc?si=TDT7qkieYKBgeefM" title="Moderated mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      
-      <div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Click <strong>Moderated Mediation</strong> tab (X → M → Y, with W moderating the a‑path).</p></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter independent X, mediator M, moderator W, outcome Y</strong><p>Provide variable names and numeric data for independent X, mediator M, moderator W, and outcome Y. All four variables must have the same number of rows.</p></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Select mean‑centering strategy</strong><p>Options: <strong>Mean Centering (All variables)</strong>, <strong>Mean Centering (Only continuous variables)</strong>, or <strong>No Mean Centering</strong>.</p></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run & interpret results</strong><p>Output includes: simple slopes of X→M at three levels of W, conditional indirect effects (a·b) at each level, analytic and bootstrap CIs, and the index of moderated mediation (a₃·b)</p></div></div>
+
+      <p>MedModr supports three moderated mediation stage configurations. Select your stage using the <strong>Moderation stage</strong> dropdown in the options row before running the analysis.</p>
+
+      <div class="stage-tabs">
+        <span class="stage-tab active">First Stage (X→M moderated)</span>
+        <span class="stage-tab">Second Stage (M→Y moderated)</span>
+        <span class="stage-tab">Both Stages</span>
       </div>
 
-      <h3>Mathematical Formulas</h3>
-      <div class="formula-block">
-        <strong>Stage 1 (Moderated a-path):</strong> M = i₁ + a₁·X + a₂·W + a₃·(X×W) + e₁<br><br>
-        <strong>Stage 2 (b-path):</strong> Y = i₂ + c'·X + b·M + e₂<br><br>
-        <strong>Conditional Indirect Effect at level w of W:</strong> IE(w) = (a₁ + a₃·w) × b<br><br>
-        <strong>Index of Moderated Mediation (IMM):</strong> IMM = a₃ × b
-      </div>
-      
-      <div class="formula-block">
-        <strong>Conditional Indirect Effects at ±1 SD and Mean:</strong><br>
-        IE(Mean) = a₁ × b<br>
-        IE(Low) = (a₁ - a₃·SD_w) × b<br>
-        IE(High) = (a₁ + a₃·SD_w) × b
-      </div>
-      
-      <div class="callout">
-        <div class="callout-title">📊 Index of Moderated Mediation</div>
-        <p>The Index of Moderated Mediation (IMM = a₃ × b) quantifies the linear change in the indirect effect as a function of the moderator W. A bootstrap confidence interval that excludes zero indicates statistically significant moderated mediation (Hayes, 2015).</p>
-        <p><strong>Reference:</strong> Hayes, A. F. (2015). An Index and Test of Linear Moderated Mediation. <em>Multivariate Behavioral Research, 50(1)</em>, 1-22.</p>
-      </div>
+      <!-- FIRST STAGE -->
+      <section id="modmed-first-stage">
+        <h3>First Stage Moderated Mediation (W moderates X→M)</h3>
+        <p>W moderates the <strong>a-path</strong> (X → M). The effect of X on M depends on the level of W. The b-path (M → Y) is unmoderated.</p>
+
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Click <strong>Moderated Mediation</strong> tab (X → M → Y, with W moderating the a‑path).</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter variables</strong><p>Provide names and data for independent X, mediator M, moderator W, and outcome Y. All four variables must have the same number of rows.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Select moderation stage</strong><p>In the options row, set <strong>Moderation stage</strong> to <strong>First Stage (X→M moderated)</strong>.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Select mean‑centering strategy</strong><p>Options: <strong>Mean Centering (All variables)</strong>, <strong>Mean Centering (Only continuous variables)</strong>, or <strong>No Mean Centering</strong>.</p></div></div>
+          <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Run & interpret results</strong><p>Output includes: first-stage moderated a-path regression, unmoderated b-path regression, simple slopes of X→M at three levels of W, conditional indirect effects (a·b) at each level, analytic and bootstrap CIs, and the Index of Moderated Mediation (IMM = a₃ × b).</p></div></div>
+        </div>
+
+        <h4>Mathematical Formulas — First Stage</h4>
+        <div class="formula-block">
+          <strong>Stage 1 (Moderated a-path):</strong> M = i₁ + a₁·X + a₂·W + a₃·(X×W) + e₁<br><br>
+          <strong>Stage 2 (Unmoderated b-path):</strong> Y = i₂ + c'·X + b·M + e₂<br><br>
+          <strong>Conditional a-path at level w of W:</strong> a(w) = a₁ + a₃·w<br><br>
+          <strong>Conditional Indirect Effect at level w of W:</strong> IE(w) = (a₁ + a₃·w) × b<br><br>
+          <strong>Index of Moderated Mediation (IMM):</strong> IMM = a₃ × b
+        </div>
+
+        <div class="formula-block">
+          <strong>Conditional Indirect Effects at ±1 SD and Mean:</strong><br>
+          IE(Low)  = (a₁ − a₃·SD_w) × b<br>
+          IE(Mean) = a₁ × b<br>
+          IE(High) = (a₁ + a₃·SD_w) × b
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">📊 Index of Moderated Mediation — First Stage</div>
+          <p>The Index of Moderated Mediation (IMM = a₃ × b) quantifies the linear change in the indirect effect as a function of the moderator W. A bootstrap confidence interval that excludes zero indicates statistically significant moderated mediation (Hayes, 2015).</p>
+          <p><strong>Reference:</strong> Hayes, A. F. (2015). An Index and Test of Linear Moderated Mediation. <em>Multivariate Behavioral Research, 50(1)</em>, 1-22.</p>
+        </div>
+      </section>
+
+      <!-- SECOND STAGE -->
+      <section id="modmed-second-stage">
+        <h3>Second Stage Moderated Mediation (W moderates M→Y)</h3>
+        <p>W moderates the <strong>b-path</strong> (M → Y). The effect of M on Y depends on the level of W. The a-path (X → M) is unmoderated.</p>
+
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Click <strong>Moderated Mediation</strong> tab.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter variables</strong><p>Provide names and data for independent X, mediator M, moderator W, and outcome Y.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Select moderation stage</strong><p>In the options row, set <strong>Moderation stage</strong> to <strong>Second Stage (M→Y moderated)</strong>.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Select mean‑centering strategy</strong><p>Options: <strong>Mean Centering (All variables)</strong>, <strong>Mean Centering (Only continuous variables)</strong>, or <strong>No Mean Centering</strong>.</p></div></div>
+          <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Run & interpret results</strong><p>Output includes: unmoderated a-path regression, second-stage moderated b-path regression (Y ~ X + M + W + M×W), simple slopes of M→Y at three levels of W, conditional indirect effects at each level, and the Index of Moderated Mediation (IMM = a₁ × b₃).</p></div></div>
+        </div>
+
+        <h4>Mathematical Formulas — Second Stage</h4>
+        <div class="formula-block">
+          <strong>Stage 1 (Unmoderated a-path):</strong> M = i₁ + a₁·X + e₁<br><br>
+          <strong>Stage 2 (Moderated b-path):</strong> Y = i₂ + c'·X + b₁·M + b₂·W + b₃·(M×W) + e₂<br><br>
+          <strong>Conditional b-path at level w of W:</strong> b(w) = b₁ + b₃·w<br><br>
+          <strong>Conditional Indirect Effect at level w of W:</strong> IE(w) = a₁ × (b₁ + b₃·w)<br><br>
+          <strong>Index of Moderated Mediation (IMM):</strong> IMM = a₁ × b₃
+        </div>
+
+        <div class="formula-block">
+          <strong>Conditional Indirect Effects at ±1 SD and Mean:</strong><br>
+          IE(Low)  = a₁ × (b₁ − b₃·SD_w)<br>
+          IE(Mean) = a₁ × b₁<br>
+          IE(High) = a₁ × (b₁ + b₃·SD_w)
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">📊 Index of Moderated Mediation — Second Stage</div>
+          <p>For second stage moderated mediation, the IMM = a₁ × b₃ quantifies how the indirect effect changes as W changes. Bootstrap CIs are provided. If the CI excludes zero, moderated mediation is supported. The simple slopes plot shows M → Y at three levels of W.</p>
+        </div>
+      </section>
+
+      <!-- BOTH STAGES -->
+      <section id="modmed-both-stages">
+        <h3>Both Stages Moderated Mediation (W moderates both X→M and M→Y)</h3>
+        <p>W simultaneously moderates <strong>both</strong> the a-path (X → M) and the b-path (M → Y). This is the most complex moderated mediation model.</p>
+
+        <div class="callout warn">
+          <div class="callout-title">⚠️ Both Stages: No Bootstrap CIs</div>
+          <p>When <strong>Both Stages</strong> is selected, bootstrap confidence intervals and simple slopes plots are <em>not</em> produced. Only the regression tables and interaction coefficients for each stage are shown. To obtain bootstrap CIs for conditional indirect effects, run the First Stage and Second Stage analyses separately.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Click <strong>Moderated Mediation</strong> tab.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Enter variables</strong><p>Provide names and data for independent X, mediator M, moderator W, and outcome Y.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Select moderation stage</strong><p>In the options row, set <strong>Moderation stage</strong> to <strong>Both Stages</strong>.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Select mean‑centering strategy</strong><p>Options: <strong>Mean Centering (All variables)</strong>, <strong>Mean Centering (Only continuous variables)</strong>, or <strong>No Mean Centering</strong>.</p></div></div>
+          <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Run & interpret results</strong><p>Output includes: first-stage moderated a-path regression, second-stage moderated b-path regression, total effect regression, and two interaction coefficient cards — one for each stage interaction. For full conditional indirect effects and bootstrap CIs, run First Stage and Second Stage separately.</p></div></div>
+        </div>
+
+        <h4>Mathematical Formulas — Both Stages</h4>
+        <div class="formula-block">
+          <strong>Stage 1 (Moderated a-path):</strong> M = i₁ + a₁·X + a₂·W + a₃·(X×W) + e₁<br><br>
+          <strong>Stage 2 (Moderated b-path):</strong> Y = i₂ + c'·X + b₁·M + b₂·W + b₃·(M×W) + e₂<br><br>
+          <strong>First Stage Interaction Coefficient:</strong> a₃ (X×W → M)<br>
+          <strong>Second Stage Interaction Coefficient:</strong> b₃ (M×W → Y)
+        </div>
+
+        <div class="formula-block">
+          <strong>First Stage IMM (a₃ × b₁):</strong> Quantifies moderation of indirect effect via the a-path<br><br>
+          <strong>Second Stage IMM (a₁ × b₃):</strong> Quantifies moderation of indirect effect via the b-path<br><br>
+          <strong>Note:</strong> Run First Stage and Second Stage separately to obtain bootstrap CIs for each IMM.
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">📖 Path Diagram — Both Stages</div>
+          <p>In the Both Stages path diagram, the moderator W appears on the left with <em>two arrows</em>: one pointing to the midpoint of the X→M line (first stage moderation) and one pointing to the midpoint of the M→Y line (second stage moderation). Two interaction coefficient cards are shown below the diagram, one for each stage.</p>
+        </div>
+      </section>
+
     </section>
 
     <hr class="section-hr" />
@@ -832,6 +943,11 @@
       <div class="callout">
         <div class="callout-title">📊 Interpretation</div>
         <p>If the bootstrap confidence interval (e.g., 95% BootLLCI to BootULCI) does not contain zero, the indirect effect is statistically significant at α = 0.05 (two‑tailed). This method does not assume normality of the sampling distribution — a critical advantage for indirect effects which are often non-normal.</p>
+      </div>
+
+      <div class="callout warn">
+        <div class="callout-title">⚠️ Bootstrap Availability by Analysis</div>
+        <p>Bootstrap CIs are available for: Simple Mediation (indirect effect), Serial Mediation (all three specific indirect effects), First Stage Moderated Mediation (IMM = a₃ × b), and Second Stage Moderated Mediation (IMM = a₁ × b₃). Bootstrap CIs are <strong>not</strong> produced when Both Stages is selected for moderated mediation — run First and Second stages separately for bootstrapped CIs.</p>
       </div>
     </section>
 
@@ -969,25 +1085,24 @@
 
       <div class="feature-grid">
         <div class="feature-card"><div class="icon">📐</div><div><strong>Interactive path diagrams</strong><br>Click "View full‑screen diagram" to open a modal. Toggle between unstandardized/standardized coefficients, hide/show p‑values, toggle black/white mode, download as PNG.</div></div>
-        <div class="feature-card"><div class="icon">🎨</div><div><strong>Customization Options</strong><br>• Unstandardized (b) or Standardized (β) coefficients<br>• Show/Hide p-values<br>• Black & White mode for publication<br>• Dotted or solid direct effect line<br>• Download high-resolution PNG</div></div>
+        <div class="feature-card"><div class="icon">🎨</div><div><strong>Customization Options</strong><br>• Unstandardized (b) or Standardized (β) coefficients<br>• Show/Hide p-values<br>• Black & White mode for publication<br>• Dotted or solid direct effect line<br>• Adjust line lengths<br>• Toggle card boxes on/off<br>• Toggle coefficient display on/off<br>• Download high-resolution PNG</div></div>
       </div>
 
       <div class="callout">
         <div class="callout-title">📖 Diagram Features</div>
-        <p>All path diagrams automatically wrap long variable names to prevent text overflow. The black & white mode creates publication-ready diagrams suitable for manuscripts.</p>
+        <p>All path diagrams automatically wrap long variable names to prevent text overflow. The black & white mode creates publication-ready diagrams suitable for manuscripts. For moderated mediation, the path diagram automatically updates to reflect the selected moderation stage (First, Second, or Both).</p>
       </div>
     </section>
 
-    <!-- ===== SIMPLE SLOPES SECTION (own section, own id for sidebar link) ===== -->
+    <!-- ===== SIMPLE SLOPES SECTION ===== -->
     <section id="simple-slopes">
       <h2>Simple Slopes Plots</h2>
-      <p>The Simple Slopes Plot is available for Moderation and Moderated Mediation analyses, showing the effect of X on Y (or X on M) at three levels of the moderator W: Low (−1 SD), Mean, and High (+1 SD).</p>
+      <p>The Simple Slopes Plot is available for Moderation and Moderated Mediation analyses (First Stage and Second Stage only), showing the effect of X on Y (or X on M, or M on Y) at three levels of the moderator W: Low (−1 SD), Mean, and High (+1 SD).</p>
 
       <!-- Simple Slopes Plot Card -->
       <div class="diagram-card">
         <h4 style="font-size: 1.5rem; margin-bottom: 8px; color: var(--accent);">Simple Slopes Plot</h4>
-        <p style="margin-bottom: 16px; font-size: 0.95rem; color: var(--muted); font-style: italic;">For Moderation &amp; Moderated Mediation Analysis</p>
-        <!-- Toggle: with/without p-values (NOT black/white) -->
+        <p style="margin-bottom: 16px; font-size: 0.95rem; color: var(--muted); font-style: italic;">For Moderation &amp; Moderated Mediation Analysis (First &amp; Second Stage)</p>
         <div class="card-toggle-row">
           <button class="card-toggle-btn active" data-card="slopes" data-mode="color">Without p-values</button>
           <button class="card-toggle-btn" data-card="slopes" data-mode="bw">With p-values</button>
@@ -1008,7 +1123,7 @@
 
       <div class="callout">
         <div class="callout-title">📖 Simple Slopes Features</div>
-        <p>The simple slopes plot displays separate regression lines for X predicting Y at three conditional values of the moderator W. Toggle between the standard version (no p-values) and the annotated version (with p-values shown on each slope line) using the buttons above the plot or inside the full-screen viewer.</p>
+        <p>The simple slopes plot displays separate regression lines for X predicting Y at three conditional values of the moderator W. Toggle between the standard version (no p-values) and the annotated version (with p-values shown on each slope line). Additional options available in the app: toggle between legend (top-right) and line annotations, Publication Ready style (black & white clean version), custom line colors via color pickers, and full-screen / hi-res PNG download.</p>
       </div>
     </section>
 
@@ -1099,13 +1214,14 @@
         <div class="limit-item"><div class="licon">📦</div><div><strong>Large N</strong> — performance may degrade with N > 5000 due to client-side matrix inversion.</div></div>
         <div class="limit-item"><div class="licon">🧩</div><div><strong>Manual dummy coding</strong> — categorical variables must be converted into 0/1 dummy variables before use.</div></div>
         <div class="limit-item"><div class="licon">📊</div><div><strong>Sample size recommendations</strong> — Simple mediation: n ≥ 50; Serial mediation: n ≥ 100; Moderation: n ≥ 80; Moderated mediation: n ≥ 200.</div></div>
+        <div class="limit-item"><div class="licon">🔄</div><div><strong>Both Stages moderated mediation</strong> — Bootstrap CIs and simple slopes plots are not produced for the Both Stages option. Run First Stage and Second Stage separately to obtain bootstrapped CIs for each IMM.</div></div>
       </div>
     </section>
 
     <!-- CITATION -->
     <section id="citation">
       <h2>Citation</h2>
-      <div class="citation-block" id="cite-block">Ibrahim, M. M. (2026). <em>MedModr: Mediation and moderation analysis tool1</em> (Version 1.0) [Software]. https://shinyhealthtools.github.io/medmodr/<button class="copy-btn" onclick="copyCite()">Copy</button></div>
+      <div class="citation-block" id="cite-block">Ibrahim, M. M. (2026). <em>MedModr: Mediation and moderation analysis tool</em> (Version 2.0) [Software]. https://shinyhealthtools.github.io/medmodr/<button class="copy-btn" onclick="copyCite()">Copy</button></div>
       
       <h3>References</h3>
       <ul>
@@ -1126,9 +1242,11 @@
             Department of Internal Medicine (M3), Tamale Teaching Hospital, Tamale, Ghana<br />
           </p>
           <div class="author-links" style="margin-top: 15px;">
+            <a href="https://mudasiribrahim.github.io/gh/" target="_blank">Personal Website</a>
             <a href="https://www.researchgate.net/profile/Mudasir-Ibrahim" target="_blank">ResearchGate</a>
             <a href="https://scholar.google.com/citations?user=xEFzAvgAAAAJ&hl=en" target="_blank">Google Scholar</a>
             <a href="https://orcid.org/0000-0002-9049-8222" target="_blank">ORCID</a>
+            <a href="https://linkedin.com/in/mudasir-mohammed-ibrahim-16b5141b0" target="_blank">LinkedIn</a>
           </div>
         </div>
       </div>
@@ -1219,19 +1337,15 @@
   document.querySelectorAll('section[id], .page-title[id]').forEach(s => observer.observe(s));
 
   // ===== INLINE CARD TOGGLES =====
-  // Each card has buttons with data-card and data-mode attributes.
-  // The image to swap is the .diagram-thumb inside the same .diagram-card.
   document.querySelectorAll('.card-toggle-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       const cardId = this.getAttribute('data-card');
-      const mode   = this.getAttribute('data-mode'); // 'color' or 'bw'
+      const mode   = this.getAttribute('data-mode');
 
-      // Find the sibling buttons for this card and update active state
       const siblings = document.querySelectorAll(`.card-toggle-btn[data-card="${cardId}"]`);
       siblings.forEach(b => b.classList.remove('active'));
       this.classList.add('active');
 
-      // Find the diagram-clickable in the same .diagram-card
       const card = this.closest('.diagram-card');
       const trigger = card.querySelector('.diagram-clickable');
       const img     = card.querySelector('.diagram-thumb');
@@ -1260,7 +1374,6 @@
   const closeModalBtn = document.getElementById('closeModalBtn');
   const modalHint     = document.getElementById('modalHint');
 
-  // Open modal on image click — respects current inline toggle state
   document.querySelectorAll('.diagram-clickable').forEach(trigger => {
     trigger.addEventListener('click', function(e) {
       e.stopPropagation();
@@ -1268,13 +1381,11 @@
       currentColorImg = this.getAttribute('data-color-img');
       currentBWImg    = this.getAttribute('data-bw-img');
 
-      // Custom toggle labels for simple slopes plot
       currentModalToggleLabelColor = this.getAttribute('data-modal-toggle-label-color') || 'Switch to B&W';
       currentModalToggleLabelBW    = this.getAttribute('data-modal-toggle-label-bw')    || 'Switch to Color';
       currentModalHintColor = this.getAttribute('data-modal-hint-color') || '💡 Click the button above to toggle between versions';
       currentModalHintBW    = this.getAttribute('data-modal-hint-bw')    || '💡 Click the button above to switch back';
 
-      // Open with whichever version is currently shown in the card
       const currentShownSrc = this.querySelector('.diagram-thumb').src;
       const openingWithColor = (currentShownSrc === currentColorImg ||
                                 currentShownSrc.includes(currentColorImg.split('/').pop()));
@@ -1295,7 +1406,6 @@
     });
   });
 
-  // Toggle inside modal
   toggleModeBtn.addEventListener('click', function() {
     if (isColorMode) {
       modalImg.src = currentBWImg;
@@ -1310,7 +1420,6 @@
     }
   });
 
-  // Close modal
   closeModalBtn.addEventListener('click', function() {
     modal.classList.remove('show');
     modal.style.display = 'none';
