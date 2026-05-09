@@ -372,6 +372,17 @@
     .card-toggle-btn:hover:not(.active) { border-color: var(--primary); color: var(--primary); }
     .diagram-hint { margin-top: 9px; font-size: 0.76rem; color: var(--light); font-style: italic; }
 
+    /* ── DIAGRAM STAGE LABEL ── */
+    .diagram-stage-label {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; padding: 3px 11px; border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .diagram-stage-label.first  { background: #dbeafe; color: #1d4ed8; border: 1px solid #93c5fd; }
+    .diagram-stage-label.second { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+    .diagram-stage-label.both   { background: #ede9fe; color: #5b21b6; border: 1px solid #c4b5fd; }
+
     /* ── MODAL ── */
     #diagramModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; flex-direction: column; }
     #diagramModal.show { display: flex; }
@@ -460,6 +471,9 @@
     body.dark .sidebar { background: #13151b; border-right-color: #2d3240; }
     body.dark footer { background: #13151b; border-top-color: #2d3240; }
     body.dark .btn-outline { background: transparent; border-color: var(--border); color: var(--text); }
+    body.dark .diagram-stage-label.first  { background: #1e3a6e; color: #93c5fd; border-color: #2d5299; }
+    body.dark .diagram-stage-label.second { background: #064e3b; color: #6ee7b7; border-color: #065f46; }
+    body.dark .diagram-stage-label.both   { background: #2e1065; color: #c4b5fd; border-color: #5b21b6; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 820px) {
@@ -980,7 +994,7 @@
           <button id="toggleModeBtn" class="modal-btn modal-btn-toggle"><i class="fas fa-adjust"></i> Switch to B&amp;W</button>
           <button id="closeModalBtn" class="modal-btn modal-btn-close"><i class="fas fa-times"></i> Close</button>
         </div>
-        <div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+        <div style="display:flex;align-items:center;justify-content:width:100%;height:100%;">
           <img id="modalImg" src="" alt="Diagram">
         </div>
         <div class="modal-hint" id="modalHint">&#128161; Click "Switch to B&amp;W" to toggle between Color and Black &amp; White versions</div>
@@ -1033,18 +1047,57 @@
         <p class="diagram-hint">&#128269; Click image to view full size</p>
       </div>
 
+      <!-- ── CONDITIONAL PROCESS: THREE SEPARATE DIAGRAM CARDS ── -->
+
       <div class="diagram-card">
-        <h4>Moderated Mediation (Conditional Process)</h4>
+        <div class="diagram-stage-label first">&#x2460; First Stage</div>
+        <h4>Conditional Process — First Stage Moderated Mediation
+          <span style="font-size:0.78rem;font-weight:500;color:var(--light);display:block;margin-top:3px;">W moderates the a-path (X → M); b-path (M → Y) is unmoderated &nbsp;·&nbsp; IMM = a₃ × b</span>
+        </h4>
         <div class="card-toggle-row">
-          <button class="card-toggle-btn active" data-card="modmediation" data-mode="color">Color</button>
-          <button class="card-toggle-btn" data-card="modmediation" data-mode="bw">Black &amp; White</button>
+          <button class="card-toggle-btn active" data-card="modmed-first" data-mode="color">Color</button>
+          <button class="card-toggle-btn" data-card="modmed-first" data-mode="bw">Black &amp; White</button>
         </div>
         <div class="diagram-clickable"
-             data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationcolorful.png"
-             data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationblack.png">
-          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/moderatedmediationcolorful.png" alt="Moderated Mediation Diagram">
+             data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/firststagemoderatedmediationcolorful.png"
+             data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/firststagemoderatedmediationblack.png">
+          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/firststagemoderatedmediationcolorful.png" alt="First Stage Moderated Mediation Diagram">
         </div>
-        <p class="diagram-hint">&#128269; Click image to view full size</p>
+        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp; Equivalent to PROCESS Model 7</p>
+      </div>
+
+      <div class="diagram-card">
+        <div class="diagram-stage-label second">&#x2461; Second Stage</div>
+        <h4>Conditional Process — Second Stage Moderated Mediation
+          <span style="font-size:0.78rem;font-weight:500;color:var(--light);display:block;margin-top:3px;">W moderates the b-path (M → Y); a-path (X → M) is unmoderated &nbsp;·&nbsp; IMM = a₁ × b₃</span>
+        </h4>
+        <div class="card-toggle-row">
+          <button class="card-toggle-btn active" data-card="modmed-second" data-mode="color">Color</button>
+          <button class="card-toggle-btn" data-card="modmed-second" data-mode="bw">Black &amp; White</button>
+        </div>
+        <div class="diagram-clickable"
+             data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/secondstagemoderatedmediationcolorful.png"
+             data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/secondstagemoderatedmediationblack.png">
+          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/secondstagemoderatedmediationcolorful.png" alt="Second Stage Moderated Mediation Diagram">
+        </div>
+        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp; Equivalent to PROCESS Model 14</p>
+      </div>
+
+      <div class="diagram-card">
+        <div class="diagram-stage-label both">&#x2462; Both Stages</div>
+        <h4>Conditional Process — Both Stages Moderated Mediation
+          <span style="font-size:0.78rem;font-weight:500;color:var(--light);display:block;margin-top:3px;">W moderates both the a-path and the b-path simultaneously &nbsp;·&nbsp; No bootstrap CIs — run stages separately</span>
+        </h4>
+        <div class="card-toggle-row">
+          <button class="card-toggle-btn active" data-card="modmed-both" data-mode="color">Color</button>
+          <button class="card-toggle-btn" data-card="modmed-both" data-mode="bw">Black &amp; White</button>
+        </div>
+        <div class="diagram-clickable"
+             data-color-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/bothstagesmoderatedmediationcolorful.png"
+             data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/bothstagesmoderatedmediationblack.png">
+          <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/bothstagesmoderatedmediationcolorful.png" alt="Both Stages Moderated Mediation Diagram">
+        </div>
+        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp; Equivalent to PROCESS Model 58</p>
       </div>
 
       <div class="feature-grid">
