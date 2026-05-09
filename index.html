@@ -24,9 +24,9 @@
       --body-bg:       #ffffff;
       --border:        #e2e4e9;
       --border-light:  #eef0f4;
-      --text:          #0f1117;
-      --muted:         #3d4351;
-      --light:         #6b7280;
+      --text:          #0d0e12;
+      --muted:         #2a2f3d;
+      --light:         #555b6b;
       --sidebar-w:     260px;
       --nav-h:         56px;
       --font-body:     'DM Sans', system-ui, sans-serif;
@@ -60,25 +60,28 @@
     .navbar-brand {
       font-family: var(--font-body); font-weight: 700; font-size: 1.1rem;
       color: var(--text); text-decoration: none; margin-right: 24px;
-      letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px;
+      letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 8px;
+      line-height: 1; flex-shrink: 0;
     }
     .navbar-brand .ver {
       font-size: 0.65rem; font-weight: 600; background: var(--primary);
       color: white; padding: 2px 7px; border-radius: 20px; letter-spacing: 0.03em;
+      line-height: 1.4;
     }
-    .navbar-nav { display: flex; align-items: center; gap: 0; list-style: none; }
+    .navbar-nav { display: flex; align-items: center; gap: 0; }
     .navbar-nav a {
       font-size: 0.83rem; font-weight: 500; color: var(--light);
       text-decoration: none; padding: 5px 10px; border-radius: 5px;
-      transition: color 0.12s, background 0.12s;
+      transition: color 0.12s, background 0.12s; white-space: nowrap;
     }
     .navbar-nav a:hover { color: var(--primary); background: var(--primary-light); }
-    .navbar-end { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .navbar-end { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
     .btn-icon {
       width: 34px; height: 34px; border: 1px solid var(--border); background: transparent;
       border-radius: 6px; cursor: pointer; display: flex; align-items: center;
       justify-content: center; color: var(--light); font-size: 0.85rem;
-      transition: all 0.12s; text-decoration: none;
+      transition: all 0.12s; text-decoration: none; flex-shrink: 0;
     }
     .btn-icon:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
     .btn-launch {
@@ -86,8 +89,119 @@
       border: none; border-radius: 6px; padding: 7px 16px;
       display: inline-flex; align-items: center; gap: 6px;
       text-decoration: none; cursor: pointer; transition: background 0.12s;
+      white-space: nowrap; flex-shrink: 0;
     }
     .btn-launch:hover { background: #374151; }
+
+    /* ── SEARCH ── */
+    .search-wrapper {
+      position: relative; flex-shrink: 0;
+    }
+    .search-btn {
+      width: 34px; height: 34px; border: 1px solid var(--border); background: transparent;
+      border-radius: 6px; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; color: var(--light); font-size: 0.85rem;
+      transition: all 0.12s;
+    }
+    .search-btn:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
+    .search-btn.active { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
+
+    .search-panel {
+      position: absolute; top: calc(100% + 10px); right: 0;
+      width: 340px; background: var(--white);
+      border: 1px solid var(--border); border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      display: none; z-index: 300;
+      overflow: hidden;
+    }
+    .search-panel.open { display: block; }
+
+    .search-input-row {
+      display: flex; align-items: center; gap: 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .search-input-row i {
+      padding: 0 10px 0 14px; color: var(--light); font-size: 0.85rem; flex-shrink: 0;
+    }
+    .search-input {
+      flex: 1; border: none; outline: none; padding: 11px 0;
+      font-family: var(--font-body); font-size: 0.875rem; color: var(--text);
+      background: transparent;
+    }
+    .search-input::placeholder { color: var(--light); }
+    .search-clear {
+      width: 28px; height: 28px; border: none; background: transparent;
+      cursor: pointer; color: var(--light); font-size: 0.8rem;
+      display: none; align-items: center; justify-content: center;
+      margin-right: 8px; border-radius: 4px; transition: all 0.12s;
+      flex-shrink: 0;
+    }
+    .search-clear:hover { background: var(--border-light); color: var(--text); }
+    .search-clear.visible { display: flex; }
+
+    .search-suggestions {
+      max-height: 320px; overflow-y: auto;
+    }
+    .search-suggestions::-webkit-scrollbar { width: 3px; }
+    .search-suggestions::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .search-empty {
+      padding: 20px 16px; text-align: center;
+      font-size: 0.82rem; color: var(--light);
+    }
+    .search-empty i { display: block; font-size: 1.3rem; margin-bottom: 6px; }
+
+    .suggestion-group-label {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--light);
+      padding: 10px 14px 4px; background: var(--bg);
+    }
+    .suggestion-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 9px 14px; cursor: pointer;
+      transition: background 0.1s; text-decoration: none;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .suggestion-item:last-child { border-bottom: none; }
+    .suggestion-item:hover { background: var(--primary-light); }
+    .suggestion-item.focused { background: var(--primary-light); }
+    .suggestion-icon {
+      font-size: 0.8rem; color: var(--primary); flex-shrink: 0;
+      margin-top: 2px; width: 14px; text-align: center;
+    }
+    .suggestion-content { flex: 1; min-width: 0; }
+    .suggestion-title {
+      font-size: 0.84rem; font-weight: 600; color: var(--text);
+      display: block; line-height: 1.3;
+    }
+    .suggestion-title mark {
+      background: #fef08a; color: var(--text); border-radius: 2px;
+      padding: 0 1px; font-weight: 700;
+    }
+    .suggestion-context {
+      font-size: 0.74rem; color: var(--light); display: block;
+      margin-top: 2px; line-height: 1.4; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
+    }
+    .suggestion-context mark {
+      background: #fef9c3; color: var(--muted); border-radius: 2px;
+      padding: 0 1px; font-weight: 600;
+    }
+
+    /* ── HIGHLIGHT ANIMATION ── */
+    .search-highlight-active {
+      background: #fef08a !important;
+      outline: 2px solid #d97706 !important;
+      outline-offset: 2px !important;
+      border-radius: 3px !important;
+      transition: background 0.3s, outline 0.3s !important;
+    }
+    @keyframes highlightPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(217,119,6,0.5); }
+      70%  { box-shadow: 0 0 0 10px rgba(217,119,6,0); }
+      100% { box-shadow: 0 0 0 0 rgba(217,119,6,0); }
+    }
+    .search-highlight-active { animation: highlightPulse 0.7s ease-out; }
 
     .shell { display: flex; padding-top: var(--nav-h); min-height: 100vh; }
 
@@ -430,9 +544,9 @@
       --body-bg:      #1c1f26;
       --border:       #2d3240;
       --border-light: #252a38;
-      --text:         #e2e8f0;
-      --muted:        #9ca3af;
-      --light:        #6b7280;
+      --text:         #f0f2f7;
+      --muted:        #c8cdd8;
+      --light:        #8b92a5;
       --primary-light:#1a2e45;
     }
     body.dark .navbar { background: rgba(28,31,38,0.97); }
@@ -445,9 +559,9 @@
     body.dark pre, body.dark .formula-block, body.dark .citation-block,
     body.dark .license-box { background: #1a1e2b; border-color: #2d3240; }
     body.dark pre code { color: #c9d8e8; background: none; border: none; }
-    body.dark .formula-block { color: #c9d8e8; }
+    body.dark .formula-block { color: #dce4f0; }
     body.dark .callout { background: #112233; border-color: #1e3d5a; }
-    body.dark .callout p { color: #c9d8e8; }
+    body.dark .callout p { color: #dce4f0; }
     body.dark .callout.warn { background: #1f1700; border-color: #4a3500; }
     body.dark .callout.warn p { color: #f5d990; }
     body.dark .callout.success { background: #081a10; border-color: #14421e; }
@@ -460,7 +574,7 @@
     body.dark td:first-child { color: var(--text); }
     body.dark tbody tr:nth-child(even) td { background: #1e2332; }
     body.dark tbody tr:hover td { background: rgba(26,111,173,0.12); }
-    body.dark .stage-tag { background: #252a38; border-color: #3d4455; color: #9ca3af; }
+    body.dark .stage-tag { background: #252a38; border-color: #3d4455; color: #b0b8cc; }
     body.dark .author-card { background: #13151b; }
     body.dark .author-links a { background: #252a38; border-color: #3d4455; color: #60b4f0; }
     body.dark .author-links a:hover { background: var(--primary); color: white; }
@@ -474,15 +588,203 @@
     body.dark .diagram-stage-label.first  { background: #1e3a6e; color: #93c5fd; border-color: #2d5299; }
     body.dark .diagram-stage-label.second { background: #064e3b; color: #6ee7b7; border-color: #065f46; }
     body.dark .diagram-stage-label.both   { background: #2e1065; color: #c4b5fd; border-color: #5b21b6; }
+    body.dark .citation-block { color: #c8cdd8; }
+    body.dark .license-box { color: #c8cdd8; }
+    body.dark h1, body.dark h2, body.dark h3, body.dark h4 { color: var(--text); }
+    body.dark p { color: var(--muted); }
+    body.dark ul, body.dark ol { color: var(--muted); }
+    body.dark .step-body p { color: var(--muted); }
+    body.dark .toc-heading { color: #8b92a5; }
+    body.dark .sidebar a { color: var(--muted); }
+    body.dark .search-panel { background: #1c1f26; border-color: #2d3240; }
+    body.dark .search-input { color: var(--text); }
+    body.dark .search-input-row { border-bottom-color: #2d3240; }
+    body.dark .suggestion-item { border-bottom-color: #252a38; }
+    body.dark .suggestion-item:hover, body.dark .suggestion-item.focused { background: #1a2e45; }
+    body.dark .suggestion-title { color: var(--text); }
+    body.dark .suggestion-group-label { background: #13151b; color: #8b92a5; }
+    body.dark .suggestion-title mark { background: #78350f; color: #fef3c7; }
+    body.dark .suggestion-context mark { background: #451a03; color: #fde68a; }
+    body.dark .search-empty { color: #8b92a5; }
+    body.dark .search-btn { color: var(--light); }
+    body.dark .search-btn.active { color: var(--primary); }
+    body.dark .search-clear { color: var(--light); }
+    body.dark .search-highlight-active { background: #78350f !important; outline-color: #d97706 !important; }
 
-    /* ── RESPONSIVE ── */
+    /* ── HAMBURGER BUTTON ── */
+    .hamburger {
+      display: none;
+      flex-direction: column; justify-content: center; align-items: center;
+      gap: 5px; width: 34px; height: 34px;
+      background: transparent; border: 1px solid var(--border);
+      border-radius: 6px; cursor: pointer; padding: 0;
+      transition: border-color 0.12s, background 0.12s;
+      flex-shrink: 0;
+    }
+    .hamburger:hover { border-color: var(--primary); background: var(--primary-light); }
+    .hamburger span {
+      display: block; width: 16px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s, width 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE DRAWER ── */
+    .mobile-drawer {
+      display: none;
+      position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+      z-index: 190;
+      background: var(--body-bg);
+      border-top: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 12px 0 40px;
+      transform: translateY(-8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+    .mobile-drawer.open {
+      display: block;
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .drawer-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .drawer-nav {
+      padding: 8px 16px 16px;
+      border-right: 1px solid var(--border);
+    }
+    .drawer-nav-heading {
+      font-size: 0.62rem; font-weight: 700; color: var(--light);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 8px 0 6px; margin-bottom: 2px;
+    }
+    .drawer-nav a {
+      display: block; font-size: 0.9rem; font-weight: 600;
+      color: var(--muted); text-decoration: none;
+      padding: 8px 10px; border-radius: 6px;
+      transition: color 0.12s, background 0.12s;
+    }
+    .drawer-nav a:hover, .drawer-nav a:active {
+      color: var(--primary); background: var(--primary-light);
+    }
+    .drawer-toc { padding: 8px 16px 16px; }
+    .drawer-toc-heading {
+      font-size: 0.62rem; font-weight: 700; color: var(--light);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 8px 0 6px; margin-bottom: 2px;
+    }
+    .drawer-toc a {
+      display: block; font-size: 0.8rem; font-weight: 400;
+      color: var(--muted); text-decoration: none;
+      padding: 4px 8px; border-radius: 5px;
+      transition: color 0.12s, background 0.12s;
+    }
+    .drawer-toc a:hover { color: var(--primary); background: var(--primary-light); }
+    .drawer-toc a.sub { padding-left: 16px; font-size: 0.75rem; }
+    .drawer-overlay {
+      display: none;
+      position: fixed; inset: 0; top: var(--nav-h);
+      background: rgba(0,0,0,0.35);
+      z-index: 189;
+    }
+    .drawer-overlay.open { display: block; }
+
+    body.dark .hamburger span { background: var(--text); }
+    body.dark .mobile-drawer { background: var(--body-bg); }
+
+    /* ── RESPONSIVE BREAKPOINTS ── */
+
+    /* Large desktop: hide some nav items if crowded */
+    @media (max-width: 1200px) {
+      .navbar-nav a { padding: 5px 7px; font-size: 0.78rem; }
+    }
+
+    /* Tablet landscape & smaller desktop */
+    @media (max-width: 1024px) {
+      main { padding: 48px 40px 80px 40px; max-width: 100%; }
+      .navbar-nav { display: none; }
+      .hamburger { display: flex; }
+      :root { --sidebar-w: 220px; }
+    }
+
+    /* Tablet portrait */
     @media (max-width: 820px) {
+      :root { --sidebar-w: 0px; }
       .sidebar { display: none; }
-      main { padding: 28px 18px 64px; }
+      .navbar-nav { display: none; }
+      .hamburger { display: flex; }
+      main { padding: 28px 24px 64px; max-width: 100%; }
       .feature-grid, .two-col { grid-template-columns: 1fr; }
       html { font-size: 15px; }
-      .navbar-nav { display: none; }
+      footer { padding: 16px 24px; }
+      .page-header { margin-bottom: 36px; }
+      h1 { font-size: 2rem; }
+      .search-panel { width: 300px; right: -40px; }
     }
+
+    /* Mobile large */
+    @media (max-width: 600px) {
+      .search-panel {
+        position: fixed;
+        top: var(--nav-h);
+        left: 0; right: 0;
+        width: 100%;
+        border-radius: 0;
+        border-left: none; border-right: none; border-top: none;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        max-height: calc(100vh - var(--nav-h));
+        overflow-y: auto;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      html { font-size: 14px; }
+      :root { --nav-h: 52px; }
+      .navbar { padding: 0 12px; gap: 0; }
+      .navbar-brand { font-size: 1rem; margin-right: auto; }
+      .navbar-end { gap: 6px; }
+      .btn-launch { padding: 6px 10px; font-size: 0.78rem; }
+      .btn-launch span { display: none; }
+      main { padding: 20px 16px 56px; }
+      h1 { font-size: 1.75rem; }
+      h2 { font-size: 1.15rem; }
+      .action-btns { flex-direction: column; }
+      .action-btns .btn { width: 100%; justify-content: center; }
+      .badge-row { gap: 5px; }
+      .video-wrap { margin: 14px 0; }
+      .formula-block { font-size: 0.72rem; padding: 10px 12px; }
+      pre { font-size: 0.75rem; padding: 10px 12px; }
+      .table-wrap { font-size: 0.78rem; }
+      th, td { padding: 7px 10px; }
+      .two-col, .feature-grid { grid-template-columns: 1fr; }
+      .drawer-inner { grid-template-columns: 1fr; }
+      .drawer-nav { border-right: none; border-bottom: 1px solid var(--border); }
+      footer { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px 16px; }
+      .author-card { flex-direction: column; }
+      .step { gap: 10px; }
+      .callout { padding: 10px 12px; }
+      .limit-item { padding: 10px 12px; }
+      .modal-toolbar { padding: 8px 12px; gap: 6px; }
+      .modal-btn { font-size: 0.74rem; padding: 5px 10px; }
+    }
+
+    /* Very small phones */
+    @media (max-width: 360px) {
+      html { font-size: 13px; }
+      .navbar-brand .ver { display: none; }
+      .navbar-end { gap: 4px; }
+    }
+
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   </style>
@@ -491,19 +793,83 @@
 
 <nav class="navbar">
   <a class="navbar-brand" href="#">MedModr <span class="ver">v2.0</span></a>
-  <ul class="navbar-nav">
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#simple-mediation">Mediation</a></li>
-    <li><a href="#moderation">Moderation</a></li>
-    <li><a href="#moderated-mediation">Conditional Process</a></li>
-    <li><a href="#statistical-methods">Methods</a></li>
-  </ul>
+  <div class="navbar-nav">
+    <a href="#overview">Overview</a>
+    <a href="#simple-mediation">Mediation</a>
+    <a href="#moderation">Moderation</a>
+    <a href="#moderated-mediation">Conditional Process</a>
+    <a href="#statistical-methods">Methods</a>
+  </div>
   <div class="navbar-end">
-    <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" class="btn-icon" title="GitHub"><i class="fab fa-github"></i></a>
+    <!-- Search -->
+    <div class="search-wrapper">
+      <button class="search-btn" id="searchBtn" title="Search documentation" aria-label="Search">
+        <i class="fas fa-search"></i>
+      </button>
+      <div class="search-panel" id="searchPanel" role="search">
+        <div class="search-input-row">
+          <i class="fas fa-search"></i>
+          <input type="text" class="search-input" id="searchInput"
+                 placeholder="Search documentation…" autocomplete="off"
+                 aria-label="Search documentation" spellcheck="false" />
+          <button class="search-clear" id="searchClear" aria-label="Clear search">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="search-suggestions" id="searchSuggestions" role="listbox">
+          <div class="search-empty" id="searchEmptyState">
+            <i class="fas fa-search"></i>
+            Type to search sections, formulas, and concepts
+          </div>
+        </div>
+      </div>
+    </div>
+
     <button id="darkModeToggle" class="btn-icon" title="Toggle dark mode"><i class="fas fa-moon"></i></button>
-    <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn-launch">&#9654;&nbsp; Launch App</a>
+    <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn-launch">&#9654;&nbsp;<span>Launch App</span></a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile overlay -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- Mobile drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-inner">
+    <div class="drawer-nav">
+      <div class="drawer-nav-heading">Navigation</div>
+      <a href="#overview" class="drawer-link">Overview</a>
+      <a href="#simple-mediation" class="drawer-link">Mediation</a>
+      <a href="#moderation" class="drawer-link">Moderation</a>
+      <a href="#moderated-mediation" class="drawer-link">Conditional Process</a>
+      <a href="#statistical-methods" class="drawer-link">Methods</a>
+    </div>
+    <div class="drawer-toc">
+      <div class="drawer-toc-heading">Getting Started</div>
+      <a href="#overview" class="drawer-link">Overview</a>
+      <a href="#features" class="drawer-link">Features</a>
+      <a href="#quick-start" class="drawer-link">Quick Start</a>
+      <div class="drawer-toc-heading" style="margin-top:8px;">Analysis Types</div>
+      <a href="#simple-mediation" class="drawer-link">Simple Mediation</a>
+      <a href="#serial-mediation" class="drawer-link">Serial Mediation</a>
+      <a href="#moderation" class="drawer-link">Moderation</a>
+      <a href="#moderated-mediation" class="drawer-link">Moderated Mediation</a>
+      <a href="#modmed-first-stage" class="drawer-link sub">— First Stage</a>
+      <a href="#modmed-second-stage" class="drawer-link sub">— Second Stage</a>
+      <a href="#modmed-both-stages" class="drawer-link sub">— Both Stages</a>
+      <div class="drawer-toc-heading" style="margin-top:8px;">Reference</div>
+      <a href="#covariates" class="drawer-link">Covariates</a>
+      <a href="#validation" class="drawer-link">Validation</a>
+      <a href="#path-diagrams" class="drawer-link">Path Diagrams</a>
+      <a href="#limitations" class="drawer-link">Limitations</a>
+      <a href="#citation" class="drawer-link">Citation</a>
+      <a href="#developer" class="drawer-link">Developer</a>
+    </div>
+  </div>
+</div>
 
 <div class="shell">
 
@@ -568,17 +934,65 @@
       </div>
     </div>
 
-    <!-- OVERVIEW -->
+     <!-- OVERVIEW & ABOUT APP -->
     <section id="overview-cont">
       <h2>Overview</h2>
       <p><strong>MedModr</strong> is a free, browser-based statistical tool for conducting simple mediation, serial mediation, moderation, and moderated mediation (conditional process) analyses. All computation runs entirely in your browser; no installation, no server, no data upload.</p>
 
       <div class="callout success">
-        <div class="callout-title">&#128274; Privacy Guarantee</div>
-        <p>All data processing occurs client-side in your browser. No data is ever sent to any server. You can disconnect from the internet after the page loads and still run complete analyses.</p>
+        <div class="callout-title">📦 100% Portable — No Installation, No Internet Required</div>
+        <p><strong>MedModr is a single-file, self-contained HTML document.</strong></p>
       </div>
 
-      <h3>Methodological Framework</h3>
+      <div class="two-col">
+        <div class="info-card">
+          <h4><i class="fas fa-download"></i> Single File</h4>
+          <p>One HTML file = complete statistical software. No dependencies, no packages, no npm, no Python, no R. Save it once, use it forever, anywhere, on any device.</p>
+        </div>
+        <div class="info-card">
+          <h4><i class="fas fa-wifi"></i> Works Offline</h4>
+          <p>After the initial download, disconnect from the internet completely. MedModr runs entirely in your browser with zero data transmission.</p>
+        </div>
+        <div class="info-card">
+          <h4><i class="fas fa-share-alt"></i> Share Anywhere</h4>
+          <p>Copy to USB drive, email as attachment, send via WhatsApp, upload to Google Drive, or host on any web server. Recipients just double-click to run.</p>
+        </div>
+        <div class="info-card">
+          <h4><i class="fas fa-mobile-alt"></i> No Installation</h4>
+          <p>Zero setup. Works on Windows, Mac, Linux, Chromebooks, and even iPads/Android tablets with modern browsers. No admin rights needed.</p>
+        </div>
+      </div>
+
+      <div class="steps" style="margin-top: 12px;">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Save the HTML file</strong>
+            <p>When you open MedModr in your browser, use <strong>File → Save Page As…</strong> (or Ctrl+S / Cmd+S) to save the complete HTML file to your computer.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Copy to USB / Email / WhatsApp</strong>
+            <p>The saved file is standalone. Copy it anywhere — USB drive, email attachment, cloud storage, or send directly via messaging apps. It works immediately.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Double-click to run</strong>
+            <p>No server, no installation, no command line. Just open the file in any modern browser (Chrome, Firefox, Edge, Safari) and start analyzing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">📋 Universal Data Input — Works on Any Device</div>
+        <p><strong>Paste from anywhere, on anything.</strong> Data input uses simple plain text fields — one number per line. This works identically whether you're copying from Excel, Google Sheets, SPSS, SAS JMP, CSV files, or even a plain text email. No special formatting, no file uploads, no compatibility issues. Copy from a Mac, paste on a Windows PC seamless. Works on phones, tablets, laptops, and desktops exactly the same way.</p>
+      </div>
+
+      <h3 style="margin-top: 24px;">Methodological Framework</h3>
       <p>MedModr follows the regression-based approach detailed in Hayes (2022) <em>Introduction to Mediation, Moderation, and Conditional Process Analysis</em>. It implements Ordinary Least Squares (OLS) regression via matrix algebra, providing unstandardized (b) and standardized (β) coefficients, bootstrap confidence intervals for indirect effects, and interactive visualizations.</p>
     </section>
 
@@ -619,7 +1033,7 @@
     <section id="simple-mediation">
       <h2>Simple Mediation (X → M → Y)</h2>
       <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/4-sYLhcfYlw?si=78304B_Cs9kubAXR" title="Simple mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/gzOYO7hP4R8?si=BuhSbl5bXZV-N0rm" title="Simple mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
       <p>Tests whether the effect of an independent variable X on outcome Y is transmitted through a mediator M. Output includes the a-path (X→M), b-path (M→Y), direct effect c′, total effect c, indirect effect (a×b), Sobel test, bootstrap CI, and an interactive path diagram.</p>
@@ -660,7 +1074,7 @@
     <section id="serial-mediation">
       <h2>Serial Mediation (X → M1 → M2 → Y)</h2>
       <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/gIbNupICLz0?si=xLLX9VLQRLgKD-nk" title="Serial mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/C0Bil_We2VI?si=BJZ6bNak1vmizdU-" title="Serial mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
       <p>Tests a chain of two mediators in sequence. Decomposes the total indirect effect into three specific paths: via M1 only, via M2 only, and the serial path through both M1 then M2.</p>
@@ -696,7 +1110,7 @@
     <section id="moderation">
       <h2>Moderation (X × W → Y)</h2>
       <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/qLNwAhbOpEo?si=I1L9bReAlBOHKDby" title="Moderation analysis tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/TPYAe8x8X-g?si=YAhIyTHHRLNsCSqa" title="Moderation analysis tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
       <p>Tests whether the effect of X on Y depends on the level of a moderator W. Output includes the interaction coefficient b₃ (X×W), simple slopes at Low (−1 SD), Mean, and High (+1 SD) levels of W, and an annotated slopes plot.</p>
@@ -734,7 +1148,7 @@
     <section id="moderated-mediation">
       <h2>Moderated Mediation (Conditional Process)</h2>
       <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/vRsdG-Z-Xhc?si=TDT7qkieYKBgeefM" title="Moderated mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/3PkrSo0B3Do?si=Z58rHaZ-0HvKt5np" title="Moderated mediation tutorial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
       <p>Tests whether the indirect effect of X on Y through M differs across levels of a moderator W. Select the moderation stage using the <strong>Moderation stage</strong> dropdown in the options row before running.</p>
@@ -919,6 +1333,11 @@
     <!-- COVARIATES -->
     <section id="covariates">
       <h2>Covariate (Control Variable) Handling</h2>
+
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/DgpyhG49YqY?si=rcUCmw9C_PqvwVdt" title="How to include covariates in MedModr" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
       <p>All specified covariates C₁, C₂, …, Cᵢ are automatically mean-centered and included in every regression model in the analysis chain.</p>
 
       <div class="formula-block">
@@ -1047,8 +1466,6 @@
         <p class="diagram-hint">&#128269; Click image to view full size</p>
       </div>
 
-      <!-- ── CONDITIONAL PROCESS: THREE SEPARATE DIAGRAM CARDS ── -->
-
       <div class="diagram-card">
         <div class="diagram-stage-label first">&#x2460; First Stage</div>
         <h4>Conditional Process — First Stage Moderated Mediation
@@ -1063,7 +1480,7 @@
              data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/firststagemoderatedmediationblack.png">
           <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/firststagemoderatedmediationcolorful.png" alt="First Stage Moderated Mediation Diagram">
         </div>
-        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp; Equivalent to PROCESS Model 7</p>
+        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp;</p>
       </div>
 
       <div class="diagram-card">
@@ -1080,7 +1497,7 @@
              data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/secondstagemoderatedmediationblack.png">
           <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/secondstagemoderatedmediationcolorful.png" alt="Second Stage Moderated Mediation Diagram">
         </div>
-        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp; Equivalent to PROCESS Model 14</p>
+        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp;</p>
       </div>
 
       <div class="diagram-card">
@@ -1097,7 +1514,7 @@
              data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/bothstagesmoderatedmediationblack.png">
           <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/bothstagesmoderatedmediationcolorful.png" alt="Both Stages Moderated Mediation Diagram">
         </div>
-        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp; Equivalent to PROCESS Model 58</p>
+        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp;</p>
       </div>
 
       <div class="feature-grid">
@@ -1315,84 +1732,399 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.</div>
 </footer>
 
 <script>
-  function copyCite() {
-    const block = document.getElementById('cite-block');
-    let text = (block.innerText || block.textContent).replace('Copy', '').trim();
-    navigator.clipboard.writeText(text).then(() => {
-      const btn = block.querySelector('.copy-btn');
-      if (btn) { btn.textContent = '✓ Copied'; setTimeout(() => { btn.textContent = 'Copy'; }, 2000); }
-    });
-  }
+// ── HAMBURGER MENU ──
+const hamburgerBtn  = document.getElementById('hamburgerBtn');
+const mobileDrawer  = document.getElementById('mobileDrawer');
+const drawerOverlay = document.getElementById('drawerOverlay');
 
-  const darkBtn = document.getElementById('darkModeToggle');
-  function setTheme(t) {
-    if (t === 'dark') {
-      document.body.classList.add('dark');
-      localStorage.setItem('medmodr-theme', 'dark');
-      darkBtn.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
-      document.body.classList.remove('dark');
-      localStorage.setItem('medmodr-theme', 'light');
-      darkBtn.innerHTML = '<i class="fas fa-moon"></i>';
+function openDrawer() {
+  hamburgerBtn.classList.add('open');
+  hamburgerBtn.setAttribute('aria-expanded', 'true');
+  mobileDrawer.classList.add('open');
+  drawerOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDrawer() {
+  hamburgerBtn.classList.remove('open');
+  hamburgerBtn.setAttribute('aria-expanded', 'false');
+  mobileDrawer.classList.remove('open');
+  drawerOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+hamburgerBtn.addEventListener('click', () => {
+  mobileDrawer.classList.contains('open') ? closeDrawer() : openDrawer();
+});
+drawerOverlay.addEventListener('click', closeDrawer);
+mobileDrawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDrawer(); closeSearch(); } });
+
+// ── COPY CITATION ──
+function copyCite() {
+  const block = document.getElementById('cite-block');
+  let text = (block.innerText || block.textContent).replace('Copy', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = block.querySelector('.copy-btn');
+    if (btn) { btn.textContent = '✓ Copied'; setTimeout(() => { btn.textContent = 'Copy'; }, 2000); }
+  });
+}
+
+// ── DARK MODE ──
+const darkBtn = document.getElementById('darkModeToggle');
+function setTheme(t) {
+  if (t === 'dark') {
+    document.body.classList.add('dark');
+    localStorage.setItem('medmodr-theme', 'dark');
+    darkBtn.innerHTML = '<i class="fas fa-sun"></i>';
+  } else {
+    document.body.classList.remove('dark');
+    localStorage.setItem('medmodr-theme', 'light');
+    darkBtn.innerHTML = '<i class="fas fa-moon"></i>';
+  }
+}
+setTheme(localStorage.getItem('medmodr-theme') === 'dark' ? 'dark' : 'light');
+darkBtn.addEventListener('click', () => setTheme(document.body.classList.contains('dark') ? 'light' : 'dark'));
+
+// ── SIDEBAR INTERSECTION OBSERVER ──
+const ioOpts = { rootMargin: '-10% 0px -80% 0px' };
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+      const link = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
+      if (link) link.classList.add('active');
     }
-  }
-  setTheme(localStorage.getItem('medmodr-theme') === 'dark' ? 'dark' : 'light');
-  darkBtn.addEventListener('click', () => setTheme(document.body.classList.contains('dark') ? 'light' : 'dark'));
-
-  const ioOpts = { rootMargin: '-10% 0px -80% 0px' };
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
-        const link = document.querySelector(`.sidebar a[href="#${e.target.id}"]`);
-        if (link) link.classList.add('active');
-      }
-    });
-  }, ioOpts);
-  document.querySelectorAll('section[id], div.page-header[id]').forEach(s => io.observe(s));
-
-  document.querySelectorAll('.card-toggle-btn').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const cardId = this.dataset.card;
-      const mode   = this.dataset.mode;
-      document.querySelectorAll(`.card-toggle-btn[data-card="${cardId}"]`).forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      const card    = this.closest('.diagram-card');
-      const trigger = card.querySelector('.diagram-clickable');
-      const img     = card.querySelector('.diagram-thumb');
-      if (!trigger || !img) return;
-      img.src = mode === 'color' ? trigger.dataset.colorImg : trigger.dataset.bwImg;
-    });
   });
+}, ioOpts);
+document.querySelectorAll('section[id], div.page-header[id]').forEach(s => io.observe(s));
 
-  let colorSrc = '', bwSrc = '', inColor = true;
-  const modal     = document.getElementById('diagramModal');
-  const modalImg  = document.getElementById('modalImg');
-  const toggleBtn = document.getElementById('toggleModeBtn');
-  const closeBtn  = document.getElementById('closeModalBtn');
-
-  document.querySelectorAll('.diagram-clickable').forEach(trigger => {
-    trigger.addEventListener('click', function () {
-      colorSrc = this.dataset.colorImg;
-      bwSrc    = this.dataset.bwImg;
-      const currentSrc = this.querySelector('.diagram-thumb').src;
-      inColor = !bwSrc || currentSrc === colorSrc || currentSrc.endsWith(colorSrc.split('/').pop());
-      modalImg.src = inColor ? colorSrc : bwSrc;
-      toggleBtn.innerHTML = inColor ? '<i class="fas fa-adjust"></i> Switch to B&W' : '<i class="fas fa-palette"></i> Switch to Color';
-      modal.classList.add('show'); modal.style.display = 'flex';
-    });
+// ── DIAGRAM TOGGLE ──
+document.querySelectorAll('.card-toggle-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    const cardId = this.dataset.card;
+    const mode   = this.dataset.mode;
+    document.querySelectorAll(`.card-toggle-btn[data-card="${cardId}"]`).forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const card    = this.closest('.diagram-card');
+    const trigger = card.querySelector('.diagram-clickable');
+    const img     = card.querySelector('.diagram-thumb');
+    if (!trigger || !img) return;
+    img.src = mode === 'color' ? trigger.dataset.colorImg : trigger.dataset.bwImg;
   });
+});
 
-  toggleBtn.addEventListener('click', () => {
-    inColor = !inColor;
+// ── DIAGRAM MODAL ──
+let colorSrc = '', bwSrc = '', inColor = true;
+const modal     = document.getElementById('diagramModal');
+const modalImg  = document.getElementById('modalImg');
+const toggleBtn = document.getElementById('toggleModeBtn');
+const closeBtn  = document.getElementById('closeModalBtn');
+
+document.querySelectorAll('.diagram-clickable').forEach(trigger => {
+  trigger.addEventListener('click', function () {
+    colorSrc = this.dataset.colorImg;
+    bwSrc    = this.dataset.bwImg;
+    const currentSrc = this.querySelector('.diagram-thumb').src;
+    inColor = !bwSrc || currentSrc === colorSrc || currentSrc.endsWith(colorSrc.split('/').pop());
     modalImg.src = inColor ? colorSrc : bwSrc;
     toggleBtn.innerHTML = inColor ? '<i class="fas fa-adjust"></i> Switch to B&W' : '<i class="fas fa-palette"></i> Switch to Color';
+    modal.classList.add('show'); modal.style.display = 'flex';
+  });
+});
+
+toggleBtn.addEventListener('click', () => {
+  inColor = !inColor;
+  modalImg.src = inColor ? colorSrc : bwSrc;
+  toggleBtn.innerHTML = inColor ? '<i class="fas fa-adjust"></i> Switch to B&W' : '<i class="fas fa-palette"></i> Switch to Color';
+});
+
+function closeModal() { modal.classList.remove('show'); modal.style.display = 'none'; }
+closeBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+// ── SEARCH ──
+const searchBtn       = document.getElementById('searchBtn');
+const searchPanel     = document.getElementById('searchPanel');
+const searchInput     = document.getElementById('searchInput');
+const searchClear     = document.getElementById('searchClear');
+const searchSuggestions = document.getElementById('searchSuggestions');
+const searchEmptyState  = document.getElementById('searchEmptyState');
+
+// Build search index from page content
+const searchIndex = buildSearchIndex();
+
+function buildSearchIndex() {
+  const index = [];
+
+  // Collect all sections and headings
+  const sections = document.querySelectorAll('section[id], div.page-header[id]');
+  sections.forEach(section => {
+    const id = section.id;
+    const h2 = section.querySelector('h2');
+    const h3 = section.querySelector('h3');
+    const h4 = section.querySelector('h4');
+    const heading = (h2 || h3 || h4);
+    if (!heading) return;
+
+    const title = heading.textContent.trim();
+    const paragraphs = section.querySelectorAll('p, li, .formula-block, .callout p');
+    let contextParts = [];
+    paragraphs.forEach(el => {
+      const t = el.textContent.trim();
+      if (t.length > 20) contextParts.push(t);
+    });
+
+    index.push({
+      id,
+      title,
+      context: contextParts.join(' '),
+      type: h2 ? 'section' : (h3 ? 'subsection' : 'topic'),
+      icon: getIcon(id)
+    });
+
+    // Also index h3s and h4s within sections
+    section.querySelectorAll('h3[id], h4[id]').forEach(h => {
+      if (h.id) {
+        index.push({
+          id: h.id,
+          title: h.textContent.trim(),
+          context: h.nextElementSibling ? h.nextElementSibling.textContent.trim() : '',
+          type: 'subsection',
+          icon: getIcon(h.id)
+        });
+      }
+    });
   });
 
-  function closeModal() { modal.classList.remove('show'); modal.style.display = 'none'; }
-  closeBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  // Add headings without section wrappers that have IDs
+  document.querySelectorAll('h2[id], h3[id], h4[id]').forEach(h => {
+    if (!index.find(i => i.id === h.id)) {
+      index.push({
+        id: h.id,
+        title: h.textContent.trim(),
+        context: h.nextElementSibling ? h.nextElementSibling.textContent.trim() : '',
+        type: 'topic',
+        icon: getIcon(h.id)
+      });
+    }
+  });
+
+  return index;
+}
+
+function getIcon(id) {
+  const iconMap = {
+    'overview': 'fa-home', 'features': 'fa-star', 'quick-start': 'fa-rocket',
+    'simple-mediation': 'fa-arrow-right', 'serial-mediation': 'fa-arrows-alt-h',
+    'moderation': 'fa-bolt', 'moderated-mediation': 'fa-random',
+    'modmed-first-stage': 'fa-1', 'modmed-second-stage': 'fa-2', 'modmed-both-stages': 'fa-layer-group',
+    'statistical-methods': 'fa-calculator', 'ols-regression': 'fa-matrix',
+    'standardized-coefficients': 'fa-sigma', 'bootstrap': 'fa-repeat',
+    'p-values': 'fa-percentage', 'covariates': 'fa-sliders-h',
+    'validation': 'fa-check-circle', 'path-diagrams': 'fa-project-diagram',
+    'simple-slopes': 'fa-chart-line', 'input-format': 'fa-table',
+    'limitations': 'fa-exclamation-triangle', 'license': 'fa-file-contract',
+    'contribute': 'fa-code-branch', 'citation': 'fa-quote-right',
+    'developer': 'fa-user', 'contact': 'fa-envelope',
+    'process-comparison': 'fa-balance-scale'
+  };
+  return iconMap[id] || 'fa-circle';
+}
+
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function highlightMatch(text, query) {
+  if (!query) return text;
+  const maxLen = 120;
+  const escaped = escapeRegex(query);
+  const regex = new RegExp(`(${escaped})`, 'gi');
+  const idx = text.toLowerCase().indexOf(query.toLowerCase());
+  let snippet = text;
+  if (text.length > maxLen) {
+    const start = Math.max(0, idx - 40);
+    snippet = (start > 0 ? '…' : '') + text.substring(start, start + maxLen) + (start + maxLen < text.length ? '…' : '');
+  }
+  return snippet.replace(regex, '<mark>$1</mark>');
+}
+
+function doSearch(query) {
+  query = query.trim();
+  searchSuggestions.innerHTML = '';
+
+  if (!query) {
+    searchSuggestions.appendChild(searchEmptyState);
+    searchEmptyState.innerHTML = '<i class="fas fa-search"></i>Type to search sections, formulas, and concepts';
+    return;
+  }
+
+  const q = query.toLowerCase();
+  const results = searchIndex.filter(item => {
+    return item.title.toLowerCase().includes(q) ||
+           item.context.toLowerCase().includes(q);
+  }).slice(0, 12);
+
+  if (results.length === 0) {
+    searchSuggestions.appendChild(searchEmptyState);
+    searchEmptyState.innerHTML = `<i class="fas fa-search"></i>No results for "<strong>${query}</strong>"`;
+    return;
+  }
+
+  // Group by type
+  const sections = results.filter(r => r.type === 'section');
+  const subsections = results.filter(r => r.type !== 'section');
+
+  if (sections.length) {
+    const label = document.createElement('div');
+    label.className = 'suggestion-group-label';
+    label.textContent = 'Sections';
+    searchSuggestions.appendChild(label);
+    sections.forEach(r => searchSuggestions.appendChild(makeSuggestion(r, query)));
+  }
+
+  if (subsections.length) {
+    const label = document.createElement('div');
+    label.className = 'suggestion-group-label';
+    label.textContent = 'Topics';
+    searchSuggestions.appendChild(label);
+    subsections.forEach(r => searchSuggestions.appendChild(makeSuggestion(r, query)));
+  }
+}
+
+function makeSuggestion(item, query) {
+  const el = document.createElement('div');
+  el.className = 'suggestion-item';
+  el.setAttribute('role', 'option');
+  el.setAttribute('tabindex', '0');
+
+  const contextSnippet = item.context ? highlightMatch(item.context, query) : '';
+
+  el.innerHTML = `
+    <span class="suggestion-icon"><i class="fas ${item.icon}"></i></span>
+    <span class="suggestion-content">
+      <span class="suggestion-title">${highlightMatch(item.title, query)}</span>
+      ${contextSnippet ? `<span class="suggestion-context">${contextSnippet}</span>` : ''}
+    </span>
+  `;
+
+  el.addEventListener('click', () => navigateToResult(item.id, query));
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigateToResult(item.id, query); }
+  });
+
+  return el;
+}
+
+let highlightTimer = null;
+
+function navigateToResult(id, query) {
+  closeSearch();
+
+  // Find the element
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  // Scroll to it
+  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Clear old highlights
+  if (highlightTimer) clearTimeout(highlightTimer);
+  document.querySelectorAll('.search-highlight-active').forEach(el => {
+    el.classList.remove('search-highlight-active');
+  });
+
+  // After scroll settles, highlight the target's heading or the element itself
+  setTimeout(() => {
+    const headingEl = target.querySelector('h1, h2, h3, h4') || target;
+    headingEl.classList.add('search-highlight-active');
+
+    // Also highlight matching text within the section if possible
+    highlightTimer = setTimeout(() => {
+      headingEl.classList.remove('search-highlight-active');
+    }, 2800);
+  }, 500);
+}
+
+function openSearch() {
+  searchPanel.classList.add('open');
+  searchBtn.classList.add('active');
+  setTimeout(() => searchInput.focus(), 50);
+}
+
+function closeSearch() {
+  searchPanel.classList.remove('open');
+  searchBtn.classList.remove('active');
+}
+
+searchBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  searchPanel.classList.contains('open') ? closeSearch() : openSearch();
+});
+
+searchPanel.addEventListener('click', e => e.stopPropagation());
+
+document.addEventListener('click', (e) => {
+  if (!searchPanel.contains(e.target) && e.target !== searchBtn) {
+    closeSearch();
+  }
+});
+
+searchInput.addEventListener('input', () => {
+  const val = searchInput.value;
+  searchClear.classList.toggle('visible', val.length > 0);
+  doSearch(val);
+});
+
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeSearch(); return; }
+
+  // Arrow key navigation through suggestions
+  const items = searchSuggestions.querySelectorAll('.suggestion-item');
+  const focused = searchSuggestions.querySelector('.suggestion-item.focused');
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (!focused) {
+      items[0]?.classList.add('focused');
+      items[0]?.focus();
+    } else {
+      const arr = Array.from(items);
+      const idx = arr.indexOf(focused);
+      focused.classList.remove('focused');
+      const next = arr[idx + 1] || arr[0];
+      next.classList.add('focused');
+      next.focus();
+    }
+  }
+
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!focused) {
+      items[items.length - 1]?.classList.add('focused');
+    } else {
+      const arr = Array.from(items);
+      const idx = arr.indexOf(focused);
+      focused.classList.remove('focused');
+      const prev = arr[idx - 1] || arr[arr.length - 1];
+      prev.classList.add('focused');
+      prev.focus();
+    }
+  }
+
+  if (e.key === 'Enter' && focused) {
+    focused.click();
+  }
+});
+
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  searchClear.classList.remove('visible');
+  doSearch('');
+  searchInput.focus();
+});
+
+// Initialize empty state
+searchSuggestions.appendChild(searchEmptyState);
 </script>
 </body>
 </html>
