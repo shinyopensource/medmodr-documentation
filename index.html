@@ -1252,13 +1252,13 @@
     <!-- STATISTICAL METHODS -->
     <section id="statistical-methods">
       <h2>Statistical Methods</h2>
-      <p>This section documents the exact mathematical procedures MedModr uses for all computations. These are the same methods used in R, Stata, SPSS, and Hayes' PROCESS macro.</p>
+      <p>This section documents the exact mathematical procedures MedModr uses for all computations.</p>
     </section>
 
     <!-- OLS REGRESSION -->
     <section id="ols-regression">
       <h2>OLS Regression (Matrix Algebra)</h2>
-      <p>All regressions in MedModr are computed using Ordinary Least Squares (OLS) via matrix algebra — the same method used in R (<code>lm()</code>), Stata (<code>regress</code>), and SPSS GLM.</p>
+      <p>All regressions in MedModr are computed using Ordinary Least Squares (OLS) via matrix algebra.</p>
 
       <div class="formula-block">
 <strong>Coefficients:</strong>       β = (X′X)⁻¹X′y
@@ -1276,7 +1276,7 @@
     <!-- STANDARDIZED COEFFICIENTS -->
     <section id="standardized-coefficients">
       <h2>Standardized Coefficients (β)</h2>
-      <p>Every regression table includes both unstandardized b and standardized β. Standardized coefficients are obtained by re-running the same regression on <strong>z-scored variables</strong> (mean = 0, SD = 1 for all predictors and the outcome). This matches the approach used in PROCESS macro v4.2.</p>
+      <p>Every regression table includes both unstandardized b and standardized β. Standardized coefficients are obtained by re-running the same regression on <strong>z-scored variables</strong> (mean = 0, SD = 1 for all predictors and the outcome).</p>
 
       <div class="formula-block">
 <strong>z-score:</strong>  zₓ = (x − μₓ) / σₓ   |   z_y = (y − μ_y) / σ_y
@@ -1292,7 +1292,7 @@
     <!-- BOOTSTRAP -->
     <section id="bootstrap">
       <h2>Bootstrap Confidence Intervals</h2>
-      <p>For all indirect effects (simple, serial, conditional, IMM), MedModr implements the <strong>percentile bootstrap method</strong> — identical to <code>boot::boot.ci(type="perc")</code> in R and the default bootstrap CI in PROCESS macro. User-selectable resamples: 1,000, 5,000, or 10,000.</p>
+      <p>For all indirect effects (simple, serial, conditional, IMM), MedModr implements the <strong>percentile bootstrap method</strong>. User-selectable resamples: 1,000, 5,000, or 10,000.</p>
 
       <div class="formula-block">
 <strong>Step 1:</strong>  Draw B bootstrap samples (n observations with replacement).
@@ -1364,24 +1364,24 @@
     <!-- VALIDATION -->
     <section id="validation">
       <h2>Computational Validation</h2>
-      <p>MedModr uses the same mathematical procedures as established statistical packages. Point estimates for all path coefficients agree with PROCESS macro v4.2 and R <code>lm()</code> within rounding error (±0.001).</p>
+      <p>MedModr uses the same mathematical procedures as established statistical packages.</p>
 
       <div class="two-col">
         <div class="info-card">
           <h4>Validated against PROCESS Macro v4.2</h4>
-          <p>Coefficient estimates, standard errors, t-statistics, and p-values were compared against Hayes' PROCESS macro across all model types (simple mediation, serial mediation, moderation, moderated mediation). All agree within rounding error.</p>
+          <p>Coefficient estimates, standard errors, t-statistics, and p-values were compared against Hayes' PROCESS macro v4.2 across all model types (simple mediation, serial mediation, moderation, moderated mediation). All agree within rounding error.</p>
         </div>
         <div class="info-card">
-          <h4>Identical matrix algebra to R and SPSS</h4>
-          <p>The OLS estimator β = (X′X)⁻¹X′y is implemented via Gaussian elimination — algebraically identical to <code>lm()</code> in R and the OLS routine in SPSS. When the same dataset is used, MedModr and R agree to at least 10 significant decimal places on all point estimates.</p>
+          <h4>Identical matrix algebra to SPSS</h4>
+          <p>The OLS estimator β = (X′X)⁻¹X′y is implemented via Gaussian elimination, algebraically identical to the OLS routine in SPSS. When the same dataset is used, MedModr and SPSS agree to at least 10 significant decimal places on all point estimates.</p>
         </div>
         <div class="info-card">
-          <h4>Percentile bootstrap matches PROCESS default</h4>
-          <p>Bootstrap CIs use the percentile method, identical to <code>boot::boot.ci(type="perc")</code> in R and the default bootstrap CI in PROCESS macro. Resampling is done with replacement from the observed data.</p>
+          <h4>Percentile bootstrap matches PROCESS Macro v4.2 default</h4>
+          <p>Bootstrap CIs use the percentile method, identical to <code>boot::boot.ci(type="perc")</code> in R and the default bootstrap CI in PROCESS macro v4.2. Resampling is done with replacement from the observed data.</p>
         </div>
         <div class="info-card">
           <h4>Sobel SE matches Preacher & Hayes (2004)</h4>
-          <p>The Sobel standard error SE = √(b²·SEₐ² + a²·SE_b²) is implemented exactly as described in Preacher & Hayes (2004) — the first-order delta method approximation used in all major mediation tools.</p>
+          <p>The Sobel standard error SE = √(b²·SEₐ² + a²·SE_b²) is implemented exactly as described in Preacher & Hayes (2004) — the first-order delta method approximation used in all major mediation tools. MedModr results are identical to those from software implementing the Sobel test, such as SAS JMP and online calculators.</p>
         </div>
         <div class="info-card">
           <h4>Exact t-distribution p-values</h4>
@@ -1480,7 +1480,7 @@
              data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/firststagemoderatedmediationblack.png">
           <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/firststagemoderatedmediationcolorful.png" alt="First Stage Moderated Mediation Diagram">
         </div>
-        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp;</p>
+        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;</p>
       </div>
 
       <div class="diagram-card">
@@ -1497,7 +1497,7 @@
              data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/secondstagemoderatedmediationblack.png">
           <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/secondstagemoderatedmediationcolorful.png" alt="Second Stage Moderated Mediation Diagram">
         </div>
-        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp;</p>
+        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;</p>
       </div>
 
       <div class="diagram-card">
@@ -1514,19 +1514,19 @@
              data-bw-img="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/bothstagesmoderatedmediationblack.png">
           <img class="diagram-thumb" src="https://raw.githubusercontent.com/shinyopensource/medmodr-documentation/main/bothstagesmoderatedmediationcolorful.png" alt="Both Stages Moderated Mediation Diagram">
         </div>
-        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;·&nbsp;</p>
+        <p class="diagram-hint">&#128269; Click image to view full size &nbsp;</p>
       </div>
 
       <div class="feature-grid">
         <div class="feature-card"><div class="icon">&#128208;</div><div><strong>Auto-adjusting layout</strong>Diagrams automatically resize and reflow to fit any variable name length. No manual formatting needed.</div></div>
-        <div class="feature-card"><div class="icon">&#127912;</div><div><strong>Customization options</strong>Unstandardized or standardized coefficients · Show/hide p-values · Black &amp; White mode · Dotted or solid direct effect line · Adjust line lengths · Toggle boxes and coefficient display · Download high-res PNG.</div></div>
+        <div class="feature-card"><div class="icon">&#127912;</div><div><strong>Customization options</strong>Unstandardized or standardized coefficients · Show/hide p-values · Black &amp; White mode · Dotted or solid direct effect line · Adjust line lengths · Toggle boxes and coefficient display · Download high resolution PNG.</div></div>
       </div>
     </section>
 
     <!-- SIMPLE SLOPES -->
     <section id="simple-slopes">
       <h2>Simple Slopes Plots</h2>
-      <p>Available for Moderation and Moderated Mediation (First Stage and Second Stage only). Shows the effect of X on Y at three levels of moderator W: Low (−1 SD), Mean, and High (+1 SD).</p>
+      <p>Available for Moderation and Moderated Mediation (First Stage and Second Stage only). Shows the effect of X on Y at three levels of moderator W: Low (−1 SD), Mean (Average), and High (+1 SD).</p>
 
       <div class="diagram-card">
         <h4>Simple Slopes Plot</h4>
@@ -1572,7 +1572,7 @@
         <div class="limit-item"><div class="licon">&#128208;</div><div><strong>OLS only</strong><p>All models use ordinary least squares regression. Multilevel, SEM, and non-linear modeling are not supported.</p></div></div>
         <div class="limit-item"><div class="licon">&#128178;</div><div><strong>Listwise deletion</strong><p>Rows with missing values must be removed before pasting data. No built-in missing data imputation.</p></div></div>
         <div class="limit-item"><div class="licon">&#128230;</div><div><strong>Large N performance</strong><p>Performance degrades with N > 5,000 due to client-side matrix inversion in the browser.</p></div></div>
-        <div class="limit-item"><div class="licon">&#129137;</div><div><strong>Manual dummy coding</strong><p>Categorical variables must be converted into 0/1 dummy variables by the user before analysis.</p></div></div>
+<div class="limit-item"><div class="licon">⚠️</div><div><strong>Manual dummy coding</strong><p>Categorical variables must be converted into 0/1 dummy variables by the user before analysis.</p></div></div>
         <div class="limit-item"><div class="licon">&#128202;</div><div><strong>Minimum sample sizes</strong><p>Simple mediation: n ≥ 50; Serial mediation: n ≥ 100; Moderation: n ≥ 80; Moderated mediation: n ≥ 200.</p></div></div>
         <div class="limit-item"><div class="licon">&#128260;</div><div><strong>Both Stages moderated mediation</strong><p>Bootstrap CIs and simple slopes plots are not produced. Run First Stage and Second Stage separately to obtain bootstrapped CIs for each IMM.</p></div></div>
         <div class="limit-item"><div class="licon">&#128209;</div><div><strong>No assumption testing</strong><p>MedModr does not automatically test OLS assumptions (linearity, homoscedasticity, normality of residuals). These must be verified externally before interpreting results.</p></div></div>
@@ -1598,7 +1598,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>OLS estimator</td><td class="check-yes">&#10003; (X′X)⁻¹X′y</td><td class="check-yes">&#10003; (X′X)⁻¹X′y</td></tr>
+            <tr><td>OLS estimator</td><td class="check-yes">&#10003;</td><td class="check-yes">&#10003;</td></tr>
             <tr><td>Unstandardized coefficients (b)</td><td class="check-yes">&#10003;</td><td class="check-yes">&#10003;</td></tr>
             <tr><td>Standardized coefficients (β)</td><td class="check-yes">&#10003;</td><td class="check-yes">&#10003;</td></tr>
             <tr><td>Sobel test for indirect effects</td><td class="check-yes">&#10003;</td><td class="check-yes">&#10003;</td></tr>
@@ -1612,10 +1612,10 @@
             <tr><td>Second stage moderated mediation</td><td class="check-yes">&#10003; (Model 14)</td><td class="check-yes">&#10003;</td></tr>
             <tr><td>Both stages moderated mediation</td><td class="check-yes">&#10003; (Model 58)</td><td class="check-yes">&#10003;</td></tr>
             <tr><td>Interactive path diagrams</td><td class="check-no">&#10007; Text output only</td><td class="check-yes">&#10003; Auto-adjusting, variable-name aware</td></tr>
-            <tr><td>Simple slopes visualization</td><td class="check-no">&#10007; Not built-in</td><td class="check-yes">&#10003; Annotated plot with p-values</td></tr>
+            <tr><td>Simple slopes visualization</td><td class="check-no">&#10007; Text output only</td><td class="check-yes">&#10003; Annotated plot with p-values</td></tr>
             <tr><td>Multilevel / mixed effects</td><td class="check-yes">&#10003;</td><td class="check-no">&#10007; Not supported</td></tr>
             <tr><td>Multicategorical predictors (auto)</td><td class="check-yes">&#10003;</td><td class="check-no">&#10007; Manual dummy coding required</td></tr>
-            <tr><td>Requires software installation</td><td class="check-yes">&#10003; SPSS or R required</td><td class="check-no">&#10007; Fully browser-based</td></tr>
+            <tr><td>Requires software installation</td><td class="check-yes">&#10003; SPSS, SAS, or R required</td><td class="check-no">&#10007; No installation (Fully browser-based)</td></tr>
             <tr><td>Privacy (data stays on device)</td><td class="check-yes">&#10003; Local execution</td><td class="check-yes">&#10003; Fully client-side</td></tr>
             <tr><td>Free to use</td><td class="check-yes">&#10003;</td><td class="check-yes">&#10003;</td></tr>
           </tbody>
@@ -1628,9 +1628,9 @@
     <!-- LICENSE -->
     <section id="license">
       <h2>License</h2>
-      <div class="license-box">MIT License
+      <div class="license-box">MIT License · 
 
-Copyright (c) 2026 Mudasir Mohammed Ibrahim
+Copyright (c) 2026 Mudasir Mohammed Ibrahim · 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1644,7 +1644,11 @@ copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.</div>
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</div>
 
       <div class="callout success">
         <div class="callout-title">&#9989; What This Means</div>
@@ -1655,7 +1659,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.</div>
     <!-- CONTRIBUTE -->
     <section id="contribute">
       <h2>How to Contribute</h2>
-      <p>MedModr is open source and welcomes contributions — bug fixes, new features, documentation improvements, or translations.</p>
+      <p>MedModr is open source and welcomes contributions such as bug fixes, new features, documentation improvements, or translations.</p>
 
       <div class="contribution-steps">
         <h4><i class="fab fa-github"></i> Contribution Workflow</h4>
@@ -1698,8 +1702,6 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.</div>
           <div class="author-links">
             <a href="https://mudasiribrahim.github.io/gh/" target="_blank">Personal Website</a>
             <a href="https://www.researchgate.net/profile/Mudasir-Ibrahim" target="_blank">ResearchGate</a>
-            <a href="https://scholar.google.com/citations?user=xEFzAvgAAAAJ&hl=en" target="_blank">Google Scholar</a>
-            <a href="https://orcid.org/0000-0002-9049-8222" target="_blank">ORCID</a>
             <a href="https://linkedin.com/in/mudasir-mohammed-ibrahim-16b5141b0" target="_blank">LinkedIn</a>
           </div>
         </div>
@@ -1712,7 +1714,6 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.</div>
       <div class="callout">
         <div class="callout-title">&#128231; Get Help</div>
         <p>For bug reports, feature requests, or general inquiries:<br>
-        Email: <strong><a href="mailto:mudassiribrahim30@gmail.com">mudassiribrahim30@gmail.com</a></strong><br>
         GitHub Issues: <a href="https://github.com/shinyhealthtools/medmodr/issues" target="_blank">github.com/shinyhealthtools/medmodr/issues</a></p>
       </div>
     </section>
@@ -1721,9 +1722,9 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.</div>
 </div>
 
 <footer>
-  <div>&copy; 2026–present Mudasir Mohammed Ibrahim &middot; MIT License</div>
+  <div> Copyright &copy; 2026–Present · MedModr &middot; MIT License</div>
   <div class="footer-right">
-    <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://github.com/shinyopensource/medmodr-documentation" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
     <a href="mailto:mudassiribrahim30@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
     <a href="https://buymeacoffee.com/mudasiribrahim30?status=1" target="_blank" class="btn btn-donate" style="font-size:0.76rem; padding:5px 13px;">
       <i class="fas fa-heart"></i> Donate
