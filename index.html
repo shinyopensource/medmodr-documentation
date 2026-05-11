@@ -992,6 +992,11 @@
         <p><strong>Paste from anywhere, on anything.</strong> Data input uses simple plain text fields — one number per line. This works identically whether you're copying from Excel, Google Sheets, SPSS, SAS JMP, CSV files, or even a plain text email. No special formatting, no file uploads, no compatibility issues. Copy from a Mac, paste on a Windows PC seamless. Works on phones, tablets, laptops, and desktops exactly the same way.</p>
       </div>
 
+      <div class="callout warn">
+        <div class="callout-title">🔄 Best Practice: Reload the Page Between Different Analysis Types</div>
+        <p><strong>It is recommended, though not required, to reload the tool (press F5 or Ctrl+R / Cmd+R) when switching between different analysis types in MedModr.</strong> Because the application runs entirely in the browser, temporary session data may persist during transitions between analytical modules (e.g., from Simple Mediation to Moderated Mediation). In some cases, residual interface states may carry over inputs, which could lead to unintended model specifications if not properly refreshed. Reloading the page ensures that all session-level data are fully reset, providing a clean starting point for each new analysis. This precaution is generally unnecessary when repeating the<em>same</em> analysis type with updated data or parameters, as the internal state is typically updated appropriately within the same module.</p>
+      </div>
+
       <h3 style="margin-top: 24px;">Methodological Framework</h3>
       <p>MedModr follows the regression-based approach detailed in Hayes (2022) <em>Introduction to Mediation, Moderation, and Conditional Process Analysis</em>. It implements Ordinary Least Squares (OLS) regression via matrix algebra, providing unstandardized (b) and standardized (β) coefficients, bootstrap confidence intervals for indirect effects, and interactive visualizations.</p>
     </section>
@@ -1628,27 +1633,7 @@
     <!-- LICENSE -->
     <section id="license">
       <h2>License</h2>
-      <div class="license-box">MIT License · 
-
-Copyright (c) 2026 Mudasir Mohammed Ibrahim · 
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</div>
+      <div class="license-box">MIT License · Copyright (c) 2026 Mudasir Mohammed Ibrahim · Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</div>
 
       <div class="callout success">
         <div class="callout-title">&#9989; What This Means</div>
