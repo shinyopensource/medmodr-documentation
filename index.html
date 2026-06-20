@@ -4,50 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About MedModr - Official Documentation Website</title>
-  <meta name="description" content="Complete documentation for MedModr — free browser-based mediation, moderation, and conditional process analysis tool supporting 9 analysis types.">
+  <meta name="description" content="Complete documentation for MedModr — free browser-based mediation, moderation, and conditional process analysis tool supporting 15 analysis types.">
   <meta name="author" content="Mudasir Mohammed Ibrahim">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --ink:        #000000;
-      --ink-2:      #111111;
-      --ink-3:      #222222;
-      --ink-4:      #333333;
+      --ink:        #1f2328;
+      --ink-2:      #25292e;
+      --ink-3:      #444c56;
+      --ink-4:      #57606a;
       --paper:      #ffffff;
       --surface:    #ffffff;
-      --surface-2:  #f5f5f5;
-      --surface-3:  #ebebeb;
-      --border:     #cccccc;
-      --border-2:   #aaaaaa;
-      --brand:      #1a5fb4;
-      --brand-dk:   #154a8c;
-      --brand-lt:   #e8f0fc;
-      --brand-mid:  #3d7dd4;
+      --surface-2:  #f6f8fa;
+      --surface-3:  #eaeef2;
+      --border:     #d0d7de;
+      --border-2:   #afb8c1;
+      --brand:      #0969da;
+      --brand-dk:   #0550ae;
+      --brand-lt:   #ddf4ff;
+      --brand-mid:  #218bff;
       --accent:     #b5451b;
       --green:      #1a7a4a;
-      --green-lt:   #e8f7ee;
-      --amber:      #92600a;
-      --amber-lt:   #fef8ec;
-      --sidebar-w:  252px;
+      --green-lt:   #dafbe1;
+      --amber:      #9a6700;
+      --amber-lt:   #fff8c5;
+      --sidebar-w:  240px;
       --nav-h:      58px;
-      --serif:      'Montserrat', system-ui, sans-serif;
-      --sans:       'Montserrat', system-ui, sans-serif;
-      --mono:       'DM Mono', 'Fira Code', monospace;
+      --sans:       -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      --mono:       ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
       --r:          6px;
-      --sh:         0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      --sh-md:      0 4px 12px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+      --sh:         0 1px 3px rgba(31,35,40,0.06), 0 1px 2px rgba(31,35,40,0.04);
+      --sh-md:      0 4px 12px rgba(31,35,40,0.1), 0 2px 6px rgba(31,35,40,0.05);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16.5px; }
+    html { scroll-behavior: smooth; font-size: 16px; }
     body {
       font-family: var(--sans);
-      line-height: 1.68;
+      line-height: 1.6;
       color: var(--ink);
       background: #ffffff;
       -webkit-font-smoothing: antialiased;
@@ -61,44 +57,39 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center;
-      padding: 0 28px; gap: 0;
+      padding: 0 24px; gap: 0;
     }
     .nav-brand {
-      font-family: var(--sans); font-weight: 700; font-size: 1.2rem;
-      color: var(--ink); text-decoration: none; margin-right: 28px;
-      letter-spacing: -0.02em; display: flex; align-items: center; gap: 9px;
+      font-family: var(--sans); font-weight: 700; font-size: 1.1rem;
+      color: var(--ink); text-decoration: none; margin-right: 24px;
+      letter-spacing: -0.01em; display: flex; align-items: center; gap: 9px;
       flex-shrink: 0;
-    }
-    .nav-ver {
-      font-family: var(--sans); font-size: 0.65rem; font-weight: 700;
-      background: var(--brand); color: #fff; padding: 2px 8px;
-      border-radius: 20px; letter-spacing: 0.04em;
     }
     .nav-links { display: flex; align-items: center; gap: 2px; }
     .nav-links a {
-      font-size: 0.87rem; font-weight: 600; color: var(--ink);
+      font-size: 0.86rem; font-weight: 600; color: var(--ink);
       text-decoration: none; padding: 5px 10px; border-radius: 5px;
       transition: color .12s, background .12s; white-space: nowrap;
     }
     .nav-links a:hover { color: var(--brand); background: var(--brand-lt); }
     .nav-end { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
     .btn-launch {
-      font-size: 0.87rem; font-weight: 700; background: var(--brand); color: #fff;
-      border: none; border-radius: var(--r); padding: 8px 18px;
+      font-size: 0.86rem; font-weight: 600; background: var(--brand); color: #fff;
+      border: none; border-radius: var(--r); padding: 7px 16px;
       display: inline-flex; align-items: center; gap: 7px;
       text-decoration: none; cursor: pointer; transition: background .12s;
     }
     .btn-launch:hover { background: var(--brand-dk); }
     .btn-icon {
-      width: 36px; height: 36px; border: 1px solid var(--border); background: transparent;
+      width: 34px; height: 34px; border: 1px solid var(--border); background: transparent;
       border-radius: var(--r); cursor: pointer; display: flex; align-items: center;
-      justify-content: center; color: var(--ink); font-size: 0.9rem;
+      justify-content: center; color: var(--ink); font-size: 0.88rem;
       transition: all .12s; text-decoration: none; flex-shrink: 0;
     }
     .btn-icon:hover { color: var(--brand); border-color: var(--brand); background: var(--brand-lt); }
     .hamburger {
       display: none; flex-direction: column; justify-content: center; align-items: center;
-      gap: 5px; width: 36px; height: 36px; background: transparent;
+      gap: 5px; width: 34px; height: 34px; background: transparent;
       border: 1px solid var(--border); border-radius: var(--r); cursor: pointer;
       transition: border-color .12s; flex-shrink: 0;
     }
@@ -116,262 +107,212 @@
       width: var(--sidebar-w); flex-shrink: 0;
       position: sticky; top: var(--nav-h);
       height: calc(100vh - var(--nav-h));
-      overflow-y: auto; background: #f5f5f5;
+      overflow-y: auto; background: var(--surface-2);
       border-right: 1px solid var(--border);
       padding: 20px 0 60px;
     }
     .sidebar::-webkit-scrollbar { width: 3px; }
     .sidebar::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
     .toc-label {
-      font-size: 0.66rem; font-weight: 700; color: #000000;
-      text-transform: uppercase; letter-spacing: 0.12em;
-      padding: 18px 16px 5px; display: block;
+      font-size: 0.72rem; font-weight: 600; color: var(--ink-3);
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 16px 16px 4px; display: block;
     }
     .sidebar a {
-      display: block; font-size: 0.87rem; font-weight: 500;
-      color: #111111; text-decoration: none;
-      padding: 4px 16px 4px 22px; line-height: 1.45;
+      display: block; font-size: 0.86rem; font-weight: 400;
+      color: var(--ink-2); text-decoration: none;
+      padding: 4px 16px 4px 20px; line-height: 1.4;
       border-left: 2px solid transparent;
       transition: color .1s, background .1s, border-color .1s;
     }
-    .sidebar a:hover { color: var(--brand); background: rgba(26,95,180,.05); }
-    .sidebar a.active { color: var(--brand); font-weight: 700; border-left-color: var(--brand); background: var(--brand-lt); }
-    .sidebar a.sub { padding-left: 34px; font-size: 0.82rem; }
+    .sidebar a:hover { color: var(--brand); background: rgba(9,105,218,.05); }
+    .sidebar a.active { color: var(--brand); font-weight: 600; border-left-color: var(--brand); background: var(--brand-lt); }
+    .sidebar a.sub { padding-left: 32px; font-size: 0.8rem; }
 
     /* ── MAIN ── */
-    main { flex: 1; min-width: 0; padding: 56px 60px 110px 60px; max-width: 100%; }
-    section { margin-bottom: 72px; scroll-margin-top: 74px; }
+    main { flex: 1; min-width: 0; padding: 48px 56px 100px 56px; max-width: 100%; }
+    section { margin-bottom: 64px; scroll-margin-top: 74px; }
 
     /* ── PAGE HEADER ── */
-    .page-header { margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+    .page-header { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
     h1 {
-      font-family: var(--sans); font-size: 2.9rem; font-weight: 700; color: #000000;
-      line-height: 1.12; margin-bottom: 12px; letter-spacing: -0.025em;
+      font-family: var(--sans); font-size: 2.4rem; font-weight: 700; color: var(--ink);
+      line-height: 1.12; margin-bottom: 10px; letter-spacing: -0.02em;
     }
-    .subtitle { font-family: var(--sans); font-style: italic; font-size: 1.15rem; color: #111111; margin-bottom: 22px; font-weight: 500; }
-    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .subtitle { font-size: 1.05rem; color: var(--ink-3); margin-bottom: 20px; font-weight: 400; }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
     .badge {
-      font-size: 0.7rem; font-weight: 700; padding: 3px 11px;
-      border-radius: 20px; text-transform: uppercase; letter-spacing: 0.07em;
+      font-size: 0.72rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 20px; text-transform: uppercase; letter-spacing: 0.06em;
     }
     .badge-blue  { background: var(--brand); color: #fff; }
     .badge-green { background: var(--green); color: #fff; }
-    .badge-gray  { background: #374151; color: #fff; }
+    .badge-gray  { background: #57606a; color: #fff; }
     .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
     .btn {
-      font-size: 0.9rem; font-weight: 700; padding: 8px 18px;
-      border-radius: var(--r); text-decoration: none; border: 1px solid transparent;
+      font-size: 0.86rem; font-weight: 600; padding: 7px 16px;
+      border-radius: var(--r); text-decoration: none; border: 1px solid var(--border);
       display: inline-flex; align-items: center; gap: 7px;
-      transition: all .12s; cursor: pointer;
+      transition: all .12s; cursor: pointer; color: var(--ink); background: var(--surface-2);
     }
-    .btn-primary { background: var(--brand); color: #fff; }
-    .btn-primary:hover { background: var(--brand-dk); }
-    .btn-outline { background: var(--surface); color: #000000; border-color: var(--border); box-shadow: var(--sh); }
-    .btn-outline:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-lt); }
+    .btn-primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+    .btn-primary:hover { background: var(--brand-dk); border-color: var(--brand-dk); }
+    .btn:hover { border-color: var(--brand); color: var(--brand); background: var(--brand-lt); }
+    .btn-primary:hover { color: #fff; }
 
     /* ── HEADINGS ── */
     h2 {
-      font-family: var(--sans); font-size: 1.35rem; font-weight: 700; color: #000000;
-      border-bottom: 2px solid var(--border); padding-bottom: 10px;
-      margin-bottom: 24px; letter-spacing: -0.01em;
+      font-family: var(--sans); font-size: 1.25rem; font-weight: 700; color: var(--ink);
+      border-bottom: 1px solid var(--border); padding-bottom: 8px;
+      margin-bottom: 20px; letter-spacing: -0.01em;
     }
-    h3 { font-family: var(--sans); font-size: 1.12rem; font-weight: 700; color: #000000; margin: 36px 0 14px; }
-    h4 { font-family: var(--sans); font-size: 0.98rem; font-weight: 700; color: #000000; margin: 20px 0 9px; }
-    p { color: #111111; margin-bottom: 14px; font-size: 1rem; line-height: 1.72; }
-    p strong { color: #000000; }
+    h3 { font-family: var(--sans); font-size: 1.05rem; font-weight: 600; color: var(--ink); margin: 28px 0 12px; }
+    h4 { font-family: var(--sans); font-size: 0.93rem; font-weight: 600; color: var(--ink); margin: 18px 0 8px; }
+    p { color: var(--ink-2); margin-bottom: 12px; font-size: 0.97rem; line-height: 1.65; }
+    p strong { color: var(--ink); }
     a { color: var(--brand); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    ul, ol { color: #111111; padding-left: 1.5em; margin-bottom: 14px; font-size: 1rem; }
-    li { margin-bottom: 5px; line-height: 1.65; }
-    li strong { color: #000000; }
-    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 72px; }
+    ul, ol { color: var(--ink-2); padding-left: 1.5em; margin-bottom: 12px; font-size: 0.97rem; }
+    li { margin-bottom: 4px; line-height: 1.6; }
+    li strong { color: var(--ink); }
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0 0 64px; }
 
     /* ── CALLOUT ── */
     .callout {
-      border: 1px solid #b8d4f5; border-left: 3px solid var(--brand);
+      border: 1px solid #b6d7fb; border-left: 3px solid var(--brand);
       background: var(--brand-lt); border-radius: var(--r);
-      padding: 14px 18px; margin: 20px 0; font-size: 0.95rem;
+      padding: 12px 16px; margin: 18px 0; font-size: 0.93rem;
     }
-    .callout.warn { border-color: #f3d89a; border-left-color: var(--amber); background: var(--amber-lt); }
-    .callout.success { border-color: #a3d9ba; border-left-color: var(--green); background: var(--green-lt); }
-    .callout.warn p, .callout p, .callout.success p { margin: 0; color: #000000; font-size: 0.93rem; }
-    .callout p + p { margin-top: 8px; }
+    .callout.warn { border-color: #e3c16f; border-left-color: var(--amber); background: var(--amber-lt); }
+    .callout.success { border-color: #aceebb; border-left-color: var(--green); background: var(--green-lt); }
+    .callout p { margin: 0; color: var(--ink); font-size: 0.9rem; }
+    .callout p + p { margin-top: 7px; }
     .callout-title {
-      font-weight: 700; font-size: 0.72rem; text-transform: uppercase;
-      letter-spacing: 0.09em; color: var(--brand); margin-bottom: 7px; display: flex; align-items: center; gap: 6px;
+      font-weight: 600; font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--brand); margin-bottom: 6px; display: flex; align-items: center; gap: 5px;
     }
     .callout.warn .callout-title  { color: var(--amber); }
     .callout.success .callout-title { color: var(--green); }
 
     /* ── STEPS ── */
-    .steps { margin: 24px 0 28px; }
-    .step { display: flex; gap: 15px; margin-bottom: 22px; }
+    .steps { margin: 20px 0 24px; }
+    .step { display: flex; gap: 13px; margin-bottom: 18px; }
     .step-num {
-      font-weight: 700; font-size: 0.78rem;
-      width: 27px; height: 27px; border-radius: 50%;
+      font-weight: 700; font-size: 0.75rem;
+      width: 25px; height: 25px; border-radius: 50%;
       background: var(--brand); color: #fff;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; margin-top: 2px;
     }
-    .step-body strong { font-weight: 700; font-size: 0.98rem; color: #000000; display: block; margin-bottom: 5px; }
-    .step-body p { margin: 0 0 4px; font-size: 0.93rem; color: #111111; }
+    .step-body strong { font-weight: 600; font-size: 0.95rem; color: var(--ink); display: block; margin-bottom: 4px; }
+    .step-body p { margin: 0 0 3px; font-size: 0.9rem; color: var(--ink-3); }
 
     /* ── TWO-COL ── */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 18px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
     .info-card {
       background: var(--surface); border: 1px solid var(--border);
       border-left: 3px solid var(--brand); border-radius: var(--r);
-      padding: 16px 18px; box-shadow: var(--sh); transition: box-shadow .12s;
+      padding: 14px 16px; box-shadow: var(--sh); transition: box-shadow .12s;
     }
     .info-card:hover { box-shadow: var(--sh-md); }
-    .info-card h4 { font-size: 0.93rem; font-weight: 700; color: #000000; margin: 0 0 7px; }
-    .info-card p { font-size: 0.9rem; margin: 0; color: #111111; }
+    .info-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin: 0 0 6px; }
+    .info-card p { font-size: 0.87rem; margin: 0; color: var(--ink-3); }
 
     /* ── ANALYSIS CARD ── */
-    .analysis-type-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 22px 0; }
+    .analysis-type-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 18px 0; }
     .atcard {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 16px;
+      border-radius: var(--r); padding: 14px;
       box-shadow: var(--sh); transition: all .15s;
-      display: flex; flex-direction: column; gap: 8px;
+      display: flex; flex-direction: column; gap: 7px;
     }
     .atcard:hover { border-color: var(--brand); box-shadow: var(--sh-md); transform: translateY(-2px); }
-    .atcard-icon { font-size: 1.3rem; color: var(--brand); }
-    .atcard strong { font-size: 0.93rem; font-weight: 700; color: #000000; }
-    .atcard p { font-size: 0.85rem; color: #222222; margin: 0; line-height: 1.55; }
-    .atcard .atcard-tag {
-      font-size: 0.7rem; font-weight: 700; color: var(--brand-mid);
-      background: var(--brand-lt); padding: 2px 9px; border-radius: 20px;
-      align-self: flex-start; letter-spacing: 0.04em;
-    }
-
-    /* ── PROCESS CARD ── */
-    .process-block {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--r); overflow: hidden; margin-bottom: 28px;
-      box-shadow: var(--sh);
-    }
-    .process-header {
-      background: linear-gradient(135deg, var(--brand-lt), #f5f5f5);
-      border-bottom: 2px solid var(--brand); padding: 16px 22px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .process-icon { font-size: 1.5rem; color: var(--brand); }
-    .process-header-text h3 { margin: 0 0 3px; font-size: 1.05rem; color: #000000; }
-    .process-header-text p { margin: 0; font-size: 0.87rem; color: #222222; }
-    .process-header-text .process-roles {
-      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px;
-    }
-    .role-tag {
-      font-size: 0.72rem; font-weight: 700; padding: 2px 9px; border-radius: 20px;
-      border: 1px solid;
-    }
-    .role-x  { background: rgba(61,90,241,.08);  color: #3d5af1; border-color: rgba(61,90,241,.25); }
-    .role-m  { background: rgba(124,58,237,.08); color: #7c3aed; border-color: rgba(124,58,237,.25); }
-    .role-m2 { background: rgba(168,85,247,.08); color: #a855f7; border-color: rgba(168,85,247,.25); }
-    .role-y  { background: rgba(8,145,178,.08);  color: #0891b2; border-color: rgba(8,145,178,.25); }
-    .role-w  { background: rgba(5,150,105,.08);  color: #059669; border-color: rgba(5,150,105,.25); }
-    .role-cov{ background: rgba(217,119,6,.08);  color: #d97706; border-color: rgba(217,119,6,.25); }
-    .process-body { padding: 22px; }
-    .process-result-types { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0 0; }
-    .result-tag {
-      font-size: 0.77rem; font-weight: 600; padding: 4px 13px; border-radius: 20px;
-      background: #ebebeb; color: #111111; border: 1px solid var(--border);
-    }
+    .atcard-icon { font-size: 1.2rem; color: var(--brand); }
+    .atcard strong { font-size: 0.9rem; font-weight: 600; color: var(--ink); }
+    .atcard p { font-size: 0.83rem; color: var(--ink-3); margin: 0; line-height: 1.5; }
 
     /* ── TABLE ── */
     .table-wrap {
-      overflow-x: auto; margin: 16px 0; border-radius: var(--r);
+      overflow-x: auto; margin: 14px 0; border-radius: var(--r);
       box-shadow: var(--sh); border: 1px solid var(--border);
     }
-    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; table-layout: auto; }
-    thead { background: #f5f5f5; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; table-layout: auto; }
+    thead { background: var(--surface-2); }
     th {
-      font-weight: 700; font-size: 0.8rem; text-align: left;
-      padding: 10px 14px; border-bottom: 2px solid var(--border);
-      color: #000000; letter-spacing: .02em; white-space: nowrap;
+      font-weight: 600; font-size: 0.78rem; text-align: left;
+      padding: 9px 13px; border-bottom: 1px solid var(--border);
+      color: var(--ink); letter-spacing: .02em; white-space: nowrap;
     }
-    td { padding: 9px 14px; border-bottom: 1px solid var(--border); color: #111111; vertical-align: top; }
-    td:first-child { font-size: 0.9rem; color: #000000; white-space: nowrap; }
+    td { padding: 8px 13px; border-bottom: 1px solid var(--border); color: var(--ink-2); vertical-align: top; }
+    td:first-child { font-size: 0.88rem; color: var(--ink); white-space: nowrap; }
     tbody tr:last-child td { border-bottom: none; }
-    tbody tr:nth-child(even) td { background: #fafafa; }
+    tbody tr:nth-child(even) td { background: var(--surface-2); }
     tbody tr:hover td { background: var(--brand-lt); }
-    .yes { color: #15803d; font-weight: 700; }
-    .no  { color: #dc2626; font-weight: 700; }
+    .yes { color: #1a7a4a; font-weight: 600; }
+    .no  { color: #cf222e; font-weight: 600; }
 
     /* ── OUTPUT ITEMS ── */
-    .output-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 0; }
+    .output-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 14px 0 0; }
     .output-item {
-      background: #f5f5f5; border: 1px solid var(--border);
-      border-radius: var(--r); padding: 12px 14px;
-      display: flex; gap: 10px; align-items: flex-start; font-size: 0.92rem;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 11px 13px;
+      display: flex; gap: 9px; align-items: flex-start; font-size: 0.9rem;
     }
-    .output-item .oi-icon { color: var(--brand); flex-shrink: 0; margin-top: 2px; font-size: 0.95rem; }
-    .output-item strong { color: #000000; display: block; margin-bottom: 2px; font-size: 0.92rem; }
-    .output-item span { color: #222222; font-size: 0.85rem; line-height: 1.45; }
-
-    /* ── LIMIT LIST ── */
-    .limit-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
-    .limit-item {
-      display: flex; gap: 13px; background: var(--surface);
-      border: 1px solid var(--border); border-radius: var(--r);
-      padding: 13px 16px; box-shadow: var(--sh);
-    }
-    .limit-item .lico { color: var(--amber); flex-shrink: 0; margin-top: 2px; font-size: 0.9rem; }
-    .limit-item strong { font-weight: 700; color: #000000; display: block; margin-bottom: 3px; font-size: 0.95rem; }
-    .limit-item p { margin: 0; font-size: 0.9rem; color: #111111; }
+    .output-item .oi-icon { color: var(--brand); flex-shrink: 0; margin-top: 2px; font-size: 0.9rem; }
+    .output-item strong { color: var(--ink); display: block; margin-bottom: 2px; font-size: 0.9rem; }
+    .output-item span { color: var(--ink-3); font-size: 0.83rem; line-height: 1.4; }
 
     /* ── CITATION ── */
     .citation-block {
-      background: #f5f5f5; border: 1px solid var(--border);
-      border-radius: var(--r); padding: 18px 20px;
-      font-family: var(--mono); font-size: 0.85rem; color: #111111;
-      line-height: 1.8; position: relative;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 16px 18px;
+      font-family: var(--mono); font-size: 0.82rem; color: var(--ink-2);
+      line-height: 1.75; position: relative;
     }
     .copy-btn {
       position: absolute; top: 10px; right: 10px;
       font-family: var(--sans); font-size: 0.75rem; font-weight: 600;
       background: var(--surface); border: 1px solid var(--border);
-      color: #111111; padding: 4px 11px; border-radius: 4px;
+      color: var(--ink-2); padding: 4px 10px; border-radius: 4px;
       cursor: pointer; transition: all .12s;
     }
     .copy-btn:hover { color: var(--brand); border-color: var(--brand); }
 
     /* ── AUTHOR ── */
     .author-card {
-      background: #f5f5f5; border: 1px solid var(--border);
-      border-radius: var(--r); padding: 24px;
-      display: flex; gap: 20px; align-items: flex-start; margin-top: 20px;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 20px;
+      display: flex; gap: 18px; align-items: flex-start; margin-top: 16px;
     }
     .author-avatar {
-      width: 52px; height: 52px; border-radius: 50%;
+      width: 48px; height: 48px; border-radius: 50%;
       background: var(--brand); display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 1rem; color: #fff; flex-shrink: 0;
+      font-weight: 700; font-size: 0.9rem; color: #fff; flex-shrink: 0;
     }
-    .author-info h4 { font-weight: 700; color: #000000; margin-bottom: 4px; font-size: 1.05rem; }
-    .author-info p { margin: 0 0 8px; font-size: 0.93rem; color: #111111; }
-    .author-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .author-info h4 { font-weight: 600; color: var(--ink); margin-bottom: 3px; font-size: 1rem; }
+    .author-info p { margin: 0 0 7px; font-size: 0.9rem; color: var(--ink-3); }
+    .author-links { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 9px; }
     .author-links a {
-      font-size: 0.8rem; font-weight: 600; color: var(--brand);
-      border: 1px solid var(--border); padding: 4px 14px; border-radius: 20px;
+      font-size: 0.78rem; font-weight: 600; color: var(--brand);
+      border: 1px solid var(--border); padding: 4px 12px; border-radius: 20px;
       text-decoration: none; transition: all .12s; background: var(--surface);
     }
     .author-links a:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
 
     /* ── LICENSE BOX ── */
     .license-box {
-      background: #f5f5f5; border: 1px solid var(--border);
-      border-radius: var(--r); padding: 16px 20px;
-      font-family: var(--mono); font-size: 0.8rem; line-height: 1.7;
-      color: #222222; margin: 14px 0;
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--r); padding: 14px 18px;
+      font-family: var(--mono); font-size: 0.78rem; line-height: 1.7;
+      color: var(--ink-3); margin: 12px 0;
     }
 
     /* ── FOOTER ── */
     footer {
-      background: #f5f5f5; border-top: 1px solid var(--border);
-      padding: 20px 60px; display: flex; align-items: center;
+      background: var(--surface-2); border-top: 1px solid var(--border);
+      padding: 18px 56px; display: flex; align-items: center;
       justify-content: space-between; flex-wrap: wrap; gap: 12px;
-      font-size: 0.85rem; color: #222222;
+      font-size: 0.83rem; color: var(--ink-3);
     }
     footer a { color: var(--brand); }
     .footer-right { display: flex; align-items: center; gap: 10px; }
@@ -385,96 +326,141 @@
     .mobile-drawer {
       display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
       z-index: 200; background: #ffffff; border-top: 1px solid var(--border);
-      overflow-y: auto; padding: 16px 0 48px;
+      overflow-y: auto; padding: 14px 0 48px;
       transform: translateY(-6px); opacity: 0; pointer-events: none;
       transition: transform .22s ease, opacity .22s ease;
     }
     .mobile-drawer.open { display: block; transform: translateY(0); opacity: 1; pointer-events: auto; }
     .drawer-inner { display: grid; grid-template-columns: 1fr 1fr; max-width: 600px; margin: 0 auto; }
-    .drawer-col { padding: 10px 18px 20px; }
+    .drawer-col { padding: 10px 16px 18px; }
     .drawer-col + .drawer-col { border-left: 1px solid var(--border); }
-    .drawer-heading { font-size: 0.66rem; font-weight: 700; color: #000000; text-transform: uppercase; letter-spacing: .12em; padding: 8px 0 6px; }
-    .drawer-col a { display: block; font-size: 0.93rem; font-weight: 500; color: #111111; text-decoration: none; padding: 7px 8px; border-radius: 5px; transition: all .1s; }
+    .drawer-heading { font-size: 0.66rem; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: .1em; padding: 7px 0 5px; }
+    .drawer-col a { display: block; font-size: 0.9rem; font-weight: 400; color: var(--ink-2); text-decoration: none; padding: 6px 7px; border-radius: 5px; transition: all .1s; }
     .drawer-col a:hover { color: var(--brand); background: var(--brand-lt); }
-    .drawer-col a.sub { padding-left: 18px; font-size: 0.86rem; }
 
-    /* ── DARK MODE ── */
+    /* ══════════════════════════════════════════════════════
+       DARK MODE — every color uses var() so overrides work
+       ══════════════════════════════════════════════════════ */
     body.dark {
-      --ink: #f0f2f8; --ink-2: #c8cdd8; --ink-3: #8b92a8; --ink-4: #555c72;
-      --paper: #13151c; --surface: #1c1f28; --surface-2: #181b24; --surface-3: #22263a;
-      --border: #2a2f40; --border-2: #373d52; --brand-lt: #142038; --brand-mid: #5a9ef0;
+      --ink:       #e6edf3;
+      --ink-2:     #c9d1d9;
+      --ink-3:     #8b949e;
+      --ink-4:     #6e7681;
+      --paper:     #0d1117;
+      --surface:   #161b22;
+      --surface-2: #161b22;
+      --surface-3: #21262d;
+      --border:    #30363d;
+      --border-2:  #484f58;
+      --brand-lt:  #121d2f;
+      --brand-mid: #58a6ff;
+      --green-lt:  #0d2b1e;
+      --amber-lt:  #1c1500;
     }
-    body.dark { background: #13151c; color: #f0f2f8; }
-    body.dark p { color: #c8cdd8; }
-    body.dark h1, body.dark h2, body.dark h3, body.dark h4 { color: #f0f2f8; }
-    body.dark li { color: #c8cdd8; }
-    body.dark .nav { background: rgba(28,31,40,0.97); }
-    body.dark .btn-launch { background: var(--brand); }
-    body.dark .callout { background: #142038; border-color: #1e3a60; }
-    body.dark .callout p { color: #c8cdd8; }
-    body.dark .callout.warn { background: #1f1500; border-color: #4a3400; }
-    body.dark .callout.success { background: #061810; border-color: #0e4025; }
-    body.dark .info-card, body.dark .atcard, body.dark .process-block,
-    body.dark .output-item, body.dark .limit-item { background: var(--surface); }
-    body.dark .info-card p, body.dark .atcard p, body.dark .output-item span,
-    body.dark .limit-item p, body.dark .step-body p { color: #c8cdd8; }
-    body.dark thead { background: #181b24; }
-    body.dark th { color: #f0f2f8; }
-    body.dark td { color: #c8cdd8; }
-    body.dark td:first-child { color: #f0f2f8; }
-    body.dark tbody tr:nth-child(even) td { background: #1e2130; }
-    body.dark tbody tr:hover td { background: #142038; }
-    body.dark .author-card, body.dark .author-links a { background: var(--surface); }
-    body.dark .author-info p { color: #c8cdd8; }
-    body.dark .citation-block, body.dark .license-box { background: #181b24; color: #c8cdd8; }
-    body.dark .copy-btn { background: var(--surface-3); color: #c8cdd8; border-color: var(--border); }
-    body.dark footer { background: #181b24; color: #c8cdd8; }
-    body.dark .sidebar { background: #181b24; border-right-color: var(--border); }
-    body.dark .sidebar a { color: #c8cdd8; }
-    body.dark .toc-label { color: #f0f2f8; }
-    body.dark .mobile-drawer { background: #13151c; }
-    body.dark .drawer-inner { background: #13151c; }
-    body.dark .drawer-col a { color: #c8cdd8; }
-    body.dark .drawer-heading { color: #f0f2f8; }
-    body.dark .process-header { background: #142038; }
-    body.dark .process-header-text h3 { color: #f0f2f8; }
-    body.dark .process-header-text p { color: #c8cdd8; }
-    body.dark .result-tag { background: var(--surface-3); color: #c8cdd8; }
-    body.dark .atcard strong { color: #f0f2f8; }
-    body.dark .atcard.active, body.dark .btn-outline { border-color: var(--border); }
-    body.dark .hamburger span { background: #f0f2f8; }
-    body.dark .nav-brand { color: #f0f2f8; }
-    body.dark .nav-links a { color: #c8cdd8; }
-    body.dark .btn-icon { color: #c8cdd8; }
-    body.dark .subtitle { color: #c8cdd8; }
-    body.dark .output-item strong { color: #f0f2f8; }
-    body.dark .limit-item strong { color: #f0f2f8; }
-    body.dark .step-body strong { color: #f0f2f8; }
-    body.dark .info-card h4 { color: #f0f2f8; }
-    body.dark .author-info h4 { color: #f0f2f8; }
+    body.dark { background: #0d1117; color: #e6edf3; }
+
+    /* All headings */
+    body.dark h1,
+    body.dark h2,
+    body.dark h3,
+    body.dark h4 { color: var(--ink); }
+
+    /* Paragraphs and list items */
+    body.dark p { color: var(--ink-2); }
+    body.dark li { color: var(--ink-2); }
+
+    /* Strong/bold text inside paragraphs and list items */
+    body.dark p strong,
+    body.dark li strong { color: var(--ink); }
+
+    /* Nav */
+    body.dark .nav { background: rgba(13,17,23,0.97); }
+    body.dark .nav-brand { color: var(--ink); }
+    body.dark .nav-links a { color: var(--ink-2); }
+    body.dark .btn-icon { color: var(--ink-2); border-color: var(--border); }
+    body.dark .hamburger span { background: var(--ink); }
+
+    /* Sidebar */
+    body.dark .sidebar { background: var(--surface-2); border-right-color: var(--border); }
+    body.dark .sidebar a { color: var(--ink-2); }
+    body.dark .toc-label { color: var(--ink-3); }
+
+    /* Cards and surfaces */
+    body.dark .info-card,
+    body.dark .atcard,
+    body.dark .output-item { background: var(--surface); border-color: var(--border); }
+    body.dark .info-card h4,
+    body.dark .atcard strong,
+    body.dark .output-item strong { color: var(--ink); }
+    body.dark .info-card p,
+    body.dark .atcard p,
+    body.dark .output-item span { color: var(--ink-3); }
+
+    /* Tables */
+    body.dark thead { background: var(--surface-3); }
+    body.dark th { color: var(--ink); border-color: var(--border); }
+    body.dark td { color: var(--ink-2); border-color: var(--border); }
+    body.dark td:first-child { color: var(--ink); }
+    body.dark tbody tr:nth-child(even) td { background: var(--surface-3); }
+    body.dark tbody tr:hover td { background: var(--brand-lt); }
+
+    /* Steps */
+    body.dark .step-body strong { color: var(--ink); }
+    body.dark .step-body p { color: var(--ink-3); }
+
+    /* Callouts */
+    body.dark .callout { background: var(--brand-lt); border-color: #1f3558; }
+    body.dark .callout p { color: var(--ink-2); }
+    body.dark .callout.warn { background: var(--amber-lt); border-color: #3d2c00; }
+    body.dark .callout.success { background: var(--green-lt); border-color: #0a3d22; }
+
+    /* Author, citation, license */
+    body.dark .author-card { background: var(--surface); border-color: var(--border); }
+    body.dark .author-info h4 { color: var(--ink); }
+    body.dark .author-info p { color: var(--ink-3); }
+    body.dark .author-links a { background: var(--surface); color: var(--brand-mid); border-color: var(--border); }
+    body.dark .citation-block { background: var(--surface); color: var(--ink-2); border-color: var(--border); }
+    body.dark .copy-btn { background: var(--surface-3); color: var(--ink-2); border-color: var(--border); }
+    body.dark .license-box { background: var(--surface); color: var(--ink-3); border-color: var(--border); }
+
+    /* Footer */
+    body.dark footer { background: var(--surface-2); color: var(--ink-3); border-color: var(--border); }
     body.dark footer a { color: var(--brand-mid); }
+
+    /* Mobile drawer */
+    body.dark .mobile-drawer { background: var(--paper); }
+    body.dark .drawer-col a { color: var(--ink-2); }
+    body.dark .drawer-heading { color: var(--ink-3); }
+
+    /* Buttons */
+    body.dark .btn { color: var(--ink-2); background: var(--surface-3); border-color: var(--border); }
+    body.dark .btn:hover { color: var(--brand-mid); border-color: var(--brand-mid); background: var(--brand-lt); }
+    body.dark .btn-primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+    body.dark .btn-primary:hover { background: var(--brand-dk); color: #fff; }
+    body.dark .subtitle { color: var(--ink-3); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      :root { --sidebar-w: 220px; }
+      :root { --sidebar-w: 210px; }
       .analysis-type-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 820px) {
       :root { --sidebar-w: 0px; }
       .sidebar { display: none; }
-      main { padding: 32px 28px 80px; }
+      main { padding: 28px 22px 72px; }
       .two-col, .output-grid { grid-template-columns: 1fr; }
       .analysis-type-grid { grid-template-columns: 1fr 1fr; }
-      h1 { font-size: 2.2rem; }
+      h1 { font-size: 1.9rem; }
+      footer { padding: 14px 22px; }
     }
     @media (max-width: 540px) {
-      main { padding: 24px 16px 64px; }
+      main { padding: 20px 14px 56px; }
       .analysis-type-grid { grid-template-columns: 1fr; }
       .drawer-inner { grid-template-columns: 1fr; }
       .drawer-col + .drawer-col { border-left: none; border-top: 1px solid var(--border); }
-      footer { padding: 16px 18px; flex-direction: column; gap: 10px; align-items: flex-start; }
+      footer { padding: 14px 16px; flex-direction: column; gap: 10px; align-items: flex-start; }
       .btn-row { flex-direction: column; }
       .btn-row .btn { justify-content: center; }
     }
@@ -486,17 +472,17 @@
 
 <!-- NAV -->
 <nav class="nav">
-  <a class="nav-brand" href="#overview">MedModr <span class="nav-ver">v1.0</span></a>
+  <a class="nav-brand" href="#overview">MedModr</a>
   <div class="nav-links">
     <a href="#overview">Overview</a>
     <a href="#analysis-types">Analysis Types</a>
-    <a href="#data-processing">Data Processing</a>
     <a href="#running-analysis">Running Analysis</a>
-    <a href="#results-export">Results & Export</a>
+    <a href="#results-export">Results &amp; Export</a>
+    <a href="#citation">Citation</a>
   </div>
   <div class="nav-end">
     <button id="darkModeToggle" class="btn-icon" title="Toggle dark mode"><i class="fas fa-moon"></i></button>
-    <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn-launch"><i class="fas fa-play"></i> Launch App</a>
+    <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn-launch"><i class="fas fa-play"></i> Launch Web App (v1.0)</a>
     <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -508,24 +494,21 @@
     <div class="drawer-col">
       <div class="drawer-heading">Navigate</div>
       <a href="#overview">Overview</a>
-      <a href="#analysis-types">Analysis Types</a>
-      <a href="#data-processing">Data Processing</a>
+      <a href="#features">Features</a>
+      <a href="#workflow">Workflow</a>
       <a href="#running-analysis">Running Analysis</a>
-      <a href="#results-export">Results & Export</a>
+      <a href="#results-export">Results &amp; Export</a>
       <a href="#citation">Citation</a>
       <a href="#developer">Developer</a>
+      <a href="#bug-reports">Report a Bug</a>
     </div>
     <div class="drawer-col">
-      <div class="drawer-heading">Analysis Types</div>
-      <a href="#simple-mediation">Simple Mediation</a>
-      <a href="#parallel-mediation">Parallel Mediation</a>
-      <a href="#serial-mediation">Serial Mediation</a>
-      <a href="#simple-moderation">Simple Moderation</a>
-      <a href="#first-stage-modmed">First Stage Moderated Mediation</a>
-      <a href="#second-stage-modmed">Second Stage Moderated Mediation</a>
-      <a href="#both-stages-modmed">Both Stages Moderated Mediation</a>
-      <a href="#moderated-moderation">Moderated Moderation</a>
-      <a href="#moderated-serial">Moderated Serial Mediation</a>
+      <div class="drawer-heading">Reference</div>
+      <a href="#version-history">Version History</a>
+      <a href="#covariates-info">Covariates</a>
+      <a href="#centering">Mean Centering</a>
+      <a href="#bootstrap-info">Bootstrap CIs</a>
+      <a href="#license">License</a>
     </div>
   </div>
 </div>
@@ -539,873 +522,473 @@
     <a href="#features">Features</a>
     <a href="#workflow">Workflow</a>
 
-    <span class="toc-label">Data Processing</span>
-    <a href="#data-processing">Data Processing Steps</a>
-    <a href="#upload">1. Upload Data</a>
-    <a href="#select-vars">2. Select Variables</a>
-    <a href="#preview">3. Preview Data</a>
-    <a href="#missing-data">4. Missing Data</a>
-    <a href="#imputation">5. Imputation</a>
-    <a href="#screening">6. Data Screening</a>
-    <a href="#finalize">7. Finalize</a>
-
     <span class="toc-label">Analysis Types</span>
     <a href="#running-analysis">Variable Assignment</a>
-    <a href="#simple-mediation">Simple Mediation</a>
-    <a href="#parallel-mediation">Parallel Mediation</a>
-    <a href="#serial-mediation">Serial Mediation</a>
-    <a href="#simple-moderation">Simple Moderation</a>
-    <a href="#first-stage-modmed">First Stage Moderated Mediation</a>
-    <a href="#second-stage-modmed">Second Stage Moderated Mediation</a>
-    <a href="#both-stages-modmed">Both Stages Moderated Mediation</a>
-    <a href="#moderated-moderation">Moderated Moderation</a>
-    <a href="#moderated-serial">Moderated Serial Mediation</a>
 
-    <span class="toc-label">Results & Export</span>
+    <span class="toc-label">Results &amp; Export</span>
     <a href="#results-export">Interpreting Results</a>
     <a href="#path-diagrams">Path Diagrams</a>
-    <a href="#simple-slopes">Simple Slopes</a>
-    <a href="#exporting">Exporting Results</a>
 
     <span class="toc-label">Reference</span>
+    <a href="#version-history">Version History</a>
     <a href="#covariates-info">Covariates</a>
     <a href="#centering">Mean Centering</a>
     <a href="#bootstrap-info">Bootstrap CIs</a>
-    <a href="#comparison">MedModr vs PROCESS Macro</a>
     <a href="#license">License</a>
     <a href="#citation">Citation</a>
     <a href="#developer">Developer</a>
+    <a href="#bug-reports">Report a Bug</a>
   </aside>
 
   <main>
 
-    <!-- ═══════════════════════════════════════════ HEADER -->
+    <!-- PAGE HEADER -->
     <div class="page-header" id="overview">
       <h1>MedModr</h1>
-      <p class="subtitle">Mediation, Moderation &amp; Conditional Process Analysis — free, browser-based, and open source</p>
+      <p class="subtitle">Mediation and Moderation Analysis. Free, browser-based, no installation required.</p>
       <div class="badges">
-        <span class="badge badge-blue">Version 1.0</span>
         <span class="badge badge-green">Free &amp; Open Source</span>
         <span class="badge badge-gray">MIT License</span>
       </div>
       <div class="btn-row">
         <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn btn-primary"><i class="fas fa-play"></i> Launch App</a>
-        <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> App Source Code</a>
-        <a href="https://github.com/shinyhealthtools/medmodr/tree/main/Example%20datasets%20for%20practice" class="btn btn-outline"><i class="fas fa-download"></i> Example Dataset</a>
+        <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" class="btn"><i class="fab fa-github"></i> Source Code</a>
+        <a href="https://archive.org/download/example-data-1/MedModrPractice.zip" class="btn"><i class="fas fa-download"></i> Example Dataset</a>
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════ OVERVIEW -->
+    <!-- OVERVIEW -->
     <section id="overview-body">
       <h2>What is MedModr?</h2>
-      <p><strong>MedModr</strong> is a free, browser-based statistical tool for conducting mediation, moderation, and conditional process analyses. All computation happens entirely inside in the user's browser. There is no installation, no server, no data upload to any external service.</p>
-
-      <div class="callout success">
-        <div class="callout-title"><i class="fas fa-check-circle"></i> Fully Portable — Works Offline</div>
-        <p><strong>MedModr runs as a single self-contained HTML file.</strong> Once loaded in any browser, save the page (<strong>Ctrl+S / Cmd+S</strong>) for permanent offline use. Copy it to USB drives, email it, or share via cloud storage. No internet connection is required.</p>
-      </div>
+      <p>MedModr is a free, browser-based tool for running mediation, moderation, and conditional process analyses. Upload any data file, assign variables, pick an analysis type, and get results without installing any software. Everything runs locally in the web browser, so data never leaves the user device. MedModr was created to democratize access to the most commonly used conditional process models. Tools like the <strong>PROCESS macro</strong> for SPSS/SAS and R are powerful, but they require licensed software or a configured environment that many researchers especially those in low-resource settings simply don't have access to. MedModr covers the same core models and runs entirely in a browser, making these analyses available to anyone, anywhere, for free.</p>
 
       <div class="two-col">
         <div class="info-card">
           <h4><i class="fas fa-laptop" style="color:var(--brand);margin-right:6px"></i> No Installation</h4>
-          <p>Works on Windows, Mac, Linux, Chromebooks, tablets. Just open in any modern browser (e.g., Chrome, Firefox, Edge, or Safari).</p>
+          <p>Works on any device (Windows, Mac, Linux, Chromebook, and tablet). Just open it in a modern browser like Chrome, Firefox, Edge, or Safari.</p>
         </div>
         <div class="info-card">
           <h4><i class="fas fa-lock" style="color:var(--brand);margin-right:6px"></i> 100% Private</h4>
-          <p>Data never leaves the user's device. All computations run locally in the browser using JavaScript matrix algebra.</p>
+          <p>All computations happen locally in the user browser and nothing is sent to any server.</p>
         </div>
         <div class="info-card">
           <h4><i class="fas fa-file-import" style="color:var(--brand);margin-right:6px"></i> Import CSV or Excel</h4>
-          <p>Upload .csv, .xlsx, or .xls files. The built-in data processing pipeline handles missing values, screening, and variable selection.</p>
+          <p>Upload .csv, .xlsx, or .xls files. The built-in data processing steps handle variable selection, missing values, data screening, and cleaning before analysis.</p>
         </div>
         <div class="info-card">
-          <h4><i class="fas fa-file-word" style="color:var(--brand);margin-right:6px"></i> Export to Word</h4>
-          <p>Download complete analysis results as a formatted Word document (.doc) with tables, summaries, and APA-style write-ups.</p>
+          <h4><i class="fas fa-file-word" style="color:var(--brand);margin-right:6px"></i> Export Results</h4>
+          <p>Download complete analysis results as a formatted Word, PDF, or HTML document.</p>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════ FEATURES -->
+    <!-- FEATURES -->
     <section id="features">
       <h2>Key Features</h2>
-
       <div class="analysis-type-grid">
         <div class="atcard">
           <div class="atcard-icon"><i class="fas fa-arrow-right"></i></div>
-          <strong>9 Analysis Types</strong>
-          <p>From simple mediation to moderated serial mediation and three-way interactions.</p>
+          <strong>15 Analysis Types</strong>
+          <p>Simple mediation, parallel and serial mediation, moderation, and multiple moderated mediation variants.</p>
         </div>
         <div class="atcard">
           <div class="atcard-icon"><i class="fas fa-random"></i></div>
           <strong>Bootstrap CIs</strong>
-          <p>Percentile bootstrap (up to 10,000 samples) or Bias-Corrected (BC) bootstrap for indirect effects.</p>
+          <p>Up to 10,000 bootstrap samples. Choose Percentile or Bias-Corrected (BC) method for indirect effects.</p>
         </div>
         <div class="atcard">
           <div class="atcard-icon"><i class="fas fa-project-diagram"></i></div>
           <strong>Interactive Path Diagrams</strong>
-          <p>Auto-adjusting, color or B&amp;W, downloadable PNG, with coefficient overlays.</p>
+          <p>Auto-generated diagrams with coefficient overlays. Toggle color/B&W, show/hide values, download as high-resolution PNG/SVG.</p>
         </div>
         <div class="atcard">
           <div class="atcard-icon"><i class="fas fa-chart-line"></i></div>
           <strong>Simple Slopes Plots</strong>
-          <p>Annotated plots at −1SD, Mean, and +1SD of the moderator. Downloadable hi-res PNG.</p>
+          <p>Plots the moderator's effect at −1SD, Mean, and +1SD. Downloadable as high-resolution PNG.</p>
         </div>
         <div class="atcard">
           <div class="atcard-icon"><i class="fas fa-fill-drip"></i></div>
-          <strong>Multiple Imputation</strong>
-          <p>7 missing data methods including PMM, Hot Deck, EM algorithm, and regression imputation.</p>
+          <strong>Missing Data Handling</strong>
+          <p>7 imputation methods including PMM, Hot Deck, EM algorithm, and regression-based imputation.</p>
         </div>
         <div class="atcard">
           <div class="atcard-icon"><i class="fas fa-chart-bar"></i></div>
           <strong>Data Screening</strong>
-          <p>Outlier detection (4 methods), normality checks, correlation matrices, and diagnostic plots.</p>
+          <p>Edit data, detect outliers (4 methods), check normality, view correlation matrices, and inspect histograms and QQ-plots.</p>
         </div>
         <div class="atcard">
           <div class="atcard-icon"><i class="fas fa-tags"></i></div>
           <strong>Categorical Variables</strong>
-          <p>Built-in dummy coding modal. Select reference categories and encode with one click.</p>
+          <p>Built-in dummy coding. Pick a reference category and encode with one click. No manual recoding needed.</p>
         </div>
         <div class="atcard">
           <div class="atcard-icon"><i class="fas fa-balance-scale"></i></div>
-          <strong>Both Coefficients</strong>
-          <p>Every regression table shows unstandardized (b) and standardized (β) coefficients with VIF.</p>
+          <strong>Unstandardized &amp; Standardized</strong>
+          <p>Every regression table shows both unstandardized (b) and standardized (β) coefficients alongside VIF.</p>
         </div>
         <div class="atcard">
           <div class="atcard-icon"><i class="fas fa-download"></i></div>
           <strong>Export Results</strong>
-          <p>Single or all results exported to a formatted Word document with APA-style summaries.</p>
+          <p>Export individual or all results to a single formatted Word, PDF, or HTML document.</p>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════ WORKFLOW -->
+    <!-- WORKFLOW -->
     <section id="workflow">
-      <h2>App Workflow at a Glance</h2>
-      <p>MedModr has two main sections accessible from the left sidebar: <strong>Data Processing</strong> and <strong>Statistical Analysis</strong>. The typical workflow follows these pages in order.</p>
+      <h2>How It Works</h2>
+      <p>MedModr has two main sections: <strong>Data Processing</strong> and <strong>Statistical Analysis</strong>. You move through them in order.</p>
 
       <div class="steps">
-        <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Data Processing (7 steps)</strong><p>Upload your file → Select variables → Preview data → Review missing data → Impute if needed → Screen data → Finalize. Each step is optional except Upload.</p></div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Send Data to Analysis</strong><p>Click <strong>Proceed to Analysis</strong> on the Finalize step (Step 7). This transfers your cleaned data directly to the Statistical Analysis page.</p></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Assign Variables to Roles</strong><p>Select variable chips from the Available Variables pool and assign them to X, M, M2, Y, W, or Covariates boxes.</p></div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Choose Analysis Type &amp; Options</strong><p>Pick from 9 analysis types, set confidence level, bootstrap samples, centering, and stage (for moderated mediation).</p></div></div>
-        <div class="step"><div class="step-num">5</div><div class="step-body"><strong>Run &amp; Export</strong><p>Click <strong>▶ Run Analysis</strong> Browse results, view path diagrams and slopes plots, then export to Word.</p></div></div>
-      </div>
-
-    <hr class="divider" />
-
-    <!-- ═══════════════════════════════════════════ DATA PROCESSING -->
-    <section id="data-processing">
-      <h2>Data Processing (Step-by-Step)</h2>
-      <p>The <strong>Data Processing</strong> page guides you through a 7-step pipeline to prepare your data. You can skip directly to Step 7 (Finalize) and proceed to analysis if your data needs no cleaning.</p>
-    </section>
-
-    <section id="upload">
-      <h3>Step 1 — Upload Data</h3>
-      <p>Click <strong>Select File</strong> or drag and drop your file onto the upload zone. MedModr accepts <strong>CSV (.csv)</strong> and <strong>Excel (.xlsx, .xls)</strong> files. Your first row must be a header row containing variable names.</p>
-
-      <div class="callout">
-        <div class="callout-title"><i class="fas fa-info-circle"></i> File Requirements</div>
-        <p>CSV files work fully offline. Excel files require an internet connection the first time (to load the SheetJS library). Once SheetJS is cached by the browser, Excel files also work offline.</p>
-      </div>
-
-      <div class="callout warn">
-        <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> How to Handle Missing Values in Your File</div>
-        <p><strong>Before uploading, type <code>NA</code> in every empty cell in your spreadsheet.</strong> This is the only supported approach. MedModr uses <code>NA</code> to detect and count missing values. A blank cell may not be reliably recognised as missing and could cause incorrect results.</p>
-        <p>Do <strong>not</strong> fill missing cells with values like <code>999</code>, <code>-1</code>, or <code>0</code> as stand-ins. MedModr will treat those as real data, which will distort your analysis.</p>
-      </div>
-
-      <p>After upload, the app shows a file info panel with row count, column count, and the number of categorical vs numeric variables detected. Click <strong>Next: Select Variables</strong> to continue.</p>
-    </section>
-
-    <section id="select-vars">
-      <h3>Step 2 — Select Variables</h3>
-      <p>A two-panel layout shows <strong>Available Columns</strong> on the left and <strong>Selected Variables</strong> on the right. Click <strong>Add →</strong> next to each variable you want to include, or use <strong>Add All</strong> to include everything. Use <strong>Remove</strong> to exclude a variable.</p>
-      <p>Variables automatically detected as categorical (containing text values) are shown with a tag icon.</p>
-      <p>Click <strong>Next: Preview Data</strong> when you have selected all variables you need.</p>
-    </section>
-
-    <section id="preview">
-      <h3>Step 3 — Preview Data</h3>
-      <p>A scrollable table shows all rows and columns of your selected data. Missing values are highlighted in red as <code>NA</code>. Below the table, a summary statistics panel shows N, Mean, SD, Min, Max, and missing counts for each numeric variable, and level counts for categorical variables.</p>
-      <p>From here you can either click <strong>Skip to Analysis</strong> (bypasses missing data and screening steps), or click <strong>Next: Missing Data Summary</strong> to continue the full pipeline.</p>
-    </section>
-
-    <section id="missing-data">
-      <h3>Step 4 — Missing Data Summary</h3>
-      <p>A table shows each variable with its valid N, missing N, and missing percentage. Variables with high missingness are highlighted in amber (5–20%) or red (&gt;20%).</p>
-      <p>Three action buttons are available:</p>
-      <ul>
-        <li><strong>Apply Imputation</strong> — proceeds to Step 5 to choose an imputation method.</li>
-        <li><strong>Listwise Deletion</strong> — removes all rows with any missing value immediately.</li>
-        <li><strong>Proceed</strong> — skips imputation and proceeds to Step 6 with missing values intact. Some analyses may not run cleanly with missing data.</li>
-      </ul>
-    </section>
-
-    <section id="imputation">
-      <h3>Step 5 — Imputation</h3>
-      <p>Seven imputation methods are available. Select one by clicking its button, then click <strong>Apply Imputation</strong>.</p>
-
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Method</th><th>Best Used When</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td>Mean Imputation</td><td>Missingness &lt;5%, MCAR</td><td>Biases standard errors downward; use sparingly.</td></tr>
-            <tr><td>Median Imputation</td><td>Skewed data, &lt;5% missing</td><td>More robust than mean for non-normal distributions.</td></tr>
-            <tr><td>Mode Imputation</td><td>Categorical or binary variables</td><td>Replaces with most frequent value.</td></tr>
-            <tr><td><strong>Multiple Imputation (PMM)</strong></td><td>Any missingness level</td><td><strong>Recommended.</strong> Predictive Mean Matching — finds observed donors by predicted values. Preserves distributions and uncertainty.</td></tr>
-            <tr><td>Hot Deck</td><td>Non-normal data</td><td>Finds the nearest complete case by Euclidean distance; copies its value.</td></tr>
-            <tr><td>Regression Imputation</td><td>MAR data</td><td>Predicts from other variables; adds stochastic residual noise to avoid determinism.</td></tr>
-            <tr><td>EM Algorithm</td><td>Multivariate normal, monotone missing</td><td>Iterative expectation-maximization over joint covariance structure.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p>After imputation, imputed cells are highlighted in yellow in Step 7. Exported CSV files mark imputed values with an asterisk (*). Click <strong>Next: Data Screening</strong> to continue.</p>
-    </section>
-
-    <section id="screening">
-      <h3>Step 6 — Data Screening</h3>
-      <p>Five screening tabs are available. Run each as needed before finalizing your data.</p>
-
-      <div class="output-grid">
-        <div class="output-item">
-          <i class="fas fa-chart-bar oi-icon"></i>
-          <div><strong>Outliers</strong><span>Four detection methods: Z-Score (±3), IQR (1.5×), MAD (3×), and Percentile (1st/99th). Switch methods using the toolbar buttons. Flagged outlier values and row numbers are shown.</span></div>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Process Your Data (7 steps)</strong>
+            <p>Upload your file → select the variables you need → preview → check missing data → impute if needed → screen for issues → finalize. Only Upload and Select Variables are required; everything else is optional.</p>
+          </div>
         </div>
-        <div class="output-item">
-          <i class="fas fa-bell oi-icon"></i>
-          <div><strong>Normality</strong><span>Skewness and excess kurtosis for each numeric variable. Values near 0 indicate normality; |skewness| &gt;2 or |kurtosis| &gt;7 may indicate non-normality.</span></div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Send Data to Analysis</strong>
+            <p>Click <strong>Proceed to Analysis</strong> on the Finalize step. This passes your cleaned data directly to the statistical analysis page.</p>
+          </div>
         </div>
-        <div class="output-item">
-          <i class="fas fa-link oi-icon"></i>
-          <div><strong>Correlation</strong><span>Bivariate correlation matrix for all numeric variable pairs. Choose Pearson (r), Spearman (ρ), or Kendall (τ). Significance stars (* p&lt;.05, ** p&lt;.01, *** p&lt;.001) are shown.</span></div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Assign Variables</strong>
+            <p>Click variable chips from the Available Variables pool into the role boxes: X, M, M2, Y, W, or Covariates.</p>
+          </div>
         </div>
-        <div class="output-item">
-          <i class="fas fa-calculator oi-icon"></i>
-          <div><strong>Sample Size</strong><span>Minimum N recommendations for each analysis type (Simple Mediation ≥50, Serial ≥100, Moderation ≥80, Moderated Mediation ≥200) compared against your actual N.</span></div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>Choose Analysis Type &amp; Options</strong>
+            <p>Select your analysis type, set the confidence level, number of bootstrap samples, centering preference, and moderation stage (if applicable).</p>
+          </div>
         </div>
-        <div class="output-item">
-          <i class="fas fa-chart-line oi-icon"></i>
-          <div><strong>Diagnostic Plots</strong><span>Histogram and Q-Q plot for each numeric variable rendered on HTML5 canvas. Individual plots can be downloaded as PNG files.</span></div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <strong>Run &amp; Export</strong>
+            <p>Click <strong>▶ Run Analysis</strong>. Browse your results, then export to a formatted document.</p>
+          </div>
         </div>
       </div>
-    </section>
-
-    <section id="finalize">
-      <h3>Step 7 — Finalize</h3>
-      <p>A full table of your final clean dataset is shown, with imputed cells highlighted in yellow. Two buttons are available:</p>
-      <ul>
-        <li><strong>Export CSV</strong> — downloads a CSV file. Imputed cells are marked with * in the exported file, and a note at the bottom records which imputation method was used.</li>
-        <li><strong>Proceed to Analysis</strong> — sends the cleaned dataset to the Statistical Analysis page and switches the sidebar navigation automatically.</li>
-      </ul>
     </section>
 
     <hr class="divider" />
 
-    <!-- ═══════════════════════════════════════════ RUNNING ANALYSIS -->
+    <!-- RUNNING ANALYSIS -->
     <section id="running-analysis">
-      <h2>Running Statistical Analysis</h2>
-      <p>The <strong>Statistical Analysis</strong> page has a single panel: <strong>Variable Assignment</strong>. All analysis types are run from this same interface.</p>
+      <h2>Analysis Types &amp; Variable Assignment</h2>
+      <p>All 15 analysis types are run from the same <strong>Variable Assignment</strong> panel. The table below shows which variables each type needs and what it tests.</p>
 
-      <h3>Step 1 — Assign Variables to Roles</h3>
-      <p>The <strong>Available Variables</strong> pool shows all variables from your dataset as clickable chips. Click one or more chips to select them (they turn green), then click one of the <strong>Assign to…</strong> buttons to place them in a role box.</p>
-
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Role Box</th><th>Variable Role</th><th>Used In</th></tr></thead>
+      <div class="table-wrap" style="overflow-x: auto;">
+        <table style="min-width: 900px; font-size: 0.82rem;">
+          <thead>
+            <tr>
+              <th style="min-width: 200px;">Analysis Type</th>
+              <th style="min-width: 60px; text-align:center;">Model #</th>
+              <th style="min-width: 260px;">Required Variables</th>
+              <th style="min-width: 200px;">What it tests</th>
+            </tr>
+          </thead>
           <tbody>
-            <tr><td><span class="role-tag role-x">X</span> Independent</td><td>The predictor / independent variable</td><td>All analysis types</td></tr>
-            <tr><td><span class="role-tag role-m">M</span> Mediator</td><td>First mediator (or the only mediator)</td><td>All mediation types, Moderated Mediation</td></tr>
-            <tr><td><span class="role-tag role-m2">M2</span> Mediator 2</td><td>Second mediator (serial chain)</td><td>Serial Mediation, Moderated Serial Mediation</td></tr>
-            <tr><td><span class="role-tag role-y">Y</span> Outcome</td><td>The dependent / outcome variable</td><td>All analysis types</td></tr>
-            <tr><td><span class="role-tag role-w">W</span> Moderator</td><td>Moderator (or both moderators for 3-way)</td><td>Moderation, Moderated Mediation, Moderated Moderation, Moderated Serial Mediation</td></tr>
-            <tr><td><span class="role-tag role-cov">Cov</span> Covariates</td><td>Control variables (any number)</td><td>All analysis types</td></tr>
+            <tr>
+              <td style="font-weight:600;">Simple Mediation</td>
+              <td style="text-align:center;">4</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+              </td>
+              <td>Does M carry the effect of X on Y? Includes Sobel test.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Parallel Mediation</td>
+              <td style="text-align:center;">4</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M (2+)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+              </td>
+              <td>Multiple mediators acting simultaneously. Reports individual and total indirect effects.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Serial Mediation</td>
+              <td style="text-align:center;">6</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M₁ (1)</span>
+                <span style="background:#a855f7; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M₂ (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+              </td>
+              <td>Chain: X → M₁ → M₂ → Y. Tests three indirect paths. Includes Sobel test.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Simple Moderation</td>
+              <td style="text-align:center;">1</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (1)</span>
+              </td>
+              <td>Does W change how X affects Y? X×W interaction + simple slopes plot.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Double Moderation</td>
+              <td style="text-align:center;">2</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (2)</span>
+                <span style="font-size:0.68rem; color:var(--ink-3);">(W and Z)</span>
+              </td>
+              <td>Two separate moderators W and Z. X×W and X×Z interactions.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Moderated Moderation</td>
+              <td style="text-align:center;">3</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (2)</span>
+                <span style="font-size:0.68rem; color:var(--ink-3);">(W and Z)</span>
+              </td>
+              <td>Three-way interaction: X × W × Z → Y. All two-way interactions included.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Mediation with Moderated Direct</td>
+              <td style="text-align:center;">5</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (1)</span>
+              </td>
+              <td>W moderates only the direct X→Y path (c′-path).</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">W moderates X→M</td>
+              <td style="text-align:center;">7</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (1)</span>
+              </td>
+              <td>First-stage moderation: W moderates the X→M (a) path.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">W moderates M→Y</td>
+              <td style="text-align:center;">14</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (1)</span>
+              </td>
+              <td>Second-stage moderation: W moderates the M→Y (b) path.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">W moderates X→M &amp; M→Y</td>
+              <td style="text-align:center;">58</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (1)</span>
+              </td>
+              <td>W moderates both the a-path and b-path.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">W moderates X→M and X→Y</td>
+              <td style="text-align:center;">8</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (1)</span>
+              </td>
+              <td>W moderates both the a-path (X→M) and the direct path (X→Y).</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">W moderates M→Y &amp; X→Y</td>
+              <td style="text-align:center;">15</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (1)</span>
+              </td>
+              <td>W moderates both the b-path (M→Y) and the direct path (X→Y).</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">W moderates X→M, M→Y, &amp; X→Y</td>
+              <td style="text-align:center;">59</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (1)</span>
+              </td>
+              <td>W moderates all three paths: X→M, M→Y, and X→Y.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">W moderates X→M, Z moderates M→Y</td>
+              <td style="text-align:center;">9</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (2)</span>
+                <span style="font-size:0.68rem; color:var(--ink-3);">(W and Z)</span>
+              </td>
+              <td>Two different moderators: W on the a-path, Z on the b-path.</td>
+            </tr>
+            <tr>
+              <td style="font-weight:600;">Moderated Serial Mediation</td>
+              <td style="text-align:center;">83</td>
+              <td>
+                <span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">X (1)</span>
+                <span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M₁ (1)</span>
+                <span style="background:#a855f7; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">M₂ (1)</span>
+                <span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">Y (1)</span>
+                <span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem; display:inline-block; margin:2px;">W (1)</span>
+              </td>
+              <td>W moderates X→M₁ within a serial chain: X→M₁→M₂→Y.</td>
+            </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="callout">
-        <div class="callout-title"><i class="fas fa-info-circle"></i> Moderated Moderation (3-way): Two Moderators in the W Box</div>
-        <p>For <strong>Moderated Moderation</strong>, assign <em>both</em> moderator variables to the <strong>W box</strong>. The first variable assigned becomes W and the second becomes Z (the moderator of the moderator).</p>
+      <!-- Legend -->
+      <div style="margin-top: 14px; padding: 12px 16px; background: var(--surface-2); border-radius: var(--r); border: 1px solid var(--border);">
+        <div style="font-size: 0.72rem; font-weight: 600; color: var(--ink-3); margin-bottom: 8px;">Variable Role Legend</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 0.72rem; color: var(--ink-3); align-items: center;">
+          <span><span style="background:#3d5af1; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem;">X</span> Independent Variable</span>
+          <span><span style="background:#7c3aed; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem;">M</span> Mediator(s)</span>
+          <span><span style="background:#a855f7; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem;">M₂</span> Second Mediator (serial only)</span>
+          <span><span style="background:#0891b2; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem;">Y</span> Outcome Variable</span>
+          <span><span style="background:#059669; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem;">W</span> Moderator(s)</span>
+          <span><span style="background:#d97706; color:#fff; padding:2px 9px; border-radius:12px; font-size:0.7rem;">Cov</span> Covariates (any number)</span>
+          <span style="background: var(--surface-3); padding:2px 10px; border-radius:12px; border:1px solid var(--border);">(1) = 1 variable</span>
+          <span style="background: var(--surface-3); padding:2px 10px; border-radius:12px; border:1px solid var(--border);">(2) = exactly 2 variables in that box</span>
+          <span style="background: var(--surface-3); padding:2px 10px; border-radius:12px; border:1px solid var(--border);">(2+) = 2 or more variables</span>
+        </div>
       </div>
 
-      <p>Remove a specific variable from a role by clicking the <strong>✕</strong> next to its name inside the role box. Click the <strong>Clear</strong> button on a box header to empty that entire box. The red <strong>🗑 Clear All</strong> button resets every box at once (a confirmation dialog appears first).</p>
+      <hr class="divider" style="margin-top:32px;" />
 
-      <h3>Step 2 — Handle Categorical Variables (if any)</h3>
-      <p>If any variable in your role boxes contains text (e.g., "male", "female", "treatment", "control"), a <strong>Handle Categorical Variables</strong> button appears in the options row. Click it to open the encoding modal where you can:</p>
-      <ul>
-        <li>Select a reference category for each categorical variable (coded as 0).</li>
-        <li>Choose which levels to include as dummy variables.</li>
-        <li>Click <strong>Apply Encoding</strong> to replace the original variable with 0/1 dummy variables in all role boxes.</li>
-      </ul>
-      <p>A <strong>Reset Encoding</strong> button appears after encoding to restore the original categorical variable if needed.</p>
+      <h3>Managing Variables</h3>
+      <p>Remove a single variable from a role box by clicking the <strong>✕</strong> next to its name. Click the <strong>Clear</strong> button on a box header to empty that entire box. The red <strong>🗑 Clear All</strong> button resets everything at once (a confirmation dialog appears first).</p>
 
-      <h3>Step 3 — Set Options</h3>
+      <h3>Categorical Variables</h3>
+      <p>If any of your assigned variables contain text values (e.g., "male"/"female", "treatment"/"control"), a <strong>Handle Categorical Variables</strong> button appears automatically. Click it to open the encoding modal where you can pick a reference category (coded as 0) and choose which levels to include as dummy variables. Click <strong>Apply Encoding</strong> and the app replaces the original variable with 0/1 dummies across all role boxes. A <strong>Reset Encoding</strong> button lets you undo this if needed.</p>
 
+      <h3>Analysis Options</h3>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Option</th><th>Choices</th><th>Notes</th></tr></thead>
           <tbody>
-            <tr><td>Analysis Type</td><td>9 types (see below)</td><td>Select before assigning variables so you know which boxes to fill.</td></tr>
-            <tr><td>Confidence Level</td><td>90%, 95%, 99%</td><td>Applied to all CIs and t-tests. Default 95%.</td></tr>
-            <tr><td>Bootstrap Samples</td><td>None (Sobel only), 1,000, 5,000, 10,000</td><td>5,000 is recommended. None uses Sobel standard errors instead.</td></tr>
-            <tr><td>Bootstrap Method</td><td>Percentile (default), Bias-Corrected (BC)</td><td>BC adjusts for distributional skew in the bootstrap distribution.</td></tr>
-            <tr><td>Centering</td><td>No centering, Continuous-only, All variables</td><td>Shown only for analysis types that use interaction terms (moderation, moderated mediation, etc.).</td></tr>
-            <tr><td>Moderation Stage</td><td>First Stage, Second Stage, Both Stages</td><td>Shown only when <em>Moderated Mediation</em> is selected as the analysis type.</td></tr>
+            <tr><td>Analysis Type</td><td>15 types</td><td>Select before assigning variables so you know which boxes to fill.</td></tr>
+            <tr><td>Confidence Level</td><td>90%, 95%, 99%</td><td>Applies to all confidence intervals. Default is 95%.</td></tr>
+            <tr><td>Bootstrap Samples</td><td>None, 1,000, 5,000, 10,000</td><td>Default is 5,000. Choosing "None" uses Sobel standard errors instead.</td></tr>
+            <tr><td>Bootstrap Method</td><td>Percentile, Bias-Corrected (BC)</td><td>Default is Percentile.</td></tr>
+            <tr><td>Centering</td><td>No centering, Continuous-only, All variables</td><td>Shown only for analysis types with interaction terms (moderations and moderated mediations).</td></tr>
+            <tr><td>Moderation Stage</td><td>First Stage, Second Stage, Both Stages, etc.</td><td>Shown only when Moderated Mediation Models analysis type is selected.</td></tr>
           </tbody>
         </table>
       </div>
-
-      <h3>Step 4 — Run Analysis</h3>
-      <p>Click <strong>▶ Run Analysis</strong>. A brief loading indicator appears. When results are ready, the page scrolls automatically to the Descriptive Statistics table. If multiple combinations of variables are run (e.g., 2 X variables × 3 Y variables = 6 results), a navigation bar appears at the top of the results area with <strong>Previous / Next</strong>, <strong>Show All Results</strong>, and <strong>Export All to Word</strong> buttons.</p>
     </section>
 
     <hr class="divider" />
 
-    <!-- ═══════════════════════════════════════════ ANALYSIS TYPES -->
-    <section id="analysis-types">
-      <h2>The 9 Analysis Types</h2>
-      <p>Select the analysis type from the <strong>Analysis Type</strong> dropdown in the options row. Each type requires specific variable role assignments.</p>
-    </section>
-
-    <!-- SIMPLE MEDIATION -->
-    <section id="simple-mediation">
-      <div class="process-block">
-        <div class="process-header">
-          <div class="process-icon"><i class="fas fa-arrow-right"></i></div>
-          <div class="process-header-text">
-            <h3>Simple Mediation</h3>
-            <p>Tests whether the effect of X on Y is transmitted through a single mediator M.</p>
-            <div class="process-roles">
-              <span class="role-tag role-x">X — required</span>
-              <span class="role-tag role-m">M — required</span>
-              <span class="role-tag role-y">Y — required</span>
-              <span class="role-tag role-cov">Covariates — optional</span>
-            </div>
-          </div>
-        </div>
-        <div class="process-body">
-          <h4>How to Run</h4>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Choose <em>Simple Mediation</em> from the Analysis Type dropdown.</p></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Assign variables</strong><p>Assign your independent variable to <strong>X</strong>, your mediator to <strong>M</strong>, and your outcome to <strong>Y</strong>. Optionally assign covariates.</p></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Set options</strong><p>Choose confidence level and bootstrap samples (5,000 recommended for stable CIs).</p></div></div>
-            <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run analysis</strong><p>Click <strong>▶ Run Analysis</strong>.</p></div></div>
-          </div>
-
-          <h4>What You Get</h4>
-          <div class="result-types">
-            <span class="result-tag">Descriptive Statistics</span>
-            <span class="result-tag">Path Diagram (interactive)</span>
-            <span class="result-tag">a-Path Table (X → M)</span>
-            <span class="result-tag">b-Path Table (X, M → Y)</span>
-            <span class="result-tag">Total Effect Table (X → Y)</span>
-            <span class="result-tag">Effects Summary (c, c', a×b)</span>
-            <span class="result-tag">Bootstrap CI for indirect effect</span>
-            <span class="result-tag">Sobel test (if no bootstrap)</span>
-            <span class="result-tag">APA-style Summary</span>
-          </div>
-
-          <div class="callout" style="margin-top:16px">
-            <div class="callout-title"><i class="fas fa-lightbulb"></i> Interpreting Mediation</div>
-            <p>If the bootstrap CI for the indirect effect (a×b) excludes zero, the indirect effect is statistically significant. <strong>Full mediation</strong> occurs when the indirect effect is significant and the direct effect (c′) is not. <strong>Partial mediation</strong> occurs when both are significant.</p>
-          </div>
-
-          <p><strong>Multiple combinations:</strong> If you assign multiple X and/or Y variables, MedModr runs a separate Simple Mediation for every X × M × Y combination and provides navigation between results.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PARALLEL MEDIATION -->
-    <section id="parallel-mediation">
-      <div class="process-block">
-        <div class="process-header">
-          <div class="process-icon"><i class="fas fa-code-branch"></i></div>
-          <div class="process-header-text">
-            <h3>Parallel Mediation</h3>
-            <p>Tests multiple independent mediators simultaneously. X effects Y through M₁, M₂, …, Mₖ in parallel (no causal order among mediators).</p>
-            <div class="process-roles">
-              <span class="role-tag role-x">X — required</span>
-              <span class="role-tag role-m">M — assign multiple mediators here</span>
-              <span class="role-tag role-y">Y — required</span>
-              <span class="role-tag role-cov">Covariates — optional</span>
-            </div>
-          </div>
-        </div>
-        <div class="process-body">
-          <h4>How to Run</h4>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Choose <em>Parallel Mediation</em> from the Analysis Type dropdown.</p></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Assign variables</strong><p>Assign X to <strong>X</strong> and Y to <strong>Y</strong>. Assign <em>all</em> mediators (M₁ through Mₖ) to the <strong>M</strong> box — you can add multiple variables to this box.</p></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Set options &amp; run</strong><p>Choose bootstrap samples and click <strong>▶ Run Analysis</strong>.</p></div></div>
-          </div>
-
-          <h4>What You Get</h4>
-          <div class="result-types">
-            <span class="result-tag">Descriptive Statistics</span>
-            <span class="result-tag">Path Diagram</span>
-            <span class="result-tag">a-Path for each mediator (X → Mᵢ)</span>
-            <span class="result-tag">b-Path (Y model with all mediators)</span>
-            <span class="result-tag">Total Effect Table</span>
-            <span class="result-tag">Specific indirect effects per mediator</span>
-            <span class="result-tag">Total indirect effect</span>
-            <span class="result-tag">Bootstrap CIs for all indirect effects</span>
-            <span class="result-tag">APA-style Summary</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERIAL MEDIATION -->
-    <section id="serial-mediation">
-      <div class="process-block">
-        <div class="process-header">
-          <div class="process-icon"><i class="fas fa-share-alt"></i></div>
-          <div class="process-header-text">
-            <h3>Serial Mediation</h3>
-            <p>Tests a causal chain: X → M₁ → M₂ → Y. The first mediator causes the second mediator, which then causes Y.</p>
-            <div class="process-roles">
-              <span class="role-tag role-x">X — required</span>
-              <span class="role-tag role-m">M — first mediator</span>
-              <span class="role-tag role-m2">M2 — second mediator</span>
-              <span class="role-tag role-y">Y — required</span>
-              <span class="role-tag role-cov">Covariates — optional</span>
-            </div>
-          </div>
-        </div>
-        <div class="process-body">
-          <h4>How to Run</h4>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Choose <em>Serial Mediation</em> from the Analysis Type dropdown.</p></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Assign variables</strong><p>Assign X → <strong>X</strong>, first mediator → <strong>M</strong>, second mediator → <strong>M2</strong>, outcome → <strong>Y</strong>.</p></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Set options &amp; run</strong><p>Choose bootstrap samples. Click <strong>▶ Run Analysis</strong>.</p></div></div>
-          </div>
-
-          <h4>What You Get</h4>
-          <div class="result-types">
-            <span class="result-tag">Descriptive Statistics</span>
-            <span class="result-tag">Path Diagram (serial chain)</span>
-            <span class="result-tag">X → M₁ model</span>
-            <span class="result-tag">X + M₁ → M₂ model</span>
-            <span class="result-tag">X + M₁ + M₂ → Y model</span>
-            <span class="result-tag">Total Effect model</span>
-            <span class="result-tag">Serial indirect (X→M₁→M₂→Y)</span>
-            <span class="result-tag">Specific indirect via M₁ only</span>
-            <span class="result-tag">Specific indirect via M₂ only</span>
-            <span class="result-tag">Bootstrap CIs for all paths</span>
-            <span class="result-tag">APA-style Summary</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SIMPLE MODERATION -->
-    <section id="simple-moderation">
-      <div class="process-block">
-        <div class="process-header">
-          <div class="process-icon"><i class="fas fa-exchange-alt"></i></div>
-          <div class="process-header-text">
-            <h3>Simple Moderation</h3>
-            <p>Tests whether the effect of X on Y depends on the level of a moderator W (i.e., the X × W interaction).</p>
-            <div class="process-roles">
-              <span class="role-tag role-x">X — required</span>
-              <span class="role-tag role-w">W — moderator (required)</span>
-              <span class="role-tag role-y">Y — required</span>
-              <span class="role-tag role-cov">Covariates — optional</span>
-            </div>
-          </div>
-        </div>
-        <div class="process-body">
-          <h4>How to Run</h4>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Choose <em>Simple Moderation</em> from the Analysis Type dropdown.</p></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Assign variables</strong><p>Assign X → <strong>X</strong>, moderator → <strong>W</strong>, outcome → <strong>Y</strong>.</p></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Set centering option</strong><p>Choose <em>No centering</em>, <em>Continuous-only centered</em>, or <em>All variables centered</em>. Mean centering reduces multicollinearity between main effects and the interaction term.</p></div></div>
-            <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Run analysis</strong><p>Click <strong>▶ Run Analysis</strong>.</p></div></div>
-          </div>
-
-          <h4>What You Get</h4>
-          <div class="result-types">
-            <span class="result-tag">Descriptive Statistics</span>
-            <span class="result-tag">Path Diagram</span>
-            <span class="result-tag">Table 1: Baseline model (no interaction)</span>
-            <span class="result-tag">Table 2: Full moderation model (with X×W)</span>
-            <span class="result-tag">Simple slopes at Low/Mean/High W</span>
-            <span class="result-tag">Simple slopes plot (interactive, downloadable)</span>
-            <span class="result-tag">Table 3: Direct effect of X on Y</span>
-            <span class="result-tag">APA-style Summary</span>
-          </div>
-
-          <div class="callout" style="margin-top:16px">
-            <div class="callout-title"><i class="fas fa-lightbulb"></i> Interpreting Moderation</div>
-            <p>If the interaction coefficient (b₃, X×W) is statistically significant, moderation is present. This means the effect of X on Y changes across levels of W. Inspect the simple slopes table to understand the direction and magnitude of X's effect at low, mean, and high values of W.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FIRST STAGE MODMED -->
-    <section id="first-stage-modmed">
-      <div class="process-block">
-        <div class="process-header">
-          <div class="process-icon"><i class="fas fa-layer-group"></i></div>
-          <div class="process-header-text">
-            <h3>First Stage Moderated Mediation</h3>
-            <p>W moderates the <strong>a-path</strong> (X → M). The indirect effect varies depending on W. The b-path (M → Y) is unmoderated.</p>
-            <div class="process-roles">
-              <span class="role-tag role-x">X</span>
-              <span class="role-tag role-m">M</span>
-              <span class="role-tag role-w">W — moderator</span>
-              <span class="role-tag role-y">Y</span>
-              <span class="role-tag role-cov">Covariates — optional</span>
-            </div>
-          </div>
-        </div>
-        <div class="process-body">
-          <h4>How to Run</h4>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select analysis type</strong><p>Choose <em>Moderated Mediation</em> from the Analysis Type dropdown.</p></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Set moderation stage</strong><p>In the <strong>Moderation Stage</strong> dropdown (which appears when Moderated Mediation is selected), choose <em>First Stage</em>.</p></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Assign variables</strong><p>Assign X → <strong>X</strong>, M → <strong>M</strong>, W → <strong>W</strong>, Y → <strong>Y</strong>.</p></div></div>
-            <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Set centering &amp; bootstrap options, then run</strong></div></div>
-          </div>
-
-          <h4>What You Get</h4>
-          <div class="result-types">
-            <span class="result-tag">Descriptive Statistics</span>
-            <span class="result-tag">Path Diagram</span>
-            <span class="result-tag">Table 1: Baseline M model (X + W, no interaction)</span>
-            <span class="result-tag">Table 2: Full first-stage model (X × W → M)</span>
-            <span class="result-tag">Table 3: b-Path model (X + M → Y)</span>
-            <span class="result-tag">Table 4: Total effect model</span>
-            <span class="result-tag">Simple slopes of X→M at three W levels</span>
-            <span class="result-tag">Simple slopes plot</span>
-            <span class="result-tag">Conditional indirect effects table</span>
-            <span class="result-tag">Index of Moderated Mediation (IMM = a₃ × b)</span>
-            <span class="result-tag">Bootstrap CI for IMM</span>
-            <span class="result-tag">Effects Summary</span>
-            <span class="result-tag">APA-style Summary</span>
-          </div>
-
-          <div class="callout" style="margin-top:16px">
-            <div class="callout-title"><i class="fas fa-lightbulb"></i> Key Statistic: Index of Moderated Mediation (IMM)</div>
-            <p>The IMM quantifies how much the indirect effect changes per one-unit increase in W. A bootstrap CI that excludes zero confirms statistically significant moderated mediation. Then inspect the conditional indirect effects table to see the magnitude of the indirect effect at Low, Mean, and High W.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECOND STAGE MODMED -->
-    <section id="second-stage-modmed">
-      <div class="process-block">
-        <div class="process-header">
-          <div class="process-icon"><i class="fas fa-layer-group"></i></div>
-          <div class="process-header-text">
-            <h3>Second Stage Moderated Mediation</h3>
-            <p>W moderates the <strong>b-path</strong> (M → Y). The a-path (X → M) is unmoderated. IMM = a × b₃.</p>
-            <div class="process-roles">
-              <span class="role-tag role-x">X</span>
-              <span class="role-tag role-m">M</span>
-              <span class="role-tag role-w">W — moderator</span>
-              <span class="role-tag role-y">Y</span>
-              <span class="role-tag role-cov">Covariates — optional</span>
-            </div>
-          </div>
-        </div>
-        <div class="process-body">
-          <h4>How to Run</h4>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select Moderated Mediation, then choose Second Stage</strong><p>Analysis Type = <em>Moderated Mediation</em>; Moderation Stage = <em>Second Stage</em>.</p></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Assign X, M, W, Y</strong><p>Same variable assignment as First Stage.</p></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Set options &amp; run</strong></div></div>
-          </div>
-
-          <h4>What You Get</h4>
-          <div class="result-types">
-            <span class="result-tag">Path Diagram</span>
-            <span class="result-tag">Table 1: Unmoderated a-path (X → M)</span>
-            <span class="result-tag">Table 2: Baseline Y model (no M×W interaction)</span>
-            <span class="result-tag">Table 3: Full second-stage model (M × W → Y)</span>
-            <span class="result-tag">Table 4: Total effect model</span>
-            <span class="result-tag">Simple slopes of M→Y at three W levels</span>
-            <span class="result-tag">Simple slopes plot</span>
-            <span class="result-tag">Conditional indirect effects</span>
-            <span class="result-tag">IMM = a × b₃</span>
-            <span class="result-tag">Bootstrap CI for IMM</span>
-            <span class="result-tag">Effects Summary</span>
-            <span class="result-tag">APA-style Summary</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BOTH STAGES MODMED -->
-    <section id="both-stages-modmed">
-      <div class="process-block">
-        <div class="process-header">
-          <div class="process-icon"><i class="fas fa-layer-group"></i></div>
-          <div class="process-header-text">
-            <h3>Both Stages Moderated Mediation</h3>
-            <p>W moderates <em>both</em> the a-path (X → M) and the b-path (M → Y) simultaneously.</p>
-            <div class="process-roles">
-              <span class="role-tag role-x">X</span>
-              <span class="role-tag role-m">M</span>
-              <span class="role-tag role-w">W — moderator</span>
-              <span class="role-tag role-y">Y</span>
-              <span class="role-tag role-cov">Covariates — optional</span>
-            </div>
-          </div>
-        </div>
-        <div class="process-body">
-          <h4>How to Run</h4>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select Moderated Mediation → Both Stages</strong><p>Analysis Type = <em>Moderated Mediation</em>; Moderation Stage = <em>Both Stages</em>.</p></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Assign X, M, W, Y and run</strong></div></div>
-          </div>
-
-          <h4>What You Get</h4>
-          <div class="result-types">
-            <span class="result-tag">Path Diagram (both stages)</span>
-            <span class="result-tag">Table 1: Baseline M model</span>
-            <span class="result-tag">Table 2: First-stage model (X × W → M)</span>
-            <span class="result-tag">Table 3: Baseline Y model</span>
-            <span class="result-tag">Table 4: Second-stage model (M × W → Y)</span>
-            <span class="result-tag">Table 5: Total effect model</span>
-            <span class="result-tag">Simple slopes (X→M &amp; M→Y)</span>
-            <span class="result-tag">Two slope plots</span>
-            <span class="result-tag">Conditional indirect effects</span>
-            <span class="result-tag">APA-style Summary</span>
-          </div>
-
-          <div class="callout warn" style="margin-top:16px">
-            <div class="callout-title"><i class="fas fa-exclamation-triangle"></i> No Bootstrap IMM for Both Stages</div>
-            <p>The Both Stages model does not produce a single bootstrapped Index of Moderated Mediation. To obtain bootstrap CIs for each IMM separately, run the <em>First Stage</em> and <em>Second Stage</em> analyses individually.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MODERATED MODERATION -->
-    <section id="moderated-moderation">
-      <div class="process-block">
-        <div class="process-header">
-          <div class="process-icon"><i class="fas fa-cubes"></i></div>
-          <div class="process-header-text">
-            <h3>Moderated Moderation (Three-Way Interaction)</h3>
-            <p>Tests whether the two-way interaction X × W itself is moderated by a second moderator Z, creating a three-way interaction X × W × Z → Y.</p>
-            <div class="process-roles">
-              <span class="role-tag role-x">X</span>
-              <span class="role-tag role-w">W &amp; Z — both in the W box</span>
-              <span class="role-tag role-y">Y</span>
-              <span class="role-tag role-cov">Covariates — optional</span>
-            </div>
-          </div>
-        </div>
-        <div class="process-body">
-          <h4>How to Run</h4>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select Moderated Moderation</strong><p>Choose <em>Moderated Moderation</em> from the Analysis Type dropdown.</p></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Assign variables — two moderators go in the W box</strong><p>Assign X → <strong>X</strong>, Y → <strong>Y</strong>. Assign <em>both moderators</em> to the <strong>W</strong> box — the first variable assigned = W, the second = Z. A yellow info banner will remind you of this rule when Moderated Moderation is selected.</p></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Set centering &amp; bootstrap options, then run</strong></div></div>
-          </div>
-
-          <h4>What You Get</h4>
-          <div class="result-types">
-            <span class="result-tag">Descriptive Statistics</span>
-            <span class="result-tag">Path Diagram (3-way)</span>
-            <span class="result-tag">Table 1: Main effects only (X, W, Z → Y)</span>
-            <span class="result-tag">Table 2: Full model (all main effects + two-way + three-way interactions)</span>
-            <span class="result-tag">Table 3: Direct effect of X controlling all interactions</span>
-            <span class="result-tag">Bootstrap CI for three-way interaction term</span>
-            <span class="result-tag">APA-style Summary</span>
-          </div>
-
-          <div class="callout" style="margin-top:16px">
-            <div class="callout-title"><i class="fas fa-lightbulb"></i> Key Statistic</div>
-            <p>The three-way interaction coefficient (X × W × Z) is the focal statistic. A significant three-way interaction indicates moderated moderation — the moderating effect of W on the X→Y relationship itself changes across levels of Z.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MODERATED SERIAL MEDIATION -->
-    <section id="moderated-serial">
-      <div class="process-block">
-        <div class="process-header">
-          <div class="process-icon"><i class="fas fa-stream"></i></div>
-          <div class="process-header-text">
-            <h3>Moderated Serial Mediation</h3>
-            <p>Tests whether W moderates the first-stage of a serial mediation chain (X → M₁ → M₂ → Y). The moderator W affects the X → M₁ path; the rest of the chain is unmoderated.</p>
-            <div class="process-roles">
-              <span class="role-tag role-x">X</span>
-              <span class="role-tag role-m">M — first mediator</span>
-              <span class="role-tag role-m2">M2 — second mediator</span>
-              <span class="role-tag role-w">W — moderator</span>
-              <span class="role-tag role-y">Y</span>
-              <span class="role-tag role-cov">Covariates — optional</span>
-            </div>
-          </div>
-        </div>
-        <div class="process-body">
-          <h4>How to Run</h4>
-          <div class="steps">
-            <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Select Moderated Serial Mediation</strong><p>Choose <em>Moderated Serial Mediation</em> from the Analysis Type dropdown.</p></div></div>
-            <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Assign all five roles</strong><p>Assign X → <strong>X</strong>, first mediator → <strong>M</strong>, second mediator → <strong>M2</strong>, moderator → <strong>W</strong>, outcome → <strong>Y</strong>.</p></div></div>
-            <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Set centering &amp; bootstrap options, then run</strong></div></div>
-          </div>
-
-          <h4>What You Get</h4>
-          <div class="result-types">
-            <span class="result-tag">Descriptive Statistics</span>
-            <span class="result-tag">Table 1: a-Path baseline (X + W → M₁, no interaction)</span>
-            <span class="result-tag">Table 2: First-stage model (X × W → M₁)</span>
-            <span class="result-tag">Table 3: M₂ model (X + M₁ → M₂)</span>
-            <span class="result-tag">Table 4: Y model (X + M₁ + M₂ → Y)</span>
-            <span class="result-tag">Conditional IE: X→M₁→Y at Low/Mean/High W</span>
-            <span class="result-tag">Conditional IE: X→M₂→Y at Low/Mean/High W</span>
-            <span class="result-tag">Conditional IE: X→M₁→M₂→Y (serial) at Low/Mean/High W</span>
-            <span class="result-tag">IMM for each path</span>
-            <span class="result-tag">Bootstrap CIs for all conditional IEs and IMMs</span>
-            <span class="result-tag">Effects Summary</span>
-            <span class="result-tag">APA-style Summary</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- ═══════════════════════════════════════════ RESULTS & EXPORT -->
+    <!-- RESULTS & EXPORT -->
     <section id="results-export">
       <h2>Interpreting &amp; Exporting Results</h2>
-      <p>Every analysis produces a standardized output structure, always beginning with Descriptive Statistics and ending with an APA-style plain-language summary.</p>
+      <p>Every analysis starts with descriptive statistics and ends with a plain-language summary of the findings. In between, you'll see regression tables, path diagrams (where applicable), indirect effect tables (where applicable), and simple slopes plots (where applicable).</p>
 
       <h3>Regression Tables</h3>
-      <p>Every regression table in MedModr reports both <strong>unstandardized (b)</strong> and <strong>standardized (β)</strong> coefficients, along with SE, t, p, LLCI, ULCI, significance stars, and VIF (Variance Inflation Factor) for multicollinearity diagnostics.</p>
+      <p>Each table reports both <strong>unstandardized (b)</strong> and <strong>standardized (β)</strong> coefficients so you can see both the raw effect size and how variables compare to each other. Other columns include SE, t/z, p-value, confidence interval bounds (LLCI, ULCI), significance stars, and VIF for multicollinearity checking.</p>
       <ul>
-        <li><strong>b</strong> — unstandardized coefficient (raw scale of the variables).</li>
-        <li><strong>β</strong> — standardized coefficient (obtained by z-scoring all variables and re-running the same regression). Allows comparison across predictors in different units.</li>
-        <li><strong>VIF</strong> — values &gt;5 indicate potential multicollinearity concern; values &gt;10 are considered serious.</li>
-        <li><strong>Stars</strong> — * p&lt;.05, ** p&lt;.01, *** p&lt;.001.</li>
+        <li><strong>b</strong> — the raw coefficient, in the original units of the variables.</li>
+        <li><strong>β</strong> — standardized coefficient, useful for comparing predictors measured in different units.</li>
+        <li><strong>VIF</strong> — values above 5 suggest potential multicollinearity; above 10 is considered problematic.</li>
+        <li><strong>Stars</strong> — * p&lt;.05 &nbsp; ** p&lt;.01 &nbsp; *** p&lt;.001</li>
       </ul>
-
-      <h3>Effects Summary Table</h3>
-      <p>At the bottom of each analysis is an <strong>Effects Summary</strong> showing total effect (c), direct effect (c′), and all indirect effects in a single table for easy comparison. Bootstrap CIs or Sobel test results are shown here.</p>
     </section>
 
     <section id="path-diagrams">
       <h3>Path Diagrams</h3>
-      <p>Most of the analysis types produce an interactive path diagram below the Descriptive Statistics table. The diagram auto-adjusts to fit any variable name length. Click <strong>View Full-Screen Diagram</strong> to open the full-screen modal with these customization options:</p>
+      <p>Most analysis types generate an interactive path diagram showing the relationships between your variables with coefficient labels on each path arrow. Click <strong>View Full-Screen Diagram</strong> to open a larger view with these options:</p>
 
       <div class="output-grid">
-        <div class="output-item"><i class="fas fa-ruler oi-icon"></i><div><strong>Unstandardized / Standardized</strong><span>Toggle between b and β coefficients displayed on path arrows.</span></div></div>
-        <div class="output-item"><i class="fas fa-arrows-alt-h oi-icon"></i><div><strong>Shorter / Longer Lines</strong><span>Adjust arrow length for cleaner layouts.</span></div></div>
-        <div class="output-item"><i class="fas fa-square oi-icon"></i><div><strong>Card Box ON/OFF</strong><span>Toggle the label background boxes on coefficient labels.</span></div></div>
-        <div class="output-item"><i class="fas fa-chart-line oi-icon"></i><div><strong>Show Coefs ON/OFF</strong><span>Show or hide all coefficient annotations.</span></div></div>
+        <div class="output-item"><i class="fas fa-ruler oi-icon"></i><div><strong>Unstandardized / Standardized</strong><span>Switch between b and β on the path arrows.</span></div></div>
+        <div class="output-item"><i class="fas fa-square oi-icon"></i><div><strong>Card Box ON/OFF</strong><span>Show or hide the label background boxes on coefficients.</span></div></div>
+        <div class="output-item"><i class="fas fa-chart-line oi-icon"></i><div><strong>Show Coefficients ON/OFF</strong><span>Toggle all coefficient annotations on or off.</span></div></div>
         <div class="output-item"><i class="fas fa-star-of-david oi-icon"></i><div><strong>Show/Hide p-values</strong><span>Include p-values on path labels.</span></div></div>
-        <div class="output-item"><i class="fas fa-paint-roller oi-icon"></i><div><strong>Black &amp; White mode</strong><span>Switch to a publication-ready monochrome style.</span></div></div>
-        <div class="output-item"><i class="fas fa-chart-simple oi-icon"></i><div><strong>Show 95% CI / Show p-value</strong><span>Toggle the indirect effect label between CI format and p-value format.</span></div></div>
-        <div class="output-item"><i class="fas fa-chart-line oi-icon"></i><div><strong>Dotted/Solid Direct Effect</strong><span>Style the direct effect (c′) line as dotted or solid.</span></div></div>
-        <div class="output-item"><i class="fas fa-download oi-icon"></i><div><strong>Download PNG</strong><span>Save the current diagram as a high-resolution PNG (1800px wide).</span></div></div>
+        <div class="output-item"><i class="fas fa-paint-roller oi-icon"></i><div><strong>Black &amp; White Mode</strong><span>Switch to a monochrome style for publication figures.</span></div></div>
+        <div class="output-item"><i class="fas fa-chart-simple oi-icon"></i><div><strong>Show 95% CI / p-value</strong><span>Toggle the indirect effect label between CI and p-value format.</span></div></div>
+        <div class="output-item"><i class="fas fa-chart-line oi-icon"></i><div><strong>Dotted/Solid Direct Effect</strong><span>Style the direct effect (c′) arrow as dotted or solid.</span></div></div>
+        <div class="output-item"><i class="fas fa-download oi-icon"></i><div><strong>Download PNG/ SVG</strong><span>Save the current diagram as a high-resolution PNG/ SVG image.</span></div></div>
       </div>
     </section>
 
-    <section id="simple-slopes">
-      <h3>Simple Slopes Plots</h3>
-      <p>Available for <em>Simple Moderation</em>, <em>First Stage Moderated Mediation</em>, <em>Second Stage Moderated Mediation</em>, <em>Both Stages Moderated Mediation</em>, and <em>Moderated Moderation</em>. The plot shows three regression lines — one each for Low (−1SD), Mean, and High (+1SD) of the moderator W.</p>
-      <p>Inline plot controls:</p>
-      <ul>
-        <li><strong>Legend (Top-Right) / Annotations on Lines</strong> — switch how line labels are displayed.</li>
-        <li><strong>Show/Hide p-values</strong> — include significance stars and p-values in labels.</li>
-        <li><strong>Publication Ready / Default Style</strong> — toggle a clean white B&amp;W theme.</li>
-        <li><strong>Color pickers</strong> — individually change the color of each slope line.</li>
-        <li><strong>Full Screen</strong> — open the plot in a large modal.</li>
-        <li><strong>Download PNG</strong> — saves a 1800×1080 pixel PNG.</li>
-      </ul>
+    <!-- VERSION HISTORY -->
+    <section id="version-history">
+      <h2>Version History</h2>
+      <p>Always check the <a href="https://github.com/shinyhealthtools/medmodr/releases" target="_blank"><i class="fab fa-github"></i> GitHub Releases page </a> for the latest version of MedModr. New releases include bug fixes, new analysis types, and feature improvements. This documentation page is updated alongside major releases.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Version</th><th>Released</th><th>Highlights</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>v2.0</strong> <span style="background:var(--green);color:#fff;font-size:0.68rem;font-weight:600;padding:2px 8px;border-radius:12px;margin-left:6px;">Latest</span></td>
+              <td style="white-space:nowrap;">June 2026</td>
+              <td>15 analysis types (6 new models added), automatic logistic regression for binary outcomes, enhanced path diagrams (SVG export, line thickness, node size, variable renaming), improved export menu (Word, PDF, HTML, CSV [Only data]), binary moderator support in moderation and moderated mediation models.</td>
+            </tr>
+            <tr>
+              <td><strong>v1.0</strong></td>
+              <td style="white-space:nowrap;">April 2026</td>
+              <td>First release. 9 analysis types, OLS regression, bootstrap CIs, standardized coefficients, CSV and Excel import, Word export, path diagrams, simple slopes plots.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
-    <section id="exporting">
-      <h3>Exporting Results</h3>
-      <p>Two export options are available after running analysis:</p>
-      <ul>
-        <li><strong>Export to Word (single result)</strong> — appears as a green button when only one result is present. Downloads the current result as a .doc file.</li>
-        <li><strong>Export All to Word</strong> — available in the multi-result navigation bar when multiple variable combinations were run. Downloads all results combined into a single document.</li>
-      </ul>
-      <p>The Word document includes: a header with the app name, version, analysis configuration, and generation date; all regression tables; effects summaries; APA-style interpretation paragraphs; and a citation block at the end.</p>
-    </section>
-
-    <hr class="divider" />
-
-    <!-- ═══════════════════════════════════════════ REFERENCE -->
+    <!-- COVARIATES -->
     <section id="covariates-info">
       <h2>Covariates (Control Variables)</h2>
-      <p>Any number of control variables can be assigned to the <strong>Covariates</strong> box. They are automatically included in all regression models in the analysis chain (a-path model, b-path model, total effect model).</p>
-
-      <div class="callout">
-        <div class="callout-title"><i class="fas fa-info-circle"></i> Covariate Centering</div>
-        <p>Covariates are mean-centered internally before entering any model. This improves interpretability of the intercept and reduces multicollinearity with interaction terms. The centering is applied to the analytical computations only and the original data is not modified.</p>
-      </div>
+      <p>Add any number of control variables to the <strong>Covariates</strong> box. They're automatically included in every regression model in the analysis chain.</p>
     </section>
 
     <section id="centering">
-      <h2>Mean Centering Options</h2>
-      <p>For analysis types that involve interaction terms (moderation, moderated mediation, moderated moderation, moderated serial mediation), three centering strategies are available in the options row:</p>
+      <h2>Mean Centering</h2>
+      <p>For analysis types that use interaction terms (moderations and moderated mediations), three centering options are available:</p>
       <ul>
-        <li><strong>No centering</strong> — raw variables enter the model. Interaction = raw X × raw W.</li>
-        <li><strong>Continuous-only centered</strong> — only continuous variables are mean-centered. Binary (0/1) variables remain raw. Interaction = centered_X × centered_W.</li>
-        <li><strong>All variables centered</strong> — all predictors are mean-centered including binary variables. Interaction = centered_X × centered_W.</li>
+        <li><strong>No centering</strong> — raw variable values are used as-is.</li>
+        <li><strong>Continuous-only centered</strong> — only continuous variables are mean-centered; binary (0/1) variables stay raw.</li>
+        <li><strong>All variables centered</strong> — all predictors are mean-centered, including binary variables (0/1).</li>
       </ul>
-      <p>Simple slopes tables always use mean-centered W values regardless of the centering option selected, to ensure the slopes at −1SD, Mean, and +1SD are correctly computed relative to the moderator mean.</p>
+      <p>Simple slopes tables always use mean-centered moderator values (−1SD, Mean, and +1SD) regardless of the centering option you choose.</p>
     </section>
 
     <section id="bootstrap-info">
       <h2>Bootstrap Confidence Intervals</h2>
-      <p>Bootstrap CIs are computed for all indirect effects: simple indirect effects (a×b), specific serial indirect effects, conditional indirect effects at levels of W, and the Index of Moderated Mediation (IMM).</p>
-      <p>Two bootstrap methods are available:</p>
+      <p>Bootstrap CIs are calculated for all indirect effects — simple indirect effects, serial indirect paths, conditional indirect effects at moderator levels, and the Index of Moderated Mediation (IMM).</p>
+      <p>Two methods are available:</p>
       <ul>
-        <li><strong>Percentile</strong> (default) — uses the raw percentiles of the bootstrap distribution. If a CI excludes zero, the effect is significant at α = 1 − confidence level.</li>
-        <li><strong>Bias-Corrected (BC)</strong> — corrects for systematic bias in the bootstrap distribution using the proportion of bootstrap estimates below the observed estimate. Slightly more powerful but can be anti-conservative under certain conditions.</li>
+        <li><strong>Percentile</strong> (default) — uses the raw percentiles of the bootstrap distribution. If the CI doesn't include zero, the effect is significant at your chosen alpha level.</li>
+        <li><strong>Bias-Corrected (BC)</strong> — adjusts for systematic bias using the proportion of bootstrap estimates that fall below the observed estimate.</li>
       </ul>
-      <p>Recommended: <strong>5,000 samples (Percentile)</strong> for stable CIs.</p>
-    </section>
-
-    <!-- COMPARISON TABLE -->
-    <section id="comparison">
-      <h2>MedModr vs PROCESS Macro</h2>
-      <p>MedModr implements the same mathematical framework as Hayes' PROCESS macro — OLS regression via matrix algebra, percentile bootstrap, and the conditional process modeling approach from Hayes (2022). The two tools agree within rounding error on all point estimates.</p>
-
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Feature</th><th>PROCESS Macro v4.2</th><th>MedModr v1.0</th></tr></thead>
-          <tbody>
-            <tr><td>OLS regression engine</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>Unstandardized b</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>Standardized β</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>VIF for multicollinearity</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>Percentile bootstrap CIs</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>Bias-Corrected (BC) bootstrap</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>Simple mediation</td><td class="yes">✓ Model 4</td><td class="yes">✓</td></tr>
-            <tr><td>Parallel mediation</td><td class="yes">✓ Model 4</td><td class="yes">✓</td></tr>
-            <tr><td>Serial mediation</td><td class="yes">✓ Model 6</td><td class="yes">✓</td></tr>
-            <tr><td>Simple moderation</td><td class="yes">✓ Model 1</td><td class="yes">✓</td></tr>
-            <tr><td>First stage moderated mediation</td><td class="yes">✓ Model 7</td><td class="yes">✓</td></tr>
-            <tr><td>Second stage moderated mediation</td><td class="yes">✓ Model 14</td><td class="yes">✓</td></tr>
-            <tr><td>Both stages moderated mediation</td><td class="yes">✓ Model 58</td><td class="yes">✓</td></tr>
-            <tr><td>Moderated moderation (3-way)</td><td class="yes">✓ Model 3</td><td class="yes">✓</td></tr>
-            <tr><td>Moderated serial mediation</td><td class="yes">✓ Model 83</td><td class="yes">✓</td></tr>
-            <tr><td>Interactive path diagrams</td><td class="no">✗ Text output only</td><td class="yes">✓ Auto-adjusting, downloadable</td></tr>
-            <tr><td>Simple slopes plot</td><td class="no">✗ Text tables only</td><td class="yes">✓ Annotated, downloadable</td></tr>
-            <tr><td>CSV/Excel file import</td><td class="no">✗ Requires SPSS/R/SAS</td><td class="yes">✓ Built-in</td></tr>
-            <tr><td>Missing data imputation</td><td class="no">✗ External tool needed</td><td class="yes">✓ 7 methods including PMM</td></tr>
-            <tr><td>Data screening</td><td class="no">✗</td><td class="yes">✓ Outliers, normality, correlation, plots</td></tr>
-            <tr><td>Categorical variable encoding</td><td class="yes">✓ Automatic</td><td class="yes">✓ Modal with reference selection</td></tr>
-            <tr><td>Word export</td><td class="no">✗</td><td class="yes">✓ Full report with APA summaries</td></tr>
-            <tr><td>Requires software installation</td><td class="yes">✓ SPSS, R, or SAS required</td><td class="no">✗ Browser-only, no install</td></tr>
-            <tr><td>Works fully offline</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-            <tr><td>Free to use</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <p>Recommended: <strong>5,000 samples with the Percentile method</strong> for reliable, stable CIs.</p>
     </section>
 
     <!-- LICENSE -->
@@ -1428,16 +1011,12 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</div>
-      <div class="callout success" style="margin-top:14px">
-        <div class="callout-title"><i class="fas fa-check-circle"></i> Open Source</div>
-        <p>Use freely including commercially. Modify and create your own versions. Host on institutional servers. Include in teaching or research materials. Must retain the copyright notice in distributed copies.</p>
-      </div>
     </section>
 
     <!-- CITATION -->
     <section id="citation">
       <h2>How to Cite MedModr</h2>
-      <div class="citation-block" id="cite-block">Ibrahim, M. M. (2026). <em>MedModr: Mediation and moderation analysis tool</em> (Version 1.0) [Software]. Available from https://shinyhealthtools.github.io/medmodr/<button class="copy-btn" onclick="copyCite()">Copy</button></div>
+      <div class="citation-block" id="cite-block">Ibrahim, M. M. (2026). <em>MedModr: Mediation and moderation analysis tool</em> [Software]. Available from https://github.com/shinyhealthtools/medmodr<button class="copy-btn" onclick="copyCite()">Copy</button></div>
     </section>
 
     <!-- DEVELOPER -->
@@ -1458,16 +1037,44 @@ SOFTWARE.</div>
       </div>
     </section>
 
+    <!-- BUG REPORTS -->
+    <section id="bug-reports">
+      <h2>Report a Bug</h2>
+      <p>Found something that does not look right; unexpected results, a broken feature, or the app crashing? Please report it so it can be fixed. You can reach out through either channel below.</p>
+
+      <div class="two-col" style="margin-top:16px;">
+        <div class="info-card">
+          <h4><i class="fab fa-github" style="color:var(--brand);margin-right:6px"></i> GitHub Issues</h4>
+          <p>The preferred way to report bugs. Open an issue on the repository so it is tracked publicly and others can follow the fix.</p>
+          <div style="margin-top:10px;">
+            <a href="https://github.com/shinyhealthtools/medmodr/issues" target="_blank" class="btn btn-primary" style="font-size:0.83rem; padding:6px 14px;"><i class="fab fa-github"></i> Open an Issue</a>
+          </div>
+        </div>
+        <div class="info-card">
+          <h4><i class="fas fa-envelope" style="color:var(--brand);margin-right:6px"></i> Email the Developer</h4>
+          <p>Prefer to reach out directly? Send a description of the bug, what you were doing when it happened, and your browser and OS.</p>
+          <div style="margin-top:10px;">
+            <a href="mailto:mudassiribrahim30@gmail.com?subject=MedModr Bug Report" class="btn" style="font-size:0.83rem; padding:6px 14px;"><i class="fas fa-envelope"></i> Send Email</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warn" style="margin-top:18px;">
+        <div class="callout-title"><i class="fas fa-lightbulb"></i> Helpful to include in your report</div>
+        <p>The analysis type you were running, your browser and version (e.g., Chrome 125, Firefox 127), a short description of what you expected vs. what happened, and if possible an anonymized sample dataset that reproduces the issue.</p>
+      </div>
+    </section>
+
   </main>
 </div>
 
 <footer>
-  <div>MedModr v1.0 &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; © 2026–Present Mudasir Mohammed Ibrahim</div>
+  <div>MedModr &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; © 2026–Present</div>
   <div class="footer-right">
-    <a href="https://github.com/shinyopensource/medmodr-documentation" target="_blank" title="GitHub"><i class="fab fa-github"></i> GitHub</a>
-    <a href="mailto:mudassiribrahim30@gmail.com" title="Email"><i class="fas fa-envelope"></i> Contact</a>
-    <a href="https://buymeacoffee.com/mudasiribrahim30?status=1" target="_blank" class="btn btn-donate" style="font-size:0.8rem; padding:5px 13px;">
-      <i class="fas fa-heart"></i> Support the project 
+    <a href="https://github.com/shinyopensource/medmodr-documentation" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    <a href="mailto:mudassiribrahim30@gmail.com"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="https://buymeacoffee.com/mudasiribrahim30?status=1" target="_blank" class="btn" style="font-size:0.78rem; padding:4px 12px; border-radius:20px;">
+      <i class="fas fa-heart"></i> Support the project
     </a>
   </div>
 </footer>
