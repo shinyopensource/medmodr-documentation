@@ -13,6 +13,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
+
+<meta name="google-site-verification" content="wziTcVA66OowBWGGGHsar8ky99roP427M_3ZTu8x1sI" />
     
 <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/favicon-32x32.png">
@@ -659,16 +661,11 @@
 <nav class="nav">
   <a class="nav-brand" href="#overview">MedModr</a>
   <div class="nav-links">
-    <a href="#overview">Overview</a>
-    <a href="#analysis-types">Analysis Types</a>
-    <a href="#running-analysis">Running Analysis</a>
-    <a href="#results-export">Results &amp; Export</a>
-    <a href="#citation">Citation</a>
   </div>
   <div class="nav-end">
     <button id="searchBtn" class="btn-icon" title="Search documentation (/)"><i class="fas fa-search"></i></button>
     <button id="darkModeToggle" class="btn-icon" title="Toggle dark mode"><i class="fas fa-moon"></i></button>
-    <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn-launch"><i class="fas fa-play"></i> Launch App</a>
+    <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn-launch"><i class="fas fa-play"></i> Launch MedModr Web App</a>
     <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -682,8 +679,6 @@
       <a href="#overview">Overview</a>
       <a href="#features">Features</a>
       <a href="#workflow">Workflow</a>
-      <a href="#running-analysis">Running Analysis</a>
-      <a href="#results-export">Results &amp; Export</a>
       <a href="#citation">Citation</a>
       <a href="#developer">Developer</a>
       <a href="#bug-reports">Report a Bug</a>
@@ -704,7 +699,7 @@
   <main>
     <div class="page-header" id="overview">
       <h1>MedModr</h1>
-      <p class="subtitle">Mediation and Moderation Analysis. Free, browser-based, no installation required.</p>
+      <p class="subtitle">Mediation, Moderation, and Conditional Process Analysis. Free, browser-based, no installation required.</p>
       <div class="badges">
         <span class="badge badge-green">Free &amp; Open Source</span>
         <span class="badge badge-gray">MIT License</span>
@@ -715,30 +710,25 @@
       </div>
     </div>
 
-    <section id="overview-body">
-      <h2>What is MedModr?</h2>
-      <p>MedModr is a free, browser-based tool for running mediation, moderation, and conditional process analyses. Upload any data file, assign variables, pick an analysis type, and get results without installing any software. Everything runs locally in the web browser, so data never leaves the user device. MedModr was created to democratize access to the most commonly used conditional process models. Tools like the <strong>PROCESS macro</strong> for SPSS/SAS and R are powerful, but they require licensed software or a configured environment that many researchers especially those in low-resource settings simply don't have access to. MedModr covers the same core models and runs entirely in a browser, making these analyses available to anyone, anywhere, for free.</p>
-      <div class="two-col">
-        <div class="info-card">
-          <h4><i class="fas fa-laptop" style="color:var(--brand);margin-right:6px"></i> No Installation</h4>
-          <p>Works on any device (Windows, Mac, Linux, Chromebook, and tablet). Just open it in a modern browser like Chrome, Firefox, Edge, or Safari.</p>
-        </div>
-        <div class="info-card">
-          <h4><i class="fas fa-lock" style="color:var(--brand);margin-right:6px"></i> 100% Private</h4>
-          <p>All computations happen locally in the user browser and nothing is sent to any server.</p>
-        </div>
-        <div class="info-card">
-          <h4><i class="fas fa-file-import" style="color:var(--brand);margin-right:6px"></i> Import CSV or Excel</h4>
-          <p>Upload .csv, .xlsx, or .xls files. The built-in data processing steps handle variable selection, missing values, data screening, and cleaning before analysis.</p>
-        </div>
-        <div class="info-card">
-          <h4><i class="fas fa-file-word" style="color:var(--brand);margin-right:6px"></i> Export Results</h4>
-          <p>Download complete analysis results as a formatted Word, PDF, or HTML document.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="features">
+<section id="overview-body">
+  <h2>What is MedModr?</h2>
+  <p>MedModr is a free, browser-based, open-source application for mediation, moderation, and conditional process analysis. Tools like the <strong>PROCESS macro</strong> for SPSS/SAS and R are powerful, but they require licensed software or a configured environment that many researchers especially those in low-resource settings simply don't have access to.</p> 
+  <p>MedModr was created to democratize access to the most commonly used conditional process models. It provides an accessible alternative by offering a no-cost, browser-based platform that requires no installation, licensing, or coding skills. All analyses are performed locally within the user's browser, ensuring data privacy and security. The application currently supports 15 widely used PROCESS models, with ongoing development aimed at expanding model coverage and enhancing functionality to meet the evolving needs of the research community.</p>
+  
+  <div class="two-col">
+    <div class="info-card">
+      <h4><i class="fas fa-laptop" style="color:var(--brand);margin-right:6px"></i> No Installation</h4>
+      <p>Works on any device (Windows, Mac, Linux, Chromebook, mobile devices, and tablet). Just open it in a modern browser like Chrome, Firefox, Edge, or Safari.</p>
+    </div>
+    <div class="info-card">
+      <h4><i class="fas fa-lock" style="color:var(--brand);margin-right:6px"></i> 100% Private</h4>
+      <p>All computations happen locally in the user browser and nothing is sent to any server.</p>
+    </div>
+  </div>
+</section>
+      <hr class="divider" style="margin-top:32px;" 
+  
+     <section id="features">
       <h2>Key Features</h2>
       <div class="analysis-type-grid">
         <div class="atcard">
@@ -831,7 +821,213 @@
       </div>
     </section>
 
-    <hr class="divider" />
+<style>
+  /* Fullscreen overlay styles */
+  .image-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    cursor: zoom-out;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+  }
+  .image-modal.active {
+    display: flex;
+  }
+  .image-modal img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .image-modal .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: transform 0.2s;
+    line-height: 1;
+    background: none;
+    border: none;
+  }
+  .image-modal .close-btn:hover {
+    transform: scale(1.2);
+  }
+  .screenshot-wrapper {
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .screenshot-wrapper:hover {
+    opacity: 0.95;
+  }
+  .screenshot-wrapper .click-hint {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+  }
+</style>
+
+<!-- Fullscreen Modal -->
+<div class="image-modal" id="imageModal" onclick="closeFullscreen()">
+  <button class="close-btn" onclick="closeFullscreen()">&times;</button>
+  <img id="modalImage" src="" alt="Fullscreen view" />
+</div>
+
+<script>
+  function openFullscreen(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.classList.add('active');
+    modalImg.src = imageSrc;
+    document.body.style.overflow = 'hidden';
+  }
+  
+  function closeFullscreen() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+  
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeFullscreen();
+    }
+  });
+</script>
+
+<!-- SCREENSHOTS SECTION - MacBook Style -->
+<div style="margin: 40px 0 32px;">
+  
+  <!-- Screen 1: Home Page -->
+  <div style="margin-bottom: 48px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+      <span style="background:var(--brand);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 12px;border-radius:12px;letter-spacing:0.05em;">1</span>
+      <h3 style="margin:0;font-size:1.05rem;font-weight:600;color:var(--ink);">Home Page</h3>
+      <span style="font-size:0.78rem;color:var(--ink-3);">Landing &amp; getting started</span>
+    </div>
+    <div style="border-radius:var(--r);overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh-md);background:var(--surface);position:relative;">
+      <div style="background:var(--surface-2);padding:8px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;">
+        <span style="display:flex;gap:6px;">
+          <span style="width:12px;height:12px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+        </span>
+        <span style="font-size:0.7rem;color:var(--ink-3);font-weight:500;margin-left:4px;flex:1;text-align:center;">MedModr — Home</span>
+      </div>
+      <div class="screenshot-wrapper" onclick="openFullscreen('https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface1.png')">
+        <img 
+          src="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface1.png" 
+          alt="MedModr Home Page - application landing interface with model selection and navigation options" 
+          style="width:100%;height:auto;display:block;"
+        />
+        <span class="click-hint">&#128065; Click to expand</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2: Data Processing -->
+  <div style="margin-bottom: 48px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+      <span style="background:var(--brand);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 12px;border-radius:12px;letter-spacing:0.05em;">2</span>
+      <h3 style="margin:0;font-size:1.05rem;font-weight:600;color:var(--ink);">Data Processing</h3>
+      <span style="font-size:0.78rem;color:var(--ink-3);">Upload, clean &amp; impute</span>
+    </div>
+    <div style="border-radius:var(--r);overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh-md);background:var(--surface);position:relative;">
+      <div style="background:var(--surface-2);padding:8px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;">
+        <span style="display:flex;gap:6px;">
+          <span style="width:12px;height:12px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+        </span>
+        <span style="font-size:0.7rem;color:var(--ink-3);font-weight:500;margin-left:4px;flex:1;text-align:center;">MedModr — Data Upload</span>
+      </div>
+      <div class="screenshot-wrapper" onclick="openFullscreen('https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface2.png')">
+        <img 
+          src="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface2.png" 
+          alt="MedModr Data Processing - file upload interface, variable preview, and data cleaning options" 
+          style="width:100%;height:auto;display:block;"
+        />
+        <span class="click-hint">&#128065; Click to expand</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 3: Analysis Panel -->
+  <div style="margin-bottom: 48px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+      <span style="background:var(--brand);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 12px;border-radius:12px;letter-spacing:0.05em;">3</span>
+      <h3 style="margin:0;font-size:1.05rem;font-weight:600;color:var(--ink);">Analysis Panel</h3>
+      <span style="font-size:0.78rem;color:var(--ink-3);">Assign variables &amp; run models</span>
+    </div>
+    <div style="border-radius:var(--r);overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh-md);background:var(--surface);position:relative;">
+      <div style="background:var(--surface-2);padding:8px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;">
+        <span style="display:flex;gap:6px;">
+          <span style="width:12px;height:12px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+        </span>
+        <span style="font-size:0.7rem;color:var(--ink-3);font-weight:500;margin-left:4px;flex:1;text-align:center;">MedModr — Model Setup</span>
+      </div>
+      <div class="screenshot-wrapper" onclick="openFullscreen('https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface3.png')">
+        <img 
+          src="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface3.png" 
+          alt="MedModr Analysis Panel - variable assignment interface, model selection dropdowns, and run controls" 
+          style="width:100%;height:auto;display:block;"
+        />
+        <span class="click-hint">&#128065; Click to expand</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 4: Results Output -->
+  <div style="margin-bottom: 8px;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+      <span style="background:var(--brand);color:#fff;font-size:0.7rem;font-weight:700;padding:2px 12px;border-radius:12px;letter-spacing:0.05em;">4</span>
+      <h3 style="margin:0;font-size:1.05rem;font-weight:600;color:var(--ink);">Results Output</h3>
+      <span style="font-size:0.78rem;color:var(--ink-3);">APA-Style Regression Tables</span>
+    </div>
+    <div style="border-radius:var(--r);overflow:hidden;border:1px solid var(--border);box-shadow:var(--sh-md);background:var(--surface);position:relative;">
+      <div style="background:var(--surface-2);padding:8px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;">
+        <span style="display:flex;gap:6px;">
+          <span style="width:12px;height:12px;border-radius:50%;background:#ff5f56;display:inline-block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#ffbd2e;display:inline-block;"></span>
+          <span style="width:12px;height:12px;border-radius:50%;background:#27c93f;display:inline-block;"></span>
+        </span>
+        <span style="font-size:0.7rem;color:var(--ink-3);font-weight:500;margin-left:4px;flex:1;text-align:center;">MedModr — Results</span>
+      </div>
+      <div class="screenshot-wrapper" onclick="openFullscreen('https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface4.png')">
+        <img 
+          src="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface4.png" 
+          alt="MedModr Results Output - regression tables, model fit statistics, path diagrams, and export options" 
+          style="width:100%;height:auto;display:block;"
+        />
+        <span class="click-hint">&#128065; Click to expand</span>
+      </div>
+    </div>
+  </div>
+</div>
+    
+        <hr class="divider" />
 
     <section id="running-analysis">
       <h2>Analysis Types &amp; Variable Assignment</h2>
@@ -954,113 +1150,67 @@
         </div>
       </div>
 
-      <hr class="divider" style="margin-top:32px;" />
-
-      <h3>Managing Variables</h3>
-      <p>Remove a single variable from a role box by clicking the <strong>✕</strong> next to its name. Click the <strong>Clear</strong> button on a box header to empty that entire box. The red <strong>🗑 Clear All</strong> button resets everything at once (a confirmation dialog appears first).</p>
-
-      <h3>Categorical Variables</h3>
-      <p>If any of your assigned variables contain text values (e.g., "male"/"female", "treatment"/"control"), a <strong>Handle Categorical Variables</strong> button appears automatically. Click it to open the encoding modal where you can pick a reference category (coded as 0) and choose which levels to include as dummy variables. Click <strong>Apply Encoding</strong> and the app replaces the original variable with 0/1 dummies across all role boxes. A <strong>Reset Encoding</strong> button lets you undo this if needed.</p>
-
-      <h3>Analysis Options</h3>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Option</th><th>Choices</th><th>Notes</th></tr></thead>
-          <tbody>
-            <tr><td>Analysis Type</td><td>15 types</td><td>Select before assigning variables so you know which boxes to fill.</td></tr>
-            <tr><td>Confidence Level</td><td>90%, 95%, 99%</td><td>Applies to all confidence intervals. Default is 95%.</td></tr>
-            <tr><td>Bootstrap Samples</td><td>None, 1,000, 5,000, 10,000</td><td>Default is 5,000. Choosing "None" uses Sobel standard errors instead.</td></tr>
-            <tr><td>Bootstrap Method</td><td>Percentile, Bias-Corrected (BC)</td><td>Default is Percentile.</td></tr>
-            <tr><td>Centering</td><td>No centering, Continuous-only, All variables</td><td>Shown only for analysis types with interaction terms (moderations and moderated mediations).</td></tr>
-            <tr><td>Moderation Stage</td><td>First Stage, Second Stage, Both Stages, etc.</td><td>Shown only when Moderated Mediation Models analysis type is selected.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
     <hr class="divider" />
 
-    <section id="results-export">
-      <h2>Interpreting &amp; Exporting Results</h2>
-      <p>Every analysis starts with descriptive statistics and ends with a plain-language summary of the findings. In between, you'll see regression tables, path diagrams (where applicable), indirect effect tables (where applicable), and simple slopes plots (where applicable).</p>
+ <section id="version-history">
+  <h2>Version History</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Version</th>
+          <th>Released</th>
+          <th>Highlights</th>
+          <th style="text-align:center;min-width:100px;">Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>v2.0</strong> <span style="background:var(--green);color:#fff;font-size:0.68rem;font-weight:600;padding:2px 8px;border-radius:12px;margin-left:6px;">Latest</span></td>
+          <td style="white-space:nowrap;">June 2026</td>
+          <td>15 analysis types (6 new models added), automatic logistic regression for binary outcomes, enhanced path diagrams (SVG export, line thickness, node size, variable renaming), improved export menu (Word, PDF, HTML, CSV), binary moderator support in moderation and moderated mediation models.</td>
+          <td style="text-align:center;">
+            <a href="https://archive.org/download/version-1_202606/MedModr%20%28v2.0%29%20.zip" 
+               class="download-btn" 
+               style="display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;padding:5px 14px;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.82rem;transition:background 0.15s;border:none;cursor:pointer;white-space:nowrap;">
+              <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v3a2 2 0 002 2h10a2 2 0 002-2v-3"/><polyline points="7 10 10 13 13 10"/><line x1="10" y1="13" x2="10" y2="3"/></svg>
+              Download
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>v1.0</strong></td>
+          <td style="white-space:nowrap;">April 2026</td>
+          <td>First release. 9 analysis types, OLS regression, bootstrap CIs, standardized coefficients, CSV and Excel import, Word export, path diagrams, simple slopes plots.</td>
+          <td style="text-align:center;">
+            <a href="https://archive.org/download/version-1_202606/MedModr%20%28v1.0%29.zip" 
+               class="download-btn" 
+               style="display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;padding:5px 14px;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.82rem;transition:background 0.15s;border:none;cursor:pointer;white-space:nowrap;">
+              <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15v3a2 2 0 002 2h10a2 2 0 002-2v-3"/><polyline points="7 10 10 13 13 10"/><line x1="10" y1="13" x2="10" y2="3"/></svg>
+              Download
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-      <h3>Regression Tables</h3>
-      <p>Each table reports both <strong>unstandardized (b)</strong> and <strong>standardized (β)</strong> coefficients so you can see both the raw effect size and how variables compare to each other. Other columns include SE, t/z, p-value, confidence interval bounds (LLCI, ULCI), significance stars, and VIF for multicollinearity checking.</p>
-      <ul>
-        <li><strong>b</strong> — the raw coefficient, in the original units of the variables.</li>
-        <li><strong>β</strong> — standardized coefficient, useful for comparing predictors measured in different units.</li>
-        <li><strong>VIF</strong> — values above 5 suggest potential multicollinearity; above 10 is considered problematic.</li>
-        <li><strong>Stars</strong> — * p&lt;.05 &nbsp; ** p&lt;.01 &nbsp; *** p&lt;.001</li>
-      </ul>
-    </section>
-
-    <section id="path-diagrams">
-      <h3>Path Diagrams</h3>
-      <p>Most analysis types generate an interactive path diagram showing the relationships between your variables with coefficient labels on each path arrow. Click <strong>View Full-Screen Diagram</strong> to open a larger view with these options:</p>
-      <div class="output-grid">
-        <div class="output-item"><i class="fas fa-ruler oi-icon"></i><div><strong>Unstandardized / Standardized</strong><span>Switch between b and β on the path arrows.</span></div></div>
-        <div class="output-item"><i class="fas fa-square oi-icon"></i><div><strong>Card Box ON/OFF</strong><span>Show or hide the label background boxes on coefficients.</span></div></div>
-        <div class="output-item"><i class="fas fa-chart-line oi-icon"></i><div><strong>Show Coefficients ON/OFF</strong><span>Toggle all coefficient annotations on or off.</span></div></div>
-        <div class="output-item"><i class="fas fa-star-of-david oi-icon"></i><div><strong>Show/Hide p-values</strong><span>Include p-values on path labels.</span></div></div>
-        <div class="output-item"><i class="fas fa-paint-roller oi-icon"></i><div><strong>Black &amp; White Mode</strong><span>Switch to a monochrome style for publication figures.</span></div></div>
-        <div class="output-item"><i class="fas fa-chart-simple oi-icon"></i><div><strong>Show 95% CI / p-value</strong><span>Toggle the indirect effect label between CI and p-value format.</span></div></div>
-        <div class="output-item"><i class="fas fa-chart-line oi-icon"></i><div><strong>Dotted/Solid Direct Effect</strong><span>Style the direct effect (c′) arrow as dotted or solid.</span></div></div>
-        <div class="output-item"><i class="fas fa-download oi-icon"></i><div><strong>Download PNG/ SVG</strong><span>Save the current diagram as a high-resolution PNG/ SVG image.</span></div></div>
-      </div>
-    </section>
-
-    <section id="version-history">
-      <h2>Version History</h2>
-      <p>Always check the <a href="https://github.com/shinyhealthtools/medmodr/releases" target="_blank"><i class="fab fa-github"></i> GitHub Releases page</a> for the latest version of MedModr.</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Version</th><th>Released</th><th>Highlights</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><strong>v2.0</strong> <span style="background:var(--green);color:#fff;font-size:0.68rem;font-weight:600;padding:2px 8px;border-radius:12px;margin-left:6px;">Latest</span></td>
-              <td style="white-space:nowrap;">June 2026</td>
-              <td>15 analysis types (6 new models added), automatic logistic regression for binary outcomes, enhanced path diagrams (SVG export, line thickness, node size, variable renaming), improved export menu (Word, PDF, HTML, CSV), binary moderator support in moderation and moderated mediation models.</td>
-            </tr>
-            <tr>
-              <td><strong>v1.0</strong></td>
-              <td style="white-space:nowrap;">April 2026</td>
-              <td>First release. 9 analysis types, OLS regression, bootstrap CIs, standardized coefficients, CSV and Excel import, Word export, path diagrams, simple slopes plots.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section id="covariates-info">
-      <h2>Covariates (Control Variables)</h2>
-      <p>Add any number of control variables to the <strong>Covariates</strong> box. They're automatically included in every regression model in the analysis chain.</p>
-    </section>
-
-    <section id="centering">
-      <h2>Mean Centering</h2>
-      <p>For analysis types that use interaction terms (moderations and moderated mediations), three centering options are available:</p>
-      <ul>
-        <li><strong>No centering</strong> — raw variable values are used as-is.</li>
-        <li><strong>Continuous-only centered</strong> — only continuous variables are mean-centered; binary (0/1) variables stay raw.</li>
-        <li><strong>All variables centered</strong> — all predictors are mean-centered, including binary variables (0/1).</li>
-      </ul>
-      <p>Simple slopes tables always use mean-centered moderator values (−1SD, Mean, and +1SD) regardless of the centering option you choose.</p>
-    </section>
-
-    <section id="bootstrap-info">
-      <h2>Bootstrap Confidence Intervals</h2>
-      <p>Bootstrap CIs are calculated for all indirect effects — simple indirect effects, serial indirect paths, conditional indirect effects at moderator levels, and the Index of Moderated Mediation (IMM).</p>
-      <p>Two methods are available:</p>
-      <ul>
-        <li><strong>Percentile</strong> (default) — uses the raw percentiles of the bootstrap distribution. If the CI doesn't include zero, the effect is significant at your chosen alpha level.</li>
-        <li><strong>Bias-Corrected (BC)</strong> — adjusts for systematic bias using the proportion of bootstrap estimates that fall below the observed estimate.</li>
-      </ul>
-      <p>Recommended: <strong>5,000 samples with the Percentile method</strong> for reliable, stable CIs.</p>
-    </section>
+<style>
+  /* Hover effect matching the Launch App button */
+  .download-btn:hover {
+    background: var(--brand-dk) !important;
+    color: #fff !important;
+    text-decoration: none !important;
+  }
+  .download-btn:active {
+    transform: scale(0.96);
+  }
+</style>
 
     <section id="license">
       <h2>License</h2>
-      <div class="license-box">MIT License · Copyright © 2026 Mudasir Mohammed Ibrahim · Permission is hereby granted, free of charge, to any person obtaining a copy
+      <div class="license-box">MIT License · Copyright © MedModr · Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -1134,14 +1284,8 @@ SOFTWARE.</div>
     <a href="#workflow">Workflow</a>
     <span class="toc-label">Analysis Types</span>
     <a href="#running-analysis">Variable Assignment</a>
-    <span class="toc-label">Results &amp; Export</span>
-    <a href="#results-export">Interpreting Results</a>
-    <a href="#path-diagrams">Path Diagrams</a>
     <span class="toc-label">Reference</span>
     <a href="#version-history">Version History</a>
-    <a href="#covariates-info">Covariates</a>
-    <a href="#centering">Mean Centering</a>
-    <a href="#bootstrap-info">Bootstrap CIs</a>
     <a href="#license">License</a>
     <a href="#citation">Citation</a>
     <a href="#developer">Developer</a>
@@ -1150,7 +1294,7 @@ SOFTWARE.</div>
 </div>
 
 <footer>
-  <div>MedModr &nbsp;·&nbsp; MIT License &nbsp;·&nbsp; © 2026–Present</div>
+  <div>Copyright © MedModr 2026–Present</div>
   <div class="footer-right">
     <a href="https://github.com/shinyopensource/medmodr-documentation" target="_blank"><i class="fab fa-github"></i> GitHub</a>
     <a href="mailto:mudassiribrahim30@gmail.com"><i class="fas fa-envelope"></i> Contact</a>
