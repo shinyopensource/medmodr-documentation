@@ -23,7 +23,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+   * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     /* ═══════════════════════════════════════
@@ -52,6 +52,7 @@
       --infobox-bg:   #f5f5f5;
       --sidebar-bg:   #f8f8f8;
       --sidebar-w:    210px;
+      --mark-bg:      #fff1a8;
     }
 
     /* ── text sizes ── */
@@ -81,6 +82,7 @@
       --row-hover:    #1a2233;
       --infobox-bg:   #161b22;
       --sidebar-bg:   #13181f;
+      --mark-bg:      #5a4a12;
     }
 
     body {
@@ -99,7 +101,12 @@
       background-color: var(--bg2);
       border-bottom: 1px solid var(--border);
       padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
+    .header-titles { min-width: 0; }
     h1 {
       font-size: calc(var(--fs-base) * 1.45);
       font-weight: bold;
@@ -109,6 +116,92 @@
       margin-bottom: 4px;
     }
     .subtitle { font-size: var(--fs-base); color: var(--text2); }
+
+    /* ── Header search ── */
+    .header-search { flex-shrink: 0; position: relative; }
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 0 6px 0 12px;
+      height: 34px;
+      width: 230px;
+      transition: width 0.18s, border-color 0.12s, box-shadow 0.12s;
+    }
+    .search-box:focus-within {
+      width: 280px;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 20%, transparent);
+    }
+    .search-box i.fa-magnifying-glass { color: var(--text3); font-size: 0.9em; flex-shrink: 0; }
+    #searchInput {
+      border: none; outline: none; background: transparent; color: var(--text);
+      font-size: calc(var(--fs-base) * 0.95); font-family: Arial, Helvetica, sans-serif;
+      flex: 1; padding: 0 8px; min-width: 0;
+    }
+    #searchInput::placeholder { color: var(--text3); }
+    #searchClear {
+      border: none; background: transparent; color: var(--text3); cursor: pointer;
+      font-size: 0.85em; padding: 4px 6px; display: none; flex-shrink: 0;
+    }
+    #searchClear:hover { color: var(--text); }
+    .search-box.has-text #searchClear { display: inline-block; }
+
+    #searchResults {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      width: 340px;
+      max-height: 420px;
+      overflow-y: auto;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      z-index: 1100;
+      display: none;
+    }
+    #searchResults.open { display: block; }
+    .search-result-item {
+      display: block;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border2);
+      text-decoration: none;
+      color: var(--text);
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover, .search-result-item.active { background: var(--row-hover); text-decoration: none; }
+    .sr-section {
+      font-size: calc(var(--fs-base) * 0.78);
+      color: var(--accent);
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 3px;
+    }
+    .sr-snippet { font-size: calc(var(--fs-base) * 0.9); color: var(--text2); line-height: 1.45; }
+    .sr-snippet mark { background: var(--mark-bg); color: var(--text); padding: 0 1px; border-radius: 2px; }
+    .search-empty { padding: 16px 14px; color: var(--text3); font-size: calc(var(--fs-base) * 0.92); text-align: center; }
+    .search-count {
+      padding: 7px 14px;
+      font-size: calc(var(--fs-base) * 0.78);
+      color: var(--text3);
+      border-bottom: 1px solid var(--border2);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* on-page highlight when jumping to a match */
+    .search-target-highlight {
+      animation: searchFlash 2.2s ease;
+    }
+    @keyframes searchFlash {
+      0%   { background-color: var(--mark-bg); }
+      70%  { background-color: var(--mark-bg); }
+      100% { background-color: transparent; }
+    }
 
     /* ═══════════════════════════════════════
        STATIC TOP NAV
@@ -136,6 +229,7 @@
       align-items: center;
       height: 42px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      gap: 16px;
     }
     #stickyNav.visible { display: flex; }
 
@@ -145,17 +239,22 @@
       font-weight: bold;
       color: var(--text);
       text-decoration: none;
-      margin-right: 24px;
+      margin-right: 8px;
       white-space: nowrap;
       flex-shrink: 0;
       letter-spacing: -0.01em;
     }
     #stickyLogo:hover { color: var(--accent); text-decoration: none; }
 
-    #stickyLinks { display: flex; align-items: center; flex: 1; flex-wrap: wrap; }
+    #stickyLinks { display: flex; align-items: center; flex: 1; flex-wrap: wrap; min-width: 0; }
     #stickyLinks a { color: var(--link); text-decoration: none; font-size: calc(var(--fs-base) * 0.92); font-weight: bold; padding: 0 1px; }
     #stickyLinks a:hover { text-decoration: underline; }
     #stickyLinks .sep { color: var(--text3); margin: 0 5px; }
+
+    .sticky-search { flex-shrink: 0; position: relative; }
+    .sticky-search .search-box { height: 28px; width: 170px; border-radius: 14px; padding: 0 4px 0 10px; }
+    .sticky-search .search-box:focus-within { width: 220px; }
+    .sticky-search #searchResults2 { width: 320px; }
 
     /* ═══════════════════════════════════════
        CONTAINER
@@ -298,6 +397,17 @@
     .swatch-light { background: #ffffff; }
     .swatch-dark  { background: #1a1a2e; }
 
+    /* ── On this page (sidebar quick jump for long doc) ── */
+    .sidebar-toc { padding: 8px 12px 12px; font-size: calc(var(--fs-base) * 0.88); }
+    .sidebar-toc a {
+      display: block;
+      color: var(--text2);
+      text-decoration: none;
+      padding: 3px 4px;
+      border-radius: 3px;
+    }
+    .sidebar-toc a:hover { background: var(--row-hover); color: var(--accent); }
+
     /* ── Launch button ── */
     .sidebar-launch {
       padding: 10px 12px;
@@ -324,6 +434,14 @@
       font-weight: bold;
       color: var(--text);
       margin: 18px 0 8px 0;
+      scroll-margin-top: 60px;
+    }
+    h4 {
+      font-size: calc(var(--fs-base) * 1.0);
+      font-weight: bold;
+      color: var(--text2);
+      margin: 14px 0 6px 0;
+      scroll-margin-top: 60px;
     }
     p { margin-bottom: 11px; color: var(--text); text-align: justify; }
     strong { font-weight: bold; }
@@ -348,6 +466,47 @@
     .infobox p:last-child { margin-bottom: 0; }
 
     /* ═══════════════════════════════════════
+       FIGURE / IMAGE PLACEHOLDER
+       ═══════════════════════════════════════ */
+    .figure {
+      margin: 16px 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--bg2);
+    }
+    .figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: var(--bg3);
+    }
+    .figure-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 160px;
+      padding: 20px;
+      color: var(--text3);
+      text-align: center;
+      border: 1px dashed var(--border);
+      margin: 2px;
+      border-radius: 4px;
+    }
+    .figure-placeholder i { font-size: 1.8em; }
+    .figure-placeholder .ph-label { font-size: calc(var(--fs-base) * 0.85); max-width: 480px; }
+    .figure-caption {
+      padding: 8px 12px;
+      font-size: calc(var(--fs-base) * 0.88);
+      color: var(--text2);
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .figure-caption strong { color: var(--text); }
+
+    /* ═══════════════════════════════════════
        TABLES
        ═══════════════════════════════════════ */
     table { width: 100%; border-collapse: collapse; margin: 14px 0; background-color: var(--bg); }
@@ -358,6 +517,10 @@
     td:last-child { border-right: none; }
     tbody tr:nth-child(even) td { background-color: var(--row-even); }
     tbody tr:hover td { background-color: var(--row-hover); }
+    .table-scroll { overflow-x: auto; }
+    .table-scroll table { min-width: 640px; }
+    td.yes { color: #1a7a4a; font-weight: bold; text-align: center; }
+    td.no { color: #b3261e; font-weight: bold; text-align: center; }
 
     /* ═══════════════════════════════════════
        CODE
@@ -394,6 +557,28 @@
     .citation-text a { word-break: break-all; }
     .btn-copy { flex-shrink: 0; }
     .copy-icon { font-size: 1.05em; line-height: 1; }
+
+    /* ═══════════════════════════════════════
+       REFERENCE LIST
+       ═══════════════════════════════════════ */
+    .ref-list { list-style: none; margin: 10px 0; padding: 0; counter-reset: refcounter; }
+    .ref-list li {
+      counter-increment: refcounter;
+      padding: 6px 0 6px 34px;
+      position: relative;
+      font-size: calc(var(--fs-base) * 0.92);
+      color: var(--text2);
+      border-bottom: 1px solid var(--border2);
+    }
+    .ref-list li::before {
+      content: "[" counter(refcounter) "]";
+      position: absolute;
+      left: 0;
+      color: var(--text3);
+      font-weight: bold;
+      font-size: calc(var(--fs-base) * 0.88);
+    }
+    .ref-list li:last-child { border-bottom: none; }
 
     /* ═══════════════════════════════════════
        BUTTONS
@@ -447,6 +632,31 @@
     .badge-green { background-color: #1a7a4a; color: #fff; border-color: #1a7a4a; }
 
     /* ═══════════════════════════════════════
+       STEP PIPELINE (Data Processing visual)
+       ═══════════════════════════════════════ */
+    .step-pipeline { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+    .step-chip {
+      flex: 1 1 110px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 8px 10px;
+      font-size: calc(var(--fs-base) * 0.85);
+      background: var(--bg2);
+    }
+    .step-chip .step-num {
+      display: inline-block;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: calc(var(--fs-base) * 0.78);
+      text-align: center;
+      line-height: 18px;
+      margin-right: 6px;
+      font-weight: bold;
+    }
+
+    /* ═══════════════════════════════════════
        FOOTER
        ═══════════════════════════════════════ */
     #footer {
@@ -478,13 +688,93 @@
     @media (max-width: 768px) {
       .content-wrapper { grid-template-columns: 1fr; }
       #sidebar { position: static; width: 100%; top: auto !important; }
-      #header, #topNav, #footer, #container { padding-left: 18px; padding-right: 18px; }
+      #header { flex-wrap: wrap; padding-left: 18px; padding-right: 18px; }
+      #topNav, #footer, #container { padding-left: 18px; padding-right: 18px; }
       #stickyNav { padding: 0 16px; }
       #stickyLinks { display: none; }
+      .header-search { width: 100%; }
+      .search-box { width: 100% !important; }
+      .search-box:focus-within { width: 100% !important; }
+      #searchResults { width: 100%; left: 0; right: 0; }
       h1 { font-size: calc(var(--fs-base) * 1.5); }
       h2 { font-size: calc(var(--fs-base) * 1.25); }
       #footer { flex-direction: column; align-items: flex-start; }
+      .sticky-search { display: none; }
     }
+    
+    .figure-image {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  cursor: zoom-in;
+  transition: transform .2s ease;
+}
+
+.figure-image:hover {
+  transform: scale(1.01);
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.92);
+  cursor: zoom-out;
+}
+
+.lightbox-content {
+  display: block;
+  margin: auto;
+  max-width: 95%;
+  max-height: 95%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: zoomIn .25s ease;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+.lightbox-close:hover {
+  opacity: .7;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: translate(-50%, -50%) scale(.9);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.citation-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+    
   </style>
 </head>
 <body>
@@ -492,7 +782,6 @@
 <!-- ── HEADER ── -->
 <div id="header">
   <h1>MedModr</h1>
-  <p class="subtitle">Mediation, Moderation & Conditional Process Analysis done right.</p>
 </div>
 
 <!-- ── STATIC TOP NAV ── -->
@@ -599,7 +888,7 @@
          ════════════════════════════════════ -->
     <div id="main">
 
-      <h2 id="overview">Overview</h2>
+     <h2 id="overview">Overview</h2>
       <p>
         MedModr is a free, browser-based, open-source application for mediation, moderation, and conditional process analysis.
         Tools like the PROCESS macro for SPSS/SAS and R are powerful, but they require licensed software or a configured environment that
@@ -607,68 +896,69 @@
       </p>
       <p>
         MedModr was created to democratize access to the most commonly used conditional process models. It provides an accessible alternative by offering a no-cost, browser-based platform that requires no installation, licensing, or coding skills. All analyses are performed locally within the user's browser, ensuring data privacy and security. The application currently supports 15 widely used PROCESS models, with ongoing development aimed at expanding model coverage and enhancing functionality to meet the evolving needs of the research community.
-      </p>
-      <div class="infobox">
-        <div class="infobox-title">Key Advantages</div>
-        <p><strong>No Installation Required:</strong> Works on any device (Windows, Mac, Linux, Chromebook, mobile) with a modern web browser.</p>
-        <p><strong>100% Private:</strong> All computations happen locally in your browser. Nothing is sent to any server.</p>
-      </div>
+      </p>  
 
       <h2 id="features">Key Features</h2>
+      
+            <h3>File Formats & Offline Use</h3>
+      <p>CSV files work entirely offline with no internet connection at all. Excel files need an internet connection only the first time you import one, while the SheetJS library used to read <code>.xlsx</code> loads. After that initial load, you can keep working with the data fully offline.</p>
 
       <h3>15 Analysis Types</h3>
-      <p>Simple mediation, parallel and serial mediation, moderation, and multiple moderated mediation variants covering most common conditional process analysis needs.</p>
+      <p>Simple mediation, parallel mediation, serial mediation, simple moderation, moderated moderation, double moderation, and multiple moderated mediation variants covering most common conditional process analysis needs.</p>
 
       <h3>Bootstrap Confidence Intervals</h3>
-      <p>Up to 10,000 bootstrap samples with Percentile or Bias-Corrected (BC) method for indirect effects. Provides bootstrap confidence intervals around all estimates.</p>
+      <p>Up to 10,000 bootstrap samples with Percentile or Bias-Corrected (BC) method for indirect effects. Provides bootstrap confidence intervals around all estimates. Bootstrapping uses a seeded pseudorandom number generator (Mulberry32, default seed = 12345), so results are fully reproducible across operating systems, browsers, and devices.</p>
 
       <h3>Interactive Path Diagrams</h3>
-      <p>Auto-generated diagrams with coefficient overlays. Toggle color/B&amp;W, show/hide values, and download as high-resolution PNG or SVG for publications.</p>
+      <p>Auto-generated SVG diagrams with coefficient overlays for eight of the supported models. Toggle color/B&amp;W, show/hide values or p-values, switch between unstandardized (b) and standardized (β) coefficients, rename variables, and download as high-resolution PNG or SVG for publications.</p>
 
       <h3>Simple Slopes Plots</h3>
-      <p>Plots the moderator's effect at −1SD, Mean, and +1SD. Customizable and downloadable as high-resolution PNG for manuscript preparation.</p>
+      <p>Interactive Canvas-based plots of the moderator's effect at −1SD, Mean, and +1SD. Choose between a legend or on-line annotations, switch between default and publication-ready styling, and download as high-resolution PNG for manuscript preparation.</p>
 
       <h3>Missing Data Handling</h3>
-      <p>7 imputation methods including PMM, Hot Deck, EM algorithm, and regression-based imputation for handling incomplete data before analysis.</p>
+      <p>7 imputation methods (mean, median, mode, Predictive Mean Matching (PMM), hot deck, regression-based imputation, and the EM algorithm) for handling incomplete data before analysis. The app also supports custom missing-value codes (e.g., −999, NA) and listwise deletion.</p>
 
       <h3>Data Screening</h3>
-      <p>Edit data, detect outliers using 4 different methods, check normality, view correlation matrices, and inspect histograms and QQ-plots for data quality assessment.</p>
+      <p>Edit data directly in the browser, detect outliers using 4 different methods (Z-score, IQR, MAD, percentile), check normality via skewness and kurtosis, view Pearson/Spearman/Kendall correlation matrices, and inspect histograms and Q-Q plots for data quality assessment, each exportable as a PNG.</p>
 
       <h3>Categorical Variables</h3>
-      <p>Built-in dummy coding support. Pick a reference category and encode with one click. No manual recoding needed.</p>
+      <p>Built-in dummy coding support. Pick a reference category and encode with one click. No manual recoding needed, and a "Reset Encoding" option restores the original variable.</p>
 
       <h3>Standardized &amp; Unstandardized Coefficients for Mediation</h3>
-      <p>Every regression table shows both unstandardized (b) and standardized (β) coefficients alongside VIF statistics.</p>
+      <p>Every regression table for mediation models shows both unstandardized (b) and standardized (β) coefficients alongside Variance Inflation Factor (VIF) statistics for multicollinearity checks. (Moderation and moderated-mediation outputs report unstandardized coefficients and VIF only.)</p>
 
       <h3>Export Results</h3>
-      <p>Export results to a single formatted Word, PDF, or HTML document ready for publication or presentation.</p>
+      <p>Export a single analysis to a formatted Word (.doc), PDF, HTML, or CSV (Data) document ready for publication or presentation. When running multiple variable combinations, use "Export All to Word" to compile every result into one publication-ready document.</p>
 
+      
       <h2 id="workflow">How It Works</h2>
       <p>MedModr follows a straightforward two-stage workflow designed to guide you from raw data to publication-ready results.</p>
 
       <h3>Stage 1: Data Processing</h3>
-      <p>
-        <strong>Upload</strong> your file → <strong>Select</strong> the variables → <strong>Preview and edit</strong> → <strong>Check</strong> missing data →
-        <strong>Impute</strong> if needed → <strong>Screen</strong> for issues → <strong>Finalize</strong>
-      </p>
-      <p>Only Upload and Select Variables are required; other steps are optional but recommended for data quality.</p>
-
-      <h3>Stage 2: Statistical Analysis</h3>
-      <p>
-        <strong>Assign</strong> variables → <strong>Choose</strong> model and options → <strong>Run</strong> analysis → <strong>Review</strong> results → <strong>Export</strong>
-      </p>
-      <p>Detailed results with regression tables, path diagrams, and simple slopes plots ready for publication.</p>
 
       <h3>Detailed Steps</h3>
+      <div class="step-pipeline">
+        <div class="step-chip"><span class="step-num">1</span>Upload Data</div>
+        <div class="step-chip"><span class="step-num">2</span>Select Variables</div>
+        <div class="step-chip"><span class="step-num">3</span>Preview Data</div>
+        <div class="step-chip"><span class="step-num">4</span>Missing Data Summary</div>
+        <div class="step-chip"><span class="step-num">5</span>Choose Imputation</div>
+        <div class="step-chip"><span class="step-num">6</span>Data Screening</div>
+        <div class="step-chip"><span class="step-num">7</span>Finalize</div>
+      </div>
+      
+      <p>Only Upload and Select Variables are required; other steps are optional but recommended for data quality.</p>
+      
+
+      <h3>Stage 2: Statistical Analysis</h3>
       <ol>
-        <li><strong>Data Upload:</strong> CSV or Excel supported</li>
         <li><strong>Variable Selection:</strong> Choose your dependent, independent, mediator, moderator, and covariate variables</li>
-        <li><strong>Data Screening:</strong> Check for missing data, outliers, and normality issues (optional but recommended)</li>
         <li><strong>Model Selection:</strong> Choose from 15 PROCESS-equivalent models</li>
         <li><strong>Run Analysis:</strong> Set bootstrap samples, confidence level, and centering preferences</li>
         <li><strong>Review Results:</strong> Browse regression tables, path diagrams, and simple slopes plots</li>
         <li><strong>Export:</strong> Download results as formatted Word, PDF, or HTML documents</li>
       </ol>
+
 
       <h2 id="analysis">Analysis Types &amp; Variable Assignment</h2>
       <p>
@@ -734,23 +1024,116 @@
       </table>
 
 <h2 id="citation">Citation</h2>
+
 <p>
-  To learn more about MedModr or cite it in academic publications, theses, reports, or other scholarly work, use the following <strong>APA (7th edition)</strong> citation:
+  <strong>Publication</strong><br>
+  For more information about MedModr, including its functionality, features, and applications, please refer to the paper published in <em>Journal Name</em>: 
+  <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" rel="noopener">
+    https://github.com/shinyhealthtools/medmodr
+  </a>
+</p>
+
+
+<p>
+  <strong>Citing MedModr</strong><br>
+  If you use MedModr in your research, academic publications, theses, dissertations, or reports, please cite it using any of the following styles:
 </p>
 
 <div class="citation-card">
-  <div class="citation-text" id="citationText">
-    Ibrahim, M. M. (2026). <em>MedModr: Mediation and moderation analysis tool</em> [Software]. Available from
-    <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" rel="noopener">
-      https://github.com/shinyhealthtools/medmodr
-    </a>
+
+  <!-- APA -->
+  <div class="citation-row">
+    <div class="citation-text">
+      <strong>APA (7th edition):</strong><br>
+      Ibrahim, M. M. (2026). <em>MedModr: Mediation and moderation analysis tool</em> [Software]. Available from
+      <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" rel="noopener">
+        https://github.com/shinyhealthtools/medmodr
+      </a>
+    </div>
+
+    <button class="btn-copy" type="button"
+      data-copy-text="Ibrahim, M. M. (2026). MedModr: Mediation and moderation analysis tool [Software]. Available from https://github.com/shinyhealthtools/medmodr">
+      ⧉ Copy
+    </button>
   </div>
 
-  <button class="btn-copy" id="copyCitationBtn" type="button"
-    data-copy-text="Ibrahim, M. M. (2026). MedModr: Mediation and moderation analysis tool [Software]. Available from https://github.com/shinyhealthtools/medmodr">
-    <span class="copy-icon">⧉</span><span class="copy-label">Copy</span>
-  </button>
+  <!-- Vancouver -->
+  <div class="citation-row">
+    <div class="citation-text">
+      <strong>Vancouver:</strong><br>
+      Ibrahim MM. MedModr: Mediation and moderation analysis tool [software]. 2026. Available from:
+         <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" rel="noopener">
+        https://github.com/shinyhealthtools/medmodr
+      </a>
+    </div>
+
+    <button class="btn-copy" type="button"
+      data-copy-text="Ibrahim MM. MedModr: Mediation and moderation analysis tool [software]. 2026. Available from: https://github.com/shinyhealthtools/medmodr">
+      ⧉ Copy
+    </button>
+  </div>
+
+  <!-- Harvard -->
+  <div class="citation-row">
+    <div class="citation-text">
+      <strong>Harvard:</strong><br>
+      Ibrahim, M. M., 2026. <em>MedModr: Mediation and moderation analysis tool</em> [Software]. Available at:
+      <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" rel="noopener">
+        https://github.com/shinyhealthtools/medmodr
+      </a>
+    </div>
+
+    <button class="btn-copy" type="button"
+      data-copy-text="Ibrahim, M. M., 2026. MedModr: Mediation and moderation analysis tool [Software]. Available at: https://github.com/shinyhealthtools/medmodr">
+      ⧉ Copy
+    </button>
+  </div>
+
+  <!-- IEEE -->
+  <div class="citation-row">
+    <div class="citation-text">
+      <strong>IEEE:</strong><br>
+      M. M. Ibrahim, “MedModr: Mediation and moderation analysis tool,” 2026. [Online]. Available:
+      <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" rel="noopener">
+        https://github.com/shinyhealthtools/medmodr
+      </a>
+    </div>
+
+    <button class="btn-copy" type="button"
+      data-copy-text="M. M. Ibrahim, “MedModr: Mediation and moderation analysis tool,” 2026. [Online]. Available: https://github.com/shinyhealthtools/medmodr">
+      ⧉ Copy
+    </button>
+  </div>
+
 </div>
+
+<script>
+document.querySelectorAll(".btn-copy").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const originalHTML = btn.innerHTML;
+
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copyText);
+
+      // Professional feedback state
+      btn.innerHTML = "✓ Copied";
+      btn.classList.add("copied");
+
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.classList.remove("copied");
+      }, 1500);
+
+    } catch (err) {
+      btn.innerHTML = "✕ Failed";
+
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+      }, 1500);
+    }
+  });
+});
+</script>
 
       <h2 id="license">License</h2>
       <p>MedModr is released under the <strong>MIT License</strong>, which means it is free to use, modify, and distribute for both commercial and non-commercial purposes.</p>
