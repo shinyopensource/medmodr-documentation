@@ -149,7 +149,8 @@
     #searchClear:hover { color: var(--text); }
     .search-box.has-text #searchClear { display: inline-block; }
 
-    #searchResults {
+    #searchResults,
+    #searchResults2 {
       position: absolute;
       top: calc(100% + 6px);
       right: 0;
@@ -163,7 +164,8 @@
       z-index: 1100;
       display: none;
     }
-    #searchResults.open { display: block; }
+    #searchResults.open,
+    #searchResults2.open { display: block; }
     .search-result-item {
       display: block;
       padding: 10px 14px;
@@ -210,6 +212,7 @@
       background-color: var(--bg3);
       border-bottom: 1px solid var(--border);
       padding: 9px 40px;
+      text-align: center;
     }
     #topNav a { color: var(--link); text-decoration: none; margin-right: 18px; font-size: var(--fs-base); }
     #topNav a:hover { text-decoration: underline; }
@@ -246,7 +249,7 @@
     }
     #stickyLogo:hover { color: var(--accent); text-decoration: none; }
 
-    #stickyLinks { display: flex; align-items: center; flex: 1; flex-wrap: wrap; min-width: 0; }
+    #stickyLinks { display: flex; align-items: center; justify-content: center; flex: 1; flex-wrap: wrap; min-width: 0; }
     #stickyLinks a { color: var(--link); text-decoration: none; font-size: calc(var(--fs-base) * 0.92); font-weight: bold; padding: 0 1px; }
     #stickyLinks a:hover { text-decoration: underline; }
     #stickyLinks .sep { color: var(--text3); margin: 0 5px; }
@@ -511,7 +514,7 @@
        ═══════════════════════════════════════ */
     table { width: 100%; border-collapse: collapse; margin: 14px 0; background-color: var(--bg); }
     thead { background-color: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    th { padding: 8px; text-align: left; font-weight: bold; font-size: calc(var(--fs-base) * 0.92); border-right: 1px solid var(--border2); color: var(--text); }
+    th { padding: 8px; text-align: center; font-weight: bold; font-size: calc(var(--fs-base) * 0.92); border-right: 1px solid var(--border2); color: var(--text); }
     th:last-child { border-right: none; }
     td { padding: 8px; border-bottom: 1px solid var(--border2); border-right: 1px solid var(--border2); font-size: calc(var(--fs-base) * 0.92); color: var(--text); }
     td:last-child { border-right: none; }
@@ -781,7 +784,17 @@
 
 <!-- ── HEADER ── -->
 <div id="header">
-  <h1>MedModr</h1>
+  <div class="header-titles">
+    <h1>MedModr</h1>
+  </div>
+  <div class="header-search">
+    <div class="search-box" id="searchBox1">
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      <input type="text" id="searchInput" placeholder="Search documentation…" autocomplete="off" aria-label="Search documentation">
+      <button type="button" id="searchClear" aria-label="Clear search">✕</button>
+    </div>
+    <div id="searchResults" role="listbox" aria-label="Search results"></div>
+  </div>
 </div>
 
 <!-- ── STATIC TOP NAV ── -->
@@ -808,6 +821,14 @@
     <a href="#citation">Citation</a><span class="sep">|</span>
     <a href="#license">License</a><span class="sep">|</span>
     <a href="#developer">Developer</a>
+  </div>
+  <div class="sticky-search">
+    <div class="search-box" id="searchBox2">
+      <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+      <input type="text" id="searchInput2" placeholder="Search…" autocomplete="off" aria-label="Search documentation">
+      <button type="button" id="searchClear2" aria-label="Clear search">✕</button>
+    </div>
+    <div id="searchResults2" role="listbox" aria-label="Search results"></div>
   </div>
 </div>
 
@@ -965,11 +986,12 @@
         All 15 analysis types are run from the same <strong>Variable Assignment</strong> panel. The table below shows which variables
         each type needs and what it tests.
       </p>
+      <div class="table-scroll">
       <table>
         <thead>
           <tr>
             <th>Analysis Type</th>
-            <th style="text-align:center;">Model #</th>
+            <th>Model #</th>
             <th>Required Variables</th>
             <th>What it tests</th>
           </tr>
@@ -992,19 +1014,21 @@
           <tr><td><strong>Moderated Serial Mediation</strong></td><td style="text-align:center;">83</td><td>X, M₁, M₂, Y, W</td><td>W moderates X→M₁ within a serial chain: X→M₁→M₂→Y.</td></tr>
         </tbody>
       </table>
+      </div>
       <div class="infobox">
         <div class="infobox-title">Note</div>
         <p>You can add any number of <strong>covariates</strong> to control for confounding variables in all analysis types.</p>
       </div>
 
       <h2 id="version">Version History</h2>
+      <div class="table-scroll">
       <table>
         <thead>
           <tr>
             <th>Version</th>
             <th>Released</th>
             <th>Highlights</th>
-            <th style="text-align:center; min-width:90px;">Download</th>
+            <th style="min-width:90px;">Download</th>
           </tr>
         </thead>
         <tbody>
@@ -1022,6 +1046,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
 
 <h2 id="citation">Citation</h2>
 
@@ -1399,6 +1424,215 @@ if (copyBtn) {
     }, 1600);
   });
 }
+</script>
+<script>
+/* ══════════════════════════════════════════════════════
+   SEARCH FUNCTIONALITY
+══════════════════════════════════════════════════════ */
+(function () {
+  const MAIN = document.getElementById('main');
+  if (!MAIN) return;
+
+  /* ---- 1. Ensure every heading has a stable id (content/text untouched) ---- */
+  const usedIds = new Set();
+  function slugify(str) {
+    return str.toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+      .slice(0, 60) || 'section';
+  }
+  MAIN.querySelectorAll('h2, h3, h4').forEach(h => {
+    if (!h.id) {
+      let base = slugify(h.textContent);
+      let id = base, n = 2;
+      while (usedIds.has(id) || document.getElementById(id)) { id = base + '-' + (n++); }
+      h.id = id;
+    }
+    usedIds.add(h.id);
+  });
+
+  /* ---- 2. Build a searchable index from existing content ---- */
+  const index = [];
+  let currentH2 = { id: '', text: '' };
+  let currentHeading = { id: '', text: '' };
+
+  MAIN.querySelectorAll('h2, h3, h4, p, li, td').forEach(el => {
+    if (el.closest('.citation-card, .infobox')) {
+      // still index these, just don't treat as heading context changers
+    }
+    const tag = el.tagName;
+    const text = el.textContent.replace(/\s+/g, ' ').trim();
+    if (!text) return;
+
+    if (tag === 'H2') {
+      currentH2 = { id: el.id, text };
+      currentHeading = currentH2;
+      index.push({ id: el.id, section: text, text, isHeading: true });
+      return;
+    }
+    if (tag === 'H3' || tag === 'H4') {
+      currentHeading = { id: el.id, text };
+      index.push({ id: el.id, section: currentH2.text, text, isHeading: true });
+      return;
+    }
+    index.push({ id: currentHeading.id || currentH2.id, section: currentH2.text, text });
+  });
+
+  /* ---- 3. Search + snippet helpers ---- */
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  function buildSnippet(text, query, matchIdx) {
+    const radius = 60;
+    const start = Math.max(0, matchIdx - radius);
+    const end = Math.min(text.length, matchIdx + query.length + radius);
+    let snippet = text.slice(start, end);
+    if (start > 0) snippet = '…' + snippet;
+    if (end < text.length) snippet = snippet + '…';
+    const esc = escapeHtml(snippet);
+    const re = new RegExp(escapeRegExp(escapeHtml(query)), 'ig');
+    return esc.replace(re, m => '<mark>' + m + '</mark>');
+  }
+
+  function search(query) {
+    const q = query.trim();
+    if (q.length < 2) return [];
+    const qLower = q.toLowerCase();
+    const seen = new Set();
+    const results = [];
+
+    for (const entry of index) {
+      const lower = entry.text.toLowerCase();
+      const idx = lower.indexOf(qLower);
+      if (idx === -1) continue;
+      const key = entry.id + '|' + entry.text.slice(0, 40);
+      if (seen.has(key)) continue;
+      seen.add(key);
+      results.push({
+        id: entry.id,
+        section: entry.section || 'MedModr',
+        snippet: buildSnippet(entry.text, q, idx),
+        isHeading: !!entry.isHeading,
+        score: idx
+      });
+    }
+    results.sort((a, b) => (a.isHeading === b.isHeading) ? a.score - b.score : (a.isHeading ? -1 : 1));
+    return results.slice(0, 8);
+  }
+
+  /* ---- 4. Wire a search box instance to its results dropdown ---- */
+  function wireSearchBox(inputId, clearId, resultsId) {
+    const input = document.getElementById(inputId);
+    const clearBtn = document.getElementById(clearId);
+    const resultsBox = document.getElementById(resultsId);
+    const box = input ? input.closest('.search-box') : null;
+    if (!input || !resultsBox || !box) return;
+
+    let activeIndex = -1;
+    let currentResults = [];
+
+    function render(results) {
+      currentResults = results;
+      activeIndex = -1;
+      if (!input.value.trim()) {
+        resultsBox.classList.remove('open');
+        resultsBox.innerHTML = '';
+        return;
+      }
+      if (results.length === 0) {
+        resultsBox.innerHTML = '<div class="search-empty">No results for “' + escapeHtml(input.value.trim()) + '”</div>';
+        resultsBox.classList.add('open');
+        return;
+      }
+      let html = '<div class="search-count">' + results.length + ' result' + (results.length === 1 ? '' : 's') + '</div>';
+      html += results.map((r, i) => (
+        '<a href="#' + r.id + '" class="search-result-item" data-index="' + i + '">' +
+          '<div class="sr-section">' + escapeHtml(r.section) + '</div>' +
+          '<div class="sr-snippet">' + r.snippet + '</div>' +
+        '</a>'
+      )).join('');
+      resultsBox.innerHTML = html;
+      resultsBox.classList.add('open');
+    }
+
+    function goTo(id) {
+      const target = document.getElementById(id);
+      if (!target) return;
+      resultsBox.classList.remove('open');
+      box.classList.remove('has-text');
+      input.value = '';
+      target.classList.remove('search-target-highlight');
+      void target.offsetWidth; // restart the flash animation if reused
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => target.classList.add('search-target-highlight'), 250);
+    }
+
+    input.addEventListener('input', () => {
+      box.classList.toggle('has-text', input.value.length > 0);
+      render(search(input.value));
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (!resultsBox.classList.contains('open')) return;
+      const items = resultsBox.querySelectorAll('.search-result-item');
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIndex = Math.min(activeIndex + 1, items.length - 1);
+        items.forEach((it, i) => it.classList.toggle('active', i === activeIndex));
+        items[activeIndex] && items[activeIndex].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIndex = Math.max(activeIndex - 1, 0);
+        items.forEach((it, i) => it.classList.toggle('active', i === activeIndex));
+        items[activeIndex] && items[activeIndex].scrollIntoView({ block: 'nearest' });
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const idx = activeIndex >= 0 ? activeIndex : 0;
+        if (currentResults[idx]) goTo(currentResults[idx].id);
+      } else if (e.key === 'Escape') {
+        resultsBox.classList.remove('open');
+        input.blur();
+      }
+    });
+
+    resultsBox.addEventListener('click', (e) => {
+      const item = e.target.closest('.search-result-item');
+      if (!item) return;
+      e.preventDefault();
+      const idx = parseInt(item.dataset.index, 10);
+      if (currentResults[idx]) goTo(currentResults[idx].id);
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        box.classList.remove('has-text');
+        resultsBox.classList.remove('open');
+        resultsBox.innerHTML = '';
+        input.focus();
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!box.contains(e.target) && !resultsBox.contains(e.target)) {
+        resultsBox.classList.remove('open');
+      }
+    });
+
+    input.addEventListener('focus', () => {
+      if (input.value.trim() && currentResults.length) {
+        resultsBox.classList.add('open');
+      }
+    });
+  }
+
+  wireSearchBox('searchInput', 'searchClear', 'searchResults');
+  wireSearchBox('searchInput2', 'searchClear2', 'searchResults2');
+})();
 </script>
 
 </body>
