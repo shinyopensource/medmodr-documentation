@@ -3,16 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>About MedModr - A mediation & moderation analysis tool</title>
+<title>About MedModr - Mediation, moderation and conditional process tool</title>
   <meta name="description" content="Complete documentation for MedModr — free browser-based mediation, moderation, serial mediation, and moderated mediation analysis tool.">
   <meta name="keywords" content="mediation analysis, moderation analysis, serial mediation, moderated mediation, bootstrap CI, PROCESS macro alternative, conditional process analysis">
   <meta name="author" content="Mudasir Mohammed Ibrahim">
-  
-  <!-- Favicon and App Icons -->
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
 
 <meta name="google-site-verification" content="wziTcVA66OowBWGGGHsar8ky99roP427M_3ZTu8x1sI" />
     
@@ -707,17 +701,20 @@
     
     .figure-image {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   height: auto;
   display: block;
   margin: 0 auto;
   border-radius: 10px;
   cursor: zoom-in;
-  transition: transform .2s ease;
+  /* preserve full source resolution/quality when the browser downsamples for display */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: high-quality;
+  transition: box-shadow .2s ease;
 }
 
 .figure-image:hover {
-  transform: scale(1.01);
+  box-shadow: 0 0 0 3px var(--accent);
 }
 
 /* Lightbox */
@@ -743,6 +740,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   animation: zoomIn .25s ease;
+  cursor: default;
 }
 
 .lightbox-close {
@@ -754,6 +752,8 @@
   font-weight: bold;
   cursor: pointer;
   user-select: none;
+  z-index: 2;
+  line-height: 1;
 }
 
 .lightbox-close:hover {
@@ -917,7 +917,18 @@
       </p>
       <p>
         MedModr was created to democratize access to the most commonly used conditional process models. It provides an accessible alternative by offering a no-cost, browser-based platform that requires no installation, licensing, or coding skills. All analyses are performed locally within the user's browser, ensuring data privacy and security. The application currently supports 15 widely used PROCESS models, with ongoing development aimed at expanding model coverage and enhancing functionality to meet the evolving needs of the research community.
-      </p>  
+      </p>
+
+      <div class="figure">
+        <img
+            class="figure-image"
+            loading="eager"
+            decoding="sync"
+            src="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface1.png"
+            alt="MedModr interface"
+            data-title="MedModr Interface">
+        <div class="figure-caption"><strong>MedModr's home interface</strong></div>
+      </div>
 
       <h2 id="features">Key Features</h2>
       
@@ -969,7 +980,17 @@
       </div>
       
       <p>Only Upload and Select Variables are required; other steps are optional but recommended for data quality.</p>
-      
+
+      <div class="figure">
+        <img
+            class="figure-image"
+            loading="eager"
+            decoding="sync"
+            src="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface2.png"
+            alt="MedModr interface"
+            data-title="MedModr Interface">
+        <div class="figure-caption"><strong>Stage 1 walkthrough</strong> — upload, preview, and screen your data before running any analysis.</div>
+      </div>
 
       <h3>Stage 2: Statistical Analysis</h3>
       <ol>
@@ -980,12 +1001,35 @@
         <li><strong>Export:</strong> Download results as formatted Word, PDF, or HTML documents</li>
       </ol>
 
+      <div class="figure">
+        <img
+            class="figure-image"
+            loading="eager"
+            decoding="sync"
+            src="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface4.png"
+            alt="MedModr interface"
+            data-title="MedModr Interface">
+        <div class="figure-caption"><strong>Stage 2 results screen</strong> — APA regression tables</div>
+      </div>
+
 
       <h2 id="analysis">Analysis Types &amp; Variable Assignment</h2>
       <p>
         All 15 analysis types are run from the same <strong>Variable Assignment</strong> panel. The table below shows which variables
         each type needs and what it tests.
       </p>
+
+      <div class="figure">
+        <img
+            class="figure-image"
+            loading="eager"
+            decoding="sync"
+            src="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface.png"
+            alt="MedModr interface"
+            data-title="MedModr Interface">
+        <div class="figure-caption"><strong>Variable Assignment panel</strong> — the same interface drives all 15 analysis types.</div>
+      </div>
+
       <div class="table-scroll">
       <table>
         <thead>
@@ -1319,6 +1363,12 @@ SOFTWARE.</code></pre>
   </div>
 </div>
 
+<!-- ── LIGHTBOX (for .figure-image screenshots) ── -->
+<div class="lightbox" id="imgLightbox">
+  <span class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</span>
+  <img class="lightbox-content" id="lightboxImg" src="" alt="">
+</div>
+
 <script>
 /* ══════════════════════════════════════════════════════
    STICKY NAV
@@ -1424,6 +1474,56 @@ if (copyBtn) {
     }, 1600);
   });
 }
+</script>
+<script>
+/* ══════════════════════════════════════════════════════
+   SCREENSHOT LIGHTBOX (click any .figure-image to zoom fullscreen)
+   - Click image  -> opens fullscreen overlay
+   - Click X      -> closes
+   - Click outside the image (on the dark backdrop) -> closes
+   - Press Esc    -> closes
+══════════════════════════════════════════════════════ */
+(function () {
+  const lightbox       = document.getElementById('imgLightbox');
+  const lightboxImg     = document.getElementById('lightboxImg');
+  const lightboxClose   = document.getElementById('lightboxClose');
+  if (!lightbox || !lightboxImg) return;
+
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  }
+
+  function closeLightbox() {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  // Open on click of any screenshot
+  document.querySelectorAll('.figure-image').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+
+  // Close on X button click
+  lightboxClose.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeLightbox();
+  });
+
+  // Close when clicking the dark backdrop (outside the image)
+  lightbox.addEventListener('click', closeLightbox);
+
+  // Prevent clicks on the image itself (or the X) from bubbling and closing via backdrop handler twice
+  lightboxImg.addEventListener('click', (e) => e.stopPropagation());
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.style.display === 'block') closeLightbox();
+  });
+})();
 </script>
 <script>
 /* ══════════════════════════════════════════════════════
