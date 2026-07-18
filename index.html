@@ -1031,15 +1031,19 @@
          ════════════════════════════════════ -->
     <div id="main">
 
-     <h2 id="overview">Overview</h2>
-      <p>
-        MedModr is a free, browser-based, open-source application for mediation, moderation, and conditional process analysis.
-        Tools like the PROCESS macro for SPSS/SAS and R are powerful, but they require licensed software or a configured environment that
-        many researchers especially those in low-resource settings simply don't have access to.
-      </p>
-      <p>
-        MedModr was created to democratize access to the most commonly used conditional process models. It provides an accessible alternative by offering a no-cost, browser-based platform that requires no installation, licensing, or coding skills. All analyses are performed locally within the user's browser, ensuring data privacy and security. The application currently supports 15 widely used PROCESS models, with ongoing development aimed at expanding model coverage and enhancing functionality to meet the evolving needs of the research community.
-      </p>
+     <h2 id="overview">Motivation and Significance</h2>
+
+<p>
+  Existing analytical tools, such as the PROCESS macro for SPSS and SAS and implementations available in R and Python, are powerful and widely used. However, they often require access to licensed statistical software, installation of programming environments, or proficiency in coding. These requirements often present significant barriers for many researchers, particularly students, early-career investigators, and researchers in low- and middle-income countries where access to commercial software licenses, high-performance computing resources, or advanced programming training may be limited. Such barriers can restrict opportunities for conducting high-quality statistical analyses and limit the reproducibility of research.
+</p>
+
+<p>
+  MedModr was developed to address these accessibility challenges by democratizing access to mediation, moderation, and conditional process analyses. The application provides a completely free, browser-based platform that requires no software installation, licensing, account creation, or programming knowledge. Users can upload their data, specify their analytical model through an intuitive interface, and obtain publication-ready statistical outputs directly from a modern web browser. This design substantially lowers the technical barriers associated with advanced statistical modelling while maintaining analytical flexibility and ease of use.
+</p>
+
+<p>
+  A key feature of MedModr is its privacy-preserving computational architecture. All statistical computations are performed locally within the user's web browser rather than on remote servers. Consequently, research datasets remain on the user's device throughout the analytical process and are never transmitted, stored, or processed externally. This approach enhances data privacy, supports compliance with institutional and ethical data protection requirements, and provides users with confidence when analysing sensitive or confidential datasets.
+</p>
 
       <div class="figure">
         <img
@@ -1061,10 +1065,10 @@
       <p>Simple mediation, parallel mediation, serial mediation, simple moderation, moderated moderation, double moderation, and multiple moderated mediation variants covering most common conditional process analysis needs.</p>
 
       <h3>Bootstrap Confidence Intervals</h3>
-      <p>Up to 10,000 bootstrap samples with Percentile or Bias-Corrected (BC) method for indirect effects. Provides bootstrap confidence intervals around all estimates. Bootstrapping uses a seeded pseudorandom number generator (Mulberry32, default seed = 12345), so results are fully reproducible across operating systems, browsers, and devices.</p>
+      <p>Up to 10,000 bootstrap samples with Percentile or Bias-Corrected (BC) method for indirect effects. Provides bootstrap standard errors and confidence intervals around all estimates. Bootstrapping uses a seeded pseudorandom number generator (Mulberry32, default seed = 12345), so results are fully reproducible across operating systems, browsers, and devices.</p>
 
       <h3>Interactive Path Diagrams</h3>
-      <p>Auto-generated SVG diagrams with coefficient overlays for eight of the supported models. Toggle color/B&amp;W, show/hide values or p-values, switch between unstandardized (b) and standardized (β) coefficients, rename variables, and download as high-resolution PNG or SVG for publications.</p>
+      <p>Auto-generated SVG diagrams with coefficient overlays for eight (8) of the supported models. Toggle color/B&amp;W, show/hide values or p-values, switch between unstandardized (b) and standardized (β) coefficients, rename variables, and download as high-resolution PNG or SVG for publications.</p>
 
       <h3>Simple Slopes Plots</h3>
       <p>Interactive Canvas-based plots of the moderator's effect at −1SD, Mean, and +1SD. Choose between a legend or on-line annotations, switch between default and publication-ready styling, and download as high-resolution PNG for manuscript preparation.</p>
@@ -1162,23 +1166,37 @@
             <th>What it tests</th>
           </tr>
         </thead>
-        <tbody>
-          <tr><td><strong>Simple Mediation</strong></td><td style="text-align:center;">4</td><td>X, M, Y</td><td>Does M carry the effect of X on Y? Includes Sobel test.</td></tr>
-          <tr><td><strong>Parallel Mediation</strong></td><td style="text-align:center;">4</td><td>X, M (2+), Y</td><td>Multiple mediators acting simultaneously. Reports individual and total indirect effects.</td></tr>
-          <tr><td><strong>Serial Mediation</strong></td><td style="text-align:center;">6</td><td>X, M₁, M₂, Y</td><td>Chain: X → M₁ → M₂ → Y. Tests three indirect paths.</td></tr>
-          <tr><td><strong>Simple Moderation</strong></td><td style="text-align:center;">1</td><td>X, Y, W</td><td>Does W change how X affects Y? X×W interaction + simple slopes.</td></tr>
-          <tr><td><strong>Double Moderation</strong></td><td style="text-align:center;">2</td><td>X, Y, W (2)</td><td>Two separate moderators W and Z. X×W and X×Z interactions.</td></tr>
-          <tr><td><strong>Moderated Moderation</strong></td><td style="text-align:center;">3</td><td>X, Y, W (2)</td><td>Three-way interaction: X × W × Z → Y. All two-way interactions included.</td></tr>
-          <tr><td><strong>Mediation w/ Moderated Direct</strong></td><td style="text-align:center;">5</td><td>X, M, Y, W</td><td>W moderates only the direct X→Y path (c′-path).</td></tr>
-          <tr><td><strong>W moderates X→M</strong></td><td style="text-align:center;">7</td><td>X, M, Y, W</td><td>First-stage moderation: W moderates the X→M (a) path.</td></tr>
-          <tr><td><strong>W moderates M→Y</strong></td><td style="text-align:center;">14</td><td>X, M, Y, W</td><td>Second-stage moderation: W moderates the M→Y (b) path.</td></tr>
-          <tr><td><strong>W moderates X→M &amp; M→Y</strong></td><td style="text-align:center;">58</td><td>X, M, Y, W</td><td>W moderates both the a-path and b-path.</td></tr>
-          <tr><td><strong>W moderates X→M and X→Y</strong></td><td style="text-align:center;">8</td><td>X, M, Y, W</td><td>W moderates both the a-path (X→M) and the direct path (X→Y).</td></tr>
-          <tr><td><strong>W moderates M→Y &amp; X→Y</strong></td><td style="text-align:center;">15</td><td>X, M, Y, W</td><td>W moderates both the b-path (M→Y) and the direct path (X→Y).</td></tr>
-          <tr><td><strong>W moderates all three paths</strong></td><td style="text-align:center;">59</td><td>X, M, Y, W</td><td>W moderates X→M, M→Y, and X→Y.</td></tr>
-          <tr><td><strong>W mod. X→M, Z mod. M→Y</strong></td><td style="text-align:center;">9</td><td>X, M, Y, W (2)</td><td>Two different moderators: W on the a-path, Z on the b-path.</td></tr>
-          <tr><td><strong>Moderated Serial Mediation</strong></td><td style="text-align:center;">83</td><td>X, M₁, M₂, Y, W</td><td>W moderates X→M₁ within a serial chain: X→M₁→M₂→Y.</td></tr>
-        </tbody>
+<tbody>
+  <tr><td><strong>Simple Mediation</strong></td><td style="text-align:center;">4</td><td>X, M, Y</td><td>Does M mediate the effect of X on Y? Includes the Sobel test.</td></tr>
+
+  <tr><td><strong>Parallel Mediation</strong></td><td style="text-align:center;">4</td><td>X, M (2+), Y</td><td>Multiple mediators operating simultaneously. Reports individual and total indirect effects.</td></tr>
+
+  <tr><td><strong>Serial Mediation</strong></td><td style="text-align:center;">6</td><td>X, M₁, M₂, Y</td><td>Chain mediation: X → M₁ → M₂ → Y. Tests three indirect pathways.</td></tr>
+
+  <tr><td><strong>Simple Moderation</strong></td><td style="text-align:center;">1</td><td>X, Y, W (1; W only)</td><td>Does W change the effect of X on Y? Includes the X×W interaction and simple slopes.</td></tr>
+
+  <tr><td><strong>Double Moderation</strong></td><td style="text-align:center;">2</td><td>X, Y, W (2; W & Z)</td><td>Two separate moderators, W and Z. Includes X×W and X×Z interactions.</td></tr>
+
+  <tr><td><strong>Moderated Moderation</strong></td><td style="text-align:center;">3</td><td>X, Y, W (2; W & Z)</td><td>Three-way interaction: X × W × Z → Y. Includes all two-way interactions.</td></tr>
+
+  <tr><td><strong>Mediation with Moderated Direct Effect</strong></td><td style="text-align:center;">5</td><td>X, M, Y, W (1; W only)</td><td>W moderates only the direct X→Y path (c′ path).</td></tr>
+
+  <tr><td><strong>W Moderates X→M</strong></td><td style="text-align:center;">7</td><td>X, M, Y, W (1; W only)</td><td>First-stage moderation: W moderates the X→M (a) path.</td></tr>
+
+  <tr><td><strong>W Moderates M→Y</strong></td><td style="text-align:center;">14</td><td>X, M, Y, W (1; W only)</td><td>Second-stage moderation: W moderates the M→Y (b) path.</td></tr>
+
+  <tr><td><strong>W Moderates X→M &amp; M→Y</strong></td><td style="text-align:center;">58</td><td>X, M, Y, W (1; W only)</td><td>W moderates both the a-path and the b-path.</td></tr>
+
+  <tr><td><strong>W Moderates X→M and X→Y</strong></td><td style="text-align:center;">8</td><td>X, M, Y, W (1; W only)</td><td>W moderates both the a-path (X→M) and the direct path (X→Y).</td></tr>
+
+  <tr><td><strong>W Moderates M→Y &amp; X→Y</strong></td><td style="text-align:center;">15</td><td>X, M, Y, W (1; W only)</td><td>W moderates both the b-path (M→Y) and the direct path (X→Y).</td></tr>
+
+  <tr><td><strong>W Moderates All Three Paths</strong></td><td style="text-align:center;">59</td><td>X, M, Y, W (1; W only)</td><td>W moderates the X→M, M→Y, and X→Y paths.</td></tr>
+
+  <tr><td><strong>W Moderates X→M, Z Moderates M→Y</strong></td><td style="text-align:center;">9</td><td>X, M, Y, W (2; W & Z)</td><td>Two different moderators: W on the a-path and Z on the b-path.</td></tr>
+
+  <tr><td><strong>Moderated Serial Mediation</strong></td><td style="text-align:center;">83</td><td>X, M₁, M₂, Y, W (1; W only)</td><td>W moderates the X→M₁ path within the serial chain X→M₁→M₂→Y.</td></tr>
+</tbody>
       </table>
       </div>
       <div class="infobox">
@@ -1239,7 +1257,7 @@
 
 <p>
   <strong>Publication</strong><br>
-  For more information about MedModr, including its functionality, features, and applications, please refer to the paper published in <em>SoftwareX</em>: 
+  To learn more about MedModr, including its functionality, features, and applications, please refer to the article published in <em>SoftwareX</em>: 
   <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" rel="noopener">
     https://github.com/shinyhealthtools/medmodr
   </a>
@@ -1248,7 +1266,7 @@
 
 <p>
   <strong>Citing MedModr</strong><br>
-  If you use MedModr in your research, academic publications, theses, dissertations, or reports, please cite it using any of the following styles:
+  If you use MedModr in your research, publications, theses, dissertations, or reports, please cite the article using one of the reference formats provided below: 
 </p>
 
 <div class="citation-card">
@@ -1348,7 +1366,8 @@ document.querySelectorAll(".btn-copy").forEach(btn => {
 </script>
 
       <h2 id="license">License</h2>
-      <p>MedModr is released under the <strong>MIT License</strong>, which means it is free to use, modify, and distribute for both commercial and non-commercial purposes.</p>
+      <p>MedModr is released under the <strong>MIT License</strong>, which permits free use, modification, and redistribution for both commercial and non-commercial purposes. The application can be deployed on institutional or individual servers, enabling organizations and researchers to self-host MedModr while retaining full control over their data and computing environment.
+</p>
       <pre><code>MIT License
 
 Copyright (c) MedModr
@@ -1386,15 +1405,20 @@ SOFTWARE.</code></pre>
       </p>
 
 <h2 id="bug">Want to Contribute?</h2>
-<p>I welcome contributions from the community! Whether it's fixing bugs, adding features, or improving documentation, your help is appreciated.</p>
-<p>The preferred way to contribute is by opening a pull request on the <a href="https://github.com/shinyhealthtools/medmodr" target="_blank">GitHub repository</a>. You can also open an issue to discuss proposed changes.</p>
-      
-            <h2 id="bug">Report a Bug</h2>
-      <p>Found something that does not work correctly? Please report it so it can be fixed.</p>
-      <h3>GitHub Issues (Preferred)</h3>
-      <p>The preferred way to report bugs. Open an issue on the <a href="https://github.com/shinyhealthtools/medmodr/issues" target="_blank">GitHub repository</a> so it is tracked publicly.</p>
-      <h3>Email Developer</h3>
-      <p>Send a description of the bug, what you were doing, your browser version, and your operating system to <a href="mailto:mudassiribrahim30@gmail.com?subject=MedModr Bug Report">mudassiribrahim30@gmail.com</a>.</p>
+
+<p>
+  Contributions from the community are welcome and appreciated. Whether you are fixing bugs, implementing new features, improving documentation, or suggesting enhancements, your contributions help improve MedModr.
+</p>
+
+<p>
+  The preferred way to contribute is by opening a pull request on the
+  <a href="https://github.com/shinyhealthtools/medmodr/issues" target="_blank" rel="noopener">GitHub repository</a>.
+  Before contributing, please read the
+  <a href="https://github.com/shinyhealthtools/medmodr/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a>
+  guide for information on the contribution workflow, coding standards, and submission guidelines. 
+</p>
+            <h3>OR</h3>
+      <p>You may also send a description of the bug to <a href="mailto:mudassiribrahim30@gmail.com?subject=MedModr Bug Report">mudassiribrahim30@gmail.com</a>.</p>
       <div class="infobox">
         <div class="infobox-title">Helpful to Include</div>
         <p>The analysis type you were running, your browser and version (e.g., Chrome 125, Firefox 127), a short description of what you expected vs. what happened, and if possible an anonymized sample dataset that reproduces the issue.</p>
@@ -1462,13 +1486,11 @@ SOFTWARE.</code></pre>
 <!-- ── FOOTER ── -->
 <div id="footer">
   <div class="footer-left">
-    Copyright &copy; 2026&ndash;Present MedModr 
+    Copyright &copy; 2026 MedModr 
     <div class="links">
       <a href="https://github.com/shinyopensource/medmodr-documentation" target="_blank">Source code</a>
       <span class="separator">|</span>
       <a href="mailto:mudassiribrahim30@gmail.com">Contact developer</a>
-      <span class="separator">|</span>
-      <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank">Use MedModr online</a>
     </div>
   </div>
   <div class="footer-right">
