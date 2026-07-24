@@ -449,6 +449,73 @@
       padding: 10px 12px;
       border-top: 1px solid var(--border);
     }
+    
+    /* Repository icons under version history */
+.repo-icons {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin: 10px 0 6px 0;
+  align-items: center;
+}
+
+.repo-icon-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: calc(var(--fs-base) * 0.9);
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.repo-icon-link:hover {
+  text-decoration: none;
+  background: var(--row-hover);
+  color: var(--accent);
+}
+
+.repo-favicon {
+  width: 22px;
+  height: 22px;
+  filter: invert(0.4);
+  transition: transform 0.2s ease;
+}
+
+.repo-icon-link:hover .repo-favicon {
+  transform: scale(1.1);
+}
+
+.repo-icon-link span {
+  font-weight: 500;
+}
+
+/* Dark mode adjustments */
+html[data-color="dark"] .repo-favicon {
+  filter: brightness(0) invert(1);
+}
+
+html[data-color="dark"] .repo-icon-link:hover {
+  background: var(--bg3);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .repo-icons {
+    gap: 15px;
+    justify-content: center;
+  }
+  .repo-icon-link {
+    font-size: calc(var(--fs-base) * 0.85);
+    padding: 4px 8px;
+  }
+  .repo-favicon {
+    width: 18px;
+    height: 18px;
+  }
+}
 
     /* ═══════════════════════════════════════
        MAIN CONTENT
@@ -1031,18 +1098,14 @@
          ════════════════════════════════════ -->
     <div id="main">
 
-     <h2 id="overview">Overview</h2>
+     <h2 id="overview">The Motivation Behind MedModr</h2>
 
 <p>
-  Existing analytical tools, such as the PROCESS macro for SPSS and SAS and implementations available in R and Python, are powerful and widely used. However, they often require access to licensed statistical software, installation of programming environments, or proficiency in coding. These requirements often present significant barriers for many researchers, particularly students, early-career investigators, and researchers in low- and middle-income countries where access to commercial software licenses, high-performance computing resources, or advanced programming training may be limited. Such barriers can restrict opportunities for conducting high-quality statistical analyses and limit the reproducibility of research.
+Advanced mediation, moderation, and conditional process analyses are increasingly used across the health, social, behavioral, and educational sciences. Although powerful analytical tools such as the PROCESS macro for SPSS and SAS, as well as implementations in R and Python, are widely available, they often require licensed software, installation of programming environments, or proficiency in coding. These requirements can create significant barriers for many researchers, particularly students, early-career investigators, and researchers in low- and middle-income countries, where access to commercial software, high-performance computing resources, or advanced programming training may be limited. As a result, many researchers face unnecessary challenges in conducting rigorous statistical analyses and producing reproducible research.
 </p>
 
 <p>
-  MedModr was developed to address these accessibility challenges by democratizing access to mediation, moderation, and conditional process analyses. The application provides a completely free, browser-based platform that requires no software installation, licensing, account creation, or programming knowledge. Users can upload their data, specify their analytical model through an intuitive interface, and obtain publication-ready statistical outputs directly from a modern web browser. This design substantially lowers the technical barriers associated with advanced statistical modelling while maintaining analytical flexibility and ease of use.
-</p>
-
-<p>
-  A key feature of MedModr is its privacy-preserving computational architecture. All statistical computations are performed locally within the user's web browser rather than on remote servers. Consequently, research datasets remain on the user's device throughout the analytical process and are never transmitted, stored, or processed externally. This approach enhances data privacy, supports compliance with institutional and ethical data protection requirements, and provides users with confidence when analysing sensitive or confidential datasets.
+MedModr was created to remove these barriers and make advanced statistical analyses accessible to everyone. It is a completely free, open-source, browser-based application that requires no software installation, licensing, account creation, or programming experience. Through an intuitive interface, users can upload their data, select the appropriate analytical model, and generate publication-ready results directly within a modern web browser. By eliminating technical and financial obstacles, MedModr enables researchers, educators, clinicians, and students to perform sophisticated mediation, moderation, and conditional process analyses with greater ease and confidence.
 </p>
 
       <div class="figure">
@@ -1157,15 +1220,15 @@
       </div>
 
       <div class="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Analysis Type</th>
-            <th>Model #</th>
-            <th>Required Variables</th>
-            <th>What it tests</th>
-          </tr>
-        </thead>
+<table>
+  <thead>
+    <tr>
+      <th>Analysis Type</th>
+      <th>Model #</th>
+      <th>Required Variables</th>
+      <th>What it tests</th>
+    </tr>
+  </thead>
 <tbody>
   <tr><td><strong>Simple Mediation</strong></td><td style="text-align:center;">4</td><td>X, M, Y</td><td>Does M mediate the effect of X on Y? Includes the Sobel test.</td></tr>
 
@@ -1197,12 +1260,18 @@
 
   <tr><td><strong>Moderated Serial Mediation</strong></td><td style="text-align:center;">83</td><td>X, M₁, M₂, Y, W (1; W only)</td><td>W moderates the X→M₁ path within the serial chain X→M₁→M₂→Y.</td></tr>
 </tbody>
-      </table>
-      </div>
-      <div class="infobox">
-        <div class="infobox-title">Note</div>
-        <p>You can add any number of <strong>covariates</strong> to control for confounding variables in all analysis types.</p>
-      </div>
+</table>
+</div>
+
+<div class="infobox">
+  <div class="infobox-title">Notes</div>
+  <p><strong>Variable notation:</strong></p>
+  <ul style="margin: 4px 0 4px 20px;">
+    <li><strong>W (1; W only)</strong> — Requires <strong>one</strong> moderator variable (W).</li>
+    <li><strong>W (2; W &amp; Z)</strong> — Requires <strong>two</strong> moderator variables (W and Z).</li>
+  </ul>
+  <p style="margin-top: 6px;">You can add any number of <strong>covariates</strong> to control for confounding variables in all analysis types.</p>
+</div>
 
       <!-- ── TUTORIAL VIDEO ── -->
       <h2 id="tutorial">Video Tutorial: How to Run an Analysis</h2>
@@ -1225,33 +1294,53 @@
       </div>
       <!-- ── END TUTORIAL VIDEO ── -->
 
-      <h2 id="version">Version History</h2>
-      <div class="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Version</th>
-            <th>Released</th>
-            <th>Highlights</th>
-            <th style="min-width:90px;">Download</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>v2.0</strong> <span class="badge badge-green">Latest</span></td>
-            <td style="white-space:nowrap;">June 2026</td>
-            <td>15 analysis types (6 new models), automatic logistic regression for binary outcomes, enhanced path diagrams (SVG export), improved export menu (Word, PDF, HTML, CSV), binary moderator support.</td>
-            <td style="text-align:center;"><a href="https://archive.org/download/version-1_202606/MedModr%20%28v2.0%29.zip" class="btn-download">Download</a></td>
-          </tr>
-          <tr>
-            <td><strong>v1.0</strong></td>
-            <td style="white-space:nowrap;">April 2026</td>
-            <td>First release: 9 analysis types, OLS regression, bootstrap CIs, standardized coefficients, CSV/Excel import, Word export, path diagrams.</td>
-            <td style="text-align:center;"><a href="https://archive.org/download/version-1_202606/MedModr%20%28v1.0%29.zip" class="btn-download">Download</a></td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
+<h2 id="version">Version History</h2>
+<div class="table-scroll">
+<table>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Released</th>
+      <th>Highlights</th>
+      <th style="min-width:90px;">Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>v2.0</strong> <span class="badge badge-green">Latest</span></td>
+      <td style="white-space:nowrap;">June 2026</td>
+      <td>15 analysis types (6 new models), automatic logistic regression for binary outcomes, enhanced path diagrams (SVG export), improved export menu (Word, PDF, HTML, CSV), binary moderator support.</td>
+      <td style="text-align:center;"><a href="https://archive.org/download/version-1_202606/MedModr%20%28v2.0%29.zip" class="btn-download">Download</a></td>
+    </tr>
+    <tr>
+      <td><strong>v1.0</strong></td>
+      <td style="white-space:nowrap;">April 2026</td>
+      <td>First release: 9 analysis types, OLS regression, bootstrap CIs, standardized coefficients, CSV/Excel import, Word export, path diagrams.</td>
+      <td style="text-align:center;"><a href="https://archive.org/download/version-1_202606/MedModr%20%28v1.0%29.zip" class="btn-download">Download</a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p style="margin: 16px 0 8px 0; font-size: calc(var(--fs-base) * 0.92); color: var(--text2);">
+  <i class="fa-regular fa-circle-arrow-down" style="color: var(--accent); margin-right: 6px;"></i>
+The app is also available for download from the following trusted repositories:
+</p>
+
+<div class="repo-icons">
+  <a href="https://doi.org/10.6084/m9.figshare.33075266" target="_blank" rel="noopener" class="repo-icon-link">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/figshare.svg" alt="Figshare" class="repo-favicon">
+    <span>Figshare</span>
+  </a>
+  <a href="https://doi.org/10.17605/OSF.IO/M95HP" target="_blank" rel="noopener" class="repo-icon-link">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/osf.svg" alt="OSF" class="repo-favicon">
+    <span>OSF</span>
+  </a>
+  <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" rel="noopener" class="repo-icon-link">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" class="repo-favicon">
+    <span>GitHub</span>
+  </a>
+</div>
 
 <h2 id="citation">Citation</h2>
 
@@ -1423,58 +1512,90 @@ SOFTWARE.</code></pre>
 </div><!-- end #container -->
 
 <style>
+  /* Footer - Always black background */
+#footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px 20px;
+  background: #1a1a1a !important;
+  border-top: 1px solid #333 !important;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #e0e0e0 !important;
+}
+
+#footer a {
+  color: #66b3ff !important;
+  text-decoration: none;
+  background: transparent;
+}
+
+#footer a:hover {
+  color: #99ccff !important;
+  text-decoration: underline;
+  background: transparent;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #e0e0e0 !important;
+}
+
+.footer-left .links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.separator {
+  color: #666 !important;
+}
+
+.footer-right {
+  color: #e0e0e0 !important;
+}
+
+.footer-right .last-updated {
+  color: #aaa !important;
+}
+
+.footer-right .last-updated i {
+  color: #888 !important;
+}
+
+/* Override any dark/light mode changes */
+html[data-color="dark"] #footer,
+html[data-color="light"] #footer {
+  background: #1a1a1a !important;
+  border-top: 1px solid #333 !important;
+}
+
+html[data-color="dark"] #footer a,
+html[data-color="light"] #footer a {
+  color: #66b3ff !important;
+}
+
+html[data-color="dark"] #footer a:hover,
+html[data-color="light"] #footer a:hover {
+  color: #99ccff !important;
+}
+
+/* Responsive: Stack on smaller screens */
+@media (max-width: 600px) {
   #footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 15px 20px;
-    background: #f5f5f5;
-    border-top: 1px solid #ddd;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #333;
-  }
-
-  #footer a {
-    color: #0066cc;
-    text-decoration: none;
-    background: transparent; /* Remove any background */
-  }
-
-  #footer a:hover {
-    text-decoration: underline;
-    background: transparent; /* Remove blue background on hover */
-  }
-
-  .footer-left {
-    display: flex;
     flex-direction: column;
-    gap: 4px;
+    align-items: flex-start;
+    gap: 10px;
   }
-
+  
   .footer-left .links {
-    display: flex;
-    align-items: center;
-    gap: 8px;
     flex-wrap: wrap;
   }
-
-  .separator {
-    color: #999;
-  }
-
-  /* Responsive: Stack on smaller screens */
-  @media (max-width: 600px) {
-    #footer {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    
-    .footer-left .links {
-      flex-wrap: wrap;
-    }
-  }
+}
 </style>
 
 <!-- ── FOOTER ── -->
