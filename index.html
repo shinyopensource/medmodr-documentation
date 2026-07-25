@@ -451,13 +451,13 @@
     }
     
     /* Repository icons under version history */
-.repo-icons {
-  display: flex;
-  gap: 25px;
-  flex-wrap: wrap;
-  margin: 10px 0 6px 0;
-  align-items: center;
-}
+  .repo-icons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 10px 0 6px 0;
+    align-items: center;
+  }
 
 .repo-icon-link {
   display: inline-flex;
@@ -477,45 +477,54 @@
   color: var(--accent);
 }
 
-.repo-favicon {
-  width: 22px;
-  height: 22px;
-  filter: invert(0.4);
-  transition: transform 0.2s ease;
-}
+  .repo-favicon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
 
-.repo-icon-link:hover .repo-favicon {
-  transform: scale(1.1);
-}
+  /* Brand colors for each repository */
+  .repo-icon-link[href*="figshare"] .repo-favicon {
+    filter: brightness(0) saturate(100%) invert(27%) sepia(98%) saturate(748%) hue-rotate(175deg) brightness(92%) contrast(101%);
+  }
 
-.repo-icon-link span {
-  font-weight: 500;
-}
+  .repo-icon-link[href*="osf"] .repo-favicon {
+    filter: brightness(0) saturate(100%) invert(29%) sepia(69%) saturate(1420%) hue-rotate(192deg) brightness(92%) contrast(101%);
+  }
 
-/* Dark mode adjustments */
-html[data-color="dark"] .repo-favicon {
-  filter: brightness(0) invert(1);
-}
+  .repo-icon-link[href*="zenodo"] .repo-favicon {
+    filter: brightness(0) saturate(100%) invert(35%) sepia(89%) saturate(2486%) hue-rotate(229deg) brightness(99%) contrast(92%);
+  }
 
-html[data-color="dark"] .repo-icon-link:hover {
-  background: var(--bg3);
-}
+  .repo-icon-link[href*="github"] .repo-favicon {
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+  }
+
+  /* Dark mode adjustments */
+  html[data-color="dark"] .repo-icon-link[href*="github"] .repo-favicon {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  }
 
 /* Responsive */
-@media (max-width: 600px) {
-  .repo-icons {
-    gap: 15px;
-    justify-content: center;
+  @media (max-width: 600px) {
+    .repo-icons {
+      gap: 8px;
+      justify-content: center;
+    }
+    .repo-icon-link {
+      font-size: calc(var(--fs-base) * 0.85);
+      padding: 4px 6px;
+    }
+    .repo-favicon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      object-fit: contain;
+    }
   }
-  .repo-icon-link {
-    font-size: calc(var(--fs-base) * 0.85);
-    padding: 4px 8px;
-  }
-  .repo-favicon {
-    width: 18px;
-    height: 18px;
-  }
-}
+  
 
     /* ═══════════════════════════════════════
        MAIN CONTENT
@@ -961,6 +970,15 @@ html[data-color="dark"] .repo-icon-link:hover {
       width: 100%;
     }
   }
+  
+    .repo-favicon {
+    width: 24px;
+    height: 24px;
+    filter: invert(0.4);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
     
   </style>
 </head>
@@ -981,7 +999,7 @@ html[data-color="dark"] .repo-icon-link:hover {
       <div id="searchResults" role="listbox" aria-label="Search results"></div>
     </div>
     <a href="https://buymeacoffee.com/mudasiribrahim30?status=1" target="_blank" rel="noopener" class="btn-support-header" id="supportLinkHeader">
-      <span aria-hidden="true">☕</span> Support the project
+      Support Development
     </a>
   </div>
 </div>
@@ -1089,6 +1107,12 @@ html[data-color="dark"] .repo-icon-link:hover {
       <!-- Launch button -->
       <div class="sidebar-launch">
         <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" class="btn btn-primary"> Use MedModr online</a>
+      </div>
+
+      <div style="padding: 8px 12px 12px; border-top: 1px solid var(--border);">
+        <p style="font-size: var(--fs-base); color: var(--text); text-align: center; line-height: 1.6; margin: 0;">
+          <strong>NB:</strong> This version of the app is hosted on GitHub Pages. All processing runs locally in your browser, and no data is uploaded or stored on any server.
+        </p>
       </div>
 
     </div><!-- end #sidebar -->
@@ -1323,7 +1347,7 @@ MedModr was created to remove these barriers and make advanced statistical analy
 </div>
 
 <p style="margin: 16px 0 8px 0; font-size: calc(var(--fs-base) * 0.92); color: var(--text2);">
-  <i class="fa-regular fa-circle-arrow-down" style="color: var(--accent); margin-right: 6px;"></i>
+  <i class="" style="color: var(--accent); margin-right: 6px;"></i>
 The app is also available for download from the following trusted repositories:
 </p>
 
@@ -1332,9 +1356,11 @@ The app is also available for download from the following trusted repositories:
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/figshare.svg" alt="Figshare" class="repo-favicon">
     <span>Figshare</span>
   </a>
-  <a href="https://doi.org/10.17605/OSF.IO/M95HP" target="_blank" rel="noopener" class="repo-icon-link">
+  <a href="https://doi.org/10.17605/OSF.IO/M95HP" target="_blank" rel="noopener" class="repo-icon-link" aria-label="OSF">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/osf.svg" alt="OSF" class="repo-favicon">
-    <span>OSF</span>
+  </a>
+  <a href="https://doi.org/10.5281/zenodo.17214501" target="_blank" rel="noopener" class="repo-icon-link" aria-label="Zenodo">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/zenodo.svg" alt="Zenodo" class="repo-favicon">
   </a>
   <a href="https://github.com/shinyhealthtools/medmodr" target="_blank" rel="noopener" class="repo-icon-link">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" class="repo-favicon">
