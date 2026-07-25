@@ -10,11 +10,6 @@
 
 <meta name="google-site-verification" content="wziTcVA66OowBWGGGHsar8ky99roP427M_3ZTu8x1sI" />
     
-<link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/favicon-16x16.png">
-<link rel="manifest" href="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/site.webmanifest">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
    * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1110,8 +1105,8 @@
       </div>
 
       <div style="padding: 8px 12px 12px; border-top: 1px solid var(--border);">
-        <p style="font-size: var(--fs-base); color: var(--text); text-align: center; line-height: 1.6; margin: 0;">
-          <strong>NB:</strong> This version of the app is hosted on GitHub Pages. All processing runs locally in your browser, and no data is uploaded or stored on any server.
+        <p style="font-size: calc(var(--fs-base) * 0.8); color: var(--text); text-align: center; line-height: 1.5; margin: 0; opacity: 0.85;">
+          <strong>Note:</strong> This version of the app is hosted on GitHub Pages. All processing runs locally in your browser, and no data is uploaded or stored on any server.
         </p>
       </div>
 
@@ -1122,14 +1117,18 @@
          ════════════════════════════════════ -->
     <div id="main">
 
-     <h2 id="overview">The Motivation Behind MedModr</h2>
+      <h2 id="overview">Overview</h2>
 
 <p>
-Advanced mediation, moderation, and conditional process analyses are increasingly used across the health, social, behavioral, and educational sciences. Although powerful analytical tools such as the PROCESS macro for SPSS and SAS, as well as implementations in R and Python, are widely available, they often require licensed software, installation of programming environments, or proficiency in coding. These requirements can create significant barriers for many researchers, particularly students, early-career investigators, and researchers in low- and middle-income countries, where access to commercial software, high-performance computing resources, or advanced programming training may be limited. As a result, many researchers face unnecessary challenges in conducting rigorous statistical analyses and producing reproducible research.
+MedModr is a free, open-source, browser-based application designed for mediation, moderation, and conditional process analysis. It addresses the accessibility gap in advanced statistical modeling by eliminating the need for licensed software, local installation, programming expertise, or account registration. Researchers, educators, and students can perform sophisticated analyses entirely within their web browser, with all computation occurring locally to ensure data privacy and security.
 </p>
 
 <p>
-MedModr was created to remove these barriers and make advanced statistical analyses accessible to everyone. It is a completely free, open-source, browser-based application that requires no software installation, licensing, account creation, or programming experience. Through an intuitive interface, users can upload their data, select the appropriate analytical model, and generate publication-ready results directly within a modern web browser. By eliminating technical and financial obstacles, MedModr enables researchers, educators, clinicians, and students to perform sophisticated mediation, moderation, and conditional process analyses with greater ease and confidence.
+The application implements 15 analytical models equivalent to those available in established tools such as the PROCESS macro, including simple and parallel mediation, serial mediation, moderation, moderated moderation, and multiple moderated mediation variants. MedModr generates comprehensive output including regression tables, bootstrap confidence intervals, standardized and unstandardized coefficients, interactive path diagrams, and simple slopes plots. Built-in data screening, missing data imputation, and dummy coding capabilities further streamline the research workflow from data preparation to publication-ready results.
+</p>
+
+<p>
+By providing a freely accessible, user-friendly platform that requires no specialized training or infrastructure, MedModr aims to democratize access to advanced statistical methods and support rigorous, reproducible research across the health, social, behavioral, and educational sciences.
 </p>
 
       <div class="figure">
@@ -1143,39 +1142,37 @@ MedModr was created to remove these barriers and make advanced statistical analy
         <div class="figure-caption"><strong>MedModr's home interface</strong></div>
       </div>
 
-      <h2 id="features">Key Features</h2>
-      
-            <h3>File Formats & Offline Use</h3>
-      <p>CSV files work entirely offline with no internet connection at all. Excel files need an internet connection only the first time you import one, while the SheetJS library used to read <code>.xlsx</code> loads. After that initial load, you can keep working with the data fully offline.</p>
+         <h2 id="features">Key Features</h2>
 
-      <h3>15 Analysis Types</h3>
-      <p>Simple mediation, parallel mediation, serial mediation, simple moderation, moderated moderation, double moderation, and multiple moderated mediation variants covering most common conditional process analysis needs.</p>
+      <h3>Analytical Models</h3>
+      <p>MedModr supports 15 analytical models encompassing simple mediation, parallel mediation, serial mediation, simple moderation, double moderation, moderated moderation, and multiple moderated mediation variants. These models address the majority of conditional process analysis applications in the health, social, behavioral, and educational sciences.</p>
 
       <h3>Bootstrap Confidence Intervals</h3>
-      <p>Up to 10,000 bootstrap samples with Percentile or Bias-Corrected (BC) method for indirect effects. Provides bootstrap standard errors and confidence intervals around all estimates. Bootstrapping uses a seeded pseudorandom number generator (Mulberry32, default seed = 12345), so results are fully reproducible across operating systems, browsers, and devices.</p>
+      <p>The application computes bootstrap confidence intervals for indirect effects using up to 10,000 resamples with either Percentile or Bias-Corrected (BC) methods. Bootstrap standard errors and confidence intervals are provided for all estimates. The pseudorandom number generator (Mulberry32) uses a fixed seed (default = 12345), ensuring fully reproducible results across operating systems, browsers, and devices.</p>
 
       <h3>Interactive Path Diagrams</h3>
-      <p>Auto-generated SVG diagrams with coefficient overlays for eight (8) of the supported models. Toggle color/B&amp;W, show/hide values or p-values, switch between unstandardized (b) and standardized (β) coefficients, rename variables, and download as high-resolution PNG or SVG for publications.</p>
+      <p>Auto-generated SVG path diagrams with coefficient overlays are available for eight of the supported models. Users can toggle color schemes, show or hide values and p-values, switch between unstandardized (b) and standardized (β) coefficients, rename variables, and export diagrams as high-resolution PNG or SVG for publication.</p>
 
-      <h3>Simple Slopes Plots</h3>
-      <p>Interactive Canvas-based plots of the moderator's effect at −1SD, Mean, and +1SD. Choose between a legend or on-line annotations, switch between default and publication-ready styling, and download as high-resolution PNG for manuscript preparation.</p>
+      <h3>Simple Slopes Visualization</h3>
+      <p>Interactive Canvas-based simple slopes plots display the moderator's effect at −1 standard deviation, the mean, and +1 standard deviation. Users can choose between legend-based or in-line annotations, toggle between default and publication-ready styling, and export plots as high-resolution PNG for manuscript preparation.</p>
 
       <h3>Missing Data Handling</h3>
-      <p>7 imputation methods (mean, median, mode, Predictive Mean Matching (PMM), hot deck, regression-based imputation, and the EM algorithm) for handling incomplete data before analysis. The app also supports custom missing-value codes (e.g., −999, NA) and listwise deletion.</p>
+      <p>Seven imputation methods are available for managing incomplete data: mean, median, mode, Predictive Mean Matching (PMM), hot deck, regression-based imputation, and the Expectation-Maximization (EM) algorithm. The application also supports custom missing-value codes (e.g., −999, NA) and listwise deletion.</p>
 
-      <h3>Data Screening</h3>
-      <p>Edit data directly in the browser, detect outliers using 4 different methods (Z-score, IQR, MAD, percentile), check normality via skewness and kurtosis, view Pearson/Spearman/Kendall correlation matrices, and inspect histograms and Q-Q plots for data quality assessment, each exportable as a PNG.</p>
+      <h3>Data Screening and Quality Assessment</h3>
+      <p>Built-in data screening tools enable direct in-browser data editing, outlier detection using four methods (Z-score, IQR, MAD, and percentile), normality assessment via skewness and kurtosis, and correlation matrix generation (Pearson, Spearman, or Kendall). Histograms and Q-Q plots are also available for visual data quality assessment, with all outputs exportable as PNG.</p>
 
-      <h3>Categorical Variables</h3>
-      <p>Built-in dummy coding support. Pick a reference category and encode with one click. No manual recoding needed, and a "Reset Encoding" option restores the original variable.</p>
+      <h3>Categorical Variable Encoding</h3>
+      <p>The application includes integrated dummy coding functionality. Users can select a reference category and encode categorical variables with a single click, eliminating the need for manual recoding. A "Reset Encoding" option restores the original variable coding.</p>
 
-      <h3>Standardized &amp; Unstandardized Coefficients for Mediation</h3>
-      <p>Every regression table for mediation models shows both unstandardized (b) and standardized (β) coefficients alongside Variance Inflation Factor (VIF) statistics for multicollinearity checks. (Moderation and moderated-mediation outputs report unstandardized coefficients and VIF only.)</p>
+      <h3>Standardized and Unstandardized Coefficients</h3>
+      <p>Regression tables for mediation models report both unstandardized (b) and standardized (β) coefficients, accompanied by Variance Inflation Factor (VIF) statistics for multicollinearity assessment. Moderation and moderated-mediation outputs present unstandardized coefficients and VIF statistics.</p>
 
-      <h3>Export Results</h3>
-      <p>Export a single analysis to a formatted Word (.doc), PDF, HTML, or CSV (Data) document ready for publication or presentation. When running multiple variable combinations, use "Export All to Word" to compile every result into one publication-ready document.</p>
+      <h3>File Formats and Offline Functionality</h3>
+      <p>CSV files are processed entirely offline without requiring an internet connection. Excel (.xlsx) files require a one-time internet connection to load the SheetJS library; subsequent data processing occurs entirely offline.</p>
 
-      
+      <h3>Results Export</h3>
+      <p>Analysis results can be exported as formatted Word (.doc), PDF, HTML, or CSV documents suitable for publication or presentation. The "Export All to Word" function compiles results from multiple variable combinations into a single comprehensive document.</p>      
       <h2 id="workflow">How It Works</h2>
       <p>MedModr follows a straightforward two-stage workflow designed to guide you from raw data to publication-ready results.</p>
 
@@ -1192,7 +1189,7 @@ MedModr was created to remove these barriers and make advanced statistical analy
         <div class="step-chip"><span class="step-num">7</span>Finalize</div>
       </div>
       
-      <p>Only Upload and Select Variables are required; other steps are optional but recommended for data quality.</p>
+      <p>Only the data upload and variable selection steps are mandatory; the remaining steps are optional but recommended for ensuring data quality and appropriate preprocessing.</p>
 
       <div class="figure">
         <img
@@ -1202,16 +1199,16 @@ MedModr was created to remove these barriers and make advanced statistical analy
             src="https://raw.githubusercontent.com/shinyhealthtools/medmodr/main/favicons/MedModrinterface2.png"
             alt="MedModr interface"
             data-title="MedModr Interface">
-        <div class="figure-caption"><strong>Stage 1 walkthrough</strong> — upload, preview, and screen your data before running any analysis.</div>
+        <div class="figure-caption"><strong>Stage 1 workflow</strong> — data upload, preview, and screening prior to analysis.</div>
       </div>
 
       <h3>Stage 2: Statistical Analysis</h3>
       <ol>
-        <li><strong>Variable Selection:</strong> Choose your dependent, independent, mediator, moderator, and covariate variables</li>
-        <li><strong>Model Selection:</strong> Choose from 15 PROCESS-equivalent models</li>
-        <li><strong>Run Analysis:</strong> Set bootstrap samples, confidence level, and centering preferences</li>
-        <li><strong>Review Results:</strong> Browse regression tables, path diagrams, and simple slopes plots</li>
-        <li><strong>Export:</strong> Download results as formatted Word, PDF, or HTML documents</li>
+        <li><strong>Variable Specification:</strong> Assign dependent, independent, mediator, moderator, and covariate variables according to the selected analytical model.</li>
+        <li><strong>Model Selection:</strong> Choose from 15 analytical models equivalent to those available in the PROCESS macro.</li>
+        <li><strong>Analysis Configuration:</strong> Specify bootstrap resampling parameters, confidence level, and centering preferences.</li>
+        <li><strong>Results Review:</strong> Examine comprehensive output including regression tables, interactive path diagrams, and simple slopes plots.</li>
+        <li><strong>Export:</strong> Generate formatted Word, PDF, or HTML documents for publication or presentation.</li>
       </ol>
 
       <div class="figure">
@@ -1226,10 +1223,9 @@ MedModr was created to remove these barriers and make advanced statistical analy
       </div>
 
 
-      <h2 id="analysis">Analysis Types &amp; Variable Assignment</h2>
+      <h2 id="analysis">Analysis Types and Variable Assignment</h2>
       <p>
-        All 15 analysis types are run from the same <strong>Variable Assignment</strong> panel. The table below shows which variables
-        each type needs and what it tests.
+        All 15 analytical models are configured through a unified <strong>Variable Assignment</strong> interface. The following table summarizes the variable requirements and analytical objectives for each model type.
       </p>
 
       <div class="figure">
@@ -1298,9 +1294,9 @@ MedModr was created to remove these barriers and make advanced statistical analy
 </div>
 
       <!-- ── TUTORIAL VIDEO ── -->
-      <h2 id="tutorial">Video Tutorial: How to Run an Analysis</h2>
+      <h2 id="tutorial">Video Tutorial</h2>
       <p>
-        Watch this step-by-step tutorial to learn how to use MedModr for your mediation, moderation, and conditional process analyses. The video covers data import, variable selection, running analyses, interpreting results, and exporting outputs.
+        A comprehensive step-by-step video tutorial is available to guide users through the complete MedModr workflow. The tutorial covers data import, variable specification, model configuration, results interpretation, and output export for mediation, moderation, and conditional process analyses.
       </p>
       
       <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 6px; margin: 14px 0;">
@@ -1348,7 +1344,7 @@ MedModr was created to remove these barriers and make advanced statistical analy
 
 <p style="margin: 16px 0 8px 0; font-size: calc(var(--fs-base) * 0.92); color: var(--text2);">
   <i class="" style="color: var(--accent); margin-right: 6px;"></i>
-The app is also available for download from the following trusted repositories:
+The application can also be downloaded from the following trusted repositories:
 </p>
 
 <div class="repo-icons">
@@ -1475,7 +1471,7 @@ document.querySelectorAll(".btn-copy").forEach(function(btn) {
 });
 </script>
       <h2 id="license">License</h2>
-      <p>MedModr is released under the <strong>MIT License</strong>, which permits free use, modification, and redistribution for both commercial and non-commercial purposes. The application can be deployed on institutional or individual servers, enabling organizations and researchers to self-host MedModr while retaining full control over their data and computing environment.
+      <p>MedModr is distributed under the <strong>MIT License</strong>, a permissive open-source license that permits free use, modification, and redistribution for both commercial and non-commercial purposes. The application may be deployed on institutional or personal servers, allowing organizations and researchers to self-host MedModr while maintaining complete control over their data and computing infrastructure.
 </p>
       <pre><code>MIT License
 
@@ -1513,25 +1509,34 @@ SOFTWARE.</code></pre>
         <a href="mailto:mudassiribrahim30@gmail.com">Email</a>
       </p>
 
-<h2 id="bug">Want to Contribute?</h2>
+<h2 id="contribute">Contributing</h2>
 
 <p>
-  Contributions from the community are welcome and appreciated. Whether you are fixing bugs, implementing new features, improving documentation, or suggesting enhancements, your contributions help improve MedModr.
+  Community contributions are welcomed and encouraged. Opportunities for contribution include bug fixes, feature implementation, documentation improvements, and enhancement suggestions. All contributions help advance the development and utility of MedModr.
 </p>
 
 <p>
-  The preferred way to contribute is by opening a pull request on the
+  The preferred contribution method is through pull requests on the
   <a href="https://github.com/shinyhealthtools/medmodr/issues" target="_blank" rel="noopener">GitHub repository</a>.
-  Before contributing, please read the
+  Prior to contributing, please review the
   <a href="https://github.com/shinyhealthtools/medmodr/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a>
-  guide for information on the contribution workflow, coding standards, and submission guidelines. 
+  guide for detailed information on the contribution workflow, coding standards, and submission guidelines.
 </p>
-            <h3>OR</h3>
-      <p>You may also send a description of the bug to <a href="mailto:mudassiribrahim30@gmail.com?subject=MedModr Bug Report">mudassiribrahim30@gmail.com</a>.</p>
-      <div class="infobox">
-        <div class="infobox-title">Helpful to Include</div>
-        <p>The analysis type you were running, your browser and version (e.g., Chrome 125, Firefox 127), a short description of what you expected vs. what happened, and if possible an anonymized sample dataset that reproduces the issue.</p>
-      </div>
+
+<p>
+  Alternatively, bug reports and feature requests may be submitted via email to <a href="mailto:mudassiribrahim30@gmail.com?subject=MedModr Bug Report">mudassiribrahim30@gmail.com</a>.
+</p>
+
+<div class="infobox">
+  <div class="infobox-title">Bug Reporting Guidelines</div>
+  <p>When submitting a bug report, please include the following information to facilitate efficient resolution:</p>
+  <ul>
+    <li>The analytical model being used.</li>
+    <li>Browser and version (e.g., Chrome 125, Firefox 127).</li>
+    <li>A clear description of the expected versus actual behavior.</li>
+    <li>An anonymized sample dataset that reproduces the issue, if available.</li>
+  </ul>
+</div>
 
     </div><!-- end #main -->
   </div><!-- end .content-wrapper -->
