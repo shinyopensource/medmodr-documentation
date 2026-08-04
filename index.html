@@ -968,6 +968,18 @@
       #stickyNav { padding: 0 14px; gap: 10px; }
       #stickyLinks { display: none; }
       .sticky-search { display: none; }
+      /* #stickyLinks (flex:1) is hidden on mobile, so it no longer pushes
+         the trailing items to the right edge. .sticky-right-group is forced
+         to the far right as one fixed unit, with the launch button and
+         hamburger held tight together at a small, non-negotiable gap. */
+      .sticky-right-group {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        margin-left: auto !important;
+        flex-shrink: 0 !important;
+      }
+      .btn-launch-sticky { margin: 0 !important; }
 
       #footer, #footer-inner { padding-left: 16px; padding-right: 16px; }
       h2 { font-size: calc(var(--fs-base) * 1.22); }
@@ -1224,10 +1236,12 @@
     </div>
     <div id="searchResults2" role="listbox" aria-label="Search results"></div>
   </div>
-  <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" rel="noopener" class="btn-launch-header btn-launch-sticky" id="launchLinkSticky">Use MedModr online</a>
-  <button type="button" class="hamburger-btn sticky-hamburger-btn" id="hamburgerBtn2" aria-label="Open menu" aria-expanded="false">
-    <i class="fa-solid fa-bars"></i>
-  </button>
+  <div class="sticky-right-group">
+    <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" rel="noopener" class="btn-launch-header btn-launch-sticky" id="launchLinkSticky">Use MedModr online</a>
+    <button type="button" class="hamburger-btn sticky-hamburger-btn" id="hamburgerBtn2" aria-label="Open menu" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
 </div>
 
 <!-- ── MOBILE NAV DRAWER ── -->
