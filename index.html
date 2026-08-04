@@ -14,6 +14,11 @@
   <style>
    * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    img, iframe, svg, video, table { max-width: 100%; }
 
     /* ═══════════════════════════════════════
        APPEARANCE TOKENS
@@ -790,24 +795,129 @@
     .footer-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; margin-left: auto; }
 
     /* ═══════════════════════════════════════
-       RESPONSIVE
+       HAMBURGER + MOBILE NAV DRAWER
        ═══════════════════════════════════════ */
-    @media (max-width: 768px) {
-      .content-wrapper { grid-template-columns: 1fr; }
-      #sidebar { position: static; width: 100%; top: auto !important; }
-      #header { flex-wrap: wrap; padding-left: 18px; padding-right: 18px; }
-      #topNav, #footer, #container { padding-left: 18px; padding-right: 18px; }
-      #stickyNav { padding: 0 16px; }
+    .hamburger-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 17px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .hamburger-btn:hover { background: var(--row-hover); border-color: var(--accent); }
+    .sticky-hamburger-btn { display: none; width: 32px; height: 32px; font-size: 15px; margin-left: auto; }
+
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 1400;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .mobile-nav-overlay.open { display: block; opacity: 1; }
+
+    .mobile-nav-drawer {
+      position: fixed;
+      top: 0; right: 0;
+      width: 280px;
+      max-width: 82%;
+      height: 100%;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      z-index: 1500;
+      transform: translateX(100%);
+      transition: transform 0.25s ease;
+      overflow-y: auto;
+      box-shadow: -6px 0 20px rgba(0,0,0,0.18);
+    }
+    .mobile-nav-drawer.open { transform: translateX(0); }
+
+    .mobile-nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .mobile-nav-header span { font-weight: bold; font-size: calc(var(--fs-base) * 1.15); color: var(--text); }
+    .mobile-nav-close {
+      background: none; border: none; font-size: 26px; color: var(--text); cursor: pointer; line-height: 1; padding: 0 4px;
+    }
+    .mobile-nav-links { display: flex; flex-direction: column; padding: 6px 0; }
+    .mobile-nav-links a {
+      padding: 13px 18px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: calc(var(--fs-base) * 1.02);
+      border-bottom: 1px solid var(--border2);
+    }
+    .mobile-nav-links a:hover, .mobile-nav-links a:active { background: var(--row-hover); color: var(--accent); text-decoration: none; }
+    .mobile-nav-footer { padding: 16px; }
+    .mobile-nav-footer .btn-primary { display: block; }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE (rewritten for mobile autofit)
+       ═══════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      /* Single-column layout, sidebar fully removed on any non-desktop device */
+      .content-wrapper { display: block; }
+      #sidebar { display: none !important; }
+
+      #container {
+        max-width: 100%;
+        width: 100%;
+        padding: 16px 20px 0 20px;
+      }
+
+      #header {
+        flex-wrap: nowrap;
+        padding: 12px 16px;
+        gap: 10px;
+      }
+      .header-titles { flex: 1; min-width: 0; }
+      h1 { font-size: calc(var(--fs-base) * 1.35); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .subtitle { display: none; }
+
+      #topNav { display: none; }
+      .btn-support-header { display: none; }
+      .header-search { display: none; }
+
+      .hamburger-btn { display: inline-flex; }
+      .sticky-hamburger-btn { display: inline-flex; }
+
+      #stickyNav { padding: 0 14px; gap: 10px; }
       #stickyLinks { display: none; }
-      .header-right { width: 100%; justify-content: space-between; }
-      .header-search { width: 100%; }
-      .search-box { width: 100% !important; }
-      .search-box:focus-within { width: 100% !important; }
-      #searchResults { width: 100%; left: 0; right: 0; }
-      h1 { font-size: calc(var(--fs-base) * 1.5); }
-      h2 { font-size: calc(var(--fs-base) * 1.25); }
-      #footer { flex-direction: column; align-items: flex-start; }
       .sticky-search { display: none; }
+
+      #footer, #footer-inner { padding-left: 16px; padding-right: 16px; }
+      h2 { font-size: calc(var(--fs-base) * 1.22); }
+      #footer { flex-direction: column; align-items: flex-start; }
+
+      .citation-row { flex-direction: column; align-items: stretch; }
+      .btn-copy { width: 100%; justify-content: center; }
+
+      /* Anything with a fixed/min width must not force page-level horizontal scroll */
+      .table-scroll { max-width: 100%; }
+      pre, code { max-width: 100%; overflow-x: auto; }
+      .citation-text, .citation-text a { overflow-wrap: anywhere; word-break: break-word; }
+    }
+
+    @media (max-width: 480px) {
+      #header { padding: 10px 12px; }
+      h1 { font-size: calc(var(--fs-base) * 1.2); }
+      #container, #footer { padding-left: 12px; padding-right: 12px; }
+      .step-chip { flex: 1 1 100%; }
+      .repo-icon-link span { display: none; }
     }
     
     .figure-image {
@@ -985,6 +1095,9 @@
     <h1>MedModr</h1>
   </div>
   <div class="header-right">
+    <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
     <div class="header-search">
       <div class="search-box" id="searchBox1">
         <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
@@ -1031,6 +1144,33 @@
       <button type="button" id="searchClear2" aria-label="Clear search">✕</button>
     </div>
     <div id="searchResults2" role="listbox" aria-label="Search results"></div>
+  </div>
+  <button type="button" class="hamburger-btn sticky-hamburger-btn" id="hamburgerBtn2" aria-label="Open menu" aria-expanded="false">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+</div>
+
+<!-- ── MOBILE NAV DRAWER ── -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+<div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-label="Navigation menu">
+  <div class="mobile-nav-header">
+    <span>Menu</span>
+    <button type="button" class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="mobile-nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#features">Key Features</a>
+    <a href="#workflow">How It Works</a>
+    <a href="#analysis">Analysis Types & Variable Assignment</a>
+    <a href="#tutorial">Video Tutorial</a>
+    <a href="#version">Version History</a>
+    <a href="#citation">Citation</a>
+    <a href="#license">License</a>
+    <a href="#developer">Developer</a>
+    <a href="#contribute">Contributing</a>
+  </div>
+  <div class="mobile-nav-footer">
+    <a href="https://buymeacoffee.com/mudasiribrahim30?status=1" target="_blank" rel="noopener" class="btn btn-primary">Support Development</a>
   </div>
 </div>
 
@@ -1714,14 +1854,17 @@ html[data-color="light"] #footer a:hover {
    STICKY NAV
 ══════════════════════════════════════════════════════ */
 const topNav    = document.getElementById('topNav');
+const header    = document.getElementById('header');
 const stickyNav = document.getElementById('stickyNav');
 
 function updateStickyNav() {
-  const gone = topNav.getBoundingClientRect().bottom <= 0;
+  const refEl = (topNav.offsetParent !== null) ? topNav : header;
+  const gone = refEl.getBoundingClientRect().bottom <= 0;
   stickyNav.classList.toggle('visible', gone);
   document.body.classList.toggle('sticky-active', gone);
 }
 window.addEventListener('scroll', updateStickyNav, { passive: true });
+window.addEventListener('resize', updateStickyNav, { passive: true });
 updateStickyNav();
 
 /* ══════════════════════════════════════════════════════
@@ -2072,6 +2215,64 @@ if (copyBtn) {
 
   wireSearchBox('searchInput', 'searchClear', 'searchResults');
   wireSearchBox('searchInput2', 'searchClear2', 'searchResults2');
+})();
+</script>
+<script>
+/* ══════════════════════════════════════════════════════
+   MOBILE NAV DRAWER (hamburger menu)
+══════════════════════════════════════════════════════ */
+(function () {
+  const btn      = document.getElementById('hamburgerBtn');
+  const btn2     = document.getElementById('hamburgerBtn2');
+  const overlay  = document.getElementById('mobileNavOverlay');
+  const drawer   = document.getElementById('mobileNavDrawer');
+  const closeBtn = document.getElementById('mobileNavClose');
+  if (!btn || !overlay || !drawer || !closeBtn) return;
+
+  function openDrawer() {
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    if (btn2) btn2.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    if (btn2) btn2.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', openDrawer);
+  if (btn2) btn2.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+  /* ── In-page nav links: smooth scroll to target on every device,
+     accounting for the fixed sticky nav, and closing the drawer if open ── */
+  function scrollToHash(hash) {
+    const target = document.getElementById(hash.slice(1));
+    if (!target) return;
+    const stickyNav = document.getElementById('stickyNav');
+    const offset = (stickyNav && stickyNav.classList.contains('visible')) ? stickyNav.offsetHeight + 12 : 12;
+    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+
+  drawer.querySelectorAll('a:not([href^="#"])').forEach(a => a.addEventListener('click', closeDrawer));
+
+  document.querySelectorAll('#topNav a[href^="#"], #stickyLinks a[href^="#"], .mobile-nav-links a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      if (!href || href.length < 2) return;
+      e.preventDefault();
+      closeDrawer();
+      scrollToHash(href);
+      history.pushState(null, '', href);
+    });
+  });
 })();
 </script>
 
