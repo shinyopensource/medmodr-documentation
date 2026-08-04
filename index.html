@@ -903,7 +903,15 @@
       h2 { font-size: calc(var(--fs-base) * 1.22); }
       #footer { flex-direction: column; align-items: flex-start; }
 
+      /* ── Citation card autofit fix ──
+         .citation-text carried "flex: 1 1 320px" from the desktop rules.
+         Once .citation-row switches to flex-direction:column below,
+         that 320px flex-basis is read along the (now vertical) main axis,
+         forcing each citation block to reserve ~320px of height no matter
+         how short the actual text is. Resetting the basis to auto lets the
+         box size to its real content height, killing the empty space. */
       .citation-row { flex-direction: column; align-items: stretch; }
+      .citation-text { flex: 1 1 auto; }
       .btn-copy { width: 100%; justify-content: center; }
 
       /* Anything with a fixed/min width must not force page-level horizontal scroll */
