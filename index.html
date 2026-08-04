@@ -150,6 +150,38 @@
       text-decoration: none;
     }
 
+    /* ── Header launch button (mobile/tablet only, sits before the hamburger) ── */
+    .btn-launch-header {
+      display: none; /* shown only at <=1024px, see media query below */
+      align-items: center;
+      gap: 6px;
+      background-color: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 7px 14px;
+      border-radius: 18px;
+      font-size: calc(var(--fs-base) * 0.88);
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.12s, background-color 0.12s;
+      flex-shrink: 0;
+    }
+    .btn-launch-header:hover,
+    .btn-launch-header:focus,
+    .btn-launch-header:active,
+    .btn-launch-header:visited {
+      color: var(--accent);
+      border-color: var(--accent);
+      background-color: var(--row-hover);
+      text-decoration: none;
+    }
+    .btn-launch-sticky {
+      padding: 5px 11px;
+      font-size: calc(var(--fs-base) * 0.8);
+    }
+
     /* ── Header search ── */
     .header-search { flex-shrink: 0; position: relative; }
     .search-box {
@@ -865,6 +897,43 @@
     .mobile-nav-footer { padding: 16px; }
     .mobile-nav-footer .btn-primary { display: block; }
 
+    /* ── Theme switcher inside the mobile drawer ── */
+    .mobile-theme-section { margin-top: 16px; }
+    .mobile-theme-label {
+      display: block;
+      font-size: calc(var(--fs-base) * 0.8);
+      font-weight: bold;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .mobile-theme-options {
+      display: flex;
+      gap: 6px;
+    }
+    .mobile-theme-btn.ap-radio {
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 10px 6px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      text-align: center;
+    }
+    .mobile-theme-btn.ap-radio.selected {
+      border-color: var(--accent);
+      background: var(--row-hover);
+    }
+    .mobile-theme-btn .ap-radio-dot { display: none; }
+    .mobile-theme-btn .ap-swatch {
+      width: 18px;
+      height: 18px;
+      margin-right: 0;
+    }
+
     /* ═══════════════════════════════════════
        RESPONSIVE (rewritten for mobile autofit)
        ═══════════════════════════════════════ */
@@ -892,6 +961,7 @@
       .btn-support-header { display: none; }
       .header-search { display: none; }
 
+      .btn-launch-header { display: inline-flex; }
       .hamburger-btn { display: inline-flex; }
       .sticky-hamburger-btn { display: inline-flex; }
 
@@ -1103,6 +1173,7 @@
     <h1>MedModr</h1>
   </div>
   <div class="header-right">
+    <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" rel="noopener" class="btn-launch-header" id="launchLinkHeader">Use MedModr online</a>
     <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
       <i class="fa-solid fa-bars"></i>
     </button>
@@ -1153,6 +1224,7 @@
     </div>
     <div id="searchResults2" role="listbox" aria-label="Search results"></div>
   </div>
+  <a href="https://shinyhealthtools.github.io/medmodr/" target="_blank" rel="noopener" class="btn-launch-header btn-launch-sticky" id="launchLinkSticky">Use MedModr online</a>
   <button type="button" class="hamburger-btn sticky-hamburger-btn" id="hamburgerBtn2" aria-label="Open menu" aria-expanded="false">
     <i class="fa-solid fa-bars"></i>
   </button>
@@ -1179,6 +1251,23 @@
   </div>
   <div class="mobile-nav-footer">
     <a href="https://buymeacoffee.com/mudasiribrahim30?status=1" target="_blank" rel="noopener" class="btn btn-primary">Support Development</a>
+    <div class="mobile-theme-section">
+      <span class="mobile-theme-label">Theme</span>
+      <div class="mobile-theme-options">
+        <div class="ap-radio mobile-theme-btn selected" data-ap="color" data-val="auto">
+          <span class="ap-radio-dot"></span>
+          <span class="ap-swatch swatch-auto"></span>Auto
+        </div>
+        <div class="ap-radio mobile-theme-btn" data-ap="color" data-val="light">
+          <span class="ap-radio-dot"></span>
+          <span class="ap-swatch swatch-light"></span>Light
+        </div>
+        <div class="ap-radio mobile-theme-btn" data-ap="color" data-val="dark">
+          <span class="ap-radio-dot"></span>
+          <span class="ap-swatch swatch-dark"></span>Dark
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
