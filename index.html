@@ -192,7 +192,6 @@
       justify-content: flex-end;
     }
 
-    /* ── Support button — the reference look the FAB now matches ── */
     .btn-support-header {
       display: inline-flex;
       align-items: center;
@@ -444,9 +443,6 @@
 
     /* ═══════════════════════════════════════════════════════════
        FLOATING ACTION BUTTON (FAB)
-       Now uses the EXACT same styling as .btn-support-header
-       (Support Development) — same blue, same border, same shadow,
-       in both light and dark mode.
        ═══════════════════════════════════════════════════════════ */
     .fab-container {
       position: fixed;
@@ -466,7 +462,6 @@
       pointer-events: auto;
     }
 
-    /* The pill — matches .btn-support-header colour stack exactly */
     .fab-btn {
       display: flex;
       align-items: center;
@@ -495,7 +490,6 @@
       text-shadow: 0 1px 1px rgba(0,0,0,0.18);
     }
 
-    /* Icon circle — same soft translucent white over brand blue */
     .fab-btn .fab-icon {
       flex-shrink: 0;
       width: 54px;
@@ -547,7 +541,6 @@
         padding 0.32s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Hovered / focused / expanded — same hover colour as .btn-support-header */
     .fab-btn:hover,
     .fab-btn:focus-visible,
     .fab-container.expanded .fab-btn {
@@ -1192,14 +1185,20 @@
       text-decoration: none;
     }
 
+    /* Download buttons — locked to the SAME vivid brand blue as every other
+       primary action, in BOTH light and dark mode. This applies to ALL
+       version rows (v3.0, v2.0, v1.0) identically — no fading, no grey,
+       no color-mix with the row background. */
     .btn-download {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 5px;
-      background: var(--accent-soft);
-      color: var(--brand-blue) !important;
-      border: 1px solid color-mix(in srgb, var(--brand-blue) 40%, transparent);
-      padding: 5px 13px;
+      background-color: var(--brand-blue) !important;
+      background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
+      color: #ffffff !important;
+      border: 1px solid var(--brand-blue-edge) !important;
+      padding: 6px 15px;
       border-radius: 999px;
       font-size: calc(var(--fs-base) * 0.88);
       font-weight: 700;
@@ -1207,12 +1206,16 @@
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.12s;
+      text-shadow: 0 1px 1px rgba(0,0,0,0.18);
+      box-shadow: 0 2px 6px var(--accent-glow);
+      filter: none !important;
+      opacity: 1 !important;
     }
     .btn-download:hover,
     .btn-download:focus,
     .btn-download:active,
     .btn-download:visited {
-      background-color: var(--brand-blue) !important;
+      background-color: var(--brand-blue-hi) !important;
       background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
       color: #ffffff !important;
       border-color: var(--brand-blue-edge) !important;
@@ -1220,6 +1223,19 @@
       text-decoration: none;
       transform: translateY(-1px);
       box-shadow: 0 4px 12px var(--accent-glow);
+      filter: none !important;
+    }
+    /* Ensure download buttons are unaffected by the "hover on tbody tr"
+       rule — the vivid blue must stay vivid even while the row is hovered. */
+    tbody tr:hover .btn-download,
+    tbody tr:nth-child(even) .btn-download,
+    tbody tr:nth-child(odd) .btn-download {
+      background-color: var(--brand-blue) !important;
+      background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
+      color: #ffffff !important;
+      border-color: var(--brand-blue-edge) !important;
+      filter: none !important;
+      opacity: 1 !important;
     }
 
     .btn-copy {
@@ -1253,7 +1269,6 @@
       color: #ffffff;
     }
 
-    /* .btn-support — same stack used by .btn-support-header and the FAB */
     .btn-support {
       display: inline-flex;
       align-items: center;
@@ -1662,14 +1677,15 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       DARK MODE — LOCK ALL BLUE BUTTONS (INCLUDING FAB) TO THE
-       SAME VIVID BRAND BLUE AS THE SUPPORT DEVELOPMENT BUTTON.
+       DARK MODE — lock every blue button (incl. all download buttons
+       across all version rows) to the same vivid brand blue.
        ═══════════════════════════════════════════════════════════ */
     html[data-color="dark"] .btn-primary,
     html[data-color="dark"] .btn-support,
     html[data-color="dark"] .btn-support-header,
     html[data-color="dark"] .btn-launch-header,
-    html[data-color="dark"] .fab-btn {
+    html[data-color="dark"] .fab-btn,
+    html[data-color="dark"] .btn-download {
       background-color: var(--brand-blue) !important;
       background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
       color: #ffffff !important;
@@ -1687,8 +1703,22 @@
     html[data-color="dark"] .btn-launch-header:hover,
     html[data-color="dark"] .btn-launch-header:focus,
     html[data-color="dark"] .fab-btn:hover,
-    html[data-color="dark"] .fab-btn:focus-visible {
+    html[data-color="dark"] .fab-btn:focus-visible,
+    html[data-color="dark"] .btn-download:hover,
+    html[data-color="dark"] .btn-download:focus {
       background-color: var(--brand-blue-hi) !important;
+      background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
+      color: #ffffff !important;
+      border-color: var(--brand-blue-edge) !important;
+      filter: none !important;
+      opacity: 1 !important;
+    }
+    /* Keep download buttons vivid even when their table row is hovered
+       or alternating-row shading is applied. */
+    html[data-color="dark"] tbody tr:hover .btn-download,
+    html[data-color="dark"] tbody tr:nth-child(even) .btn-download,
+    html[data-color="dark"] tbody tr:nth-child(odd) .btn-download {
+      background-color: var(--brand-blue) !important;
       background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
       color: #ffffff !important;
       border-color: var(--brand-blue-edge) !important;
@@ -1707,21 +1737,6 @@
     }
     html[data-color="dark"] .fab-btn .fab-chevron {
       color: rgba(255, 255, 255, 0.85) !important;
-    }
-
-    html[data-color="dark"] .btn-download {
-      background-color: rgba(29, 78, 216, 0.18) !important;
-      color: #8fb8ff !important;
-      border-color: rgba(143, 184, 255, 0.45) !important;
-      filter: none !important;
-      opacity: 1 !important;
-    }
-    html[data-color="dark"] .btn-download:hover,
-    html[data-color="dark"] .btn-download:focus {
-      background-color: var(--brand-blue) !important;
-      background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
-      color: #ffffff !important;
-      border-color: var(--brand-blue-edge) !important;
     }
 
     html[data-color="dark"] .step-chip .step-num {
@@ -1855,7 +1870,7 @@
   </div>
 </div>
 
-<!-- ── FLOATING ACTION BUTTON — matches Support Development colour stack ── -->
+<!-- ── FLOATING ACTION BUTTON ── -->
 <div class="fab-container" id="fabLaunch">
   <a href="https://shinyhealthtools.github.io/medmodr/"
      target="_blank"
