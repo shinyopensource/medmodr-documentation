@@ -42,10 +42,10 @@
       --brand-blue-lo:    #1a44c0;
       --brand-blue-edge:  #163a9e;
 
-      /* ── light palette ── */
+      /* ── light palette — PURE WHITE backgrounds like Quarto ── */
       --bg:           #ffffff;
-      --bg2:          #f8f9fc;
-      --bg3:          #f1f4f9;
+      --bg2:          #ffffff;
+      --bg3:          #ffffff;
       --surface:      #ffffff;
       --border:       #d0d7e2;
       --border2:      #e2e7f0;
@@ -57,11 +57,11 @@
       --accent:       var(--brand-blue);
       --accent-soft:  rgba(29, 78, 216, 0.10);
       --accent-glow:  rgba(29, 78, 216, 0.25);
-      --code-bg:      #f5f7fb;
-      --row-even:     #f7f9fc;
-      --row-hover:    #eef3ff;
-      --infobox-bg:   #f6f9fe;
-      --sidebar-bg:   #fbfcfe;
+      --code-bg:      #ffffff;
+      --row-even:     #ffffff;
+      --row-hover:    #f2f6ff;
+      --infobox-bg:   #ffffff;
+      --sidebar-bg:   #ffffff;
       --sidebar-w:    218px;
       --mark-bg:      #fde68a;
       --shadow-sm:    0 1px 2px rgba(15, 23, 42, 0.06);
@@ -99,7 +99,6 @@
     html[data-width="standard"] { --max-w: 1060px; }
     html[data-width="wide"]     { --max-w: 1320px; }
 
-    /* ── dark palette (page chrome only — accents stay fixed) ── */
     html[data-color="dark"] {
       --bg:           #0b0f17;
       --bg2:          #111823;
@@ -113,7 +112,6 @@
       --link:         #7cb3ff;
       --link-visited: #c9a4ff;
 
-      /* accent tokens remain the SAME brand blue as light mode */
       --accent:       var(--brand-blue);
       --accent-soft:  rgba(29, 78, 216, 0.16);
       --accent-glow:  rgba(29, 78, 216, 0.40);
@@ -136,32 +134,22 @@
       font-weight: var(--font-weight-base);
       line-height: 1.75;
       color: var(--text);
-      background-color: var(--bg);
+      background-color: #ffffff;
       transition: background-color 0.2s, color 0.2s, font-family 0.2s;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-      background:
-        radial-gradient(1100px 500px at 15% -8%, var(--accent-soft), transparent 62%),
-        radial-gradient(900px 450px at 88% 4%, rgba(124, 58, 237, 0.055), transparent 58%);
-      opacity: 0.85;
+    html[data-color="dark"] body {
+      background-color: var(--bg);
     }
 
     /* ═══════════════════════════════════════════════════════════
        HEADER
        ═══════════════════════════════════════════════════════════ */
     #header {
-      background: color-mix(in srgb, var(--surface) 88%, transparent);
-      backdrop-filter: blur(14px) saturate(150%);
-      -webkit-backdrop-filter: blur(14px) saturate(150%);
+      background: #ffffff;
       border-bottom: 1px solid var(--border);
       padding: 16px 40px;
       display: flex;
@@ -171,6 +159,7 @@
       position: relative;
       z-index: 100;
     }
+    html[data-color="dark"] #header { background: var(--surface); }
     .header-titles { min-width: 0; }
     h1 {
       font-family: var(--font-heading);
@@ -266,7 +255,7 @@
     .search-box {
       display: flex;
       align-items: center;
-      background: var(--surface);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 0 6px 0 12px;
@@ -275,6 +264,7 @@
       transition: width 0.2s, border-color 0.12s, box-shadow 0.12s;
       box-shadow: var(--shadow-sm);
     }
+    html[data-color="dark"] .search-box { background: var(--surface); }
     .search-box:focus-within {
       width: 300px;
       border-color: var(--brand-blue);
@@ -305,13 +295,15 @@
       width: 360px;
       max-height: 440px;
       overflow-y: auto;
-      background: var(--surface);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow-lg);
       z-index: 1100;
       display: none;
     }
+    html[data-color="dark"] #searchResults,
+    html[data-color="dark"] #searchResults2 { background: var(--surface); }
     #searchResults.open,
     #searchResults2.open { display: block; }
     .search-result-item {
@@ -343,8 +335,9 @@
       border-bottom: 1px solid var(--border2);
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      background: var(--bg2);
+      background: #ffffff;
     }
+    html[data-color="dark"] .search-count { background: var(--bg2); }
 
     .search-target-highlight {
       animation: searchFlash 2.2s ease;
@@ -360,7 +353,7 @@
        STATIC TOP NAV
        ═══════════════════════════════════════════════════════════ */
     #topNav {
-      background: color-mix(in srgb, var(--bg2) 75%, transparent);
+      background: #ffffff;
       border-bottom: 1px solid var(--border);
       padding: 10px 40px;
       text-align: center;
@@ -370,6 +363,7 @@
       align-items: center;
       gap: 2px;
     }
+    html[data-color="dark"] #topNav { background: var(--bg2); }
     #topNav a {
       color: var(--text2);
       text-decoration: none;
@@ -395,9 +389,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 1000;
-      background: color-mix(in srgb, var(--surface) 90%, transparent);
-      backdrop-filter: blur(14px) saturate(150%);
-      -webkit-backdrop-filter: blur(14px) saturate(150%);
+      background: #ffffff;
       border-bottom: 1px solid var(--border);
       padding: 0 40px;
       display: none;
@@ -406,6 +398,7 @@
       box-shadow: var(--shadow-md);
       gap: 16px;
     }
+    html[data-color="dark"] #stickyNav { background: var(--surface); }
     #stickyNav.visible { display: flex; }
 
     #stickyLogo {
@@ -442,7 +435,7 @@
     .sticky-search #searchResults2 { width: 340px; }
 
     /* ═══════════════════════════════════════════════════════════
-       FLOATING ACTION BUTTON (FAB)
+       FLOATING ACTION BUTTON (FAB) — "Use MedModr online"
        ═══════════════════════════════════════════════════════════ */
     .fab-container {
       position: fixed;
@@ -636,18 +629,105 @@
       border-right: 0;
     }
 
+    /* ═══════════════════════════════════════════════════════════
+       BACK-TO-TOP BUTTON — professional floating icon
+       Sits stacked above the "Use MedModr online" FAB
+       ═══════════════════════════════════════════════════════════ */
+    #backToTop {
+      position: fixed;
+      right: 28px;
+      bottom: 96px;   /* stacked above the "Use MedModr online" FAB */
+      z-index: 1201;
+      width: 48px;
+      height: 48px;
+      display: none;   /* toggled by JS */
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      color: var(--text) !important;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 1rem;
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 0.28s ease,
+        transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+      box-shadow:
+        0 4px 12px rgba(15, 23, 42, 0.10),
+        0 10px 28px rgba(15, 23, 42, 0.14);
+      pointer-events: none;
+      padding: 0;
+    }
+    html[data-color="dark"] #backToTop {
+      background: var(--surface);
+      box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.45),
+        0 14px 36px rgba(0, 0, 0, 0.55);
+    }
+    #backToTop.visible {
+      display: inline-flex;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    #backToTop:hover,
+    #backToTop:focus-visible {
+      background: var(--brand-blue) !important;
+      color: #ffffff !important;
+      border-color: var(--brand-blue-edge) !important;
+      transform: translateY(-3px);
+      box-shadow:
+        0 8px 22px rgba(15, 23, 42, 0.16),
+        0 18px 44px rgba(29, 78, 216, 0.38);
+      outline: none;
+    }
+    html[data-color="dark"] #backToTop:hover,
+    html[data-color="dark"] #backToTop:focus-visible {
+      background: var(--brand-blue) !important;
+      color: #ffffff !important;
+      border-color: var(--brand-blue-edge) !important;
+      box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.5),
+        0 18px 44px rgba(29, 78, 216, 0.55);
+    }
+    #backToTop i {
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    #backToTop:hover i,
+    #backToTop:focus-visible i {
+      transform: translateY(-2px);
+    }
+
+    /* Show back-to-top on all screen sizes (phone/tablet/desktop)
+       — it is small and useful everywhere. When the FAB is hidden
+       (≤1024px), we lower it so it sits at the standard bottom-right. */
     @media (max-width: 1024px) {
+      #backToTop {
+        bottom: 22px;
+        right: 18px;
+        width: 44px;
+        height: 44px;
+        font-size: 0.95rem;
+      }
       .fab-container,
       .fab-hint { display: none !important; }
     }
 
     @media (max-height: 500px) and (orientation: landscape) {
+      #backToTop { bottom: 12px; right: 12px; width: 40px; height: 40px; }
       .fab-container { bottom: 14px; right: 14px; }
       .fab-hint { display: none; }
     }
 
     @media print {
-      .fab-container, .fab-hint { display: none !important; }
+      .fab-container, .fab-hint, #backToTop { display: none !important; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -656,7 +736,9 @@
       .fab-btn .fab-icon,
       .fab-btn .fab-icon i,
       .fab-btn .fab-label,
-      .fab-btn .fab-chevron { transition: none !important; }
+      .fab-btn .fab-chevron,
+      #backToTop,
+      #backToTop i { transition: none !important; }
       .fab-container::after { animation: none !important; }
     }
 
@@ -668,7 +750,9 @@
       margin: 0 auto;
       padding: 28px 40px 0 40px;
       transition: max-width 0.2s;
+      background: #ffffff;
     }
+    html[data-color="dark"] #container { background: transparent; }
     .content-wrapper {
       display: grid;
       grid-template-columns: var(--sidebar-w) 1fr;
@@ -686,12 +770,13 @@
       font-size: calc(var(--fs-base) * 0.92);
       align-self: start;
       transition: top 0.2s;
-      background: var(--surface);
+      background: #ffffff;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow-sm);
     }
+    html[data-color="dark"] #sidebar { background: var(--surface); }
     body.sticky-active #sidebar { top: 64px; }
 
     .sidebar-section { border-bottom: 1px solid var(--border2); }
@@ -708,10 +793,11 @@
       text-transform: uppercase;
       letter-spacing: 0.07em;
       cursor: default;
-      background: var(--bg2);
+      background: #ffffff;
       border-bottom: 1px solid var(--border2);
       user-select: none;
     }
+    html[data-color="dark"] .sidebar-title { background: var(--bg2); }
 
     .appearance-panel { padding: 12px 14px 14px; }
     .ap-group { margin-bottom: 16px; }
@@ -759,8 +845,9 @@
       align-items: center;
       justify-content: center;
       transition: border-color 0.12s;
-      background: var(--surface);
+      background: #ffffff;
     }
+    html[data-color="dark"] .ap-radio-dot { background: var(--surface); }
     .ap-radio.selected .ap-radio-dot { border-color: var(--brand-blue); }
     .ap-radio-dot::after {
       content: '';
@@ -831,10 +918,11 @@
       padding: 7px 14px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: var(--surface);
+      background: #ffffff;
       transition: all 0.18s ease;
       box-shadow: var(--shadow-sm);
     }
+    html[data-color="dark"] .repo-icon-link { background: var(--surface); }
     .repo-icon-link:hover {
       text-decoration: none;
       background: var(--accent-soft);
@@ -871,7 +959,7 @@
     /* ═══════════════════════════════════════════════════════════
        MAIN CONTENT
        ═══════════════════════════════════════════════════════════ */
-    #main { font-size: var(--fs-base); line-height: 1.78; }
+    #main { font-size: var(--fs-base); line-height: 1.78; background: transparent; }
 
     h2 {
       font-family: var(--font-heading);
@@ -929,7 +1017,7 @@
     li::marker { color: var(--brand-blue); font-weight: 700; }
 
     .infobox {
-      background: var(--infobox-bg);
+      background: #ffffff;
       border: 1px solid var(--border2);
       border-left: 4px solid var(--brand-blue);
       padding: 14px 18px;
@@ -937,6 +1025,7 @@
       font-size: calc(var(--fs-base) * 0.93);
       border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     }
+    html[data-color="dark"] .infobox { background: var(--infobox-bg); }
     .infobox-title {
       font-weight: 700;
       margin-bottom: 8px;
@@ -962,17 +1051,19 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
-      background: var(--surface);
+      background: #ffffff;
       box-shadow: var(--shadow-md);
       transition: box-shadow 0.2s, transform 0.2s;
     }
+    html[data-color="dark"] .figure { background: var(--surface); }
     .figure:hover { box-shadow: var(--shadow-lg); }
     .figure img {
       display: block;
       width: 100%;
       height: auto;
-      background: var(--bg3);
+      background: #ffffff;
     }
+    html[data-color="dark"] .figure img { background: var(--bg3); }
     .figure-placeholder {
       display: flex;
       flex-direction: column;
@@ -994,9 +1085,10 @@
       font-size: calc(var(--fs-base) * 0.87);
       color: var(--text2);
       border-top: 1px solid var(--border2);
-      background: var(--bg2);
+      background: #ffffff;
       font-weight: 500;
     }
+    html[data-color="dark"] .figure-caption { background: var(--bg2); }
     .figure-caption strong { color: var(--text); }
 
     table {
@@ -1004,14 +1096,16 @@
       border-collapse: separate;
       border-spacing: 0;
       margin: 18px 0;
-      background-color: var(--surface);
+      background-color: #ffffff;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow-sm);
       font-variant-numeric: tabular-nums;
     }
-    thead { background: var(--bg2); }
+    html[data-color="dark"] table { background-color: var(--surface); }
+    thead { background: #ffffff; }
+    html[data-color="dark"] thead { background: var(--bg2); }
     th {
       padding: 10px 12px;
       text-align: left;
@@ -1032,7 +1126,8 @@
     }
     th:last-child, td:last-child { border-right: none; }
     tbody tr:last-child td { border-bottom: none; }
-    tbody tr:nth-child(even) td { background-color: var(--row-even); }
+    tbody tr:nth-child(even) td { background-color: #ffffff; }
+    html[data-color="dark"] tbody tr:nth-child(even) td { background-color: var(--row-even); }
     tbody tr { transition: background 0.1s; }
     tbody tr:hover td { background-color: var(--row-hover); }
     .table-scroll {
@@ -1047,7 +1142,7 @@
 
     code, pre {
       font-family: "SF Mono", "JetBrains Mono", "Fira Code", "Courier New", monospace;
-      background-color: var(--code-bg);
+      background-color: #ffffff;
       border: 1px solid var(--border2);
       padding: 2px 6px;
       font-size: calc(var(--fs-base) * 0.9);
@@ -1055,6 +1150,8 @@
       border-radius: 5px;
       font-weight: 500;
     }
+    html[data-color="dark"] code,
+    html[data-color="dark"] pre { background-color: var(--code-bg); }
     pre {
       padding: 16px 18px;
       overflow-x: auto;
@@ -1069,17 +1166,90 @@
     }
     pre code { border: none; padding: 0; background-color: transparent; border-radius: 0; font-weight: 400; }
 
+    /* ═══════════════════════════════════════════════════════════
+       LICENSE BLOCK — code-block with embedded Download action
+       ═══════════════════════════════════════════════════════════ */
+    .license-block {
+      position: relative;
+      margin: 18px 0;
+    }
+    .license-block .license-pre {
+      margin: 0;
+      padding-right: 130px;
+    }
+    .license-block .license-action {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background-color: var(--brand-blue) !important;
+      background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
+      color: #ffffff !important;
+      border: 1px solid var(--brand-blue-edge) !important;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: calc(var(--fs-base) * 0.82);
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: var(--font-body);
+      transition: all 0.12s;
+      text-shadow: 0 1px 1px rgba(0,0,0,0.18);
+      box-shadow: 0 2px 6px var(--accent-glow);
+      filter: none !important;
+      opacity: 1 !important;
+    }
+    .license-block .license-action:hover,
+    .license-block .license-action:focus,
+    .license-block .license-action:active {
+      background-color: var(--brand-blue-hi) !important;
+      background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
+      color: #ffffff !important;
+      border-color: var(--brand-blue-edge) !important;
+      opacity: 1;
+      text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+    .license-block .license-action.downloaded {
+      background: #15803d !important;
+      background-image: none !important;
+      border-color: #15803d !important;
+      color: #ffffff !important;
+    }
+    .license-block .license-action i {
+      font-size: 0.9em;
+    }
+    @media (max-width: 600px) {
+      .license-block .license-pre {
+        padding-right: 18px;
+        padding-top: 48px;
+      }
+      .license-block .license-action {
+        top: 8px;
+        right: 8px;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CITATION CARD
+       ═══════════════════════════════════════════════════════════ */
     .citation-card {
       display: flex;
       flex-direction: column;
       gap: 0;
-      background: var(--surface);
+      background: #ffffff;
       border: 1px solid var(--border);
       margin: 18px 0;
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow-sm);
     }
+    html[data-color="dark"] .citation-card { background: var(--surface); }
     .citation-row {
       display: flex;
       align-items: center;
@@ -1090,7 +1260,7 @@
       transition: background 0.12s;
     }
     .citation-row:last-child { border-bottom: none; }
-    .citation-row:hover { background: var(--bg2); }
+    .citation-row:hover { background: var(--row-hover); }
     .citation-text {
       font-size: calc(var(--fs-base) * 0.92);
       color: var(--text);
@@ -1137,7 +1307,7 @@
        BUTTONS
        ═══════════════════════════════════════════════════════════ */
     .btn {
-      background-color: var(--surface);
+      background-color: #ffffff;
       border: 1px solid var(--border);
       padding: 8px 16px;
       color: var(--text);
@@ -1150,6 +1320,7 @@
       transition: all 0.12s;
       box-shadow: var(--shadow-sm);
     }
+    html[data-color="dark"] .btn { background-color: var(--surface); }
     .btn:hover {
       background-color: var(--accent-soft);
       color: var(--brand-blue);
@@ -1185,10 +1356,6 @@
       text-decoration: none;
     }
 
-    /* Download buttons — locked to the SAME vivid brand blue as every other
-       primary action, in BOTH light and dark mode. This applies to ALL
-       version rows (v3.0, v2.0, v1.0) identically — no fading, no grey,
-       no color-mix with the row background. */
     .btn-download {
       display: inline-flex;
       align-items: center;
@@ -1225,8 +1392,6 @@
       box-shadow: 0 4px 12px var(--accent-glow);
       filter: none !important;
     }
-    /* Ensure download buttons are unaffected by the "hover on tbody tr"
-       rule — the vivid blue must stay vivid even while the row is hovered. */
     tbody tr:hover .btn-download,
     tbody tr:nth-child(even) .btn-download,
     tbody tr:nth-child(odd) .btn-download {
@@ -1242,7 +1407,7 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      background: var(--bg2);
+      background: #ffffff;
       color: var(--text2);
       border: 1px solid var(--border);
       padding: 6px 13px;
@@ -1255,6 +1420,7 @@
       font-family: inherit;
       transition: all 0.12s;
     }
+    html[data-color="dark"] .btn-copy { background: var(--bg2); }
     .btn-copy:hover,
     .btn-copy:focus,
     .btn-copy:active {
@@ -1302,7 +1468,7 @@
 
     .badge {
       display: inline-block;
-      background-color: var(--bg2);
+      background-color: #ffffff;
       border: 1px solid var(--border);
       padding: 2px 9px;
       margin-right: 4px;
@@ -1312,6 +1478,7 @@
       font-weight: 700;
       letter-spacing: 0.02em;
     }
+    html[data-color="dark"] .badge { background-color: var(--bg2); }
     .badge-green {
       background-color: #15803d;
       color: #ffffff;
@@ -1325,11 +1492,12 @@
       border-radius: var(--radius-sm);
       padding: 10px 12px;
       font-size: calc(var(--fs-base) * 0.86);
-      background: var(--surface);
+      background: #ffffff;
       box-shadow: var(--shadow-sm);
       transition: transform 0.14s, box-shadow 0.14s, border-color 0.14s;
       font-weight: 600;
     }
+    html[data-color="dark"] .step-chip { background: var(--surface); }
     .step-chip:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
@@ -1349,6 +1517,9 @@
       box-shadow: 0 0 0 3px var(--accent-soft);
     }
 
+    /* ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ */
     #footer {
       display: flex;
       justify-content: space-between;
@@ -1368,19 +1539,25 @@
     .footer-left .links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .separator { color: #666 !important; }
 
-    .footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; flex-shrink: 0; color: #e0e0e0 !important; }
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+      flex-shrink: 0;
+      color: #e0e0e0 !important;
+      text-align: right;
+    }
     .footer-right .last-updated { font-size: calc(var(--fs-base) * 0.85); color: #aaa !important; white-space: nowrap; }
     .footer-right .last-updated i { color: #888 !important; margin-right: 4px; }
 
-    html[data-color="dark"] #footer,
-    html[data-color="light"] #footer {
-      background: #1a1a1a !important;
-      border-top: 1px solid #333 !important;
+    /* New — maintenance credit line under the "Last updated" timestamp */
+    .footer-right .maintained-by {
+      font-size: calc(var(--fs-base) * 0.85);
+      color: #aaa !important;
+      white-space: nowrap;
+      font-style: italic;
     }
-    html[data-color="dark"] #footer a,
-    html[data-color="light"] #footer a { color: #66b3ff !important; }
-    html[data-color="dark"] #footer a:hover,
-    html[data-color="light"] #footer a:hover { color: #99ccff !important; }
 
     .hamburger-btn {
       display: none;
@@ -1390,13 +1567,14 @@
       height: 38px;
       border: 1px solid var(--border);
       border-radius: 999px;
-      background: var(--surface);
+      background: #ffffff;
       color: var(--text);
       font-size: 16px;
       cursor: pointer;
       flex-shrink: 0;
       transition: all 0.12s;
     }
+    html[data-color="dark"] .hamburger-btn { background: var(--surface); }
     .hamburger-btn:hover { background: var(--accent-soft); border-color: var(--brand-blue); color: var(--brand-blue); }
     .sticky-hamburger-btn { display: none; width: 34px; height: 34px; font-size: 15px; margin-left: 0; }
 
@@ -1418,7 +1596,7 @@
       width: 300px;
       max-width: 84%;
       height: 100%;
-      background: var(--surface);
+      background: #ffffff;
       border-left: 1px solid var(--border);
       z-index: 1500;
       transform: translateX(100%);
@@ -1426,6 +1604,7 @@
       overflow-y: auto;
       box-shadow: -10px 0 34px rgba(0,0,0,0.28);
     }
+    html[data-color="dark"] .mobile-nav-drawer { background: var(--surface); }
     .mobile-nav-drawer.open { transform: translateX(0); }
 
     .mobile-nav-header {
@@ -1434,11 +1613,12 @@
       justify-content: space-between;
       padding: 18px;
       border-bottom: 1px solid var(--border);
-      background: var(--bg2);
+      background: #ffffff;
       position: sticky;
       top: 0;
       z-index: 2;
     }
+    html[data-color="dark"] .mobile-nav-header { background: var(--bg2); }
     .mobile-nav-header span { font-weight: 800; font-size: calc(var(--fs-base) * 1.15); color: var(--text); }
     .mobile-nav-close {
       background: none; border: none; font-size: 26px; color: var(--text2); cursor: pointer; line-height: 1; padding: 0 4px;
@@ -1646,7 +1826,13 @@
         gap: 12px;
       }
       .footer-left .links { flex-wrap: wrap; }
-      .footer-right { align-items: flex-start; width: 100%; }
+      .footer-right {
+        align-items: flex-start;
+        width: 100%;
+        text-align: left;
+      }
+      .footer-right .last-updated,
+      .footer-right .maintained-by { white-space: normal; }
       .repo-icons { gap: 8px; justify-content: center; }
       .repo-icon-link { font-size: calc(var(--fs-base) * 0.85); padding: 5px 10px; }
     }
@@ -1673,19 +1859,20 @@
 
     @media print {
       #stickyNav, #topNav, .hamburger-btn,
-      .btn-support-header, .btn-launch-header, .header-search { display: none !important; }
+      .btn-support-header, .btn-launch-header, .header-search,
+      .license-block .license-action { display: none !important; }
     }
 
     /* ═══════════════════════════════════════════════════════════
-       DARK MODE — lock every blue button (incl. all download buttons
-       across all version rows) to the same vivid brand blue.
+       DARK MODE accent locks
        ═══════════════════════════════════════════════════════════ */
     html[data-color="dark"] .btn-primary,
     html[data-color="dark"] .btn-support,
     html[data-color="dark"] .btn-support-header,
     html[data-color="dark"] .btn-launch-header,
     html[data-color="dark"] .fab-btn,
-    html[data-color="dark"] .btn-download {
+    html[data-color="dark"] .btn-download,
+    html[data-color="dark"] .license-block .license-action {
       background-color: var(--brand-blue) !important;
       background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
       color: #ffffff !important;
@@ -1705,7 +1892,9 @@
     html[data-color="dark"] .fab-btn:hover,
     html[data-color="dark"] .fab-btn:focus-visible,
     html[data-color="dark"] .btn-download:hover,
-    html[data-color="dark"] .btn-download:focus {
+    html[data-color="dark"] .btn-download:focus,
+    html[data-color="dark"] .license-block .license-action:hover,
+    html[data-color="dark"] .license-block .license-action:focus {
       background-color: var(--brand-blue-hi) !important;
       background-image: linear-gradient(180deg, var(--brand-blue-hi), var(--brand-blue)) !important;
       color: #ffffff !important;
@@ -1713,8 +1902,6 @@
       filter: none !important;
       opacity: 1 !important;
     }
-    /* Keep download buttons vivid even when their table row is hovered
-       or alternating-row shading is applied. */
     html[data-color="dark"] tbody tr:hover .btn-download,
     html[data-color="dark"] tbody tr:nth-child(even) .btn-download,
     html[data-color="dark"] tbody tr:nth-child(odd) .btn-download {
@@ -1732,12 +1919,8 @@
       filter: none !important;
       opacity: 1 !important;
     }
-    html[data-color="dark"] .fab-btn .fab-label {
-      color: #ffffff !important;
-    }
-    html[data-color="dark"] .fab-btn .fab-chevron {
-      color: rgba(255, 255, 255, 0.85) !important;
-    }
+    html[data-color="dark"] .fab-btn .fab-label { color: #ffffff !important; }
+    html[data-color="dark"] .fab-btn .fab-chevron { color: rgba(255, 255, 255, 0.85) !important; }
 
     html[data-color="dark"] .step-chip .step-num {
       background-color: var(--brand-blue) !important;
@@ -1750,36 +1933,19 @@
       background: rgba(29, 78, 216, 0.20);
       border-color: rgba(143, 184, 255, 0.5);
     }
-    html[data-color="dark"] .ap-radio.selected .ap-radio-dot {
-      border-color: #8fb8ff;
-    }
-    html[data-color="dark"] .ap-radio.selected .ap-radio-dot::after {
-      background: #8fb8ff;
-    }
-    html[data-color="dark"] .ap-radio.selected .ap-font-preview {
-      color: #8fb8ff;
-    }
+    html[data-color="dark"] .ap-radio.selected .ap-radio-dot { border-color: #8fb8ff; }
+    html[data-color="dark"] .ap-radio.selected .ap-radio-dot::after { background: #8fb8ff; }
+    html[data-color="dark"] .ap-radio.selected .ap-font-preview { color: #8fb8ff; }
 
     html[data-color="dark"] .search-box:focus-within {
       border-color: var(--brand-blue);
       box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.35);
     }
 
-    html[data-color="dark"] .sr-section {
-      color: #8fb8ff;
-    }
-
-    html[data-color="dark"] .citation-text strong {
-      color: #8fb8ff;
-    }
-    html[data-color="dark"] .ref-list li::before {
-      color: #8fb8ff;
-    }
-
-    html[data-color="dark"] .infobox {
-      border-left-color: var(--brand-blue);
-    }
-
+    html[data-color="dark"] .sr-section { color: #8fb8ff; }
+    html[data-color="dark"] .citation-text strong { color: #8fb8ff; }
+    html[data-color="dark"] .ref-list li::before { color: #8fb8ff; }
+    html[data-color="dark"] .infobox { border-left-color: var(--brand-blue); }
     html[data-color="dark"] h2::after {
       background: linear-gradient(90deg, var(--brand-blue), rgba(29, 78, 216, 0.3));
     }
@@ -1793,9 +1959,7 @@
       background: rgba(29, 78, 216, 0.22);
     }
     html[data-color="dark"] #stickyLogo:hover,
-    html[data-color="dark"] .mobile-nav-close:hover {
-      color: #8fb8ff;
-    }
+    html[data-color="dark"] .mobile-nav-close:hover { color: #8fb8ff; }
     html[data-color="dark"] .hamburger-btn:hover {
       background: rgba(29, 78, 216, 0.22);
       border-color: var(--brand-blue);
@@ -1870,7 +2034,7 @@
   </div>
 </div>
 
-<!-- ── FLOATING ACTION BUTTON ── -->
+<!-- ── FLOATING ACTION BUTTON (Use MedModr online) ── -->
 <div class="fab-container" id="fabLaunch">
   <a href="https://shinyhealthtools.github.io/medmodr/"
      target="_blank"
@@ -1884,6 +2048,14 @@
   </a>
 </div>
 <div class="fab-hint" id="fabHint">Click to open the app</div>
+
+<!-- ── BACK-TO-TOP BUTTON ── -->
+<button type="button"
+        id="backToTop"
+        aria-label="Back to top"
+        title="Back to top">
+  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+</button>
 
 <!-- ── MOBILE NAV DRAWER ── -->
 <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
@@ -2439,7 +2611,16 @@ document.querySelectorAll(".btn-copy").forEach(function(btn) {
       <h2 id="license">License</h2>
       <p>MedModr is distributed under the <strong>MIT License</strong>, permitting free use, modification, and redistribution for commercial and non-commercial purposes. It can be deployed on institutional or personal servers, enabling organizations and researchers to self-host MedModr and retain control over their data and computing infrastructure.</p>
 
-      <pre><code>MIT License
+      <div class="license-block">
+        <button type="button"
+                class="license-action"
+                id="downloadLicenseBtn"
+                aria-label="Download the MedModr MIT License as a .txt file"
+                title="Download as .txt">
+          <i class="fa-solid fa-download" aria-hidden="true"></i>
+          <span class="license-action-label">Download</span>
+        </button>
+        <pre class="license-pre" id="licenseText"><code>MIT License
 
 Copyright (c) MedModr
 
@@ -2460,6 +2641,48 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.</code></pre>
+      </div>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   DOWNLOAD LICENSE AS A .txt FILE
+══════════════════════════════════════════════════════ */
+(function () {
+  const btn = document.getElementById('downloadLicenseBtn');
+  const licensePre = document.getElementById('licenseText');
+  if (!btn || !licensePre) return;
+
+  const LICENSE_FILENAME = 'MedModr-LICENSE-MIT.txt';
+  const licenseContent = licensePre.textContent.trim() + '\n';
+
+  const labelEl = btn.querySelector('.license-action-label');
+  const originalLabel = labelEl ? labelEl.textContent : 'Download';
+
+  btn.addEventListener('click', function () {
+    const blob = new Blob([licenseContent], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = LICENSE_FILENAME;
+    document.body.appendChild(a);
+
+    btn.classList.add('downloaded');
+    btn.disabled = true;
+    if (labelEl) labelEl.textContent = 'Downloaded!';
+
+    a.click();
+
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+
+    setTimeout(function () {
+      btn.classList.remove('downloaded');
+      btn.disabled = false;
+      if (labelEl) labelEl.textContent = originalLabel;
+    }, 1800);
+  });
+})();
+</script>
 
       <h2 id="developer">Developer</h2>
       <p>
@@ -2524,6 +2747,9 @@ SOFTWARE.</code></pre>
     <span class="last-updated">
       <i class="fa-regular fa-calendar"></i> Last updated: <span id="lastUpdatedDate">Loading...</span>
     </span>
+    <span class="maintained-by">
+      Site is maintained by Mudasir Mohammed Ibrahim
+    </span>
   </div>
 </div>
 
@@ -2584,21 +2810,27 @@ SOFTWARE.</code></pre>
 
 <script>
 /* ══════════════════════════════════════════════════════
-   STICKY NAV + FLOATING ACTION BUTTON
+   STICKY NAV + FLOATING ACTION BUTTONS
+   (includes the new Back-to-Top button)
 ══════════════════════════════════════════════════════ */
 const topNav    = document.getElementById('topNav');
 const header    = document.getElementById('header');
 const stickyNav = document.getElementById('stickyNav');
 const fabLaunch = document.getElementById('fabLaunch');
 const fabHint   = document.getElementById('fabHint');
+const backToTop = document.getElementById('backToTop');
 let   fabHintShown = sessionStorage.getItem('mm-fab-hint-shown') === '1';
 
+/* Scroll threshold at which the back-to-top appears — the same
+   point at which the sticky nav becomes visible. */
 function updateStickyNav() {
   const refEl = (topNav.offsetParent !== null) ? topNav : header;
   const gone = refEl.getBoundingClientRect().bottom <= 0;
+
   stickyNav.classList.toggle('visible', gone);
   document.body.classList.toggle('sticky-active', gone);
 
+  /* FAB — desktop only */
   if (fabLaunch) {
     const isDesktop = window.matchMedia('(min-width: 1025px)').matches;
     if (isDesktop && gone) {
@@ -2617,10 +2849,28 @@ function updateStickyNav() {
       if (fabHint) fabHint.classList.remove('show');
     }
   }
+
+  /* Back-to-top — appears on ALL screen sizes once scrolled past
+     the top navigation, and hides when near the top. */
+  if (backToTop) {
+    if (gone) {
+      backToTop.classList.add('visible');
+    } else {
+      backToTop.classList.remove('visible');
+    }
+  }
 }
+
 window.addEventListener('scroll', updateStickyNav, { passive: true });
 window.addEventListener('resize', updateStickyNav, { passive: true });
 updateStickyNav();
+
+/* Back-to-top click behaviour: smooth scroll to the top of the page */
+if (backToTop) {
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
 </script>
 
 <script>
