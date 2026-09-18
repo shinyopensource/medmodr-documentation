@@ -15,9 +15,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* ═══════════════════════════════════════════════════════════
-       ROOT / DESIGN TOKENS
-       ═══════════════════════════════════════════════════════════ */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     html, body {
@@ -27,7 +24,7 @@
     img, iframe, svg, video, table { max-width: 100%; }
 
     :root {
-      --fs-base: 13px;
+      --fs-base: 15px;
 
       --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
                    Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -36,13 +33,11 @@
 
       --max-w:     1060px;
 
-      /* ── Fixed brand blue — NEVER changes between light/dark ── */
       --brand-blue:       #1d4ed8;
       --brand-blue-hi:    #2558e6;
       --brand-blue-lo:    #1a44c0;
       --brand-blue-edge:  #163a9e;
 
-      /* ── light palette — PURE WHITE backgrounds like Quarto ── */
       --bg:           #ffffff;
       --bg2:          #ffffff;
       --bg3:          #ffffff;
@@ -145,9 +140,6 @@
       background-color: var(--bg);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       HEADER
-       ═══════════════════════════════════════════════════════════ */
     #header {
       background: #ffffff;
       border-bottom: 1px solid var(--border);
@@ -349,9 +341,6 @@
       100% { background-color: transparent; box-shadow: 0 0 0 6px transparent; }
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       STATIC TOP NAV
-       ═══════════════════════════════════════════════════════════ */
     #topNav {
       background: #ffffff;
       border-bottom: 1px solid var(--border);
@@ -382,9 +371,6 @@
     }
     #topNav .sep { display: none; }
 
-    /* ═══════════════════════════════════════════════════════════
-       STICKY NAV
-       ═══════════════════════════════════════════════════════════ */
     #stickyNav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -434,9 +420,6 @@
     .sticky-search .search-box:focus-within { width: 260px; }
     .sticky-search #searchResults2 { width: 340px; }
 
-    /* ═══════════════════════════════════════════════════════════
-       FLOATING ACTION BUTTON (FAB) — "Use MedModr online"
-       ═══════════════════════════════════════════════════════════ */
     .fab-container {
       position: fixed;
       right: 28px;
@@ -629,18 +612,14 @@
       border-right: 0;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       BACK-TO-TOP BUTTON — professional floating icon
-       Sits stacked above the "Use MedModr online" FAB
-       ═══════════════════════════════════════════════════════════ */
     #backToTop {
       position: fixed;
       right: 28px;
-      bottom: 96px;   /* stacked above the "Use MedModr online" FAB */
+      bottom: 96px;
       z-index: 1201;
       width: 48px;
       height: 48px;
-      display: none;   /* toggled by JS */
+      display: none;
       align-items: center;
       justify-content: center;
       background: #ffffff;
@@ -705,9 +684,6 @@
       transform: translateY(-2px);
     }
 
-    /* Show back-to-top on all screen sizes (phone/tablet/desktop)
-       — it is small and useful everywhere. When the FAB is hidden
-       (≤1024px), we lower it so it sits at the standard bottom-right. */
     @media (max-width: 1024px) {
       #backToTop {
         bottom: 22px;
@@ -742,9 +718,6 @@
       .fab-container::after { animation: none !important; }
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       CONTAINER
-       ═══════════════════════════════════════════════════════════ */
     #container {
       max-width: var(--max-w);
       margin: 0 auto;
@@ -760,9 +733,6 @@
       align-items: start;
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       SIDEBAR
-       ═══════════════════════════════════════════════════════════ */
     #sidebar {
       position: sticky;
       top: 22px;
@@ -956,9 +926,6 @@
       filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       MAIN CONTENT
-       ═══════════════════════════════════════════════════════════ */
     #main { font-size: var(--fs-base); line-height: 1.78; background: transparent; }
 
     h2 {
@@ -1166,9 +1133,6 @@
     }
     pre code { border: none; padding: 0; background-color: transparent; border-radius: 0; font-weight: 400; }
 
-    /* ═══════════════════════════════════════════════════════════
-       LICENSE BLOCK — code-block with embedded Download action
-       ═══════════════════════════════════════════════════════════ */
     .license-block {
       position: relative;
       margin: 18px 0;
@@ -1235,9 +1199,6 @@
       }
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       CITATION CARD
-       ═══════════════════════════════════════════════════════════ */
     .citation-card {
       display: flex;
       flex-direction: column;
@@ -1303,9 +1264,6 @@
     }
     .ref-list li:last-child { border-bottom: none; }
 
-    /* ═══════════════════════════════════════════════════════════
-       BUTTONS
-       ═══════════════════════════════════════════════════════════ */
     .btn {
       background-color: #ffffff;
       border: 1px solid var(--border);
@@ -1517,9 +1475,6 @@
       box-shadow: 0 0 0 3px var(--accent-soft);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       FOOTER
-       ═══════════════════════════════════════════════════════════ */
     #footer {
       display: flex;
       justify-content: space-between;
@@ -1551,7 +1506,6 @@
     .footer-right .last-updated { font-size: calc(var(--fs-base) * 0.85); color: #aaa !important; white-space: nowrap; }
     .footer-right .last-updated i { color: #888 !important; margin-right: 4px; }
 
-    /* New — maintenance credit line under the "Last updated" timestamp */
     .footer-right .maintained-by {
       font-size: calc(var(--fs-base) * 0.85);
       color: #aaa !important;
@@ -1731,9 +1685,6 @@
       to   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       RESPONSIVE
-       ═══════════════════════════════════════════════════════════ */
     @media (min-width: 1440px) {
       html[data-width="standard"] #container { --max-w: 1120px; }
       html[data-width="wide"]     #container { --max-w: 1360px; }
@@ -1863,9 +1814,6 @@
       .license-block .license-action { display: none !important; }
     }
 
-    /* ═══════════════════════════════════════════════════════════
-       DARK MODE accent locks
-       ═══════════════════════════════════════════════════════════ */
     html[data-color="dark"] .btn-primary,
     html[data-color="dark"] .btn-support,
     html[data-color="dark"] .btn-support-header,
@@ -1969,7 +1917,6 @@
 </head>
 <body>
 
-<!-- ── HEADER ── -->
 <div id="header">
   <div class="header-titles">
     <h1>MedModr</h1>
@@ -1993,7 +1940,6 @@
   </div>
 </div>
 
-<!-- ── STATIC TOP NAV ── -->
 <div id="topNav">
   <a href="#overview">Overview</a>
   <a href="#features">Key Features</a>
@@ -2005,7 +1951,6 @@
   <a href="#developer">Developer</a>
 </div>
 
-<!-- ── STICKY NAV ── -->
 <div id="stickyNav">
   <a href="#overview" id="stickyLogo">MedModr</a>
   <div id="stickyLinks">
@@ -2034,7 +1979,6 @@
   </div>
 </div>
 
-<!-- ── FLOATING ACTION BUTTON (Use MedModr online) ── -->
 <div class="fab-container" id="fabLaunch">
   <a href="https://shinyhealthtools.github.io/medmodr/"
      target="_blank"
@@ -2049,7 +1993,6 @@
 </div>
 <div class="fab-hint" id="fabHint">Click to open the app</div>
 
-<!-- ── BACK-TO-TOP BUTTON ── -->
 <button type="button"
         id="backToTop"
         aria-label="Back to top"
@@ -2057,7 +2000,6 @@
   <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
 </button>
 
-<!-- ── MOBILE NAV DRAWER ── -->
 <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-label="Navigation menu">
   <div class="mobile-nav-header">
@@ -2098,7 +2040,6 @@
   </div>
 </div>
 
-<!-- ── CONTAINER ── -->
 <div id="container">
   <div class="content-wrapper">
 
@@ -2114,10 +2055,10 @@
               <div class="ap-radio" data-ap="text" data-val="small">
                 <span class="ap-radio-dot"></span>Small
               </div>
-              <div class="ap-radio selected" data-ap="text" data-val="standard">
+              <div class="ap-radio" data-ap="text" data-val="standard">
                 <span class="ap-radio-dot"></span>Standard
               </div>
-              <div class="ap-radio" data-ap="text" data-val="large">
+              <div class="ap-radio selected" data-ap="text" data-val="large">
                 <span class="ap-radio-dot"></span>Large
               </div>
             </div>
@@ -2199,7 +2140,7 @@
         </p>
       </div>
 
-    </div><!-- end #sidebar -->
+    </div>
 
     <div id="main">
 
@@ -2215,7 +2156,7 @@ MedModr implements analytical models equivalent to those available in the PROCES
          <h2 id="features">Key Features</h2>
 
       <h3>Analytical Models</h3>
-     <p>MedModr currently supports 45 analytical models encompassing simple mediation, parallel mediation, serial mediation, simple moderation, double moderation, first-stage, second-stage, and both-stage moderated mediation, as well as a wide range of moderated mediation variants. The current set covers a broad range of conditional process analysis applications in the health, social, behavioral, and educational sciences. See <a href="#analysis">Analysis Types &amp; Variable Assignment</a> for the complete and current list of supported models.</p>
+     <p>MedModr currently supports 48 analytical models encompassing simple mediation, parallel mediation, serial mediation, simple moderation, double moderation, first-stage, second-stage, and both-stage moderated mediation, as well as a wide range of moderated mediation variants. The current set covers a broad range of conditional process analysis applications in the health, social, behavioral, and educational sciences. See <a href="#analysis">Analysis Types &amp; Variable Assignment</a> for the complete and current list of supported models.</p>
 
       <h3>Bootstrap Confidence Intervals</h3>
       <p>MedModr computes bootstrap confidence intervals for conditional and indirect effects using up to 10,000 resamples with either the Percentile or Bias-Corrected (BC) method. Bootstrap standard errors and confidence intervals are provided for all applicable estimates. The application uses the Mulberry32 pseudorandom number generator with a fixed seed (default = 12345), ensuring fully reproducible results across operating systems, browsers, and devices.</p>
@@ -2314,8 +2255,23 @@ MedModr implements analytical models equivalent to those available in the PROCES
         <div class="figure-caption"><strong>Variable Assignment panel</strong> — the same interface drives all supported analysis types.</div>
       </div>
 
-      <div class="table-scroll">
-<table>
+      <div class="table-export-bar" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin: 20px 0 8px 0;">
+        <span style="font-size: calc(var(--fs-base) * 0.92); color: var(--text2); font-weight: 600;">
+          <i class="fa-solid fa-table-list" style="margin-right: 6px; color: var(--brand-blue);"></i>
+          Variable Assignment Reference Table
+        </span>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button type="button" id="downloadTableImageBtn" class="btn-download" style="gap: 6px;">
+            <i class="fa-solid fa-image"></i> High-Res Image (PNG)
+          </button>
+          <button type="button" id="downloadTableWordBtn" class="btn-download" style="gap: 6px;">
+            <i class="fa-solid fa-file-word"></i> Word Document (.doc)
+          </button>
+        </div>
+      </div>
+
+      <div class="table-scroll" id="variableAssignmentTableContainer">
+<table id="variableAssignmentTable">
   <thead>
     <tr>
       <th>Analysis Type</th>
@@ -2411,7 +2367,11 @@ MedModr implements analytical models equivalent to those available in the PROCES
 
   <tr><td><strong>W and Z moderate X→M, M→Y, and X→Y</strong></td><td style="text-align:center;">76</td><td>X, M, Y, W, Z</td><td>W and Z separately moderate the a-path, the b-path, and the direct path.</td></tr>
 
-  <tr><td><strong>M₁, M₂, ... mediate X→Y in parallel &amp; series</strong></td><td style="text-align:center;">80</td><td>X, M (2+), Y</td><td>Combines parallel and serial mediators in a single model, reporting indirect effects for each pathway.</td></tr>
+  <tr><td><strong>M₁, M₂, ... mediate X→Y in parallel &amp; series</strong></td><td style="text-align:center;">80</td><td>X, M (3+), Y</td><td>Combines parallel and serial mediators in a single model, reporting indirect effects for each pathway.</td></tr>
+
+  <tr><td><strong>M₁, M₂, M₃ mediate X→Y in parallel &amp; series (three mediators)</strong></td><td style="text-align:center;">81</td><td>X, M (3+), Y</td><td>Three or more mediators in combined parallel and serial chains. Reports all indirect pathways.</td></tr>
+
+  <tr><td><strong>M₁, M₂, M₃, M₄ mediate X→Y in parallel &amp; series (four mediators)</strong></td><td style="text-align:center;">82</td><td>X, M (4), Y</td><td>Four mediators in combined parallel and serial chains. Reports indirect effects for all pathways.</td></tr>
 
   <tr><td><strong>W moderates X→M₁ in serial mediation</strong></td><td style="text-align:center;">83</td><td>X, M, M2, Y, W</td><td>W moderates the X→M path within the serial chain X→M→M2→Y.</td></tr>
 </tbody>
@@ -2425,6 +2385,8 @@ MedModr implements analytical models equivalent to those available in the PROCES
     <li><strong>W</strong> — Requires <strong>one</strong> moderator variable.</li>
     <li><strong>W, Z</strong> — Requires <strong>two</strong> moderator variables (W and Z).</li>
     <li><strong>M, M2</strong> — Used for models with a second mediator in a serial or combined parallel/serial chain.</li>
+    <li><strong>M (3+)</strong> — Requires <strong>three or more</strong> mediator variables.</li>
+    <li><strong>M (4)</strong> — Requires exactly <strong>four</strong> mediator variables.</li>
   </ul>
   <p style="margin-top: 6px;">You can add any number of <strong>covariates (Cov)</strong> to control for confounding variables in all analysis types.</p>
 </div>
@@ -2463,7 +2425,7 @@ MedModr implements analytical models equivalent to those available in the PROCES
     <tr>
       <td><strong>v3.0</strong> <span class="badge badge-green">Latest</span> <span class="badge" style="background:#e67e22;color:#fff;border-color:#e67e22;">Beta</span></td>
       <td style="white-space:nowrap;">September 2026</td>
-      <td>Expanded library of 45 PROCESS models spanning Models 1–83, standardized Variable Assignment labels to X, M, M2, Y, W/Z, and Cov, and improved computational efficiency and variable handling.
+      <td>Expanded library of 48 PROCESS models spanning Models 1–83, standardized Variable Assignment labels to X, M, M2, Y, W/Z, and Cov, and improved computational efficiency and variable handling.
 </td>
       <td style="text-align:center;"><a href="https://archive.org/download/version-1_202606/MedModr%20%28v3.0%20beta%29.zip" class="btn-download">Download</a></td>
     </tr>
@@ -2644,9 +2606,6 @@ SOFTWARE.</code></pre>
       </div>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   DOWNLOAD LICENSE AS A .txt FILE
-══════════════════════════════════════════════════════ */
 (function () {
   const btn = document.getElementById('downloadLicenseBtn');
   const licensePre = document.getElementById('licenseText');
@@ -2729,11 +2688,10 @@ SOFTWARE.</code></pre>
   </ul>
 </div>
 
-    </div><!-- end #main -->
-  </div><!-- end .content-wrapper -->
-</div><!-- end #container -->
+    </div>
+  </div>
+</div>
 
-<!-- ── FOOTER ── -->
 <div id="footer">
   <div class="footer-left">
     Copyright &copy; 2026 MedModr
@@ -2754,9 +2712,6 @@ SOFTWARE.</code></pre>
 </div>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   LAST UPDATED
-══════════════════════════════════════════════════════ */
 (function() {
   const lastUpdatedSpan = document.getElementById('lastUpdatedDate');
   if (!lastUpdatedSpan) return;
@@ -2802,17 +2757,12 @@ SOFTWARE.</code></pre>
 })();
 </script>
 
-<!-- ── LIGHTBOX ── -->
 <div class="lightbox" id="imgLightbox">
   <span class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</span>
   <img class="lightbox-content" id="lightboxImg" src="" alt="">
 </div>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   STICKY NAV + FLOATING ACTION BUTTONS
-   (includes the new Back-to-Top button)
-══════════════════════════════════════════════════════ */
 const topNav    = document.getElementById('topNav');
 const header    = document.getElementById('header');
 const stickyNav = document.getElementById('stickyNav');
@@ -2821,8 +2771,6 @@ const fabHint   = document.getElementById('fabHint');
 const backToTop = document.getElementById('backToTop');
 let   fabHintShown = sessionStorage.getItem('mm-fab-hint-shown') === '1';
 
-/* Scroll threshold at which the back-to-top appears — the same
-   point at which the sticky nav becomes visible. */
 function updateStickyNav() {
   const refEl = (topNav.offsetParent !== null) ? topNav : header;
   const gone = refEl.getBoundingClientRect().bottom <= 0;
@@ -2830,7 +2778,6 @@ function updateStickyNav() {
   stickyNav.classList.toggle('visible', gone);
   document.body.classList.toggle('sticky-active', gone);
 
-  /* FAB — desktop only */
   if (fabLaunch) {
     const isDesktop = window.matchMedia('(min-width: 1025px)').matches;
     if (isDesktop && gone) {
@@ -2850,8 +2797,6 @@ function updateStickyNav() {
     }
   }
 
-  /* Back-to-top — appears on ALL screen sizes once scrolled past
-     the top navigation, and hides when near the top. */
   if (backToTop) {
     if (gone) {
       backToTop.classList.add('visible');
@@ -2865,7 +2810,6 @@ window.addEventListener('scroll', updateStickyNav, { passive: true });
 window.addEventListener('resize', updateStickyNav, { passive: true });
 updateStickyNav();
 
-/* Back-to-top click behaviour: smooth scroll to the top of the page */
 if (backToTop) {
   backToTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2874,12 +2818,9 @@ if (backToTop) {
 </script>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   APPEARANCE PANEL
-══════════════════════════════════════════════════════ */
 const root = document.documentElement;
 
-const savedText   = localStorage.getItem('mm-text')   || 'standard';
+const savedText   = localStorage.getItem('mm-text')   || 'large';
 const savedFont   = localStorage.getItem('mm-font')   || 'inter';
 const savedWeight = localStorage.getItem('mm-weight') || 'medium';
 const savedWidth  = localStorage.getItem('mm-width')  || 'standard';
@@ -2963,9 +2904,6 @@ if (document.fonts && document.fonts.ready) {
 </script>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   SCREENSHOT LIGHTBOX
-══════════════════════════════════════════════════════ */
 (function () {
   const lightbox       = document.getElementById('imgLightbox');
   const lightboxImg     = document.getElementById('lightboxImg');
@@ -3005,9 +2943,6 @@ if (document.fonts && document.fonts.ready) {
 </script>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   SEARCH FUNCTIONALITY
-══════════════════════════════════════════════════════ */
 (function () {
   const MAIN = document.getElementById('main');
   if (!MAIN) return;
@@ -3208,9 +3143,6 @@ if (document.fonts && document.fonts.ready) {
 </script>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   MOBILE NAV DRAWER
-══════════════════════════════════════════════════════ */
 (function () {
   const btn      = document.getElementById('hamburgerBtn');
   const btn2     = document.getElementById('hamburgerBtn2');
@@ -3261,6 +3193,218 @@ if (document.fonts && document.fonts.ready) {
       history.pushState(null, '', href);
     });
   });
+})();
+</script>
+
+<script>
+(function () {
+  const tableContainer = document.getElementById('variableAssignmentTableContainer');
+  if (!tableContainer) return;
+
+  let html2canvasPromise = null;
+  function loadHtml2Canvas() {
+    if (html2canvasPromise) return html2canvasPromise;
+    html2canvasPromise = new Promise((resolve, reject) => {
+      if (window.html2canvas) { resolve(window.html2canvas); return; }
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      script.onload = () => resolve(window.html2canvas);
+      script.onerror = () => reject(new Error('Failed to load html2canvas'));
+      document.head.appendChild(script);
+    });
+    return html2canvasPromise;
+  }
+
+  const imgBtn = document.getElementById('downloadTableImageBtn');
+  if (imgBtn) {
+    imgBtn.addEventListener('click', async function () {
+      const originalHTML = this.innerHTML;
+      this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating…';
+      this.disabled = true;
+
+      try {
+        const html2canvas = await loadHtml2Canvas();
+
+        const clone = tableContainer.cloneNode(true);
+        clone.style.overflow = 'visible';
+        clone.style.padding = '24px';
+        clone.style.background = '#ffffff';
+        clone.style.width = 'max-content';
+        clone.style.maxWidth = 'none';
+        clone.style.borderRadius = '0';
+
+        const table = clone.querySelector('table');
+        if (table) {
+          table.style.width = 'max-content';
+          table.style.maxWidth = 'none';
+          table.style.minWidth = '0';
+          table.style.boxShadow = 'none';
+          table.style.border = '1px solid #d0d7e2';
+          table.style.borderRadius = '8px';
+          table.style.overflow = 'hidden';
+        }
+
+        const wrapper = document.createElement('div');
+        wrapper.style.position = 'fixed';
+        wrapper.style.left = '-99999px';
+        wrapper.style.top = '0';
+        wrapper.style.background = '#ffffff';
+        wrapper.style.zIndex = '-1';
+        wrapper.appendChild(clone);
+        document.body.appendChild(wrapper);
+
+        void wrapper.offsetWidth;
+
+        const canvas = await html2canvas(clone, {
+          scale: 3,
+          backgroundColor: '#ffffff',
+          logging: false,
+          useCORS: true,
+          allowTaint: false,
+          width: clone.scrollWidth,
+          height: clone.scrollHeight,
+          windowWidth: clone.scrollWidth,
+          windowHeight: clone.scrollHeight
+        });
+
+        document.body.removeChild(wrapper);
+
+        canvas.toBlob(function (blob) {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'MedModr-Variable-Assignment-Table.png';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(url), 1500);
+        }, 'image/png');
+
+        imgBtn.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
+        setTimeout(function () {
+          imgBtn.innerHTML = originalHTML;
+          imgBtn.disabled = false;
+        }, 1600);
+
+      } catch (err) {
+        console.error('PNG export failed:', err);
+        imgBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Failed';
+        setTimeout(function () {
+          imgBtn.innerHTML = originalHTML;
+          imgBtn.disabled = false;
+        }, 1600);
+      }
+    });
+  }
+
+  const wordBtn = document.getElementById('downloadTableWordBtn');
+  if (wordBtn) {
+    wordBtn.addEventListener('click', function () {
+      const originalHTML = this.innerHTML;
+      this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating…';
+      this.disabled = true;
+
+      try {
+        const table = document.getElementById('variableAssignmentTable');
+        if (!table) throw new Error('Table not found');
+
+        const clone = table.cloneNode(true);
+        clone.setAttribute('border', '1');
+        clone.setAttribute('cellpadding', '6');
+        clone.setAttribute('cellspacing', '0');
+        clone.style.borderCollapse = 'collapse';
+        clone.style.width = '100%';
+        clone.style.fontFamily = 'Calibri, Arial, sans-serif';
+        clone.style.fontSize = '11pt';
+
+        clone.querySelectorAll('th').forEach(th => {
+          th.style.background = '#1d4ed8';
+          th.style.color = '#ffffff';
+          th.style.fontWeight = 'bold';
+          th.style.padding = '8px 10px';
+          th.style.border = '1px solid #163a9e';
+          th.style.textAlign = 'left';
+          th.style.fontSize = '11pt';
+        });
+        clone.querySelectorAll('td').forEach(td => {
+          td.style.padding = '6px 10px';
+          td.style.border = '1px solid #d0d7e2';
+          td.style.fontSize = '10.5pt';
+          td.style.verticalAlign = 'top';
+        });
+        clone.querySelectorAll('tbody tr').forEach((tr, i) => {
+          tr.querySelectorAll('td').forEach(td => {
+            td.style.background = (i % 2 === 0) ? '#ffffff' : '#f4f7fd';
+          });
+        });
+
+        const title = 'MedModr — Analysis Types & Variable Assignment';
+        const note = 'All analysis types are configured through a unified Variable Assignment interface. ' +
+                     'X = independent variable, Y = dependent variable, M = mediator, W/Z = moderators, Cov = covariates.';
+
+        const html = `
+          <html xmlns:o="urn:schemas-microsoft-com:office:office"
+                xmlns:w="urn:schemas-microsoft-com:office:word"
+                xmlns="http://www.w3.org/TR/REC-html40">
+          <head>
+            <meta charset="utf-8">
+            <title>${title}</title>
+            <!--[if gte mso 9]>
+            <xml>
+              <w:WordDocument>
+                <w:View>Print</w:View>
+                <w:Zoom>100</w:Zoom>
+              </w:WordDocument>
+            </xml>
+            <![endif]-->
+            <style>
+              @page { size: landscape; margin: 1.5cm; }
+              body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; color: #0f172a; line-height: 1.5; }
+              h1 { font-size: 18pt; color: #1d4ed8; margin-bottom: 4px; }
+              p.sub { font-size: 10pt; color: #334155; margin-top: 0; margin-bottom: 16px; }
+              table { border-collapse: collapse; width: 100%; }
+              th { background: #1d4ed8; color: #ffffff; font-weight: bold; padding: 8px 10px; border: 1px solid #163a9e; text-align: left; font-size: 11pt; }
+              td { padding: 6px 10px; border: 1px solid #d0d7e2; font-size: 10.5pt; vertical-align: top; }
+              tr:nth-child(even) td { background: #f4f7fd; }
+            </style>
+          </head>
+          <body>
+            <h1>${title}</h1>
+            <p class="sub">${note}</p>
+            ${clone.outerHTML}
+            <p style="font-size:9pt; color:#64748b; margin-top:20px;">
+              Generated from MedModr documentation &middot; ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </p>
+          </body>
+          </html>
+        `;
+
+        const blob = new Blob(['\ufeff', html], { type: 'application/msword' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'MedModr-Variable-Assignment-Table.doc';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(url), 1500);
+
+        wordBtn.innerHTML = '<i class="fa-solid fa-check"></i> Downloaded!';
+        setTimeout(function () {
+          wordBtn.innerHTML = originalHTML;
+          wordBtn.disabled = false;
+        }, 1600);
+
+      } catch (err) {
+        console.error('Word export failed:', err);
+        wordBtn.innerHTML = '<i class="fa-solid fa-xmark"></i> Failed';
+        setTimeout(function () {
+          wordBtn.innerHTML = originalHTML;
+          wordBtn.disabled = false;
+        }, 1600);
+      }
+    });
+  }
 })();
 </script>
 
