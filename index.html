@@ -2327,7 +2327,7 @@ MedModr implements analytical models equivalent to those available in the PROCES
 
   <tr><td><strong>Simple mediation (M mediates X→Y)</strong></td><td style="text-align:center;">4</td><td>X, M, Y</td><td>Does M mediate the effect of X on Y? Includes the Sobel test.</td></tr>
 
-  <tr><td><strong>Parallel multiple mediation (M₁, M₂, ... mediate X→Y in parallel)</strong></td><td style="text-align:center;">4</td><td>X, M (2+), Y</td><td>Multiple mediators operating simultaneously. Reports individual and total indirect effects.</td></tr>
+  <tr><td><strong>Parallel multiple mediation (M₁, M₂, ... mediate X→Y in parallel)</strong></td><td style="text-align:center;">4</td><td>X, M (2+), Y<br><em>(assign all mediators to the <strong>M</strong> box; leave <strong>M2</strong> empty)</em></td><td>Multiple mediators operating simultaneously. Reports individual and total indirect effects.</td></tr>
 
   <tr><td><strong>Moderated direct effect (W moderates X→Y)</strong></td><td style="text-align:center;">5</td><td>X, M, Y, W</td><td>W moderates only the direct X→Y path (c′ path).</td></tr>
 
@@ -2405,11 +2405,11 @@ MedModr implements analytical models equivalent to those available in the PROCES
 
   <tr><td><strong>W and Z moderate X→M, M→Y, and X→Y</strong></td><td style="text-align:center;">76</td><td>X, M, Y, W, Z</td><td>W and Z separately moderate the a-path, the b-path, and the direct path.</td></tr>
 
-  <tr><td><strong>M₁, M₂, ... mediate X→Y in parallel &amp; series</strong></td><td style="text-align:center;">80</td><td>X, M (3+), Y</td><td>Combines parallel and serial mediators in a single model, reporting indirect effects for each pathway.</td></tr>
+  <tr><td><strong>M₁, M₂, ... mediate X→Y in parallel &amp; series</strong></td><td style="text-align:center;">80</td><td>X, M (3+), Y<br><em>(assign all mediators to the <strong>M</strong> box; leave <strong>M2</strong> empty)</em></td><td>Combines parallel and serial mediators in a single model, reporting indirect effects for each pathway.</td></tr>
 
-  <tr><td><strong>M₁, M₂, M₃ mediate X→Y in parallel &amp; series (three mediators)</strong></td><td style="text-align:center;">81</td><td>X, M (3+), Y</td><td>Three or more mediators in combined parallel and serial chains. Reports all indirect pathways.</td></tr>
+  <tr><td><strong>M₁, M₂, M₃ mediate X→Y in parallel &amp; series (three mediators)</strong></td><td style="text-align:center;">81</td><td>X, M (3+), Y<br><em>(assign all mediators to the <strong>M</strong> box; leave <strong>M2</strong> empty)</em></td><td>Three or more mediators in combined parallel and serial chains. Reports all indirect pathways.</td></tr>
 
-  <tr><td><strong>M₁, M₂, M₃, M₄ mediate X→Y in parallel &amp; series (four mediators)</strong></td><td style="text-align:center;">82</td><td>X, M (4), Y</td><td>Four mediators in combined parallel and serial chains. Reports indirect effects for all pathways.</td></tr>
+  <tr><td><strong>M₁, M₂, M₃, M₄ mediate X→Y in parallel &amp; series (four mediators)</strong></td><td style="text-align:center;">82</td><td>X, M (4), Y<br><em>(assign all mediators to the <strong>M</strong> box; leave <strong>M2</strong> empty)</em></td><td>Four mediators in combined parallel and serial chains. Reports indirect effects for all pathways.</td></tr>
 
   <tr><td><strong>W moderates X→M₁ in serial mediation</strong></td><td style="text-align:center;">83</td><td>X, M, M2, Y, W</td><td>W moderates the X→M path within the serial chain X→M→M2→Y.</td></tr>
 </tbody>
@@ -2422,9 +2422,10 @@ MedModr implements analytical models equivalent to those available in the PROCES
   <ul style="margin: 4px 0 4px 20px;">
     <li><strong>W</strong> — Requires <strong>one</strong> moderator variable.</li>
     <li><strong>W, Z</strong> — Requires <strong>two</strong> moderator variables (W and Z).</li>
-    <li><strong>M, M2</strong> — Used for models with a second mediator in a serial or combined parallel/serial chain.</li>
-    <li><strong>M (3+)</strong> — Requires <strong>three or more</strong> mediator variables (assign all to the <strong>M</strong> box; leave <strong>M2</strong> empty).</li>
-    <li><strong>M (4)</strong> — Requires exactly <strong>four</strong> mediator variables (assign all to the <strong>M</strong> box).</li>
+    <li><strong>M, M2</strong> — Two-mediator serial mediation (Model 6) only: assign one mediator to <strong>M</strong> and one to <strong>M2</strong>.</li>
+    <li><strong>M (2+)</strong> — Assign <strong>all</strong> mediators to the <strong>M</strong> box and leave <strong>M2</strong> empty (Model 4 — parallel mediation).</li>
+    <li><strong>M (3+)</strong> — Assign <strong>all</strong> mediators to the <strong>M</strong> box and leave <strong>M2</strong> empty (Model 6 with 3+ mediators, 80, and 81).</li>
+    <li><strong>M (4)</strong> — Assign exactly <strong>four</strong> mediators to the <strong>M</strong> box and leave <strong>M2</strong> empty (Model 82).</li>
   </ul>
   <p style="margin-top: 6px;">You can add any number of <strong>covariates (Cov)</strong> to control for confounding variables in all analysis types.</p>
   <p style="margin-top: 6px;"><strong>Moderator Probing:</strong> For moderation and moderated mediation models, you can choose between <strong>Mean ± 1 SD</strong> (default) and <strong>Percentile (16th / 50th / 84th)</strong> probing. The Percentile option is not available for pure mediation models (Models 4, 6, 80, 81, and 82), which do not involve a moderator.</p>
