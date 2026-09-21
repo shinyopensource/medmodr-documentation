@@ -134,6 +134,9 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
+      box-shadow: none !important;
+      border-left: none !important;
+      border-right: none !important;
     }
 
     html[data-color="dark"] body {
@@ -150,6 +153,7 @@
       gap: 20px;
       position: relative;
       z-index: 100;
+      box-shadow: none !important;
     }
     html[data-color="dark"] #header { background: var(--surface); }
     .header-titles { min-width: 0; }
@@ -351,6 +355,7 @@
       justify-content: center;
       align-items: center;
       gap: 2px;
+      box-shadow: none !important;
     }
     html[data-color="dark"] #topNav { background: var(--bg2); }
     #topNav a {
@@ -724,6 +729,9 @@
       padding: 28px 40px 0 40px;
       transition: max-width 0.2s;
       background: #ffffff;
+      box-shadow: none !important;
+      border-left: none !important;
+      border-right: none !important;
     }
     html[data-color="dark"] #container { background: transparent; }
     .content-wrapper {
@@ -731,7 +739,10 @@
       grid-template-columns: var(--sidebar-w) 1fr;
       gap: 34px;
       align-items: start;
+      background: #ffffff;
+      box-shadow: none !important;
     }
+    html[data-color="dark"] .content-wrapper { background: transparent; }
 
     #sidebar {
       position: sticky;
@@ -926,7 +937,8 @@
       filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
     }
 
-    #main { font-size: var(--fs-base); line-height: 1.78; background: transparent; }
+    #main { font-size: var(--fs-base); line-height: 1.78; background: #ffffff; box-shadow: none !important; }
+    html[data-color="dark"] #main { background: transparent; }
 
     h2 {
       font-family: var(--font-heading);
@@ -1486,6 +1498,7 @@
       border-top: 1px solid #333 !important;
       color: #e0e0e0 !important;
       font-family: var(--font-body);
+      box-shadow: none !important;
     }
     #footer a { color: #66b3ff !important; text-decoration: none; background: transparent; font-weight: 500; }
     #footer a:hover { color: #99ccff !important; text-decoration: underline; background: transparent; }
@@ -1913,6 +1926,28 @@
       border-color: var(--brand-blue);
       color: #8fb8ff;
     }
+
+    /* ============================================================
+       SIDE SHADOW REMOVAL
+       Ensures the outer page background (left and right of the
+       centered content column) is always solid white in light mode,
+       removing any black / faded shadow appearance.
+       ============================================================ */
+    html { background: #ffffff; }
+    html[data-color="dark"] { background: #0b0f17; }
+
+    body {
+      background-image: none !important;
+    }
+
+    #container,
+    #main,
+    .content-wrapper,
+    #header,
+    #topNav {
+      border-left: none !important;
+      border-right: none !important;
+    }
   </style>
 </head>
 <body>
@@ -2167,6 +2202,9 @@ MedModr implements analytical models equivalent to those available in the PROCES
       <h3>Simple Slopes Visualization</h3>
       <p>Interactive Canvas-based simple slopes plots are available for applicable moderation and moderated mediation models, displaying the moderator's effect at −1 standard deviation, the mean, and +1 standard deviation. Users can choose between legend-based and in-line annotations, toggle between default and publication-ready styling, and export plots as high-resolution PNG files for manuscript preparation.</p>
 
+      <h3>Moderator Probing Strategy</h3>
+      <p>For all moderation and moderated mediation models, users can choose between two probing strategies for the moderator: <strong>Mean ± 1 SD</strong> (the default) and <strong>Percentile (16th / 50th / 84th)</strong>. The percentile strategy is recommended when the moderator is skewed or non-normally distributed. The selected strategy is applied consistently across simple slopes tables, conditional indirect effect tables, simple slopes plots, summary paragraphs, and indices of moderated mediation where applicable.</p>
+
       <h3>Missing Data Handling</h3>
       <p>Seven imputation methods are available for managing incomplete data: mean, median, mode, Predictive Mean Matching (PMM), hot-deck imputation, regression-based imputation, and the Expectation-Maximization (EM) algorithm. The application also supports custom missing-value codes (e.g., −999 and NA) and listwise deletion, providing flexible options for handling missing data according to the requirements of the analysis.</p>
 
@@ -2293,7 +2331,7 @@ MedModr implements analytical models equivalent to those available in the PROCES
 
   <tr><td><strong>Moderated direct effect (W moderates X→Y)</strong></td><td style="text-align:center;">5</td><td>X, M, Y, W</td><td>W moderates only the direct X→Y path (c′ path).</td></tr>
 
-  <tr><td><strong>Serial mediation (M₁ → M₂ → ... mediate X→Y in series)</strong></td><td style="text-align:center;">6</td><td>X, M, M2, Y</td><td>Chain mediation: X → M → M2 → Y. Tests the indirect pathways through the chain.</td></tr>
+  <tr><td><strong>Serial mediation (M₁ → M₂ → ... mediate X→Y in series)</strong></td><td style="text-align:center;">6</td><td>X, M, M2, Y <em>(2 mediators)</em><br>or<br>X, M (3+), Y <em>(3 or more mediators)</em></td><td>Chain mediation. For <strong>two</strong> mediators, assign one mediator to <strong>M</strong> and one to <strong>M2</strong>. For <strong>three or more</strong> mediators, assign all mediators to <strong>M</strong> and leave <strong>M2</strong> empty. Reports all indirect pathways through the chain.</td></tr>
 
   <tr><td><strong>W moderates X→M</strong></td><td style="text-align:center;">7</td><td>X, M, Y, W</td><td>First-stage moderation: W moderates the X→M (a) path.</td></tr>
 
@@ -2385,10 +2423,11 @@ MedModr implements analytical models equivalent to those available in the PROCES
     <li><strong>W</strong> — Requires <strong>one</strong> moderator variable.</li>
     <li><strong>W, Z</strong> — Requires <strong>two</strong> moderator variables (W and Z).</li>
     <li><strong>M, M2</strong> — Used for models with a second mediator in a serial or combined parallel/serial chain.</li>
-    <li><strong>M (3+)</strong> — Requires <strong>three or more</strong> mediator variables.</li>
-    <li><strong>M (4)</strong> — Requires exactly <strong>four</strong> mediator variables.</li>
+    <li><strong>M (3+)</strong> — Requires <strong>three or more</strong> mediator variables (assign all to the <strong>M</strong> box; leave <strong>M2</strong> empty).</li>
+    <li><strong>M (4)</strong> — Requires exactly <strong>four</strong> mediator variables (assign all to the <strong>M</strong> box).</li>
   </ul>
   <p style="margin-top: 6px;">You can add any number of <strong>covariates (Cov)</strong> to control for confounding variables in all analysis types.</p>
+  <p style="margin-top: 6px;"><strong>Moderator Probing:</strong> For moderation and moderated mediation models, you can choose between <strong>Mean ± 1 SD</strong> (default) and <strong>Percentile (16th / 50th / 84th)</strong> probing. The Percentile option is not available for pure mediation models (Models 4, 6, 80, 81, and 82), which do not involve a moderator.</p>
 </div>
 
       <h2 id="tutorial">Video Tutorial</h2>
@@ -2425,7 +2464,7 @@ MedModr implements analytical models equivalent to those available in the PROCES
     <tr>
       <td><strong>v3.0</strong> <span class="badge badge-green">Latest</span> <span class="badge" style="background:#e67e22;color:#fff;border-color:#e67e22;">Beta</span></td>
       <td style="white-space:nowrap;">September 2026</td>
-      <td>Expanded library of 48 PROCESS models spanning Models 1–83, standardized Variable Assignment labels to X, M, M2, Y, W/Z, and Cov, and improved computational efficiency and variable handling.
+      <td>Expanded library of 48 PROCESS models spanning Models 1–83, standardized Variable Assignment labels to X, M, M2, Y, W/Z, and Cov, added a <strong>Percentile (16th / 50th / 84th)</strong> moderator probing option alongside the default Mean ± 1 SD, and improved computational efficiency and variable handling.
 </td>
       <td style="text-align:center;"><a href="https://archive.org/download/version-1_202606/MedModr%20%28v3.0%20beta%29.zip" class="btn-download">Download</a></td>
     </tr>
