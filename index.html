@@ -1043,6 +1043,12 @@
       #header #topNav { order: 3; flex: 0 0 100%; border-top: 1px solid var(--border); margin-top: 10px; }
       #topNav a { padding: 11px 12px; }
     }
+  
+    kbd {
+      font-family: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace; font-size: 0.82em; font-weight: 500;
+      padding: 2px 7px; border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 6px;
+      background: var(--surface); color: var(--text); white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -1280,8 +1286,7 @@
       <div class="title-block">
         <h1 class="page-title">MedModr</h1>
         <p class="page-subtitle">Mediation, moderation and conditional process analysis in your browser</p>
-        <p class="page-description">A free, open-source, browser-based tool for mediation, serial mediation, moderation and moderated mediation analysis. It implements 92 PROCESS-equivalent models with bootstrap confidence intervals, path diagrams and simple slopes, with all computation done locally in your browser.</p>
-        <p class="page-meta"><span>Version 3.0 (Beta)</span><span>September 2026</span><span>MIT License</span><span>Mudasir Mohammed Ibrahim</span></p>
+        <p class="page-description">A free, open-source, browser-based tool for mediation, moderation, and moderated mediation analysis. It implements 92 PROCESS-equivalent models with bootstrap confidence intervals, with all computations performed locally in your browser.</p>
         <div class="title-actions">
           <a class="btn btn-primary" href="https://shinyhealthtools.github.io/medmodr/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Use MedModr online</a>
           <a class="btn" href="https://github.com/shinyhealthtools/medmodr" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> See on GitHub</a>
@@ -1298,13 +1303,33 @@ MedModr is a free, open-source, browser-based application designed for mediation
 </p>
 
 <p>
-MedModr implements analytical models equivalent to those available in the PROCESS macro, encompassing mediation, moderation, and a wide range of moderated mediation variants. It generates comprehensive outputs, including regression tables, bootstrap confidence intervals, standardized and unstandardized coefficients, interactive path diagrams, and simple slopes plots for applicable models. Built-in data screening, missing-data imputation, and dummy-coding capabilities further streamline the research workflow, from data preparation to the generation of publication-ready results.
+MedModr implements analytical models equivalent to those available in the PROCESS macro, encompassing mediation, moderation, and a wide range of moderated mediation variants. It generates comprehensive outputs, including regression tables, bootstrap confidence intervals, standardized and unstandardized coefficients, interactive path diagrams, and simple slopes plots for applicable models. Built-in data screening, missing-data imputation, and dummy-coding capabilities further streamline the research workflow, from data preparation to the generation of publication-ready results. Regression diagnostics, a custom regression builder, robust standard errors, adjustable decimal places, and pairwise comparisons of indirect effects are also available.
 </p>
 
          <h2 id="features">Key Features</h2>
 
       <h3>Analytical Models</h3>
-     <p>MedModr currently supports 92 analytical models (Models 1–92) encompassing simple mediation, parallel mediation, serial mediation, simple moderation, double moderation, first-stage, second-stage, and both-stage moderated mediation, as well as a wide range of moderated mediation variants. The current set covers a broad range of conditional process analysis applications in the health, social, behavioral, and educational sciences. See <a href="#analysis">Analysis Types &amp; Variable Assignment</a> for the complete and current list of supported models.</p>
+     <p>MedModr currently supports 92 analytical models (Models 1–92) encompassing simple mediation, parallel mediation, serial mediation, simple moderation, double moderation, moderated moderation, first-stage, second-stage, and both-stage moderated mediation, as well as a wide range of moderated mediation variants. The current set covers a broad range of conditional process analysis applications in the health, social, behavioral, and educational sciences. See <a href="#analysis">Analysis Types &amp; Variable Assignment</a> for the complete and current list of supported models.</p>
+
+      <h3>Supported Numbers of Moderators and Mediators</h3>
+      <p>The number of moderators or mediators you can assign depends on the model. The table below gives the supported range for each model.</p>
+      <div class="table-scroll">
+        <table style="min-width:0;">
+          <thead>
+            <tr><th>Model(s)</th><th>Supported number</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Model 1</td><td>1 moderator</td></tr>
+            <tr><td>Models 2, 3</td><td>2 moderators</td></tr>
+            <tr><td>Model 4</td><td>1 mediator (simple mediation) or 2&ndash;10 mediators (parallel mediation)</td></tr>
+            <tr><td>Model 6</td><td>2&ndash;10 mediators (serial, chain or sequential mediation)</td></tr>
+            <tr><td>Models 5, 7&ndash;76</td><td>1&ndash;3 mediators</td></tr>
+            <tr><td>Models 80, 81</td><td>3&ndash;6 mediators</td></tr>
+            <tr><td>Model 82</td><td>4 mediators</td></tr>
+            <tr><td>Models 83&ndash;92</td><td>2&ndash;3 mediators</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <h3>Bootstrap Confidence Intervals</h3>
       <p>MedModr computes bootstrap confidence intervals for conditional and indirect effects using up to 10,000 resamples with either the Percentile or Bias-Corrected (BC) method. Bootstrap standard errors and confidence intervals are provided for all applicable estimates. The application uses the Mulberry32 pseudorandom number generator with a fixed seed (default = 12345), ensuring fully reproducible results across operating systems, browsers, and devices.</p>
@@ -1313,7 +1338,7 @@ MedModr implements analytical models equivalent to those available in the PROCES
       <p>Auto-generated SVG path diagrams with coefficient overlays are available for eight (8) of the supported models. Users can toggle color schemes, show or hide values and p-values, switch between unstandardized (b) and standardized (β) coefficients, rename variables, and export diagrams as high-resolution PNG or SVG for publication.</p>
 
       <h3>Simple Slopes Visualization</h3>
-      <p>Interactive Canvas-based simple slopes plots are available for applicable moderation and moderated mediation models, displaying the moderator's effect at −1 standard deviation, the mean, and +1 standard deviation. Users can choose between legend-based and in-line annotations, toggle between default and publication-ready styling, and export plots as high-resolution PNG files for manuscript preparation.</p>
+      <p>Interactive Canvas-based simple slopes plots are available for applicable moderation and moderated mediation models, displaying the moderator's effect. Users can export plots as high-resolution PNG files for publication.</p>
 
       <h3>Moderator Probing Strategy</h3>
       <p>For all moderation and moderated mediation models, users can choose between two probing strategies for the moderator: <strong>Mean ± 1 SD</strong> (the default) and <strong>Percentile (16th / 50th / 84th)</strong>. The percentile strategy is recommended when the moderator is skewed or non-normally distributed. The selected strategy is applied consistently across simple slopes tables, conditional indirect effect tables, simple slopes plots, summary paragraphs, and indices of moderated mediation where applicable.</p>
@@ -1339,6 +1364,38 @@ MedModr implements analytical models equivalent to those available in the PROCES
       <p>Analysis results can be exported as formatted Word (.doc), PDF, HTML, or CSV documents suitable for publication or presentation. The <strong>Export All to Word</strong> function compiles results from multiple variable combinations into a single comprehensive document, streamlining the preparation of results for reporting and dissemination.
 </p>
 
+
+     <h3>Regression Diagnostics</h3>
+      <p>Click the <strong>Diagnostics</strong> button next to any regression table to open a comprehensive diagnostic report for that model. The report includes descriptive statistics, dominance analysis matrices, all-subsets regression results, residual diagnostic plots (histogram, normal Q&ndash;Q plot, scatter plot, residuals vs. fitted, scale-location, and residuals vs. leverage), residual statistics, residual skewness and kurtosis, Bonferroni-corrected p-values for the largest studentized residual, influential observations, the Breusch&ndash;Pagan test for heteroskedasticity (normal and robust versions), variable intercorrelations (Pearson, Spearman, and Kendall), and influence and outlier diagnostics (Mahalanobis distance, Cook&rsquo;s distance, and centered leverage values). Every part of the report can be exported to Word.</p>
+
+      <h3>Fit Model (Custom Regression)</h3>
+      <p>Use <strong>Fit Model</strong> to build your own OLS or logistic regression. Combine any predictors, add custom interaction terms, and queue several models to run together. Each model is returned with a full results table and diagnostics. To review the queued models, double-click the <strong>Add Model</strong> button.</p>
+
+      <h3>Standard Errors: OLS and Robust (HC0&ndash;HC4)</h3>
+      <p>Choose between classical OLS standard errors and heteroskedasticity-consistent (robust) standard errors, HC0 to HC4. The coefficients stay the same. The standard errors, <em>t</em> or <em>z</em> statistics, <em>p</em>-values, confidence intervals and <em>F</em> test are recomputed. This option applies to regression tables only.</p>
+
+      <h3>Adjustable Decimal Places</h3>
+      <p>Choose how many decimal places your results show, from 1 to 10. The setting applies to the output on screen, to downloaded files, and to regression tables you copy, so the numbers are ready to use in your manuscript or report without further formatting.</p>
+
+      <h3>Pairwise Comparison of Indirect Effects</h3>
+      <p>In multi-mediator models (Models 4, 6, 80, 81 and 82), turn on the <strong>Show pairwise comparison</strong> toggle to see contrasts between every pair of specific indirect effects. Each contrast comes with its bootstrap standard error and confidence interval, so you can test whether one indirect pathway is significantly stronger than another.</p>
+
+      <h3>Keyboard Shortcuts</h3>
+      <p>These shortcuts speed up common tasks. On a Mac, use <kbd>&#8984;</kbd> in place of <kbd>Ctrl</kbd>.</p>
+      <div class="table-scroll">
+        <table style="min-width:0;">
+          <thead>
+            <tr><th>Action</th><th>Windows / Linux</th><th>Mac</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Run the analysis</td><td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td><kbd>&#8984;</kbd> + <kbd>Enter</kbd></td></tr>
+            <tr><td>Open the centering options</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd></td><td><kbd>&#8984;</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd></td></tr>
+            <tr><td>Reset centering to the default (no centering)</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd></td><td><kbd>&#8984;</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd></td></tr>
+            <tr><td>Copy an output table</td><td>Hold <kbd>Ctrl</kbd>, then click the table</td><td>Hold <kbd>&#8984;</kbd>, then click the table</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Copying tables:</strong> while you hold the key, a <em>Copy Table</em> overlay appears on every output table. Click the table you want, and it is copied to your clipboard, ready to paste into Word, Google Docs or Excel.</p>
 
      <h2 id="workflow">How It Works</h2>
       <p>MedModr follows a straightforward two-stage workflow designed to guide users from raw data through analysis to publication-ready results.</p>
@@ -1373,8 +1430,8 @@ MedModr implements analytical models equivalent to those available in the PROCES
       <ol>
         <li><strong>Variable Specification:</strong> Assign dependent, independent, mediator(s), moderator(s), and covariate variables according to the selected analytical model.</li>
         <li><strong>Model Selection:</strong> Choose from the full library of analytical models equivalent to those available in the PROCESS macro.</li>
-        <li><strong>Analysis Configuration:</strong> Specify bootstrap resampling parameters, confidence level, and other analysis preferences.</li>
-        <li><strong>Results Review:</strong> Examine comprehensive output, including regression tables, coefficients, bootstrap confidence intervals, and other model-specific results.</li>
+        <li><strong>Analysis Configuration:</strong> Specify bootstrap resampling parameters, confidence level, the type of standard errors (OLS or robust HC0&ndash;HC4), the number of decimal places (1&ndash;10), and other analysis preferences.</li>
+        <li><strong>Results Review:</strong> Examine comprehensive output, including regression tables, coefficients, bootstrap confidence intervals, and other model-specific results. Use the <strong>Diagnostics</strong> button beside any regression table for further checks.</li>
         <li><strong>Export:</strong> Generate formatted Word, PDF, HTML, or CSV documents for publication or presentation.</li>
       </ol>
 
@@ -1593,7 +1650,7 @@ MedModr implements analytical models equivalent to those available in the PROCES
     <tr>
       <td><strong>v3.0</strong> <span class="badge badge-green">Latest</span> <span class="badge" style="background:#e67e22;color:#fff;border-color:#e67e22;">Beta</span></td>
       <td style="white-space:nowrap;">September 2026</td>
-      <td>Expanded library to <strong>92 PROCESS models</strong> (Models 1–92), including new serial mediation moderation models (83–92). Standardized Variable Assignment labels to X, M, Y, W/Z, and Cov, with all mediators assigned to a single <strong>M</strong> box. Added a <strong>Percentile (16th / 50th / 84th)</strong> moderator probing option alongside the default Mean ± 1 SD, and improved computational efficiency and variable handling.
+      <td>Expanded library to <strong>92 PROCESS models</strong> (Models 1–92), including new serial mediation moderation models (83–92). Standardized Variable Assignment labels to X, M, Y, W/Z, and Cov, with all mediators assigned to a single <strong>M</strong> box. Added a <strong>Percentile (16th / 50th / 84th)</strong> moderator probing option alongside the default Mean ± 1 SD, and improved computational efficiency and variable handling. Also added <strong>regression diagnostics</strong>, a <strong>Fit Model</strong> tool for custom regressions, <strong>robust standard errors (HC0&ndash;HC4)</strong>, <strong>adjustable decimal places (1&ndash;10)</strong>, <strong>pairwise comparison of indirect effects</strong>, and <strong>keyboard shortcuts</strong>.
 </td>
       <td style="text-align:center;"><a href="https://archive.org/download/version-1_202606/MedModr%20%28v3.0%20beta%29.zip" class="btn-download">Download</a></td>
     </tr>
