@@ -18,7 +18,9 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; background: #ffffff; }
-    html, body { max-width: 100%; overflow-x: hidden; }
+    html, body { max-width: 100%; }
+    html { overflow-x: hidden; }
+    body { overflow-x: clip; }
     img, iframe, svg, video, table { max-width: 100%; }
 
     :root {
@@ -1126,8 +1128,8 @@
     <div id="sidebar">
 
       <div class="sidebar-section">
-        <div class="sidebar-title">On this page</div>
-        <nav class="sidebar-toc" id="pageToc" aria-label="On this page"></nav>
+        <div class="sidebar-title">Jump to section</div>
+        <nav class="sidebar-toc" id="pageToc" aria-label="Jump to section"></nav>
       </div>
 
       <div class="sidebar-section">
